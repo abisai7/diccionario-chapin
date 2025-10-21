@@ -4,16 +4,16 @@ import { slugify } from "../utils/slug.js";
 const { word, meaning } = Astro.props;
 ---
 <div 
-  class="p-4 transition-all duration-200 hover:-translate-y-0.5" 
+  class="word-card p-4 transition-all duration-200" 
   style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 1px 2px var(--shadow-sm)"
 >
   <h3 class="m-0 mb-1.5 text-lg font-semibold">
-    <a href={`/palabras/${slugify(word)}`} class="transition-colors" style="&:hover { color: var(--primary-light) }">{word}</a>
+    <a href={`/palabras/${slugify(word)}`} class="word-title transition-colors" style="color: var(--text)">{word}</a>
   </h3>
   <p class="m-0 text-sm leading-relaxed" style="color: var(--muted)">{meaning}</p>
   <a 
     href={`/palabras/${slugify(word)}`} 
-    class="inline-flex items-center gap-1 mt-2 text-sm font-medium transition-colors" 
+    class="word-link inline-flex items-center gap-1 mt-2 text-sm font-medium transition-colors" 
     style="color: var(--primary)"
   >
     Ver detalle 
@@ -22,3 +22,18 @@ const { word, meaning } = Astro.props;
     </svg>
   </a>
 </div>
+
+<style>
+  .word-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-md);
+  }
+  
+  .word-title:hover {
+    color: var(--primary) !important;
+  }
+  
+  .word-link:hover {
+    color: var(--primary-light) !important;
+  }
+</style>

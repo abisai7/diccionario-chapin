@@ -4,26 +4,188 @@ import Base from "../layouts/Base.astro";
 import SearchBox from "../components/SearchBox.astro";
 import words from "../data/words.json";
 import WordCard from "../components/WordCard.astro";
-
-const q = Astro.url.searchParams.get('q')?.toString().trim().toLowerCase() ?? '';
-const results = q
-  ? words.filter(w =>
-      w.word.toLowerCase().includes(q) ||
-      w.meaning.toLowerCase().includes(q) ||
-      (w.examples||[]).some(ex => ex.toLowerCase().includes(q))
-    )
-  : [];
 ---
-<Base title={`Buscar: ${q || ''}`}>
+<Base title="Buscador">
   <section class="max-w-[1100px] mx-auto px-6">
     <h1 class="text-3xl font-bold mb-4">Buscador</h1>
-    <SearchBox action="/buscar" query={q} />
-    {q
-      ? <p class="opacity-80 mt-3">Resultados para <strong>{q}</strong>: {results.length}</p>
-      : <p class="opacity-80 mt-3">Escribe para buscar palabras, significados o ejemplos.</p>
-    }
-    <div class="grid gap-3.5 grid-cols-[repeat(auto-fill,minmax(260px,1fr))] mt-4">
-      {results.map(item => <WordCard word={item.word} meaning={item.meaning} />)}
+    
+    <SearchBox action="/buscar" query="" />
+    
+    <div id="search-results" class="mt-4">
+      <!-- Estado inicial -->
+      <div 
+        id="empty-state"
+        class="p-8 text-center"
+        style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: 0 2px 8px var(--shadow-md)"
+      >
+        <svg 
+          width="64" 
+          height="64" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          stroke-width="1.5" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"
+          class="mx-auto mb-4"
+          style="color: var(--primary); opacity: 0.7"
+        >
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <p class="text-lg font-medium mb-2" style="color: var(--text)">Buscador de palabras</p>
+        <p class="text-sm" style="color: var(--muted)">
+          Escribe una palabra, significado o ejemplo para buscar en el diccionario
+        </p>
+      </div>
     </div>
   </section>
 </Base>
+
+<script define:vars={{ words }}>
+  // Importar slugify desde el módulo
+  const slugify = (str) => {
+    return str
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  };
+
+  function performSearch() {
+    const params = new URLSearchParams(window.location.search);
+    const q = (params.get('q') || '').trim().toLowerCase();
+    const resultsContainer = document.getElementById('search-results');
+    
+    if (!q) {
+      // Mostrar estado vacío
+      resultsContainer.innerHTML = `
+        <div 
+          id="empty-state"
+          class="p-8 text-center"
+          style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: 0 2px 8px var(--shadow-md)"
+        >
+          <svg 
+            width="64" 
+            height="64" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="1.5" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+            class="mx-auto mb-4"
+            style="color: var(--primary); opacity: 0.7"
+          >
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <p class="text-lg font-medium mb-2" style="color: var(--text)">Buscador de palabras</p>
+          <p class="text-sm" style="color: var(--muted)">
+            Escribe una palabra, significado o ejemplo para buscar en el diccionario
+          </p>
+        </div>
+      `;
+      return;
+    }
+    
+    // Realizar búsqueda
+    const results = words.filter(w =>
+      w.word.toLowerCase().includes(q) ||
+      w.meaning.toLowerCase().includes(q) ||
+      (w.examples || []).some(ex => ex.toLowerCase().includes(q))
+    );
+    
+    // Mostrar resultados
+    if (results.length > 0) {
+      resultsContainer.innerHTML = `
+        <p class="text-base mb-4" style="color: var(--muted)">
+          Se encontraron ${results.length} resultado${results.length !== 1 ? 's' : ''} para "${q}"
+        </p>
+        <div class="grid gap-3.5 grid-cols-[repeat(auto-fill,minmax(260px,1fr))]">
+          ${results.map(item => `
+            <div 
+              class="word-card p-4 transition-all duration-200" 
+              style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 1px 2px var(--shadow-sm)"
+            >
+              <h3 class="m-0 mb-1.5 text-lg font-semibold">
+                <a href="/palabras/${slugify(item.word)}" class="word-title transition-colors" style="color: var(--text)">${item.word}</a>
+              </h3>
+              <p class="m-0 text-sm leading-relaxed" style="color: var(--muted)">${item.meaning}</p>
+              <a 
+                href="/palabras/${slugify(item.word)}" 
+                class="word-link inline-flex items-center gap-1 mt-2 text-sm font-medium transition-colors" 
+                style="color: var(--primary)"
+              >
+                Ver detalle 
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    } else {
+      // Sin resultados
+      resultsContainer.innerHTML = `
+        <p class="text-base mb-4" style="color: var(--muted)">
+          No se encontraron resultados para "${q}"
+        </p>
+        <div 
+          class="p-8 text-center"
+          style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: 0 2px 8px var(--shadow-md)"
+        >
+          <svg 
+            width="64" 
+            height="64" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="1.5" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+            class="mx-auto mb-4"
+            style="color: var(--muted); opacity: 0.5"
+          >
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+            <line x1="11" y1="8" x2="11" y2="14"/>
+            <line x1="8" y1="11" x2="14" y2="11"/>
+          </svg>
+          <p class="text-lg font-medium mb-2" style="color: var(--text)">No hay resultados</p>
+          <p class="text-sm" style="color: var(--muted)">
+            Intenta con otra palabra o revisa el <a href="/indice" class="font-semibold" style="color: var(--primary)">índice completo</a>
+          </p>
+        </div>
+      `;
+    }
+  }
+  
+  // Ejecutar búsqueda al cargar la página
+  performSearch();
+  
+  // Actualizar campo de búsqueda con el valor del parámetro
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get('q') || '';
+  const searchInput = document.querySelector('input[name="q"]');
+  if (searchInput && q) {
+    searchInput.value = q;
+  }
+</script>
+
+<style is:global>
+  .word-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-md);
+  }
+  
+  .word-title:hover {
+    color: var(--primary) !important;
+  }
+  
+  .word-link:hover {
+    color: var(--primary-light) !important;
+  }
+</style>

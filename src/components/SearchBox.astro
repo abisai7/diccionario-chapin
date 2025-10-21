@@ -18,7 +18,7 @@ const { placeholder = "Buscar palabra...", action="/buscar", query = "" } = Astr
     style="color: var(--text)"
   />
   <button 
-    class="px-4 py-2.5 font-semibold cursor-pointer border-none transition-all duration-200 active:scale-95 relative overflow-hidden group"
+    class="search-btn px-4 py-2.5 font-semibold cursor-pointer border-none transition-all duration-200 active:scale-95 relative overflow-hidden"
     style="
       background: var(--btn-primary-bg); 
       color: var(--btn-primary-text); 
@@ -26,6 +26,7 @@ const { placeholder = "Buscar palabra...", action="/buscar", query = "" } = Astr
       box-shadow: 0 2px 8px var(--btn-primary-shadow), 0 1px 3px var(--shadow-md);
     "
     type="submit"
+    aria-label="Buscar"
   >
     <span class="relative z-10 flex items-center gap-2">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -34,21 +35,26 @@ const { placeholder = "Buscar palabra...", action="/buscar", query = "" } = Astr
       </svg>
       Buscar
     </span>
-    <span 
-      class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-      style="background: var(--btn-primary-bg-hover)"
-    ></span>
   </button>
 </form>
 
 <style>
-  button:hover {
+  .search-btn {
+    position: relative;
+  }
+  
+  .search-btn:hover {
     box-shadow: 0 4px 12px var(--btn-primary-shadow), 0 2px 6px var(--shadow-md);
     transform: translateY(-1px);
   }
   
-  button:active {
+  .search-btn:active {
     box-shadow: 0 1px 4px var(--btn-primary-shadow);
     transform: translateY(0) scale(0.95);
+  }
+  
+  .search-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
   }
 </style>
