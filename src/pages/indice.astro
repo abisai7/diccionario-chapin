@@ -3,31 +3,94 @@
 import Base from "../layouts/Base.astro";
 import words from "../data/words.json";
 import { slugify } from "../utils/slug.js";
+
 const sorted = [...words].sort((a,b)=> a.word.localeCompare(b.word));
+
+// Agrupar palabras por letra inicial
+const groupedByLetter = sorted.reduce((acc, word) => {
+  const firstLetter = word.word.charAt(0).toUpperCase();
+  if (!acc[firstLetter]) {
+    acc[firstLetter] = [];
+  }
+  acc[firstLetter].push(word);
+  return acc;
+}, {} as Record<string, typeof words>);
+
+// Ordenar las letras
+const letters = Object.keys(groupedByLetter).sort();
 ---
 <Base title="Índice Alfabético — Diccionario Chapín">
   <section class="max-w-[1100px] mx-auto px-6">
     <h1 class="text-3xl font-bold mb-4">Índice Alfabético</h1>
+    
+    <!-- Navegación de letras -->
     <div 
-      class="p-6 mt-3.5" 
-      style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: 0 2px 8px var(--shadow-md)"
+      class="flex flex-wrap gap-2 p-4 mb-4"
+      style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 1px 2px var(--shadow-sm)"
     >
-      <ul class="columns-2 gap-6 list-none p-0 m-0">
-        {sorted.map(w => (
-          <li class="break-inside-avoid py-1.5">
-            <a 
-              href={`/palabras/${slugify(w.word)}`}
-              class="inline-flex items-center gap-2 hover:translate-x-1 transition-transform duration-200"
-              style="color: var(--text)"
+      {letters.map(letter => (
+        <a 
+          href={`#letra-${letter}`}
+          class="px-3 py-1.5 font-semibold text-sm transition-all duration-200"
+          style="background: var(--glow-primary); color: var(--primary); border: 1px solid var(--border); border-radius: var(--radius-md); &:hover { background: var(--card-hover) }"
+        >
+          {letter}
+        </a>
+      ))}
+    </div>
+
+    <!-- Palabras agrupadas por letra -->
+    <div class="space-y-6">
+      {letters.map(letter => (
+        <div 
+          id={`letra-${letter}`}
+          class="p-6"
+          style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: 0 2px 8px var(--shadow-md)"
+        >
+          <!-- Letra grande como divisor -->
+          <div class="flex items-center gap-4 mb-4 pb-3" style="border-bottom: 2px solid var(--primary)">
+            <h2 
+              class="text-5xl font-bold m-0"
+              style="color: var(--primary); line-height: 1"
             >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); opacity: 0.6">
-                <circle cx="12" cy="12" r="2"/>
-              </svg>
-              {w.word}
-            </a>
-          </li>
-        ))}
-      </ul>
+              {letter}
+            </h2>
+            <span class="text-sm font-medium" style="color: var(--muted)">
+              {groupedByLetter[letter].length} palabra{groupedByLetter[letter].length !== 1 ? 's' : ''}
+            </span>
+          </div>
+          
+          <!-- Lista de palabras para esta letra -->
+          <ul class="columns-2 gap-6 list-none p-0 m-0">
+            {groupedByLetter[letter].map(w => (
+              <li class="break-inside-avoid py-1.5">
+                <a 
+                  href={`/palabras/${slugify(w.word)}`}
+                  class="inline-flex items-center gap-2 hover:translate-x-1 transition-transform duration-200"
+                  style="color: var(--text)"
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); opacity: 0.6">
+                    <circle cx="12" cy="12" r="2"/>
+                  </svg>
+                  {w.word}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   </section>
 </Base>
+
+<style>
+  /* Scroll suave para la navegación de letras */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Ajuste para el offset del scroll */
+  [id^="letra-"] {
+    scroll-margin-top: 20px;
+  }
+</style>
