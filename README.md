@@ -19,23 +19,6 @@
 - 🎯 **Ticker Interactivo** - Carrusel de palabras clickeable
 - 📑 **Índice Alfabético** - Navegación ordenada de todas las palabras
 
-## 🎨 Paleta de Colores
-
-### Color Principal
-- **Primario**: `#4997D0` - Azul vibrante guatemalteco
-
-### Dark Mode
-- **Fondo**: `#0a0e13` - Negro profundo
-- **Cards**: `#141920` - Gris oscuro
-- **Texto**: `#e8f2ff` - Blanco azulado
-- **Bordes**: `#1e2937` - Gris sutil
-
-### Light Mode
-- **Fondo**: `#f8fafc` - Blanco suave
-- **Cards**: `#ffffff` - Blanco puro
-- **Texto**: `#0f172a` - Negro azulado
-- **Bordes**: `#e2e8f0` - Gris claro
-
 ## 🚀 Inicio Rápido
 
 ### Prerrequisitos
@@ -188,23 +171,6 @@ El sitio se regenerará automáticamente con las nuevas palabras.
 
 - **`/`** - Enfocar el buscador desde cualquier página
 
-## 🎭 Características Especiales
-
-### Toggle de Tema
-- Persistencia en localStorage
-- Transiciones suaves entre temas
-- Iconos dinámicos (sol/luna)
-
-### Ticker Animado
-- Animación CSS infinita
-- 3 filas con velocidades diferentes
-- Clickeable para ver detalles
-
-### Búsqueda Inteligente
-- Sin necesidad de recargar
-- Filtrado en múltiples campos
-- Contador de resultados
-
 ## 🚀 Optimizaciones
 
 - ✅ **Sitio Estático** - Pre-renderizado en build time
@@ -237,19 +203,13 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ## 👨‍💻 Autor
 
-**Tu Nombre**
+**Abisai Herrera**
 
-- GitHub: [@tuusuario](https://github.com/tuusuario)
-- Website: [tuwebsite.com](https://tuwebsite.com)
-
-## 🙏 Agradecimientos
-
-- A la comunidad guatemalteca por preservar el chapinismo
-- A todos los que contribuyen con nuevas palabras
-- Al equipo de Astro por su increíble framework
+- GitHub: [@abisai7](https://github.com/abisai7)
+- Website: [abisai.dev](https://abisai.dev)
 
 ---
 
 ⭐ Si te gusta este proyecto, dale una estrella en GitHub!
 
-**Hecho con 💙 y #4997D0 para Guatemala** 🇬🇹
+**Hecho con 💙 para Guatemala** 🇬🇹
