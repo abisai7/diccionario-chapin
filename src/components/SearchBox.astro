@@ -1,0 +1,8 @@
+
+---
+const { placeholder = "Buscar palabra...", action="/buscar", query = "" } = Astro.props;
+---
+<form class="search" action={action} method="get">
+  <input type="search" name="q" value={query} placeholder={placeholder} aria-label="Buscar palabra" />
+  <button class="button" type="submit">Buscar</button>
+</form>

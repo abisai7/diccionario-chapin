@@ -1,0 +1,29 @@
+
+---
+import Base from "../layouts/Base.astro";
+import SearchBox from "../components/SearchBox.astro";
+import words from "../data/words.json";
+import WordCard from "../components/WordCard.astro";
+
+const q = Astro.url.searchParams.get('q')?.toString().trim().toLowerCase() ?? '';
+const results = q
+  ? words.filter(w =>
+      w.word.toLowerCase().includes(q) ||
+      w.meaning.toLowerCase().includes(q) ||
+      (w.examples||[]).some(ex => ex.toLowerCase().includes(q))
+    )
+  : [];
+---
+<Base title={`Buscar: ${q || ''}`}>
+  <section class="container">
+    <h1>Buscador</h1>
+    <SearchBox action="/buscar" query={q} />
+    {q
+      ? <p style="opacity:.8">Resultados para <strong>{q}</strong>: {results.length}</p>
+      : <p style="opacity:.8">Escribe para buscar palabras, significados o ejemplos.</p>
+    }
+    <div class="grid">
+      {results.map(item => <WordCard word={item.word} meaning={item.meaning} />)}
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,43 @@
+
+---
+const { title = "Diccionario Chapín" } = Astro.props;
+---
+<header class="header container">
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+      <circle cx="12" cy="12" r="6" fill="currentColor" style="color: var(--primary)"/>
+    </svg>
+    <span>{title}</span>
+    <span class="badge">GT</span>
+  </div>
+  <nav class="nav">
+    <a href="/">Inicio</a>
+    <a href="/indice">Índice</a>
+    <a href="/buscar">Buscador</a>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">
+      <svg id="moon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79Z"/></svg>
+      <svg id="sun" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0 4a1 1 0 0 1-1-1v-1.5a1 1 0 1 1 2 0V21a1 1 0 0 1-1 1ZM12 0a1 1 0 0 1 1 1v1.5a1 1 0 1 1-2 0V1a1 1 0 0 1 1-1Zm12 13a1 1 0 1 1 0-2h-1.5a1 1 0 1 1 0 2H24ZM1.5 13a1 1 0 1 1 0-2H0a1 1 0 1 1 0 2h1.5Zm18.01 7.49a1 1 0 0 1-1.41 0l-1.06-1.06a1 1 0 1 1 1.41-1.41l1.06 1.06a1 1 0 0 1 0 1.41ZM6.96 6.96a1 1 0 0 1-1.41 0L4.49 5.9A1 1 0 1 1 5.9 4.49l1.06 1.06a1 1 0 0 1 0 1.41Z"/></svg>
+    </button>
+  </nav>
+  <script is:inline>
+    const el = document.documentElement;
+    const saved = localStorage.getItem('theme') || 'dark';
+    el.setAttribute('data-theme', saved);
+    const btn = document.getElementById('theme-toggle');
+    const m = document.getElementById('moon');
+    const s = document.getElementById('sun');
+    function updateIcons(){
+      const t = el.getAttribute('data-theme');
+      if(t === 'light'){ s.style.display='block'; m.style.display='none'; }
+      else { s.style.display='none'; m.style.display='block'; }
+    }
+    updateIcons();
+    btn?.addEventListener('click', () => {
+      const next = el.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      el.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateIcons();
+    });
+  </script>
+</header>

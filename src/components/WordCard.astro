@@ -1,0 +1,10 @@
+
+---
+import { slugify } from "../utils/slug.js";
+const { word, meaning } = Astro.props;
+---
+<div class="card">
+  <h3><a href={`/palabras/${slugify(word)}`}>{word}</a></h3>
+  <p>{meaning}</p>
+  <a href={`/palabras/${slugify(word)}`}>Ver detalle →</a>
+</div>

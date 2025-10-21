@@ -1,0 +1,49 @@
+
+:root{
+  --primary:#4997D0;
+  --bg:#0b1117; --bg-accent:#0d1621; --card:#0f1720; --text:#e6f0ff; --muted:#9fbad3; --border: color-mix(in oklab,var(--primary) 30%, black);
+}
+html[data-theme="light"]{
+  --bg:#f7fafc; --bg-accent:#ecf4fb; --card:#ffffff; --text:#0b1117; --muted:#516b87; --border: color-mix(in oklab,var(--primary) 35%, white);
+}
+*{box-sizing:border-box} html,body{height:100%}
+body{margin:0;font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, 'Apple Color Emoji','Segoe UI Emoji';
+  background: radial-gradient(80% 60% at 50% 0%, var(--bg-accent) 0%, var(--bg) 60%); color:var(--text); transition: background .3s ease, color .3s ease;}
+a{color:inherit;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.header{display:flex;align-items:center;gap:16px;justify-content:space-between;padding:16px 0;}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem;}
+.badge{padding:4px 10px;border-radius:999px;background:color-mix(in oklab,var(--primary) 25%, transparent); color:var(--text); border:1px solid color-mix(in oklab,var(--primary) 70%, black);}
+.nav{display:flex;align-items:center;gap:8px}
+.nav a{opacity:.9;padding:8px 12px;border-radius:10px;border:1px solid transparent}
+.nav a:hover{border-color: color-mix(in oklab,var(--primary) 40%, black); background:color-mix(in oklab,var(--primary) 10%, transparent)}
+.theme-toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1px solid var(--border); background:color-mix(in oklab,var(--primary) 8%, transparent); cursor:pointer}
+.theme-toggle svg{display:block}
+.footer{opacity:.8;padding:40px 0;border-top:1px solid var(--border);margin-top:40px}
+.hero{display:grid;gap:14px;padding:24px;border:1px solid color-mix(in oklab,var(--primary) 40%, black);border-radius:20px;background:linear-gradient(180deg,color-mix(in oklab,var(--primary) 12%, var(--bg-accent)), var(--bg-accent));box-shadow: 0 10px 40px rgba(0,0,0,.25);}
+.hero h1{margin:0;font-size:clamp(1.8rem,2.4vw,2.6rem)}
+.hero p{margin:0;color:var(--muted)}
+.button{background:var(--primary);border:none;color:#08121b;padding:10px 14px;border-radius:12px;font-weight:700;box-shadow:0 8px 20px color-mix(in oklab, var(--primary) 40%, black);cursor:pointer}
+.button.secondary{background:transparent;color:var(--text);border:1px solid color-mix(in oklab,var(--primary) 50%, black);}
+.search{display:flex;gap:10px;align-items:center;background:var(--card);padding:12px;border-radius:14px;border:1px solid var(--border)}
+.search input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-size:1rem;}
+.grid{display:grid;gap:14px;grid-template-columns: repeat(auto-fill,minmax(260px,1fr));margin-top:16px}
+.card{background:var(--card);border:1px solid var(--border);padding:16px;border-radius:16px;}
+.card h3{margin:0 0 6px 0;font-size:1.1rem}
+.card p{margin:0;color:var(--muted)}
+.card a{display:inline-block;margin-top:8px;color:var(--text);opacity:.9}
+.kbd{border:1px solid var(--border); padding:2px 6px;border-radius:8px;background:color-mix(in oklab,var(--primary) 6%, var(--bg-accent)); color:var(--muted); font-size:.9rem}
+.ticker-wrap{display:grid;gap:10px;margin:20px 0}
+.ticker-row{overflow:hidden;border-radius:999px;border:1px solid color-mix(in oklab,var(--primary) 50%, black);background:linear-gradient(90deg, color-mix(in oklab,var(--primary) 10%, transparent), transparent)}
+.ticker{display:flex;gap:30px;white-space:nowrap;padding:10px 16px;animation:scroll 22s linear infinite;}
+.ticker.reverse{animation-direction: reverse; animation-duration: 28s;}
+.ticker .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:color-mix(in oklab,var(--primary) 22%, #0c141e); border:1px solid color-mix(in oklab,var(--primary) 60%, black);}
+.ticker .pill:hover{transform:translateY(-1px)}
+.ticker .dot{width:6px;height:6px;border-radius:999px;background:var(--primary)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.entry{background:var(--card); border:1px solid var(--border); border-radius:20px; padding:24px}
+.entry h1{margin:0 0 6px 0; font-size:2rem; letter-spacing:.3px}
+.entry .pron{color:var(--muted); font-style:italic}
+.entry .def{margin:10px 0; line-height:1.6}
+.entry .examples{margin-top:16px}
+.entry .examples li{margin:6px 0; font-style:italic; color:var(--muted)}

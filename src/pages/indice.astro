@@ -1,0 +1,21 @@
+
+---
+import Base from "../layouts/Base.astro";
+import words from "../data/words.json";
+import { slugify } from "../utils/slug.js";
+const sorted = [...words].sort((a,b)=> a.word.localeCompare(b.word));
+---
+<Base title="Índice Alfabético — Diccionario Chapín">
+  <section class="container">
+    <h1>Índice Alfabético</h1>
+    <div class="card" style="margin-top:14px">
+      <ul style="columns: 2; gap: 24px; list-style: none; padding: 0; margin: 0">
+        {sorted.map(w => (
+          <li style="break-inside: avoid; padding: 6px 0">
+            <a href={`/palabras/${slugify(w.word)}`}>{w.word}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>

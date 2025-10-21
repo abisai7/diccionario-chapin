@@ -1,0 +1,23 @@
+
+---
+import { slugify } from "../utils/slug.js";
+const { words = [] } = Astro.props;
+const repeated = [...words, ...words, ...words];
+function chunk(arr, size){
+  const out = [];
+  for(let i=0;i<arr.length;i+=size) out.push(arr.slice(i,i+size));
+  return out;
+}
+const rows = chunk(repeated, Math.ceil(repeated.length/3));
+---
+<div class="ticker-wrap">
+  {rows.map((row, idx) => (
+    <div class="ticker-row">
+      <div class={`ticker ${idx % 2 === 1 ? 'reverse' : ''}`} aria-hidden="true">
+        {row.map(w => (
+          <a class="pill" href={`/palabras/${slugify(w)}`}><span class="dot"></span>{w}</a>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>

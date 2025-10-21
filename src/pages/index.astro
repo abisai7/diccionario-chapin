@@ -1,0 +1,42 @@
+
+---
+import Base from "../layouts/Base.astro";
+import SearchBox from "../components/SearchBox.astro";
+import Ticker from "../components/Ticker.astro";
+import words from "../data/words.json";
+import WordCard from "../components/WordCard.astro";
+
+const wordList = words.map(w => w.word);
+const shuffled = [...wordList].sort(() => Math.random() - .5);
+const featured = shuffled.slice(0, Math.min(45, shuffled.length));
+const top = words.slice(0, 6);
+---
+<Base title="Diccionario Chapín">
+  <section class="container hero">
+    <h1>Diccionario Chapín</h1>
+    <p>Palabras chapinas con significado y ejemplos. Color principal: <span style="color:var(--primary);font-weight:700">#4997D0</span>.</p>
+    <SearchBox placeholder="Buscar 'patojo', 'chilero'..." />
+    <div class="kbd">Sugerencia: presiona <strong>/</strong> para enfocar el buscador.</div>
+  </section>
+
+  <section class="container">
+    <Ticker words={featured} />
+  </section>
+
+  <section class="container">
+    <h2 style="margin:0 0 10px 0">Destacadas</h2>
+    <div class="grid">
+      {top.map(item => <WordCard word={item.word} meaning={item.meaning} />)}
+    </div>
+  </section>
+
+  <script is:inline>
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && !(e.target instanceof HTMLInputElement)) {
+        e.preventDefault();
+        const input = document.querySelector('input[type="search"]');
+        input?.focus();
+      }
+    });
+  </script>
+</Base>

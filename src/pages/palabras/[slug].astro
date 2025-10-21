@@ -1,0 +1,33 @@
+
+---
+import Base from "../../layouts/Base.astro";
+import words from "../../data/words.json";
+import { slugify } from "../../utils/slug.js";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  return words.map((p) => ({
+    params: { slug: p.word.toLowerCase() },
+    props: { palabra: p },
+  }));
+}
+
+const { slug } = Astro.params;
+const word = words.find(w => slugify(w.word) === slug);
+if (!word) { throw new Error("Palabra no encontrada"); }
+---
+<Base title={`${word.word} — Diccionario Chapín`}>
+  <section class="container">
+    <a href="/" class="button secondary">← Volver</a>
+    <article class="entry" style="margin-top:14px">
+      <h1>{word.word}</h1>
+      <div class="pron">[ chap. ]</div>
+      <div class="def">{word.meaning}</div>
+      <h3 style="margin:12px 0 6px 0">Ejemplos</h3>
+      <ul class="examples">
+        {word.examples?.map(ex => <li>{ex}</li>)}
+      </ul>
+    </article>
+  </section>
+</Base>
