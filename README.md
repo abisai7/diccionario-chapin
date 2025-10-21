@@ -117,32 +117,6 @@ diccionario-chapin/
 - Lista de ejemplos de uso
 - Botón de navegación
 
-## 🎨 Sistema de Diseño
-
-### Variables CSS
-
-El proyecto utiliza un sistema de variables CSS para:
-- **Colores** - Paleta adaptable a temas
-- **Sombras** - 3 niveles (sm, md, lg)
-- **Border Radius** - 5 tamaños coherentes
-- **Tipografía** - Jerarquía de texto
-
-### Border Radius
-```css
---radius-sm: 8px      /* Tags, kbd */
---radius-md: 12px     /* Botones, nav */
---radius-lg: 16px     /* Cards, forms */
---radius-xl: 20px     /* Hero, articles */
---radius-full: 9999px /* Pills, badges */
-```
-
-### Sombras
-```css
---shadow-sm: rgba(0, 0, 0, 0.1)   /* Sutil */
---shadow-md: rgba(0, 0, 0, 0.15)  /* Media */
---shadow-lg: rgba(0, 0, 0, 0.2)   /* Pronunciada */
-```
-
 ## 🛠️ Tecnologías
 
 - **[Astro](https://astro.build)** - Framework web moderno
