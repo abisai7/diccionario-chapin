@@ -6,13 +6,25 @@ import { slugify } from "../utils/slug.js";
 const sorted = [...words].sort((a,b)=> a.word.localeCompare(b.word));
 ---
 <Base title="Índice Alfabético — Diccionario Chapín">
-  <section class="container">
-    <h1>Índice Alfabético</h1>
-    <div class="card" style="margin-top:14px">
-      <ul style="columns: 2; gap: 24px; list-style: none; padding: 0; margin: 0">
+  <section class="max-w-[1100px] mx-auto px-6">
+    <h1 class="text-3xl font-bold mb-4">Índice Alfabético</h1>
+    <div 
+      class="p-6 mt-3.5" 
+      style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: 0 2px 8px var(--shadow-md)"
+    >
+      <ul class="columns-2 gap-6 list-none p-0 m-0">
         {sorted.map(w => (
-          <li style="break-inside: avoid; padding: 6px 0">
-            <a href={`/palabras/${slugify(w.word)}`}>{w.word}</a>
+          <li class="break-inside-avoid py-1.5">
+            <a 
+              href={`/palabras/${slugify(w.word)}`}
+              class="inline-flex items-center gap-2 hover:translate-x-1 transition-transform duration-200"
+              style="color: var(--text)"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); opacity: 0.6">
+                <circle cx="12" cy="12" r="2"/>
+              </svg>
+              {w.word}
+            </a>
           </li>
         ))}
       </ul>

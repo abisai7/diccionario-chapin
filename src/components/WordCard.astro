@@ -3,8 +3,22 @@
 import { slugify } from "../utils/slug.js";
 const { word, meaning } = Astro.props;
 ---
-<div class="card">
-  <h3><a href={`/palabras/${slugify(word)}`}>{word}</a></h3>
-  <p>{meaning}</p>
-  <a href={`/palabras/${slugify(word)}`}>Ver detalle →</a>
+<div 
+  class="p-4 transition-all duration-200 hover:-translate-y-0.5" 
+  style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 1px 2px var(--shadow-sm)"
+>
+  <h3 class="m-0 mb-1.5 text-lg font-semibold">
+    <a href={`/palabras/${slugify(word)}`} class="transition-colors" style="&:hover { color: var(--primary-light) }">{word}</a>
+  </h3>
+  <p class="m-0 text-sm leading-relaxed" style="color: var(--muted)">{meaning}</p>
+  <a 
+    href={`/palabras/${slugify(word)}`} 
+    class="inline-flex items-center gap-1 mt-2 text-sm font-medium transition-colors" 
+    style="color: var(--primary)"
+  >
+    Ver detalle 
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </svg>
+  </a>
 </div>

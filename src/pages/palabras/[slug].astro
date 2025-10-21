@@ -18,16 +18,43 @@ const word = words.find(w => slugify(w.word) === slug);
 if (!word) { throw new Error("Palabra no encontrada"); }
 ---
 <Base title={`${word.word} — Diccionario Chapín`}>
-  <section class="container">
-    <a href="/" class="button secondary">← Volver</a>
-    <article class="entry" style="margin-top:14px">
-      <h1>{word.word}</h1>
-      <div class="pron">[ chap. ]</div>
-      <div class="def">{word.meaning}</div>
-      <h3 style="margin:12px 0 6px 0">Ejemplos</h3>
-      <ul class="examples">
-        {word.examples?.map(ex => <li>{ex}</li>)}
-      </ul>
+  <section class="max-w-[1100px] mx-auto px-6">
+    <button 
+      onclick="history.back()"
+      class="px-4 py-2.5 font-semibold cursor-pointer transition-all duration-200 active:scale-95"
+      style="background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: 0 1px 2px var(--shadow-sm); &:hover { background: var(--card-hover) }"
+    >
+      ← Volver
+    </button>
+    <article 
+      class="p-6 mt-3.5 transition-all duration-200" 
+      style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: 0 2px 8px var(--shadow-md)"
+    >
+      <h1 class="m-0 mb-1.5 text-[2rem] tracking-[0.3px] font-bold" style="color: var(--text)">{word.word}</h1>
+      <div class="italic text-sm mb-3" style="color: var(--muted)">[ chapinismo ]</div>
+      <div class="my-3 leading-relaxed text-base" style="color: var(--text-secondary)">{word.meaning}</div>
+      
+      <div class="mt-6 pt-4" style="border-top: 1px solid var(--border)">
+        <h3 class="my-0 mb-3 text-lg font-semibold flex items-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18"/>
+            <path d="M18 17V9"/>
+            <path d="M13 17V5"/>
+            <path d="M8 17v-3"/>
+          </svg>
+          Ejemplos
+        </h3>
+        <ul class="mt-4 space-y-2 pl-5">
+          {word.examples?.map(ex => (
+            <li 
+              class="my-2 italic leading-relaxed text-sm p-3" 
+              style="color: var(--muted); background: var(--glow-primary); border-left: 2px solid var(--primary); border-radius: var(--radius-md)"
+            >
+              "{ex}"
+            </li>
+          ))}
+        </ul>
+      </div>
     </article>
   </section>
 </Base>

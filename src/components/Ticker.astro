@@ -10,12 +10,22 @@ function chunk(arr, size){
 }
 const rows = chunk(repeated, Math.ceil(repeated.length/3));
 ---
-<div class="ticker-wrap">
+<div class="grid gap-2.5 my-5">
   {rows.map((row, idx) => (
-    <div class="ticker-row">
-      <div class={`ticker ${idx % 2 === 1 ? 'reverse' : ''}`} aria-hidden="true">
+    <div 
+      class="overflow-hidden backdrop-blur-sm" 
+      style="border: 1px solid var(--border); border-radius: var(--radius-full); background: linear-gradient(90deg, var(--glow-primary), transparent)"
+    >
+      <div class={`flex gap-[30px] whitespace-nowrap px-4 py-2.5 ${idx % 2 === 1 ? 'animate-[scroll_28s_linear_infinite_reverse]' : 'animate-[scroll_22s_linear_infinite]'}`} aria-hidden="true">
         {row.map(w => (
-          <a class="pill" href={`/palabras/${slugify(w)}`}><span class="dot"></span>{w}</a>
+          <a 
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 transition-all duration-200 hover:-translate-y-0.5" 
+            style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-full); box-shadow: 0 1px 2px var(--shadow-sm)"
+            href={`/palabras/${slugify(w)}`}
+          >
+            <span class="w-1.5 h-1.5 animate-pulse" style="background: var(--primary); border-radius: var(--radius-full)"></span>
+            {w}
+          </a>
         ))}
       </div>
     </div>

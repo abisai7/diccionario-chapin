@@ -2,7 +2,53 @@
 ---
 const { placeholder = "Buscar palabra...", action="/buscar", query = "" } = Astro.props;
 ---
-<form class="search" action={action} method="get">
-  <input type="search" name="q" value={query} placeholder={placeholder} aria-label="Buscar palabra" />
-  <button class="button" type="submit">Buscar</button>
+<form 
+  class="flex gap-2.5 items-center px-3 py-3 transition-all duration-200" 
+  style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 1px 2px var(--shadow-sm)" 
+  action={action} 
+  method="get"
+>
+  <input 
+    type="search" 
+    name="q" 
+    value={query} 
+    placeholder={placeholder} 
+    aria-label="Buscar palabra" 
+    class="flex-1 bg-transparent border-none outline-none text-base placeholder:opacity-50"
+    style="color: var(--text)"
+  />
+  <button 
+    class="px-4 py-2.5 font-semibold cursor-pointer border-none transition-all duration-200 active:scale-95 relative overflow-hidden group"
+    style="
+      background: var(--btn-primary-bg); 
+      color: var(--btn-primary-text); 
+      border-radius: var(--radius-md); 
+      box-shadow: 0 2px 8px var(--btn-primary-shadow), 0 1px 3px var(--shadow-md);
+    "
+    type="submit"
+  >
+    <span class="relative z-10 flex items-center gap-2">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="m21 21-4.35-4.35"/>
+      </svg>
+      Buscar
+    </span>
+    <span 
+      class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+      style="background: var(--btn-primary-bg-hover)"
+    ></span>
+  </button>
 </form>
+
+<style>
+  button:hover {
+    box-shadow: 0 4px 12px var(--btn-primary-shadow), 0 2px 6px var(--shadow-md);
+    transform: translateY(-1px);
+  }
+  
+  button:active {
+    box-shadow: 0 1px 4px var(--btn-primary-shadow);
+    transform: translateY(0) scale(0.95);
+  }
+</style>

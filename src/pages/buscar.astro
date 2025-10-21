@@ -15,14 +15,14 @@ const results = q
   : [];
 ---
 <Base title={`Buscar: ${q || ''}`}>
-  <section class="container">
-    <h1>Buscador</h1>
+  <section class="max-w-[1100px] mx-auto px-6">
+    <h1 class="text-3xl font-bold mb-4">Buscador</h1>
     <SearchBox action="/buscar" query={q} />
     {q
-      ? <p style="opacity:.8">Resultados para <strong>{q}</strong>: {results.length}</p>
-      : <p style="opacity:.8">Escribe para buscar palabras, significados o ejemplos.</p>
+      ? <p class="opacity-80 mt-3">Resultados para <strong>{q}</strong>: {results.length}</p>
+      : <p class="opacity-80 mt-3">Escribe para buscar palabras, significados o ejemplos.</p>
     }
-    <div class="grid">
+    <div class="grid gap-3.5 grid-cols-[repeat(auto-fill,minmax(260px,1fr))] mt-4">
       {results.map(item => <WordCard word={item.word} meaning={item.meaning} />)}
     </div>
   </section>
