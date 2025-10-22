@@ -8,14 +8,13 @@ export const prerender = true;
 
 export async function getStaticPaths() {
   return words.map((p) => ({
-    params: { slug: p.word.toLowerCase() },
+    params: { slug: slugify(p.word) },
     props: { palabra: p },
   }));
 }
 
-const { slug } = Astro.params;
-const word = words.find(w => slugify(w.word) === slug);
-if (!word) { throw new Error("Palabra no encontrada"); }
+const { palabra } = Astro.props;
+const word = palabra;
 ---
 <Base title={`${word.word} — Diccionario Chapín`}>
   <section class="max-w-[1100px] mx-auto px-6">
