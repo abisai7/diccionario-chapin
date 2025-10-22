@@ -1,38 +1,38 @@
-
 ---
 import Base from "../layouts/Base.astro";
 import SearchBox from "../components/SearchBox.astro";
 import words from "../data/words.json";
 ---
+
 <Base title="Buscador">
-  <section class="max-w-[1100px] mx-auto px-6">
-    <h1 class="text-3xl font-bold mb-4">Buscador</h1>
-    
+  <section class="mx-auto max-w-[1100px] px-6">
+    <h1 class="mb-4 text-3xl font-bold">Buscador</h1>
+
     <SearchBox action="/buscar" query="" />
-    
+
     <div id="search-results" class="mt-4">
       <!-- Estado inicial -->
-      <div 
+      <div
         id="empty-state"
         class="p-8 text-center"
         style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: 0 2px 8px var(--shadow-md)"
       >
-        <svg 
-          width="64" 
-          height="64" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="currentColor" 
-          stroke-width="1.5" 
-          stroke-linecap="round" 
+        <svg
+          width="64"
+          height="64"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
           stroke-linejoin="round"
           class="mx-auto mb-4"
           style="color: var(--primary); opacity: 0.7"
         >
-          <circle cx="11" cy="11" r="8"/>
-          <path d="m21 21-4.35-4.35"/>
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
         </svg>
-        <p class="text-lg font-medium mb-2" style="color: var(--text)">Buscador de palabras</p>
+        <p class="mb-2 text-lg font-medium" style="color: var(--text)">Buscador de palabras</p>
         <p class="text-sm" style="color: var(--muted)">
           Escribe una palabra, significado o ejemplo para buscar en el diccionario
         </p>
@@ -46,17 +46,17 @@ import words from "../data/words.json";
   const slugify = (str) => {
     return str
       .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '');
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
   };
 
   function performSearch() {
     const params = new URLSearchParams(window.location.search);
-    const q = (params.get('q') || '').trim().toLowerCase();
-    const resultsContainer = document.getElementById('search-results');
-    
+    const q = (params.get("q") || "").trim().toLowerCase();
+    const resultsContainer = document.getElementById("search-results");
+
     if (!q) {
       // Mostrar estado vacío
       resultsContainer.innerHTML = `
@@ -88,22 +88,25 @@ import words from "../data/words.json";
       `;
       return;
     }
-    
+
     // Realizar búsqueda
-    const results = words.filter(w =>
-      w.word.toLowerCase().includes(q) ||
-      w.meaning.toLowerCase().includes(q) ||
-      (w.examples || []).some(ex => ex.toLowerCase().includes(q))
+    const results = words.filter(
+      (w) =>
+        w.word.toLowerCase().includes(q) ||
+        w.meaning.toLowerCase().includes(q) ||
+        (w.examples || []).some((ex) => ex.toLowerCase().includes(q))
     );
-    
+
     // Mostrar resultados
     if (results.length > 0) {
       resultsContainer.innerHTML = `
         <p class="text-base mb-4" style="color: var(--muted)">
-          Se encontraron ${results.length} resultado${results.length !== 1 ? 's' : ''} para "${q}"
+          Se encontraron ${results.length} resultado${results.length !== 1 ? "s" : ""} para "${q}"
         </p>
         <div class="grid gap-3.5 grid-cols-[repeat(auto-fill,minmax(260px,1fr))]">
-          ${results.map(item => `
+          ${results
+            .map(
+              (item) => `
             <div 
               class="word-card p-4 transition-all duration-200" 
               style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 1px 2px var(--shadow-sm)"
@@ -123,7 +126,9 @@ import words from "../data/words.json";
                 </svg>
               </a>
             </div>
-          `).join('')}
+          `
+            )
+            .join("")}
         </div>
       `;
     } else {
@@ -161,13 +166,13 @@ import words from "../data/words.json";
       `;
     }
   }
-  
+
   // Ejecutar búsqueda al cargar la página
   performSearch();
-  
+
   // Actualizar campo de búsqueda con el valor del parámetro
   const params = new URLSearchParams(window.location.search);
-  const q = params.get('q') || '';
+  const q = params.get("q") || "";
   const searchInput = document.querySelector('input[name="q"]');
   if (searchInput && q) {
     searchInput.value = q;
@@ -179,11 +184,11 @@ import words from "../data/words.json";
     transform: translateY(-2px);
     box-shadow: 0 4px 12px var(--shadow-md);
   }
-  
+
   .word-title:hover {
     color: var(--primary) !important;
   }
-  
+
   .word-link:hover {
     color: var(--primary-light) !important;
   }

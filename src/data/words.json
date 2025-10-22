@@ -18,18 +18,12 @@
   {
     "word": "Pisado",
     "meaning": "Persona en apuros o con mala suerte; también se utiliza como insulto coloquial, dependiendo del contexto.",
-    "examples": [
-      "Ese cuate está bien pisado con las deudas.",
-      "Me dejó el bus y me siento pisado."
-    ]
+    "examples": ["Ese cuate está bien pisado con las deudas.", "Me dejó el bus y me siento pisado."]
   },
   {
     "word": "Chero",
     "meaning": "Amigo cercano o compañero de confianza; término afectuoso y coloquial.",
-    "examples": [
-      "Voy a salir con mi chero de la infancia.",
-      "Ese chero nunca me ha fallado."
-    ]
+    "examples": ["Voy a salir con mi chero de la infancia.", "Ese chero nunca me ha fallado."]
   },
   {
     "word": "Chispudo",
@@ -58,18 +52,12 @@
   {
     "word": "Canche",
     "meaning": "Persona de cabello rubio o claro.",
-    "examples": [
-      "Mi primo es canche como su mamá.",
-      "Esa canche canta muy bonito."
-    ]
+    "examples": ["Mi primo es canche como su mamá.", "Esa canche canta muy bonito."]
   },
   {
     "word": "Chilero",
     "meaning": "Algo muy bueno, bonito o agradable; también usado para expresar aprobación.",
-    "examples": [
-      "¡Qué chilero está tu dibujo!",
-      "El viaje estuvo chilero, lo volvería a hacer."
-    ]
+    "examples": ["¡Qué chilero está tu dibujo!", "El viaje estuvo chilero, lo volvería a hacer."]
   },
   {
     "word": "Clavo",
@@ -82,18 +70,12 @@
   {
     "word": "Mula",
     "meaning": "Persona ingenua o que comete errores por descuido; también puede referirse a un error o tontería.",
-    "examples": [
-      "Fui mula y dejé las llaves adentro del carro.",
-      "No seas mula, eso no se hace."
-    ]
+    "examples": ["Fui mula y dejé las llaves adentro del carro.", "No seas mula, eso no se hace."]
   },
   {
     "word": "Fregar",
     "meaning": "Molestar o incomodar a alguien; en otros contextos significa arruinar algo.",
-    "examples": [
-      "Dejá de fregar y ponete a trabajar.",
-      "Se fregó la computadora con el apagón."
-    ]
+    "examples": ["Dejá de fregar y ponete a trabajar.", "Se fregó la computadora con el apagón."]
   },
   {
     "word": "Colocho",
@@ -114,10 +96,7 @@
   {
     "word": "Cabal",
     "meaning": "Exacto, correcto o justo; usado para afirmar algo con seguridad.",
-    "examples": [
-      "Cabal, eso era lo que te quería decir.",
-      "Llegaste cabal a la hora."
-    ]
+    "examples": ["Cabal, eso era lo que te quería decir.", "Llegaste cabal a la hora."]
   },
   {
     "word": "Güiro",
@@ -154,26 +133,17 @@
   {
     "word": "Chapín",
     "meaning": "Persona originaria de Guatemala; gentilicio coloquial.",
-    "examples": [
-      "Me siento orgulloso de ser chapín.",
-      "Los chapines somos trabajadores."
-    ]
+    "examples": ["Me siento orgulloso de ser chapín.", "Los chapines somos trabajadores."]
   },
   {
     "word": "Camioneta",
     "meaning": "Autobús urbano o interurbano en Guatemala.",
-    "examples": [
-      "Tomé la camioneta para ir al mercado.",
-      "Las camionetas se llenan en la mañana."
-    ]
+    "examples": ["Tomé la camioneta para ir al mercado.", "Las camionetas se llenan en la mañana."]
   },
   {
     "word": "Alero",
     "meaning": "Amigo o compañero cercano.",
-    "examples": [
-      "Ese alero siempre me apoya en todo.",
-      "Vamos a jugar fútbol con los aleros."
-    ]
+    "examples": ["Ese alero siempre me apoya en todo.", "Vamos a jugar fútbol con los aleros."]
   },
   {
     "word": "Chamusca",
@@ -194,17 +164,11 @@
   {
     "word": "Mish",
     "meaning": "Gato doméstico.",
-    "examples": [
-      "El mish se subió al techo.",
-      "Ese mish siempre duerme en mi cama."
-    ]
+    "examples": ["El mish se subió al techo.", "Ese mish siempre duerme en mi cama."]
   },
   {
     "word": "Tatay",
     "meaning": "Padre; usado de manera afectuosa o respetuosa.",
-    "examples": [
-      "Mi tatay me enseñó a trabajar la tierra.",
-      "El tatay de Juan es carpintero."
-    ]
+    "examples": ["Mi tatay me enseñó a trabajar la tierra.", "El tatay de Juan es carpintero."]
   }
 ]

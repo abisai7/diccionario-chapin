@@ -1,54 +1,54 @@
-
 ---
 import { slugify } from "../utils/slug.js";
 const { words = [] } = Astro.props;
 const repeated = [...words, ...words, ...words];
 function chunk(arr: any[], size: number): any[][] {
   const out: any[][] = [];
-  for(let i=0;i<arr.length;i+=size) out.push(arr.slice(i,i+size));
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
   return out;
 }
-const rows = chunk(repeated, Math.ceil(repeated.length/3));
+const rows = chunk(repeated, Math.ceil(repeated.length / 3));
 ---
-<div class="ticker-container grid gap-3 my-6">
-  {rows.map((row, idx) => (
-    <div 
-      class="ticker-row overflow-hidden backdrop-blur-sm relative" 
-    >
-      <!-- Gradientes de fade en los bordes -->
-      <div class="ticker-fade-left"></div>
-      <div class="ticker-fade-right"></div>
-      
-      <div 
-        class={`ticker-content flex gap-6 whitespace-nowrap px-5 py-3 ${idx % 2 === 1 ? 'animate-[scroll_28s_linear_infinite_reverse]' : 'animate-[scroll_22s_linear_infinite]'}`} 
-        aria-hidden="true"
-      >
-        {row.map(w => (
-          <a 
-            class="ticker-word inline-flex items-center gap-2 px-4 py-2 font-medium text-sm transition-all duration-300 hover:scale-105 hover:-translate-y-1 active:scale-95" 
-            style="
+
+<div class="ticker-container my-6 grid gap-3">
+  {
+    rows.map((row, idx) => (
+      <div class="ticker-row relative overflow-hidden backdrop-blur-sm">
+        {/* Gradientes de fade en los bordes */}
+        <div class="ticker-fade-left" />
+        <div class="ticker-fade-right" />
+
+        <div
+          class={`ticker-content flex gap-6 px-5 py-3 whitespace-nowrap ${idx % 2 === 1 ? "animate-[scroll_28s_linear_infinite_reverse]" : "animate-[scroll_22s_linear_infinite]"}`}
+          aria-hidden="true"
+        >
+          {row.map((w) => (
+            <a
+              class="ticker-word inline-flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 hover:-translate-y-1 hover:scale-105 active:scale-95"
+              style="
               background: var(--card); 
               border: 1px solid var(--border); 
               border-radius: var(--radius-xl); 
               box-shadow: 0 2px 4px var(--shadow-sm), 0 1px 2px var(--shadow-xs);
               color: var(--text);
             "
-            href={`/palabras/${slugify(w)}`}
-          >
-            <span 
-              class="ticker-dot w-2 h-2 animate-pulse" 
-              style="
+              href={`/palabras/${slugify(w)}`}
+            >
+              <span
+                class="ticker-dot h-2 w-2 animate-pulse"
+                style="
                 background: var(--primary); 
                 border-radius: var(--radius-xl);
                 box-shadow: 0 0 8px var(--primary);
               "
-            ></span>
-            <span class="ticker-text">{w}</span>
-          </a>
-        ))}
+              />
+              <span class="ticker-text">{w}</span>
+            </a>
+          ))}
+        </div>
       </div>
-    </div>
-  ))}
+    ))
+  }
 </div>
 
 <style>
@@ -93,7 +93,9 @@ const rows = chunk(repeated, Math.ceil(repeated.length/3));
   }
 
   .ticker-word:hover {
-    box-shadow: 0 4px 12px var(--shadow-md), 0 2px 4px var(--shadow-sm) !important;
+    box-shadow:
+      0 4px 12px var(--shadow-md),
+      0 2px 4px var(--shadow-sm) !important;
     border-color: var(--primary) !important;
     background: var(--card-hover) !important;
   }
@@ -126,7 +128,7 @@ const rows = chunk(repeated, Math.ceil(repeated.length/3));
     .ticker-content {
       animation: none !important;
     }
-    
+
     .ticker-dot {
       animation: none !important;
     }
@@ -173,4 +175,3 @@ const rows = chunk(repeated, Math.ceil(repeated.length/3));
     }
   }
 </style>
-

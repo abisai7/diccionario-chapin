@@ -64,6 +64,22 @@ pnpm run preview
 npm run preview
 ```
 
+### Formateo y Linting
+
+```bash
+# Formatear código con Prettier
+pnpm run format
+
+# Verificar formato sin modificar archivos
+pnpm run format:check
+
+# Ejecutar ESLint
+pnpm run lint
+
+# Arreglar problemas de ESLint automáticamente
+pnpm run lint:fix
+```
+
 ## 📁 Estructura del Proyecto
 
 ```
@@ -98,21 +114,25 @@ diccionario-chapin/
 ## 🎯 Páginas Principales
 
 ### 🏠 Inicio (`/`)
+
 - Hero section con buscador
 - Ticker animado con palabras aleatorias
 - Grid de palabras destacadas
 
 ### 🔍 Buscador (`/buscar`)
+
 - Campo de búsqueda con parámetros URL
 - Filtrado por palabra, significado y ejemplos
 - Resultados en tiempo real
 
 ### 📑 Índice (`/indice`)
+
 - Lista alfabética completa
 - Diseño en columnas responsive
 - Links directos a cada palabra
 
 ### 📖 Detalle (`/palabras/[slug]`)
+
 - Definición completa
 - Lista de ejemplos de uso
 - Botón de navegación
@@ -124,6 +144,38 @@ diccionario-chapin/
 - **JavaScript** - Lógica del cliente
 - **JSON** - Base de datos estática
 
+## 🧹 Calidad de Código
+
+Este proyecto utiliza herramientas para mantener la calidad y consistencia del código:
+
+### Prettier
+
+Formateador de código configurado para mantener un estilo consistente:
+
+- Semi-colons: Habilitados
+- Comillas: Dobles
+- Ancho máximo de línea: 100 caracteres
+- Tabs: 2 espacios
+- Plugin para archivos Astro
+- **Ordenamiento automático de clases de Tailwind CSS**
+
+### ESLint
+
+Linter configurado con:
+
+- `eslint-plugin-astro` - Reglas específicas para Astro
+- `eslint-plugin-jsx-a11y` - Validación de accesibilidad
+- Reglas de ES6+ modernas
+- Validación de mejores prácticas
+
+### Configuración de VS Code
+
+El proyecto incluye configuración recomendada para VS Code:
+
+- Formateo automático al guardar
+- ESLint auto-fix al guardar
+- Extensiones recomendadas (Prettier, ESLint, Astro)
+
 ## 📝 Agregar Nuevas Palabras
 
 Edita el archivo `src/data/words.json`:
@@ -132,10 +184,7 @@ Edita el archivo `src/data/words.json`:
 {
   "word": "Palabra",
   "meaning": "Significado de la palabra",
-  "examples": [
-    "Ejemplo 1 de uso",
-    "Ejemplo 2 de uso"
-  ]
+  "examples": ["Ejemplo 1 de uso", "Ejemplo 2 de uso"]
 }
 ```
 

@@ -40,6 +40,7 @@ La forma más fácil de contribuir es agregando nuevas palabras chapinas. Aquí 
 ```
 
 **Lineamientos para palabras:**
+
 - ✅ Debe ser un término usado en Guatemala
 - ✅ La definición debe ser clara y comprensible
 - ✅ Incluye al menos 2 ejemplos de uso
@@ -75,6 +76,7 @@ Ejemplo:
 Al buscar la palabra "patojo", no se muestran resultados a pesar de que la palabra existe.
 
 **Pasos para reproducir:**
+
 1. Ir a /buscar
 2. Escribir "patojo"
 3. Presionar buscar
@@ -135,6 +137,7 @@ chore: tareas de mantenimiento
 ```
 
 Ejemplos:
+
 ```bash
 git commit -m "feat: agregar palabra 'chilero'"
 git commit -m "fix: corregir búsqueda case-sensitive"
@@ -151,7 +154,7 @@ git commit -m "docs: actualizar README con nuevas instrucciones"
 
 ```javascript
 // ✅ Bueno
-const userName = 'Juan';
+const userName = "Juan";
 const getUserData = () => {
   return { name: userName };
 };
@@ -172,14 +175,10 @@ function get_user_data() {
 
 ```astro
 <!-- ✅ Bueno -->
-<div class="p-4" style="background: var(--card); border-radius: var(--radius-lg)">
-  Contenido
-</div>
+<div class="p-4" style="background: var(--card); border-radius: var(--radius-lg)">Contenido</div>
 
 <!-- ❌ Malo -->
-<div style="padding: 16px; background: #141920; border-radius: 16px">
-  Contenido
-</div>
+<div style="padding: 16px; background: #141920; border-radius: 16px">Contenido</div>
 ```
 
 ### Estructura de Archivos
@@ -200,18 +199,21 @@ function get_user_data() {
 ## Tipos de Contribuciones
 
 ### 🌟 Prioridad Alta
+
 - Agregar nuevas palabras chapinas
 - Corregir errores en definiciones existentes
 - Mejorar ejemplos de uso
 - Reportar y corregir bugs
 
 ### 📝 Prioridad Media
+
 - Mejorar la documentación
 - Optimizar el rendimiento
 - Mejorar la accesibilidad
 - Agregar tests
 
 ### 💡 Prioridad Baja
+
 - Nuevas features
 - Mejoras de UI/UX
 - Refactorización de código
@@ -226,6 +228,7 @@ function get_user_data() {
 ## Reconocimiento
 
 Todos los contribuidores serán reconocidos en el proyecto. Tu nombre aparecerá en:
+
 - La lista de contribuidores de GitHub
 - El archivo de agradecimientos
 

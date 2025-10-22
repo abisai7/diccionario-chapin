@@ -8,7 +8,7 @@
   --color-primary: #4997d0;
   --color-primary-light: #5fa8dc;
   --color-primary-dark: #3885bd;
-  
+
   /* Dark mode colors - improved contrast and depth */
   --color-bg-dark: #0a0e13;
   --color-bg-accent-dark: #0f1419;
@@ -18,7 +18,7 @@
   --color-text-secondary-dark: #d1e3f5;
   --color-muted-dark: #8ba5c4;
   --color-border-dark: #1e2937;
-  
+
   /* Light mode colors */
   --color-bg-light: #f8fafc;
   --color-bg-accent-light: #eff6fc;
@@ -29,7 +29,7 @@
   --color-muted-light: #475569;
   --color-border-light: #e2e8f0;
 
-  --font-sans: 'Baloo 2 Variable', sans-serif;
+  --font-sans: "Baloo 2 Variable", sans-serif;
 }
 
 :root {
@@ -37,7 +37,7 @@
   --primary: #4997d0;
   --primary-light: #5fa8dc;
   --primary-dark: #3885bd;
-  
+
   --bg: #0a0e13;
   --bg-accent: #0f1419;
   --card: #141920;
@@ -46,19 +46,19 @@
   --text-secondary: #d1e3f5;
   --muted: #8ba5c4;
   --border: #1e2937;
-  
+
   /* Subtle shadows - more refined */
   --shadow-sm: rgba(0, 0, 0, 0.1);
   --shadow-md: rgba(0, 0, 0, 0.15);
   --shadow-lg: rgba(0, 0, 0, 0.2);
   --glow-primary: rgba(73, 151, 208, 0.08);
-  
+
   /* Button specific colors */
   --btn-primary-bg: #4997d0;
   --btn-primary-bg-hover: #5fa8dc;
   --btn-primary-text: #ffffff;
   --btn-primary-shadow: rgba(73, 151, 208, 0.3);
-  
+
   /* Consistent border radius */
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -76,13 +76,13 @@ html[data-theme="light"] {
   --text-secondary: #1e293b;
   --muted: #475569;
   --border: #e2e8f0;
-  
+
   /* Light mode shadows - very subtle */
   --shadow-sm: rgba(15, 23, 42, 0.03);
   --shadow-md: rgba(15, 23, 42, 0.05);
   --shadow-lg: rgba(15, 23, 42, 0.08);
   --glow-primary: rgba(73, 151, 208, 0.05);
-  
+
   /* Button light mode colors */
   --btn-primary-bg: #4997d0;
   --btn-primary-bg-hover: #3885bd;
@@ -97,9 +97,16 @@ body {
 
 body {
   margin: 0;
-  background: radial-gradient(ellipse 100% 70% at 50% 0%, var(--bg-accent) 0%, var(--bg) 50%, var(--bg) 100%);
+  background: radial-gradient(
+    ellipse 100% 70% at 50% 0%,
+    var(--bg-accent) 0%,
+    var(--bg) 50%,
+    var(--bg) 100%
+  );
   color: var(--text);
-  transition: background 0.4s ease, color 0.3s ease;
+  transition:
+    background 0.4s ease,
+    color 0.3s ease;
   min-height: 100vh;
 }
 
