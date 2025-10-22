@@ -14,12 +14,6 @@ const rows = chunk(repeated, Math.ceil(repeated.length/3));
   {rows.map((row, idx) => (
     <div 
       class="ticker-row overflow-hidden backdrop-blur-sm relative" 
-      style="
-        border: 1px solid var(--border); 
-        border-radius: var(--radius-xl); 
-        background: linear-gradient(90deg, var(--glow-primary) 0%, transparent 50%, var(--glow-primary) 100%);
-        box-shadow: 0 2px 8px var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-      "
     >
       <!-- Gradientes de fade en los bordes -->
       <div class="ticker-fade-left"></div>
