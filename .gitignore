@@ -30,3 +30,6 @@ pnpm-debug.log*
 
 # misc
 *.log
+
+# Snyk Security Extension - AI Rules (auto-generated)
+snyk_rules.instructions.md
