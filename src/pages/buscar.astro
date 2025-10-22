@@ -1,7 +1,15 @@
 ---
 import Base from "../layouts/Base.astro";
 import SearchBox from "../components/SearchBox.astro";
-import words from "../data/words.json";
+import { getCollection } from "astro:content";
+
+const allWords = await getCollection("words");
+const words = allWords.map((entry) => ({
+  slug: entry.slug,
+  word: entry.data.word,
+  meaning: entry.data.meaning,
+  examples: entry.data.examples,
+}));
 ---
 
 <Base title="Buscador">
@@ -42,16 +50,6 @@ import words from "../data/words.json";
 </Base>
 
 <script define:vars={{ words }}>
-  // Importar slugify desde el módulo
-  const slugify = (str) => {
-    return str
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-  };
-
   function performSearch() {
     const params = new URLSearchParams(window.location.search);
     const q = (params.get("q") || "").trim().toLowerCase();
@@ -112,11 +110,11 @@ import words from "../data/words.json";
               style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 1px 2px var(--shadow-sm)"
             >
               <h3 class="m-0 mb-1.5 text-lg font-semibold">
-                <a href="/palabras/${slugify(item.word)}" class="word-title transition-colors" style="color: var(--text)">${item.word}</a>
+                <a href="/palabras/${item.slug}" class="word-title transition-colors" style="color: var(--text)">${item.word}</a>
               </h3>
               <p class="m-0 text-sm leading-relaxed" style="color: var(--muted)">${item.meaning}</p>
               <a 
-                href="/palabras/${slugify(item.word)}" 
+                href="/palabras/${item.slug}" 
                 class="word-link inline-flex items-center gap-1 mt-2 text-sm font-medium transition-colors" 
                 style="color: var(--primary)"
               >

@@ -4,13 +4,14 @@ export const prerender = true;
 import Base from "../layouts/Base.astro";
 import SearchBox from "../components/SearchBox.astro";
 import Ticker from "../components/Ticker.astro";
-import words from "../data/words.json";
+import { getCollection } from "astro:content";
 import WordCard from "../components/WordCard.astro";
 
-const wordList = words.map((w) => w.word);
+const allWords = await getCollection("words");
+const wordList = allWords.map((w) => w.data.word);
 const shuffled = [...wordList].sort(() => Math.random() - 0.5);
 const featured = shuffled.slice(0, Math.min(45, shuffled.length));
-const top = words.slice(0, 6);
+const top = allWords.slice(0, 6);
 ---
 
 <Base title="Diccionario Chapín">
@@ -71,7 +72,11 @@ const top = words.slice(0, 6);
   <section class="mx-auto max-w-[1100px] px-6">
     <h2 class="m-0 mb-2.5 text-2xl font-bold">Destacadas</h2>
     <div class="mt-4 grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-3.5">
-      {top.map((item) => <WordCard word={item.word} meaning={item.meaning} />)}
+      {
+        top.map((item) => (
+          <WordCard word={item.data.word} meaning={item.data.meaning} slug={item.slug} />
+        ))
+      }
     </div>
   </section>
 

@@ -1,19 +1,20 @@
 ---
 import Base from "../../layouts/Base.astro";
-import words from "../../data/words.json";
-import { slugify } from "../../utils/slug.js";
+import { getCollection } from "astro:content";
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-  return words.map((p) => ({
-    params: { slug: slugify(p.word) },
-    props: { palabra: p },
+  const allWords = await getCollection("words");
+  return allWords.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
   }));
 }
 
-const { palabra } = Astro.props;
-const word = palabra;
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const word = entry.data;
 ---
 
 <Base title={`${word.word} — Diccionario Chapín`}>
@@ -69,6 +70,14 @@ const word = palabra;
           }
         </ul>
       </div>
+
+      {
+        Content && (
+          <div class="prose mt-6 pt-4" style="border-top: 1px solid var(--border)">
+            <Content />
+          </div>
+        )
+      }
     </article>
   </section>
 </Base>

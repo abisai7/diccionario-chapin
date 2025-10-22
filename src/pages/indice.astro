@@ -2,22 +2,22 @@
 export const prerender = true;
 
 import Base from "../layouts/Base.astro";
-import words from "../data/words.json";
-import { slugify } from "../utils/slug.js";
+import { getCollection } from "astro:content";
 
-const sorted = [...words].sort((a, b) => a.word.localeCompare(b.word));
+const allWords = await getCollection("words");
+const sorted = allWords.sort((a, b) => a.data.word.localeCompare(b.data.word));
 
 // Agrupar palabras por letra inicial
 const groupedByLetter = sorted.reduce(
-  (acc, word) => {
-    const firstLetter = word.word.charAt(0).toUpperCase();
+  (acc, entry) => {
+    const firstLetter = entry.data.word.charAt(0).toUpperCase();
     if (!acc[firstLetter]) {
       acc[firstLetter] = [];
     }
-    acc[firstLetter].push(word);
+    acc[firstLetter].push(entry);
     return acc;
   },
-  {} as Record<string, typeof words>
+  {} as Record<string, typeof allWords>
 );
 
 // Ordenar las letras
@@ -74,7 +74,7 @@ const letters = Object.keys(groupedByLetter).sort();
               {groupedByLetter[letter].map((w) => (
                 <li class="break-inside-avoid py-1.5">
                   <a
-                    href={`/palabras/${slugify(w.word)}`}
+                    href={`/palabras/${w.slug}`}
                     class="inline-flex items-center gap-2 transition-transform duration-200 hover:translate-x-1"
                     style="color: var(--text)"
                   >
@@ -91,7 +91,7 @@ const letters = Object.keys(groupedByLetter).sort();
                     >
                       <circle cx="12" cy="12" r="2" />
                     </svg>
-                    {w.word}
+                    {w.data.word}
                   </a>
                 </li>
               ))}

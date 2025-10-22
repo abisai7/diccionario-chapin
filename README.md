@@ -178,17 +178,51 @@ El proyecto incluye configuración recomendada para VS Code:
 
 ## 📝 Agregar Nuevas Palabras
 
-Edita el archivo `src/data/words.json`:
+Las palabras se gestionan mediante **Content Collections** de Astro con archivos Markdown individuales.
 
-```json
-{
-  "word": "Palabra",
-  "meaning": "Significado de la palabra",
-  "examples": ["Ejemplo 1 de uso", "Ejemplo 2 de uso"]
-}
+### Crear una Nueva Palabra
+
+1. Crea un archivo en `src/content/words/` con el nombre de la palabra (ej: `tuani.md`)
+2. Usa el siguiente formato:
+
+```markdown
+---
+word: "Tuani"
+meaning: "Algo muy bueno, genial o extraordinario."
+examples:
+  - "Ese concierto estuvo tuani."
+  - "¡Qué tuani tu carro nuevo!"
+category: "adjetivo"
+region: "Guatemala"
+---
+
+Contenido adicional opcional en Markdown...
 ```
 
-El sitio se regenerará automáticamente con las nuevas palabras.
+### Campos Disponibles
+
+**Obligatorios:**
+
+- `word` - La palabra en español
+- `meaning` - Definición completa
+- `examples` - Array de ejemplos de uso
+
+**Opcionales:**
+
+- `category` - `sustantivo`, `verbo`, `adjetivo`, `expresión`, `modismo`
+- `region` - Región donde se usa (por defecto "Guatemala")
+- `synonyms` - Array de sinónimos
+- `relatedWords` - Array de palabras relacionadas
+
+### Validación Automática
+
+El sistema usa **TypeScript + Zod** para validar automáticamente:
+
+- ✅ Campos obligatorios presentes
+- ✅ Tipos de datos correctos
+- ✅ Categorías válidas
+
+Ver [src/content/WORDS_README.md](src/content/WORDS_README.md) para más detalles.
 
 ## ⌨️ Atajos de Teclado
 

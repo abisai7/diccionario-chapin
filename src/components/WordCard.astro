@@ -1,6 +1,5 @@
 ---
-import { slugify } from "../utils/slug.js";
-const { word, meaning } = Astro.props;
+const { word, meaning, slug } = Astro.props;
 ---
 
 <div
@@ -8,15 +7,13 @@ const { word, meaning } = Astro.props;
   style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 1px 2px var(--shadow-sm)"
 >
   <h3 class="m-0 mb-1.5 text-lg font-semibold">
-    <a
-      href={`/palabras/${slugify(word)}`}
-      class="word-title transition-colors"
-      style="color: var(--text)">{word}</a
+    <a href={`/palabras/${slug}`} class="word-title transition-colors" style="color: var(--text)"
+      >{word}</a
     >
   </h3>
   <p class="m-0 text-sm leading-relaxed" style="color: var(--muted)">{meaning}</p>
   <a
-    href={`/palabras/${slugify(word)}`}
+    href={`/palabras/${slug}`}
     class="word-link mt-2 inline-flex items-center gap-1 text-sm font-medium transition-colors"
     style="color: var(--primary)"
   >

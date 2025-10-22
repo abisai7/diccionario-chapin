@@ -129,3 +129,66 @@ a:hover {
     transform: translateX(-50%);
   }
 }
+
+/* Estilos para contenido markdown */
+.prose {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.prose p {
+  margin: 1em 0;
+}
+
+.prose h1,
+.prose h2,
+.prose h3 {
+  color: var(--text);
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose h2 {
+  font-size: 1.5em;
+}
+
+.prose h3 {
+  font-size: 1.25em;
+}
+
+.prose ul,
+.prose ol {
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+
+.prose li {
+  margin: 0.5em 0;
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.prose em {
+  font-style: italic;
+  color: var(--muted);
+}
+
+.prose code {
+  background: var(--glow-primary);
+  color: var(--primary);
+  padding: 0.2em 0.4em;
+  border-radius: var(--radius-sm);
+  font-size: 0.9em;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--primary);
+  padding-left: 1em;
+  margin: 1em 0;
+  font-style: italic;
+  color: var(--muted);
+}
