@@ -11,11 +11,11 @@ const { word, meaning, slug } = Astro.props;
       >{word}</a
     >
   </h3>
-  <p class="m-0 text-sm leading-relaxed" style="color: var(--muted)">{meaning}</p>
+  <p class="m-0 text-sm leading-relaxed" style="color: var(--text-secondary)">{meaning}</p>
   <a
     href={`/palabras/${slug}`}
     class="word-link mt-2 inline-flex items-center gap-1 text-sm font-medium transition-colors"
-    style="color: var(--primary)"
+    style="color: #5fa8dc"
   >
     Ver detalle
     <svg
@@ -44,6 +44,7 @@ const { word, meaning, slug } = Astro.props;
   }
 
   .word-link:hover {
-    color: var(--primary-light) !important;
+    color: #6bb6e8 !important;
+    text-decoration: underline;
   }
 </style>

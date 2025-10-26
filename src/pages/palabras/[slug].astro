@@ -15,9 +15,28 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 const word = entry.data;
+
+// SEO optimization
+const description = `${word.word}: ${word.meaning} ${word.examples?.[0] ? `Ejemplo: "${word.examples[0]}"` : ""}`;
+const keywords = `${word.word}, chapinismo, guatemaltequismo, ${word.category || "palabra chapina"}, jerga guatemalteca, ${word.synonyms?.join(", ") || ""}`;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  name: word.word,
+  description: word.meaning,
+  inDefinedTermSet: "Diccionario Chapín",
+  termCode: entry.slug,
+};
 ---
 
-<Base title={`${word.word} — Diccionario Chapín`}>
+<Base
+  title={`${word.word} — Diccionario Chapín`}
+  description={description}
+  keywords={keywords}
+  type="article"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
   <section class="mx-auto max-w-[1100px] px-6">
     <button
       onclick="history.back()"

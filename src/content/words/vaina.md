@@ -8,5 +8,5 @@ examples:
 region: Guatemala
 synonyms:
   - cosa
-  - asunto   
+  - asunto
 ---

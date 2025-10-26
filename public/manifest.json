@@ -1,0 +1,19 @@
+{
+  "name": "Diccionario Chapín",
+  "short_name": "Chapín",
+  "description": "Glosario de chapinismos y guatemaltequismos con definiciones y ejemplos",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e13",
+  "theme_color": "#4997D0",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["education", "reference"],
+  "lang": "es-GT"
+}

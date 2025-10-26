@@ -12,11 +12,11 @@
   /* Dark mode colors - improved contrast and depth */
   --color-bg-dark: #0a0e13;
   --color-bg-accent-dark: #0f1419;
-  --color-card-dark: #141920;
-  --color-card-hover-dark: #1a2029;
+  --color-card-dark: #16202a;
+  --color-card-hover-dark: #1c2832;
   --color-text-dark: #e8f2ff;
   --color-text-secondary-dark: #d1e3f5;
-  --color-muted-dark: #8ba5c4;
+  --color-muted-dark: #a0b8d1;
   --color-border-dark: #1e2937;
 
   /* Light mode colors */
@@ -26,7 +26,7 @@
   --color-card-hover-light: #f1f5f9;
   --color-text-light: #0f172a;
   --color-text-secondary-light: #1e293b;
-  --color-muted-light: #475569;
+  --color-muted-light: #334155;
   --color-border-light: #e2e8f0;
 
   --font-sans: "Baloo 2 Variable", sans-serif;
@@ -40,11 +40,11 @@
 
   --bg: #0a0e13;
   --bg-accent: #0f1419;
-  --card: #141920;
-  --card-hover: #1a2029;
+  --card: #16202a;
+  --card-hover: #1c2832;
   --text: #e8f2ff;
   --text-secondary: #d1e3f5;
-  --muted: #8ba5c4;
+  --muted: #a0b8d1;
   --border: #1e2937;
 
   /* Subtle shadows - more refined */
@@ -74,7 +74,7 @@ html[data-theme="light"] {
   --card-hover: #f1f5f9;
   --text: #0f172a;
   --text-secondary: #1e293b;
-  --muted: #475569;
+  --muted: #334155;
   --border: #e2e8f0;
 
   /* Light mode shadows - very subtle */

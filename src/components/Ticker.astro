@@ -33,6 +33,8 @@ const rows = chunk(repeated, Math.ceil(repeated.length / 3));
               color: var(--text);
             "
               href={`/palabras/${slugify(w)}`}
+              tabindex="-1"
+              aria-hidden="true"
             >
               <span
                 class="ticker-dot h-2 w-2 animate-pulse"

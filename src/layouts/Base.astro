@@ -2,10 +2,19 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
 const {
   title = "Diccionario Chapín",
   description = "Glosario de chapinismos con definiciones y ejemplos",
+  keywords = "chapinismos, diccionario guatemalteco, palabras chapinas, guatemaltequismos, jerga guatemalteca, modismos Guatemala",
+  ogImage = "/og-image.svg",
+  canonicalUrl = Astro.url.pathname,
+  type = "website",
 } = Astro.props;
+
+const siteUrl = Astro.site || "https://diccionario-chapin.netlify.app";
+const fullCanonicalUrl = new URL(canonicalUrl, siteUrl).toString();
+const fullOgImage = new URL(ogImage, siteUrl).toString();
 ---
 
 <!doctype html>
@@ -13,10 +22,43 @@ const {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <link rel="icon" href="/favicon.svg" />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Diccionario Chapín" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Spanish" />
+    <link rel="canonical" href={fullCanonicalUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={fullCanonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:locale" content="es_GT" />
+    <meta property="og:site_name" content="Diccionario Chapín" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={fullCanonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={fullOgImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#4997D0" />
+
+    <!-- Additional SEO -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="geo.region" content="GT" />
+    <meta name="geo.placename" content="Guatemala" />
   </head>
   <body>
     <Header title={title} />
