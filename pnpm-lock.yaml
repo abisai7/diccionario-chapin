@@ -11,6 +11,9 @@ importers:
       '@fontsource-variable/baloo-2':
         specifier: ^5.2.7
         version: 5.2.7
+      '@fontsource/alice':
+        specifier: ^5.2.8
+        version: 5.2.8
       '@tailwindcss/vite':
         specifier: ^4.1.15
         version: 4.1.15(vite@6.4.1(@types/node@24.3.0)(jiti@2.6.1)(lightningcss@1.30.2))
@@ -288,6 +291,9 @@ packages:
 
   '@fontsource-variable/baloo-2@5.2.7':
     resolution: {integrity: sha512-45Uxv5Ic0shabqUalV/QwXCJBPDqyzcuVnlFugNqBg8vYEQxqMEb2H6uktmWRp9oKyMVrA8ksoSKUSSWmwapoQ==}
+
+  '@fontsource/alice@5.2.8':
+    resolution: {integrity: sha512-EDpK9aFXsaRKdyZpgFu8d5+zmE07yIaFxqVeKrYQJjdQpEhWDZA+naLflHwQQmMbLMJK3a4X/RAm5MCScT93NA==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2819,6 +2825,8 @@ snapshots:
       levn: 0.4.1
 
   '@fontsource-variable/baloo-2@5.2.7': {}
+
+  '@fontsource/alice@5.2.8': {}
 
   '@humanfs/core@0.19.1': {}
 
