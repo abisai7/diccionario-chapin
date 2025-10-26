@@ -169,16 +169,26 @@ const words = allWords.map((entry) => ({
     }
   }
 
+  function updateSearchInput() {
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get("q") || "";
+    const searchInput = document.querySelector('input[name="q"]');
+    if (searchInput) {
+      searchInput.value = q;
+    }
+  }
+
   // Ejecutar búsqueda al cargar la página
   performSearch();
 
   // Actualizar campo de búsqueda con el valor del parámetro
-  const params = new URLSearchParams(window.location.search);
-  const q = params.get("q") || "";
-  const searchInput = document.querySelector('input[name="q"]');
-  if (searchInput && q) {
-    searchInput.value = q;
-  }
+  updateSearchInput();
+
+  // Re-ejecutar búsqueda después de las view transitions
+  document.addEventListener("astro:page-load", () => {
+    performSearch();
+    updateSearchInput();
+  });
 </script>
 
 <style is:global>

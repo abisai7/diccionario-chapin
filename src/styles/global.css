@@ -199,3 +199,61 @@ h1 {
   font-style: italic;
   color: var(--muted);
 }
+
+/* View Transitions */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+}
+
+::view-transition-old(root) {
+  animation-name: fade-out;
+}
+
+::view-transition-new(root) {
+  animation-name: fade-in;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Transición suave para el contenido */
+::view-transition-old(slide),
+::view-transition-new(slide) {
+  animation-duration: 0.4s;
+}
+
+::view-transition-old(slide) {
+  animation-name: slide-out;
+}
+
+::view-transition-new(slide) {
+  animation-name: slide-in;
+}
+
+@keyframes slide-out {
+  to {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+}

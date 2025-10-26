@@ -5,6 +5,7 @@ const { word, meaning, slug } = Astro.props;
 <div
   class="word-card p-4 transition-all duration-200"
   style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 1px 2px var(--shadow-sm)"
+  transition:name={`word-card-${slug}`}
 >
   <h3 class="m-0 mb-1.5 text-lg font-semibold">
     <a href={`/palabras/${slug}`} class="word-title transition-colors" style="color: var(--text)"
