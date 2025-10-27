@@ -64,12 +64,13 @@ const letters = Object.keys(groupedByLetter).sort();
               class="mb-4 flex items-center gap-4 pb-3"
               style="border-bottom: 2px solid var(--primary)"
             >
-              <h2 class="m-0 text-5xl font-bold" style="color: var(--primary); line-height: 1">
+              <h2 class="font-title text-primary m-0 text-5xl font-bold" style="line-height: 1;">
                 {letter}
               </h2>
               <span class="text-sm font-medium" style="color: var(--muted)">
-                {groupedByLetter[letter].length} palabra
-                {groupedByLetter[letter].length !== 1 ? "s" : ""}
+                {groupedByLetter[letter].length && groupedByLetter[letter].length > 1
+                  ? `${groupedByLetter[letter].length} palabras`
+                  : `${groupedByLetter[letter].length} palabra`}
               </span>
             </div>
 
