@@ -1,5 +1,5 @@
 ---
-word: Dar jalón
+word: Jalón
 meaning: Recoger a alguien en autostop y llevarlo en el vehículo.
 category: expresión
 examples:
