@@ -1,0 +1,256 @@
+---
+export const prerender = true;
+
+import Base from "../../layouts/Base.astro";
+import SearchBox from "../../components/SearchBox.astro";
+import Ticker from "../../components/Ticker.astro";
+import { getCollection } from "astro:content";
+import WordCard from "../../components/WordCard.astro";
+import { useTranslations } from "../../utils/i18n";
+
+export async function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang);
+
+const collectionName = lang === "es" ? "words-es" : "words-en";
+const allWords = await getCollection(collectionName);
+const wordList = allWords.map((w) => w.data.word);
+const shuffled = [...wordList].sort(() => Math.random() - 0.5);
+const featured = shuffled.slice(0, Math.min(45, shuffled.length));
+const top = allWords.slice(0, 6);
+---
+
+<Base
+  title={t("home.title") +
+    " — " +
+    (lang === "es" ? "Glosario de Chapinismos y Guatemaltequismos" : "Guatemalan Slang Dictionary")}
+  description={lang === "es"
+    ? "Diccionario completo de chapinismos, palabras guatemaltecas, modismos y expresiones típicas de Guatemala con definiciones, ejemplos y uso correcto."
+    : "Complete dictionary of Guatemalan slang, words, idioms and typical expressions from Guatemala with definitions, examples and correct usage."}
+  keywords={lang === "es"
+    ? "diccionario chapín, chapinismos, guatemaltequismos, palabras chapinas, jerga guatemalteca, modismos Guatemala"
+    : "guatemalan dictionary, guatemalan slang, chapin words, guatemalan expressions, guatemala idioms"}
+>
+  <section class="mx-auto max-w-[1100px]">
+    <div
+      class="m-6 grid gap-3.5 backdrop-blur-sm"
+      style="
+      border: 1px solid var(--border); 
+      border-radius: var(--radius-xl); 
+      background: linear-gradient(180deg, var(--card) 0%, var(--bg-accent) 100%);
+      box-shadow: 0 4px 12px var(--shadow-md);
+    "
+    >
+      <h1
+        class="mx-4 mt-4 bg-linear-to-r bg-clip-text text-[clamp(1.8rem,2.4vw,2.6rem)] text-transparent"
+        style="background-image: linear-gradient(to right, var(--text), var(--primary-light))"
+      >
+        {t("home.title")}
+      </h1>
+      <p class="mx-4 text-base" style="color: var(--muted)">
+        {t("home.subtitle")}
+      </p>
+      <div class="mx-4 grid grid-cols-1">
+        <SearchBox placeholder={t("home.search.placeholder")} />
+      </div>
+      <div
+        class="mx-4 mb-4 px-3 py-2 text-sm backdrop-blur-sm"
+        style="border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--glow-primary); color: var(--muted)"
+      >
+        <span class="inline-flex items-center gap-2">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 16v-4M12 8h.01"></path>
+          </svg>
+          {t("home.search.tip")}
+          <kbd
+            class="mx-1 px-2 py-0.5 font-mono text-xs"
+            style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text)"
+            >/</kbd
+          >
+          {t("home.search.tip2")}
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1100px] px-6">
+    <Ticker words={featured} lang={lang} />
+  </section>
+
+  <section class="mx-auto max-w-[1100px] px-6">
+    <h2 class="m-0 mb-2.5 text-2xl font-bold">{t("home.featured")}</h2>
+    <div class="mt-4 grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-3.5">
+      {
+        top.map((item) => (
+          <WordCard
+            word={item.data.word}
+            meaning={item.data.meaning}
+            slug={item.slug}
+            lang={lang}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1100px] px-6 pb-12">
+    <div
+      class="mt-8 p-6"
+      style="
+        border: 1px solid var(--border); 
+        border-radius: var(--radius-lg); 
+        background: var(--card);
+        box-shadow: 0 2px 8px var(--shadow-sm);
+      "
+    >
+      <h2 class="m-0 mb-3 flex items-center gap-2 text-xl font-semibold">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          style="color: var(--primary-light)"
+        >
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        {t("home.contribute.title")}
+      </h2>
+      <p class="mb-4 text-sm leading-relaxed" style="color: var(--text-secondary)">
+        {t("home.contribute.subtitle")}
+      </p>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div
+          class="p-4"
+          style="
+            border: 1px solid var(--border); 
+            border-radius: var(--radius-md); 
+            background: var(--bg-accent);
+          "
+        >
+          <h3 class="m-0 mb-2 flex items-center gap-2 text-base font-semibold">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="color: var(--primary-light)"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              ></path>
+            </svg>
+            {t("home.contribute.tech.title")}
+          </h3>
+          <p class="mb-3 text-sm leading-relaxed" style="color: var(--muted)">
+            {t("home.contribute.tech.description")}
+          </p>
+          <a
+            href="https://github.com/abisai7/diccionario-chapin"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
+            style="color: var(--primary-light)"
+          >
+            {t("home.contribute.tech.button")}
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+        </div>
+        <div
+          class="p-4"
+          style="
+            border: 1px solid var(--border); 
+            border-radius: var(--radius-md); 
+            background: var(--bg-accent);
+          "
+        >
+          <h3 class="m-0 mb-2 flex items-center gap-2 text-base font-semibold">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="color: var(--primary-light)"
+            >
+              <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+              ></path>
+              <path d="M12 6v6l4 2"></path>
+            </svg>
+            {t("home.contribute.all.title")}
+          </h3>
+          <p class="mb-3 text-sm leading-relaxed" style="color: var(--muted)">
+            {t("home.contribute.all.description")}
+          </p>
+          <span
+            class="inline-flex items-center gap-1.5 text-sm font-medium"
+            style="color: var(--muted)"
+          >
+            {t("home.contribute.all.status")}
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "/" && !(e.target instanceof HTMLInputElement)) {
+        e.preventDefault();
+        const input = document.querySelector('input[type="search"]');
+        input?.focus();
+      }
+    });
+  </script>
+</Base>

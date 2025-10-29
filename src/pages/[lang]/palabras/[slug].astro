@@ -1,0 +1,398 @@
+---
+export const prerender = true;
+
+import Base from "../../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const esWords = await getCollection("words-es");
+  const enWords = await getCollection("words-en");
+
+  const esPaths = esWords.map((entry) => ({
+    params: { lang: "es", slug: entry.slug },
+    props: { entry },
+  }));
+
+  const enPaths = enWords.map((entry) => ({
+    params: { lang: "en", slug: entry.slug },
+    props: { entry },
+  }));
+
+  return [...esPaths, ...enPaths];
+}
+
+const { lang } = Astro.params;
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const word = entry.data;
+
+// SEO optimization
+const description = `${word.word}: ${word.meaning} ${word.examples?.[0] ? `${lang === "es" ? "Ejemplo" : "Example"}: "${word.examples[0]}"` : ""}`;
+const keywords = `${word.word}, ${lang === "es" ? "chapinismo, guatemaltequismo" : "guatemalan slang"}, ${word.category || (lang === "es" ? "palabra chapina" : "guatemalan word")}, ${lang === "es" ? "jerga guatemalteca" : "guatemalan expressions"}, ${word.synonyms?.join(", ") || ""}`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  name: word.word,
+  description: word.meaning,
+  inDefinedTermSet: lang === "es" ? "Diccionario Chapín" : "Guatemalan Slang Dictionary",
+  termCode: entry.slug,
+};
+
+function getCategoryColor(category: string) {
+  const colors: Record<string, string> = {
+    sustantivo: "#10b981",
+    noun: "#10b981",
+    verbo: "#3b82f6",
+    verb: "#3b82f6",
+    adjetivo: "#f59e0b",
+    adjective: "#f59e0b",
+    adverbio: "#8b5cf6",
+    adverb: "#8b5cf6",
+    expresion: "#ec4899",
+    expression: "#ec4899",
+    interjección: "#ef4444",
+    interjection: "#ef4444",
+  };
+  return colors[category] || "#3b82f6";
+}
+---
+
+<Base
+  title={`${word.word} — ${lang === "es" ? "Diccionario Chapín" : "Guatemalan Dictionary"}`}
+  description={description}
+  keywords={keywords}
+  type="article"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+  <section class="mx-auto max-w-[1100px] px-6">
+    <button
+      onclick="history.back()"
+      class="mb-4 cursor-pointer px-4 py-2.5 font-semibold transition-all duration-200 active:scale-95"
+      style="background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: 0 1px 2px var(--shadow-sm); &:hover { background: var(--card-hover) }"
+    >
+      ← {lang === "es" ? "Volver" : "Back"}
+    </button>
+
+    <article
+      class="p-6 transition-all duration-200"
+      style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: 0 2px 8px var(--shadow-md)"
+      transition:animate="slide"
+    >
+      <div class="mb-4 flex items-start justify-between gap-4">
+        <div class="flex-1">
+          <h1
+            class="m-0 mb-2 bg-linear-to-r bg-clip-text text-[clamp(2rem,5vw,3rem)] leading-tight font-bold text-transparent"
+            style="background-image: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 50%, #9333ea 100%)"
+          >
+            {word.word}
+          </h1>
+          <div class="flex items-center gap-2 text-sm">
+            <span class="italic" style="color: var(--muted)">
+              [ {lang === "es" ? "chapinismo" : "guatemalan slang"} ]
+            </span>
+            {
+              word.category && (
+                <span
+                  class="rounded-full px-3 py-1 text-xs font-semibold text-white"
+                  style={`background-color: ${getCategoryColor(word.category)}; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)`}
+                >
+                  {word.category}
+                </span>
+              )
+            }
+          </div>
+        </div>
+        <button
+          id="share-image-btn"
+          class="inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 active:scale-95"
+          style="background: linear-gradient(135deg, var(--primary-light), var(--primary)); box-shadow: 0 2px 8px var(--shadow-md)"
+          onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px var(--shadow-lg)'"
+          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px var(--shadow-md)'"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+          <span class="hidden sm:inline">{lang === "es" ? "Compartir" : "Share"}</span>
+        </button>
+      </div>
+
+      <div
+        class="my-4 rounded-lg p-4 text-base leading-relaxed"
+        style="background: var(--bg-accent); border-left: 3px solid var(--primary-light)"
+      >
+        {word.meaning}
+      </div>
+
+      {
+        word.examples && word.examples.length > 0 && (
+          <div class="mt-6 pt-4" style="border-top: 1px solid var(--border)">
+            <h3 class="my-0 mb-3 flex items-center gap-2 text-lg font-semibold">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 3v18h18" />
+                <path d="M18 17V9" />
+                <path d="M13 17V5" />
+                <path d="M8 17v-3" />
+              </svg>
+              {lang === "es" ? "Ejemplos" : "Examples"}
+            </h3>
+            <ul class="mt-4 space-y-2 pl-5">
+              {word.examples.map((ex) => (
+                <li
+                  class="my-2 p-3 text-sm leading-relaxed italic"
+                  style="color: var(--muted); background: var(--glow-primary); border-left: 2px solid var(--primary); border-radius: var(--radius-md)"
+                >
+                  "{ex}"
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+
+      {
+        Content && (
+          <div class="prose mt-6 pt-4" style="border-top: 1px solid var(--border)">
+            <Content />
+          </div>
+        )
+      }
+    </article>
+  </section>
+
+  <style>
+    .prose {
+      color: var(--prose-text);
+      max-width: 65ch;
+    }
+    .prose :global(h2) {
+      color: var(--prose-headings);
+      font-weight: 700;
+      margin-top: 2em;
+      margin-bottom: 1em;
+      line-height: 1.3;
+    }
+    .prose :global(h3) {
+      color: var(--prose-headings);
+      font-weight: 600;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      line-height: 1.4;
+    }
+    .prose :global(p) {
+      margin-top: 1.25em;
+      margin-bottom: 1.25em;
+      line-height: 1.75;
+    }
+    .prose :global(ul),
+    .prose :global(ol) {
+      margin-top: 1.25em;
+      margin-bottom: 1.25em;
+      padding-left: 1.625em;
+    }
+    .prose :global(li) {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+    .prose :global(strong) {
+      color: var(--prose-bold);
+      font-weight: 600;
+    }
+    .prose :global(a) {
+      color: var(--prose-links);
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    .prose :global(code) {
+      color: var(--prose-code);
+      font-weight: 600;
+      font-size: 0.875em;
+    }
+    .prose :global(pre) {
+      background-color: var(--prose-pre-bg);
+      overflow-x: auto;
+      font-size: 0.875em;
+      line-height: 1.7;
+      margin-top: 1.7em;
+      margin-bottom: 1.7em;
+      border-radius: 0.375rem;
+      padding: 0.8em 1em;
+    }
+    .prose :global(blockquote) {
+      font-style: italic;
+      color: var(--prose-quotes);
+      border-left: 0.25rem solid var(--border);
+      padding-left: 1em;
+      margin-top: 1.6em;
+      margin-bottom: 1.6em;
+    }
+  </style>
+
+  <script define:vars={{ word, slug: entry.slug, lang }}>
+    document.getElementById("share-image-btn")?.addEventListener("click", async () => {
+      await document.fonts.ready;
+
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      canvas.width = 630;
+      canvas.height = 630;
+
+      // Gradient background
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      gradient.addColorStop(0, "#1e293b");
+      gradient.addColorStop(1, "#0f172a");
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Decorative rounded border
+      ctx.strokeStyle = "#3b82f6";
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.roundRect(20, 20, canvas.width - 40, canvas.height - 40, 20);
+      ctx.stroke();
+
+      // Logo/Título del diccionario
+      ctx.fillStyle = "#60a5fa";
+      ctx.font = "bold 32px 'Baloo 2 Variable', system-ui, sans-serif";
+      const title = lang === "es" ? "Diccionario Chapín" : "Guatemalan Slang Dictionary";
+      ctx.fillText(title, 60, 80);
+
+      // Palabra principal
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 72px 'Alice', 'Baloo 2 Variable', system-ui, sans-serif";
+      const wordText = word.word;
+      ctx.fillText(wordText, 60, 180);
+
+      // Categoría con bordes redondeados
+      if (word.category) {
+        ctx.fillStyle = "#3b82f6";
+        ctx.beginPath();
+        ctx.roundRect(60, 200, 150, 35, 8);
+        ctx.fill();
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "600 16px 'Baloo 2 Variable', system-ui, sans-serif";
+        ctx.fillText(word.category.toUpperCase(), 75, 223);
+      }
+
+      // Significado
+      ctx.fillStyle = "#cbd5e1";
+      ctx.font = "28px 'Baloo 2 Variable', system-ui, sans-serif";
+      const meaning = word.meaning;
+
+      // Dividir el texto en líneas para que quepa
+      const maxWidth = canvas.width - 120;
+      const words_array = meaning.split(" ");
+      let line = "";
+      let y = 280;
+      const lineHeight = 40;
+
+      for (let n = 0; n < words_array.length; n++) {
+        const testLine = line + words_array[n] + " ";
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && n > 0) {
+          ctx.fillText(line, 60, y);
+          line = words_array[n] + " ";
+          y += lineHeight;
+          if (y > 420) break; // Limitar líneas
+        } else {
+          line = testLine;
+        }
+      }
+      ctx.fillText(line, 60, y);
+
+      // Ejemplo (si hay)
+      if (word.examples && word.examples.length > 0) {
+        ctx.fillStyle = "#94a3b8";
+        ctx.font = "italic 22px 'Baloo 2 Variable', system-ui, sans-serif";
+        const example = word.examples[0];
+        const maxExampleY = 480;
+
+        if (y + lineHeight + 40 < maxExampleY) {
+          const exampleY = Math.min(y + lineHeight + 60, maxExampleY);
+          ctx.fillText(
+            `"${example.substring(0, 80)}${example.length > 80 ? "..." : ""}"`,
+            60,
+            exampleY
+          );
+        }
+      }
+
+      // Footer
+      ctx.fillStyle = "#475569";
+      ctx.font = "18px 'Baloo 2 Variable', system-ui, sans-serif";
+      ctx.fillText("diccionariochapin.com", 60, canvas.height - 40);
+
+      // Sinónimos (si hay)
+      if (word.synonyms && word.synonyms.length > 0) {
+        ctx.fillStyle = "#64748b";
+        ctx.font = "16px 'Baloo 2 Variable', system-ui, sans-serif";
+        const synonymsLabel = lang === "es" ? "Sinónimos" : "Synonyms";
+        const synonymsText = `${synonymsLabel}: ${word.synonyms.slice(0, 3).join(", ")}`;
+        ctx.fillText(synonymsText, 60, canvas.height - 70);
+      }
+
+      // Convert canvas to blob
+      canvas.toBlob(async (blob) => {
+        const fileName = `${slug}-diccionario-chapin.png`;
+
+        // Try to use Web Share API if available
+        if (
+          navigator.share &&
+          navigator.canShare({ files: [new File([blob], fileName, { type: "image/png" })] })
+        ) {
+          try {
+            const file = new File([blob], fileName, { type: "image/png" });
+            await navigator.share({
+              files: [file],
+              title: `${word.word} - ${title}`,
+              text: word.meaning,
+            });
+          } catch (err) {
+            if (err.name !== "AbortError") {
+              // If sharing fails, fallback to download
+              downloadImage(blob, fileName);
+            }
+          }
+        } else {
+          // Fallback: download the image
+          downloadImage(blob, fileName);
+        }
+      });
+    });
+
+    function downloadImage(blob, fileName) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</Base>

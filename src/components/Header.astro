@@ -1,11 +1,20 @@
 ---
+import { getLangFromUrl, useTranslations } from "../utils/i18n";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+
 const { title = "Diccionario Chapín" } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const prefix = lang === "en" ? "/en" : "/es";
 ---
 
 <header class="mx-auto max-w-[1100px] px-4 py-4 sm:px-6" transition:persist>
   <div class="flex items-center justify-between gap-4">
     <!-- Logo y título -->
-    <a href="/" class="flex shrink-0 items-center gap-2 text-base font-bold sm:gap-2.5 sm:text-lg">
+    <a
+      href={`${prefix}/`}
+      class="flex shrink-0 items-center gap-2 text-base font-bold sm:gap-2.5 sm:text-lg"
+    >
       <svg
         width="24"
         height="24"
@@ -35,26 +44,27 @@ const { title = "Diccionario Chapín" } = Astro.props;
     <!-- Navegación desktop -->
     <nav class="hidden items-center gap-2 md:flex">
       <a
-        href="/"
+        href={`${prefix}/`}
         class="border border-transparent px-3 py-2 transition-all duration-200"
         style="border-radius: var(--radius-md); &:hover { background: var(--card-hover); border-color: var(--border) }"
       >
-        Inicio
+        {t("nav.home")}
       </a>
       <a
-        href="/indice"
+        href={`${prefix}/indice`}
         class="border border-transparent px-3 py-2 transition-all duration-200"
         style="border-radius: var(--radius-md); &:hover { background: var(--card-hover); border-color: var(--border) }"
       >
-        Índice
+        {t("nav.index")}
       </a>
       <a
-        href="/buscar"
+        href={`${prefix}/buscar`}
         class="border border-transparent px-3 py-2 transition-all duration-200"
         style="border-radius: var(--radius-md); &:hover { background: var(--card-hover); border-color: var(--border) }"
       >
-        Buscador
+        {t("nav.search")}
       </a>
+      <LanguageSwitcher />
       <button
         id="theme-toggle"
         class="inline-flex cursor-pointer items-center gap-2 px-2.5 py-2 transition-all duration-200"
@@ -160,25 +170,25 @@ const { title = "Diccionario Chapín" } = Astro.props;
     style="border-color: var(--border)"
   >
     <a
-      href="/"
+      href={`${prefix}/`}
       class="border border-transparent px-4 py-2.5 text-center transition-all duration-200"
       style="border-radius: var(--radius-md); &:hover { background: var(--card-hover); border-color: var(--border) }"
     >
-      Inicio
+      {t("nav.home")}
     </a>
     <a
-      href="/indice"
+      href={`${prefix}/indice`}
       class="border border-transparent px-4 py-2.5 text-center transition-all duration-200"
       style="border-radius: var(--radius-md); &:hover { background: var(--card-hover); border-color: var(--border) }"
     >
-      Índice
+      {t("nav.index")}
     </a>
     <a
-      href="/buscar"
+      href={`${prefix}/buscar`}
       class="border border-transparent px-4 py-2.5 text-center transition-all duration-200"
       style="border-radius: var(--radius-md); &:hover { background: var(--card-hover); border-color: var(--border) }"
     >
-      Buscador
+      {t("nav.search")}
     </a>
   </nav>
 </header>
