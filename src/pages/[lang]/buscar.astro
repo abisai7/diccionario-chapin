@@ -1,0 +1,239 @@
+---
+export const prerender = true;
+
+import Base from "../../layouts/Base.astro";
+import SearchBox from "../../components/SearchBox.astro";
+import { getCollection } from "astro:content";
+import { useTranslations } from "../../utils/i18n";
+
+export async function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang);
+
+const collectionName = lang === "es" ? "words-es" : "words-en";
+const allWords = await getCollection(collectionName);
+const wordData = JSON.stringify(
+  allWords.map((w) => ({
+    slug: w.slug,
+    word: w.data.word,
+    meaning: w.data.meaning,
+    category: w.data.category,
+  }))
+);
+---
+
+<Base
+  title={t("search.title") +
+    " — " +
+    (lang === "es" ? "Diccionario Chapín" : "Guatemalan Dictionary")}
+  description={t("search.description")}
+  keywords={lang === "es"
+    ? "buscar chapinismos, buscar palabras guatemaltecas, diccionario chapín buscar"
+    : "search guatemalan slang, search guatemalan words, guatemalan dictionary search"}
+>
+  <div class="mx-auto max-w-[1100px] px-6">
+    <div
+      class="m-6 grid gap-3.5 backdrop-blur-sm"
+      style="
+      border: 1px solid var(--border); 
+      border-radius: var(--radius-xl); 
+      background: linear-gradient(180deg, var(--card) 0%, var(--bg-accent) 100%);
+      box-shadow: 0 4px 12px var(--shadow-md);
+    "
+    >
+      <h1
+        class="mx-4 mt-4 bg-linear-to-r bg-clip-text text-[clamp(1.8rem,2.4vw,2.6rem)] text-transparent"
+        style="background-image: linear-gradient(to right, var(--text), var(--primary-light))"
+      >
+        {t("search.title")}
+      </h1>
+      <p class="mx-4 text-base" style="color: var(--muted)">
+        {t("search.subtitle")}
+      </p>
+      <div class="mx-4 mb-4 grid grid-cols-1">
+        <SearchBox placeholder={t("home.search.placeholder")} />
+      </div>
+    </div>
+
+    <div id="searchResults" class="mt-8 pb-12"></div>
+  </div>
+
+  <script is:inline define:vars={{ wordData, lang }}>
+    const words = JSON.parse(wordData);
+    const input = document.querySelector('input[type="search"]');
+    const resultsContainer = document.getElementById("searchResults");
+
+    const translations = {
+      es: {
+        noResults: "No se encontraron resultados",
+        tryAnother: "Intenta con otra palabra",
+        results: "resultados",
+        categories: {
+          sustantivo: "Sustantivo",
+          verbo: "Verbo",
+          adjetivo: "Adjetivo",
+          adverbio: "Adverbio",
+          expresion: "Expresión",
+          interjección: "Interjección",
+        },
+      },
+      en: {
+        noResults: "No results found",
+        tryAnother: "Try another word",
+        results: "results",
+        categories: {
+          noun: "Noun",
+          verb: "Verb",
+          adjective: "Adjective",
+          adverb: "Adverb",
+          expression: "Expression",
+          interjection: "Interjection",
+        },
+      },
+    };
+
+    const t = translations[lang];
+
+    function normalizeText(text) {
+      return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function getCategoryColor(category) {
+      const colors = {
+        sustantivo: "#10b981",
+        noun: "#10b981",
+        verbo: "#3b82f6",
+        verb: "#3b82f6",
+        adjetivo: "#f59e0b",
+        adjective: "#f59e0b",
+        adverbio: "#8b5cf6",
+        adverb: "#8b5cf6",
+        expresion: "#ec4899",
+        expression: "#ec4899",
+        interjección: "#ef4444",
+        interjection: "#ef4444",
+      };
+      return colors[category] || "var(--primary-light)";
+    }
+
+    function getCategoryLabel(category) {
+      return t.categories[category] || category;
+    }
+
+    function renderResults(results) {
+      if (results.length === 0) {
+        resultsContainer.innerHTML = `
+          <div style="
+            text-align: center; 
+            padding: 3rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--card);
+          ">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 style="color: var(--muted); margin: 0 auto 1rem;">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <p style="color: var(--text); font-size: 1.125rem; font-weight: 600; margin: 0 0 0.5rem 0;">
+              ${t.noResults}
+            </p>
+            <p style="color: var(--muted); margin: 0;">
+              ${t.tryAnother}
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      const prefix = lang === "es" ? "/es" : "/en";
+
+      resultsContainer.innerHTML = `
+        <p style="color: var(--muted); margin-bottom: 1rem; font-size: 0.875rem;">
+          ${results.length} ${t.results}
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.875rem;">
+          ${results
+            .map(
+              (item) => `
+            <a href="${prefix}/palabras/${item.slug}" 
+               style="
+                 display: block;
+                 text-decoration: none;
+                 padding: 1rem;
+                 border: 1px solid var(--border);
+                 border-radius: var(--radius-lg);
+                 background: var(--card);
+                 box-shadow: 0 1px 3px var(--shadow-sm);
+                 transition: all 0.2s ease;
+               "
+               onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px var(--shadow-md)';"
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 3px var(--shadow-sm)';">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                <h3 style="margin: 0; font-size: 1.25rem; font-weight: 600; color: var(--text);">
+                  ${item.word}
+                </h3>
+                <span style="
+                  display: inline-block;
+                  padding: 0.125rem 0.5rem;
+                  border-radius: var(--radius-sm);
+                  font-size: 0.75rem;
+                  font-weight: 500;
+                  color: white;
+                  background-color: ${getCategoryColor(item.category)};
+                ">
+                  ${getCategoryLabel(item.category)}
+                </span>
+              </div>
+              <p style="margin: 0; color: var(--text-secondary); font-size: 0.875rem; line-height: 1.5;">
+                ${item.meaning}
+              </p>
+            </a>
+          `
+            )
+            .join("")}
+        </div>
+      `;
+    }
+
+    function search(query) {
+      if (!query.trim()) {
+        resultsContainer.innerHTML = "";
+        return;
+      }
+
+      const normalized = normalizeText(query);
+      const results = words.filter((w) => {
+        const word = normalizeText(w.word);
+        const meaning = normalizeText(w.meaning);
+        const category = normalizeText(w.category);
+        return (
+          word.includes(normalized) || meaning.includes(normalized) || category.includes(normalized)
+        );
+      });
+
+      renderResults(results);
+    }
+
+    input?.addEventListener("input", (e) => {
+      search(e.target.value);
+    });
+
+    // Search on page load if there's a query in the URL
+    document.addEventListener("astro:page-load", () => {
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get("q");
+      if (query && input) {
+        input.value = query;
+        search(query);
+      }
+    });
+  </script>
+</Base>

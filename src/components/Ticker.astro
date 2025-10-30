@@ -1,6 +1,7 @@
 ---
 import { slugify } from "../utils/slug.js";
-const { words = [] } = Astro.props;
+const { words = [], lang = "es" } = Astro.props;
+const prefix = `/${lang}`;
 const repeated = [...words, ...words, ...words];
 function chunk(arr: any[], size: number): any[][] {
   const out: any[][] = [];
@@ -32,7 +33,7 @@ const rows = chunk(repeated, Math.ceil(repeated.length / 3));
               box-shadow: 0 2px 4px var(--shadow-sm), 0 1px 2px var(--shadow-xs);
               color: var(--text);
             "
-              href={`/palabras/${slugify(w)}`}
+              href={`${prefix}/palabras/${slugify(w)}`}
               tabindex="-1"
               aria-hidden="true"
             >

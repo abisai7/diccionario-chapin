@@ -1,18 +1,41 @@
 import { defineCollection, z } from "astro:content";
 
-const wordsCollection = defineCollection({
+const wordsSchema = z.object({
+  word: z.string(),
+  meaning: z.string(),
+  examples: z.array(z.string()),
+  category: z.enum([
+    "sustantivo",
+    "verbo",
+    "adjetivo",
+    "adverbio",
+    "expresión",
+    "interjección",
+    "modismo",
+    "noun",
+    "verb",
+    "adjective",
+    "adverb",
+    "expression",
+    "interjection",
+    "idiom"
+  ]).optional(),
+  region: z.string().optional(),
+  synonyms: z.array(z.string()).optional(),
+  relatedWords: z.array(z.string()).optional(),
+});
+
+const wordsEsCollection = defineCollection({
   type: "content",
-  schema: z.object({
-    word: z.string(),
-    meaning: z.string(),
-    examples: z.array(z.string()),
-    category: z.enum(["sustantivo", "verbo", "adjetivo", "expresión", "modismo"]).optional(),
-    region: z.string().optional(),
-    synonyms: z.array(z.string()).optional(),
-    relatedWords: z.array(z.string()).optional(),
-  }),
+  schema: wordsSchema,
+});
+
+const wordsEnCollection = defineCollection({
+  type: "content",
+  schema: wordsSchema,
 });
 
 export const collections = {
-  words: wordsCollection,
+  "words-es": wordsEsCollection,
+  "words-en": wordsEnCollection,
 };
