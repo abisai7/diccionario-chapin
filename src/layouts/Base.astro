@@ -5,15 +5,15 @@ import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 
 const {
-  title = "Diccionario Chapín",
-  description = "Glosario de chapinismos con definiciones y ejemplos",
+  title = "Chapinismos",
+  description = "Glosario de chapinismos guatemaltecos con definiciones y ejemplos",
   keywords = "chapinismos, diccionario guatemalteco, palabras chapinas, guatemaltequismos, jerga guatemalteca, modismos Guatemala",
   ogImage = "/og-image.svg",
   canonicalUrl = Astro.url.pathname,
   type = "website",
 } = Astro.props;
 
-const siteUrl = Astro.site || "https://diccionario-chapin.com";
+const siteUrl = Astro.site || "https://chapinismos.org";
 const fullCanonicalUrl = new URL(canonicalUrl, siteUrl).toString();
 const fullOgImage = new URL(ogImage, siteUrl).toString();
 ---

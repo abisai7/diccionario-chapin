@@ -344,7 +344,7 @@ function getCategoryColor(category: string) {
       // Footer
       ctx.fillStyle = "#475569";
       ctx.font = "18px 'Baloo 2 Variable', system-ui, sans-serif";
-      ctx.fillText("diccionariochapin.com", 60, canvas.height - 40);
+      ctx.fillText("chapinismos.org", 60, canvas.height - 40);
 
       // Sinónimos (si hay)
       if (word.synonyms && word.synonyms.length > 0) {
@@ -357,7 +357,7 @@ function getCategoryColor(category: string) {
 
       // Convert canvas to blob
       canvas.toBlob(async (blob) => {
-        const fileName = `${slug}-diccionario-chapin.png`;
+        const fileName = `${slug}-chapinismos.png`;
 
         // Try to use Web Share API if available
         if (

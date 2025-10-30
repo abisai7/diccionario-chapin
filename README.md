@@ -1,4 +1,4 @@
-# 📖 Diccionario Chapín
+# 📖 Chapinismos
 
 > Un glosario interactivo de chapinismos guatemaltecos con definiciones y ejemplos. Desarrollado con Astro y Tailwind CSS.
 
@@ -30,7 +30,7 @@
 
 ```bash
 # Clonar el repositorio
-git clone <tu-repo-url>
+git clone https://github.com/abisai7/diccionario-chapin.git
 cd diccionario-chapin
 
 # Instalar dependencias

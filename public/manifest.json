@@ -1,6 +1,6 @@
 {
-  "name": "Diccionario Chapín",
-  "short_name": "Chapín",
+  "name": "Chapinismos",
+  "short_name": "Chapinismos",
   "description": "Glosario de chapinismos y guatemaltequismos con definiciones y ejemplos",
   "start_url": "/",
   "display": "standalone",

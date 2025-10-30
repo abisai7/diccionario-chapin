@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://diccionario-chapin.netlify.app/sitemap-index.xml
+Sitemap: https://chapinismos.org/sitemap-index.xml

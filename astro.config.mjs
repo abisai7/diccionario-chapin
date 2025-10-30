@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: "https://diccionariochapin.com",
+  site: "https://chapinismos.org",
   output: "static",
   integrations: [sitemap()],
   i18n: {

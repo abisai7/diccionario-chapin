@@ -1,5 +1,5 @@
 {
-  "name": "diccionario-chapin",
+  "name": "chapinismos",
   "version": "2.0.0",
   "description": "Glosario interactivo de chapinismos guatemaltecos con definiciones y ejemplos",
   "private": true,
@@ -21,12 +21,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/abisai7/diccionario-chapin"
+    "url": "https://github.com/abisai7/chapinismos"
   },
   "bugs": {
-    "url": "https://github.com/abisai7/diccionario-chapin/issues"
+    "url": "https://github.com/abisai7/chapinismos/issues"
   },
-  "homepage": "https://github.com/abisai7/diccionario-chapin#readme",
+  "homepage": "https://chapinismos.org",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

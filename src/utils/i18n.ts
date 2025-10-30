@@ -1,6 +1,6 @@
 export const translations = {
     es: {
-        "home.title": "Diccionario Chapín",
+        "home.title": "Chapinismos",
         "home.subtitle": "Descubre el significado de las palabras y expresiones más usadas en Guatemala",
         "home.search.placeholder": "Buscar chapinismos...",
         "home.search.tip": "Presiona",
@@ -31,7 +31,7 @@ export const translations = {
         "nav.index": "Índice",
     },
     en: {
-        "home.title": "Guatemalan Slang Dictionary",
+        "home.title": "Chapinismos",
         "home.subtitle": "Discover the meaning of the most used words and expressions in Guatemala",
         "home.search.placeholder": "Search Guatemalan slang...",
         "home.search.tip": "Press",
