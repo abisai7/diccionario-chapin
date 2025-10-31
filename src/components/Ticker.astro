@@ -25,23 +25,15 @@ const rows = chunk(repeated, Math.ceil(repeated.length / 3));
         >
           {row.map((w) => (
             <a
-              class="ticker-word inline-flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 hover:-translate-y-1 hover:scale-105 active:scale-95"
-              style="
-              background: var(--card); 
-              border: 1px solid var(--border); 
-              border-radius: var(--radius-xl); 
-              box-shadow: 0 2px 4px var(--shadow-sm), 0 1px 2px var(--shadow-xs);
-              color: var(--text);
-            "
+              class="ticker-word bg-card border-theme shadow-theme-sm text-theme inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-medium transition-all duration-300 hover:-translate-y-1 hover:scale-105 active:scale-95"
               href={`${prefix}/palabras/${slugify(w)}`}
               tabindex="-1"
               aria-hidden="true"
             >
               <span
-                class="ticker-dot h-2 w-2 animate-pulse"
+                class="ticker-dot h-2 w-2 animate-pulse rounded-xl"
                 style="
-                background: var(--primary); 
-                border-radius: var(--radius-xl);
+                background: var(--primary);
                 box-shadow: 0 0 8px var(--primary);
               "
               />

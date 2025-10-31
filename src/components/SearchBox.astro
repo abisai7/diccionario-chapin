@@ -8,8 +8,7 @@ const action = `${prefix}/buscar`;
 ---
 
 <form
-  class="flex items-center gap-2.5 p-1 transition-all duration-200 sm:p-2"
-  style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 1px 2px var(--shadow-sm)"
+  class="bg-card border-theme shadow-theme-sm flex items-center gap-2.5 rounded-lg border p-1 transition-all duration-200 sm:p-2"
   action={action}
   method="get"
 >
@@ -19,21 +18,14 @@ const action = `${prefix}/buscar`;
     value={query}
     placeholder={placeholder}
     aria-label="Buscar palabra"
-    class="flex-1 border-none bg-transparent text-base outline-none placeholder:opacity-50"
-    style="color: var(--text)"
+    class="text-theme flex-1 border-none bg-transparent text-base outline-none placeholder:opacity-50"
   />
   <button
-    class="search-btn relative cursor-pointer overflow-hidden border-none px-4 py-2.5 font-semibold transition-all duration-200 active:scale-95"
-    style="
-      background: var(--btn-primary-bg); 
-      color: #ffffff; 
-      border-radius: var(--radius-md); 
-      box-shadow: 0 2px 8px var(--btn-primary-shadow), 0 1px 3px var(--shadow-md);
-    "
+    class="search-btn relative cursor-pointer overflow-hidden rounded-md border-none px-4 py-2.5 font-semibold text-white transition-all duration-200 active:scale-95"
     type="submit"
     aria-label="Buscar"
   >
-    <span class="relative z-10 flex items-center gap-2" style="color: #ffffff;">
+    <span class="relative z-10 flex items-center gap-2 text-white">
       <svg
         width="16"
         height="16"
@@ -55,6 +47,10 @@ const action = `${prefix}/buscar`;
 <style>
   .search-btn {
     position: relative;
+    background: var(--btn-primary-bg);
+    box-shadow:
+      0 2px 8px var(--btn-primary-shadow),
+      0 1px 3px var(--shadow-md);
   }
 
   .search-btn:hover {

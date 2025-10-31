@@ -69,17 +69,12 @@ function getCategoryColor(category: string) {
   <section class="mx-auto max-w-[1100px] px-6">
     <button
       onclick="history.back()"
-      class="mb-4 cursor-pointer px-4 py-2.5 font-semibold transition-all duration-200 active:scale-95"
-      style="background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: 0 1px 2px var(--shadow-sm); &:hover { background: var(--card-hover) }"
+      class="back-btn mb-4 cursor-pointer px-4 py-2.5 font-semibold transition-all duration-200 active:scale-95"
     >
       ← {lang === "es" ? "Volver" : "Back"}
     </button>
 
-    <article
-      class="p-6 transition-all duration-200"
-      style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: 0 2px 8px var(--shadow-md)"
-      transition:animate="slide"
-    >
+    <article class="article-card p-6 transition-all duration-200" transition:animate="slide">
       <div class="mb-4 flex items-start justify-between gap-4">
         <div class="flex-1">
           <h1
@@ -89,7 +84,7 @@ function getCategoryColor(category: string) {
             {word.word}
           </h1>
           <div class="flex items-center gap-2 text-sm">
-            <span class="italic" style="color: var(--muted)">
+            <span class="text-muted italic">
               [ {lang === "es" ? "chapinismo" : "guatemalan slang"} ]
             </span>
             {
@@ -106,10 +101,7 @@ function getCategoryColor(category: string) {
         </div>
         <button
           id="share-image-btn"
-          class="inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 active:scale-95"
-          style="background: linear-gradient(135deg, var(--primary-light), var(--primary)); box-shadow: 0 2px 8px var(--shadow-md)"
-          onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px var(--shadow-lg)'"
-          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px var(--shadow-md)'"
+          class="badge-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
         >
           <svg
             width="18"
@@ -131,16 +123,13 @@ function getCategoryColor(category: string) {
         </button>
       </div>
 
-      <div
-        class="my-4 rounded-lg p-4 text-base leading-relaxed"
-        style="background: var(--bg-accent); border-left: 3px solid var(--primary-light)"
-      >
+      <div class="accent-box my-4 rounded-lg p-4 text-base leading-relaxed">
         {word.meaning}
       </div>
 
       {
         word.examples && word.examples.length > 0 && (
-          <div class="mt-6 pt-4" style="border-top: 1px solid var(--border)">
+          <div class="border-theme mt-6 border-t pt-4">
             <h3 class="my-0 mb-3 flex items-center gap-2 text-lg font-semibold">
               <svg
                 width="20"
@@ -161,12 +150,7 @@ function getCategoryColor(category: string) {
             </h3>
             <ul class="mt-4 space-y-2 pl-5">
               {word.examples.map((ex) => (
-                <li
-                  class="my-2 p-3 text-sm leading-relaxed italic"
-                  style="color: var(--muted); background: var(--glow-primary); border-left: 2px solid var(--primary); border-radius: var(--radius-md)"
-                >
-                  "{ex}"
-                </li>
+                <li class="example-box my-2 p-3 text-sm leading-relaxed italic">"{ex}"</li>
               ))}
             </ul>
           </div>
@@ -175,7 +159,7 @@ function getCategoryColor(category: string) {
 
       {
         Content && (
-          <div class="prose mt-6 pt-4" style="border-top: 1px solid var(--border)">
+          <div class="prose border-theme mt-6 border-t pt-4">
             <Content />
           </div>
         )

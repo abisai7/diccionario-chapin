@@ -14,14 +14,7 @@ const targetPath = `/${targetLang}${basePath}`;
 
 <a
   href={targetPath}
-  class="inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-all"
-  style="
-    border: 1px solid var(--border);
-    background: var(--card);
-    color: var(--text);
-  "
-  onmouseover="this.style.background='var(--card-hover)'; this.style.borderColor='var(--primary-light)';"
-  onmouseout="this.style.background='var(--card)'; this.style.borderColor='var(--border)';"
+  class="border-theme bg-card text-theme hover:bg-card-hover hover:border-primary-light inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-all"
   aria-label={lang === "es" ? "Switch to English" : "Cambiar a Español"}
 >
   <svg

@@ -10,15 +10,7 @@ const t = useTranslations(lang);
 ---
 
 <section class="mx-auto max-w-[1100px] px-6 pb-12">
-  <div
-    class="mt-8 p-6"
-    style="
-      border: 1px solid var(--border); 
-      border-radius: var(--radius-lg); 
-      background: var(--card);
-      box-shadow: 0 2px 8px var(--shadow-sm);
-    "
-  >
+  <div class="border-theme bg-card shadow-theme-md mt-8 rounded-lg border p-6">
     <h2 class="m-0 mb-3 flex items-center gap-2 text-xl font-semibold">
       <svg
         width="20"
@@ -29,7 +21,7 @@ const t = useTranslations(lang);
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        style="color: var(--primary-light)"
+        class="text-primary-light"
       >
         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
         <circle cx="9" cy="7" r="4"></circle>
@@ -37,18 +29,11 @@ const t = useTranslations(lang);
       </svg>
       {t("home.contribute.title")}
     </h2>
-    <p class="mb-4 text-sm leading-relaxed" style="color: var(--text-secondary)">
+    <p class="text-secondary mb-4 text-sm leading-relaxed">
       {t("home.contribute.subtitle")}
     </p>
     <div class="grid gap-4 md:grid-cols-2">
-      <div
-        class="p-4"
-        style="
-          border: 1px solid var(--border); 
-          border-radius: var(--radius-md); 
-          background: var(--bg-accent);
-        "
-      >
+      <div class="border-theme bg-accent rounded-md border p-4">
         <h3 class="m-0 mb-2 flex items-center gap-2 text-base font-semibold">
           <svg
             width="18"
@@ -59,7 +44,7 @@ const t = useTranslations(lang);
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            style="color: var(--primary-light)"
+            class="text-primary-light"
           >
             <path
               d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
@@ -67,15 +52,14 @@ const t = useTranslations(lang);
           </svg>
           {t("home.contribute.tech.title")}
         </h3>
-        <p class="mb-3 text-sm leading-relaxed" style="color: var(--muted)">
+        <p class="text-muted mb-3 text-sm leading-relaxed">
           {t("home.contribute.tech.description")}
         </p>
         <a
           href="https://github.com/abisai7/chapinismos"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
-          style="color: var(--primary-light)"
+          class="text-primary-light inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
         >
           {t("home.contribute.tech.button")}
           <svg
@@ -94,14 +78,7 @@ const t = useTranslations(lang);
           </svg>
         </a>
       </div>
-      <div
-        class="p-4"
-        style="
-          border: 1px solid var(--border); 
-          border-radius: var(--radius-md); 
-          background: var(--bg-accent);
-        "
-      >
+      <div class="border-theme bg-accent rounded-md border p-4">
         <h3 class="m-0 mb-2 flex items-center gap-2 text-base font-semibold">
           <svg
             width="18"
@@ -112,7 +89,7 @@ const t = useTranslations(lang);
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            style="color: var(--primary-light)"
+            class="text-primary-light"
           >
             <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
             ></path>
@@ -120,13 +97,10 @@ const t = useTranslations(lang);
           </svg>
           {t("home.contribute.all.title")}
         </h3>
-        <p class="mb-3 text-sm leading-relaxed" style="color: var(--muted)">
+        <p class="text-muted mb-3 text-sm leading-relaxed">
           {t("home.contribute.all.description")}
         </p>
-        <span
-          class="inline-flex items-center gap-1.5 text-sm font-medium"
-          style="color: var(--muted)"
-        >
+        <span class="text-muted inline-flex items-center gap-1.5 text-sm font-medium">
           {t("home.contribute.all.status")}
           <svg
             width="14"

@@ -23,52 +23,31 @@ const prefix = lang === "en" ? "/en" : "/es";
         aria-hidden="true"
         class="sm:h-[26px] sm:w-[26px]"
       >
-        <circle
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          stroke-width="2"
-          style="color: var(--primary)"></circle>
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" class="svg-primary"
+        ></circle>
         <circle cx="12" cy="12" r="6" fill="var(--primary)" style="opacity: 0.9"></circle>
       </svg>
       <span class="xs:inline hidden">{title}</span>
-      <span
-        class="px-2 py-0.5 text-xs font-semibold sm:px-2.5 sm:py-1 sm:text-sm"
-        style="background: var(--glow-primary); border: 1px solid var(--primary); color: var(--primary); border-radius: var(--radius-full)"
-      >
+      <span class="gt-badge px-2 py-0.5 text-xs font-semibold sm:px-2.5 sm:py-1 sm:text-sm">
         GT
       </span>
     </a>
 
     <!-- Navegación desktop -->
     <nav class="hidden items-center gap-2 md:flex">
-      <a
-        href={`${prefix}/`}
-        class="border border-transparent px-3 py-2 transition-all duration-200"
-        style="border-radius: var(--radius-md); &:hover { background: var(--card-hover); border-color: var(--border) }"
-      >
+      <a href={`${prefix}/`} class="nav-link px-3 py-2">
         {t("nav.home")}
       </a>
-      <a
-        href={`${prefix}/indice`}
-        class="border border-transparent px-3 py-2 transition-all duration-200"
-        style="border-radius: var(--radius-md); &:hover { background: var(--card-hover); border-color: var(--border) }"
-      >
+      <a href={`${prefix}/indice`} class="nav-link px-3 py-2">
         {t("nav.index")}
       </a>
-      <a
-        href={`${prefix}/buscar`}
-        class="border border-transparent px-3 py-2 transition-all duration-200"
-        style="border-radius: var(--radius-md); &:hover { background: var(--card-hover); border-color: var(--border) }"
-      >
+      <a href={`${prefix}/buscar`} class="nav-link px-3 py-2">
         {t("nav.search")}
       </a>
       <LanguageSwitcher />
       <button
         id="theme-toggle"
-        class="inline-flex cursor-pointer items-center gap-2 px-2.5 py-2 transition-all duration-200"
-        style="border: 1px solid var(--border); background: var(--glow-primary); border-radius: var(--radius-md); &:hover { background: var(--card-hover) }"
+        class="theme-toggle-btn inline-flex cursor-pointer items-center gap-2 px-2.5 py-2"
         type="button"
         aria-label="Cambiar tema"
       >
@@ -96,8 +75,7 @@ const prefix = lang === "en" ? "/en" : "/es";
     <div class="flex items-center gap-2 md:hidden">
       <button
         id="theme-toggle-mobile"
-        class="inline-flex cursor-pointer items-center gap-2 px-2.5 py-2 transition-all duration-200"
-        style="border: 1px solid var(--border); background: var(--glow-primary); border-radius: var(--radius-md); &:hover { background: var(--card-hover) }"
+        class="theme-toggle-btn inline-flex cursor-pointer items-center gap-2 px-2.5 py-2"
         type="button"
         aria-label="Cambiar tema"
       >
@@ -127,8 +105,7 @@ const prefix = lang === "en" ? "/en" : "/es";
       </button>
       <button
         id="menu-toggle"
-        class="inline-flex cursor-pointer items-center px-2.5 py-2 transition-all duration-200"
-        style="border: 1px solid var(--border); background: var(--background); border-radius: var(--radius-md); &:hover { background: var(--card-hover) }"
+        class="border-theme bg-background hover:bg-card-hover inline-flex cursor-pointer items-center rounded-md border px-2.5 py-2 transition-all"
         type="button"
         aria-label="Abrir menú"
         aria-expanded="false"
@@ -166,28 +143,15 @@ const prefix = lang === "en" ? "/en" : "/es";
   <!-- Menú móvil -->
   <nav
     id="mobile-menu"
-    class="mt-4 hidden flex-col gap-2 border-t pt-4 pb-2 md:hidden"
-    style="border-color: var(--border)"
+    class="border-theme mt-4 hidden flex-col gap-2 border-t pt-4 pb-2 md:hidden"
   >
-    <a
-      href={`${prefix}/`}
-      class="border border-transparent px-4 py-2.5 text-center transition-all duration-200"
-      style="border-radius: var(--radius-md); &:hover { background: var(--card-hover); border-color: var(--border) }"
-    >
+    <a href={`${prefix}/`} class="nav-link px-4 py-2.5 text-center">
       {t("nav.home")}
     </a>
-    <a
-      href={`${prefix}/indice`}
-      class="border border-transparent px-4 py-2.5 text-center transition-all duration-200"
-      style="border-radius: var(--radius-md); &:hover { background: var(--card-hover); border-color: var(--border) }"
-    >
+    <a href={`${prefix}/indice`} class="nav-link px-4 py-2.5 text-center">
       {t("nav.index")}
     </a>
-    <a
-      href={`${prefix}/buscar`}
-      class="border border-transparent px-4 py-2.5 text-center transition-all duration-200"
-      style="border-radius: var(--radius-md); &:hover { background: var(--card-hover); border-color: var(--border) }"
-    >
+    <a href={`${prefix}/buscar`} class="nav-link px-4 py-2.5 text-center">
       {t("nav.search")}
     </a>
   </nav>

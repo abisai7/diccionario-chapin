@@ -4,22 +4,17 @@ const prefix = lang === "en" ? "/en" : "/es";
 ---
 
 <div
-  class="word-card p-4 transition-all duration-200"
-  style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 1px 2px var(--shadow-sm)"
+  class="word-card bg-card border-theme shadow-theme-sm rounded-lg border p-4 transition-all duration-200"
   transition:name={`word-card-${slug}`}
 >
   <h3 class="m-0 mb-1.5 text-lg font-semibold">
-    <a
-      href={`${prefix}/palabras/${slug}`}
-      class="word-title transition-colors"
-      style="color: var(--text)">{word}</a
+    <a href={`${prefix}/palabras/${slug}`} class="word-title text-theme transition-colors">{word}</a
     >
   </h3>
-  <p class="m-0 text-sm leading-relaxed" style="color: var(--text-secondary)">{meaning}</p>
+  <p class="text-secondary m-0 text-sm leading-relaxed">{meaning}</p>
   <a
     href={`${prefix}/palabras/${slug}`}
-    class="word-link mt-2 inline-flex items-center gap-1 text-sm font-medium transition-colors"
-    style="color: #5fa8dc"
+    class="word-link text-primary-light mt-2 inline-flex items-center gap-1 text-sm font-medium transition-colors"
   >
     {lang === "en" ? "View details" : "Ver detalle"}
     <svg
