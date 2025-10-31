@@ -1,0 +1,63 @@
+---
+import SearchBox from "../SearchBox.astro";
+import { useTranslations } from "../../utils/i18n";
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="mx-auto max-w-[1100px]">
+  <div
+    class="m-6 grid gap-3.5 backdrop-blur-sm"
+    style="
+      border: 1px solid var(--border); 
+      border-radius: var(--radius-xl); 
+      background: linear-gradient(180deg, var(--card) 0%, var(--bg-accent) 100%);
+      box-shadow: 0 4px 12px var(--shadow-md);
+    "
+  >
+    <h1
+      class="mx-4 mt-4 bg-linear-to-r bg-clip-text text-[clamp(1.8rem,2.4vw,2.6rem)] text-transparent"
+      style="background-image: linear-gradient(to right, var(--text), var(--primary-light))"
+    >
+      {t("home.title")}
+    </h1>
+    <p class="mx-4 text-base" style="color: var(--muted)">
+      {t("home.subtitle")}
+    </p>
+    <div class="mx-4 grid grid-cols-1">
+      <SearchBox placeholder={t("home.search.placeholder")} />
+    </div>
+    <div
+      class="mx-4 mb-4 px-3 py-2 text-sm backdrop-blur-sm"
+      style="border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--glow-primary); color: var(--muted)"
+    >
+      <span class="inline-flex items-center gap-2">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 16v-4M12 8h.01"></path>
+        </svg>
+        {t("home.search.tip")}
+        <kbd
+          class="mx-1 px-2 py-0.5 font-mono text-xs"
+          style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text)"
+          >/</kbd
+        >
+        {t("home.search.tip2")}
+      </span>
+    </div>
+  </div>
+</section>

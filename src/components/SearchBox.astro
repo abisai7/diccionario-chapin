@@ -74,3 +74,13 @@ const action = `${prefix}/buscar`;
     outline-offset: 2px;
   }
 </style>
+
+<script>
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "/" && !(e.target instanceof HTMLInputElement)) {
+      e.preventDefault();
+      const input = document.querySelector('input[type="search"]') as HTMLInputElement;
+      input?.focus();
+    }
+  });
+</script>
