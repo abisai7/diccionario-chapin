@@ -21,7 +21,13 @@ const allWords = await getCollection(collectionName);
 const wordList = allWords.map((w) => w.data.word);
 const shuffled = [...wordList].sort(() => Math.random() - 0.5);
 const featured = shuffled.slice(0, Math.min(45, shuffled.length));
-const top = allWords.slice(0, 6);
+
+// Get featured words or fallback to random if none are marked
+const featuredWords = allWords.filter((w) => w.data.featured === true);
+const top =
+  featuredWords.length >= 6
+    ? featuredWords.slice(0, 6)
+    : [...allWords].sort(() => Math.random() - 0.5).slice(0, 6);
 ---
 
 <Base

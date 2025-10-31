@@ -8,4 +8,5 @@ examples:
 region: Guatemala
 synonyms:
   - turkey
+featured: true
 ---

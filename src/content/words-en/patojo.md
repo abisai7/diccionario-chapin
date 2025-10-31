@@ -6,6 +6,7 @@ examples:
   - "That patojo is very smart"
   - "When I was a patojo, I used to play in the street"
   - "The patojos are playing soccer in the park"
+featured: true
 ---
 
 ## Definition

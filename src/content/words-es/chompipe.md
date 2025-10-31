@@ -9,4 +9,5 @@ region: Guatemala
 synonyms:
   - pavo
   - centro de atención
+featured: true
 ---

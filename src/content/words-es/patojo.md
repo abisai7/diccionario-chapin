@@ -6,6 +6,7 @@ examples:
   - "Cuando era patojo jugaba en la calle con mis amigos."
 category: "sustantivo"
 region: "Guatemala"
+featured: true
 ---
 
 Término muy común y característico del habla guatemalteca, usado tanto en masculino (patojo) como en femenino (patoja).

@@ -6,6 +6,7 @@ examples:
   - "That concert was super chilero!"
   - "What a chilero car you bought!"
   - "This place is very chilero, I love it"
+featured: true
 ---
 
 ## Definition

@@ -40,6 +40,9 @@ Puedes agregar contexto extra, etimología, o cualquier información adicional a
   - Por defecto: `"Guatemala"`
 - `synonyms`: Palabras similares (Array de Strings)
 - `relatedWords`: Palabras relacionadas (Array de Strings)
+- `featured`: Marca la palabra como destacada para mostrarla en la página principal (Boolean)
+  - Ejemplo: `featured: true`
+  - **Nota**: Solo marcar las 6 palabras más representativas o populares
 
 ## ✅ Pasos para Agregar una Palabra
 

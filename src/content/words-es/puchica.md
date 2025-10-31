@@ -6,6 +6,7 @@ examples:
   - "Púchica, sí que estaba caro el pasaje."
 category: "expresión"
 region: "Guatemala"
+featured: true
 ---
 
 Interjección muy característica del habla guatemalteca, usada en múltiples contextos emocionales.

@@ -23,6 +23,7 @@ const wordsSchema = z.object({
   region: z.string().optional(),
   synonyms: z.array(z.string()).optional(),
   relatedWords: z.array(z.string()).optional(),
+  featured: z.boolean().optional(),
 });
 
 const wordsEsCollection = defineCollection({

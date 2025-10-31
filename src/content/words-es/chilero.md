@@ -6,6 +6,7 @@ examples:
   - "El viaje estuvo chilero, lo volvería a hacer."
 category: "adjetivo"
 region: "Guatemala"
+featured: true
 ---
 
 Una de las palabras más emblemáticas del habla guatemalteca, usada para expresar aprobación y satisfacción.

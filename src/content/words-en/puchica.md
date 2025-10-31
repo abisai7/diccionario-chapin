@@ -10,4 +10,5 @@ synonyms:
   - darn
   - shoot
   - geez
+featured: true
 ---

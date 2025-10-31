@@ -13,4 +13,5 @@ synonyms:
 relatedWords:
   - alero
   - oye-mano
+featured: true
 ---
