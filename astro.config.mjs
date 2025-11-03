@@ -12,6 +12,7 @@ export default defineConfig({
     locales: ["es", "en"],
     routing: {
       prefixDefaultLocale: true, // Importante: true para tener /es/ y /en/
+      redirectToDefaultLocale: false, // Disable auto-redirect to allow custom redirect page
     },
   },
   vite: {
