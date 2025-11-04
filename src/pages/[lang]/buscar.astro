@@ -186,6 +186,15 @@ const wordData = JSON.stringify(
       renderResults(results);
     }
 
+    // Prevent form submission
+    const form = document.querySelector("form");
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (input) {
+        search(input.value);
+      }
+    });
+
     input?.addEventListener("input", (e) => {
       search(e.target.value);
     });
