@@ -13,9 +13,8 @@ const targetPath = `/${targetLang}${basePath}`;
 ---
 
 <a
-  id="language-switcher"
   href={targetPath}
-  class="border-theme bg-card text-theme hover:bg-card-hover hover:border-primary-light inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-all"
+  class="language-switcher border-theme bg-card text-theme hover:bg-card-hover hover:border-primary-light inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-all"
   aria-label={lang === "es" ? "Switch to English" : "Cambiar a Español"}
 >
   <svg
@@ -34,15 +33,15 @@ const targetPath = `/${targetLang}${basePath}`;
     ></path>
     <path d="M2 12h20"></path>
   </svg>
-  <span id="language-switcher-text">{lang === "es" ? "EN" : "ES"}</span>
+  <span class="language-switcher-text">{lang === "es" ? "EN" : "ES"}</span>
 </a>
 
 <script>
-  function updateLanguageSwitcher() {
-    const switcher = document.getElementById("language-switcher");
-    const text = document.getElementById("language-switcher-text");
+  function updateLanguageSwitchers() {
+    const switchers = document.querySelectorAll(".language-switcher");
+    const texts = document.querySelectorAll(".language-switcher-text");
 
-    if (!switcher || !text) return;
+    if (switchers.length === 0) return;
 
     const currentPath = window.location.pathname;
     const currentLang = currentPath.startsWith("/en") ? "en" : "es";
@@ -50,17 +49,22 @@ const targetPath = `/${targetLang}${basePath}`;
     const basePath = currentPath.replace(/^\/(es|en)/, "") || "/";
     const targetPath = `/${targetLang}${basePath}`;
 
-    switcher.setAttribute("href", targetPath);
-    switcher.setAttribute(
-      "aria-label",
-      currentLang === "es" ? "Switch to English" : "Cambiar a Español"
-    );
-    text.textContent = currentLang === "es" ? "EN" : "ES";
+    switchers.forEach((switcher) => {
+      switcher.setAttribute("href", targetPath);
+      switcher.setAttribute(
+        "aria-label",
+        currentLang === "es" ? "Switch to English" : "Cambiar a Español"
+      );
+    });
+
+    texts.forEach((text) => {
+      text.textContent = currentLang === "es" ? "EN" : "ES";
+    });
   }
 
   // Update on initial load
-  updateLanguageSwitcher();
+  updateLanguageSwitchers();
 
   // Update after each page navigation
-  document.addEventListener("astro:page-load", updateLanguageSwitcher);
+  document.addEventListener("astro:page-load", updateLanguageSwitchers);
 </script>
