@@ -15,22 +15,25 @@ const prefix = lang === "en" ? "/en" : "/es";
       href={`${prefix}/`}
       class="flex shrink-0 items-center gap-2 text-base font-bold sm:gap-2.5 sm:text-lg"
     >
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        aria-hidden="true"
-        class="sm:h-[26px] sm:w-[26px]"
-      >
-        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" class="svg-primary"
-        ></circle>
-        <circle cx="12" cy="12" r="6" fill="var(--primary)" style="opacity: 0.9"></circle>
-      </svg>
-      <span class="xs:inline hidden">{title}</span>
-      <span class="gt-badge px-2 py-0.5 text-xs font-semibold sm:px-2.5 sm:py-1 sm:text-sm">
-        GT
+      <span class="gt-badge-flag">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+          <defs>
+            <linearGradient id="guatemalaFlag" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#5ba3d8;stop-opacity:1"></stop>
+              <stop offset="100%" style="stop-color:#0d456d;stop-opacity:1"></stop>
+            </linearGradient>
+            <linearGradient id="guatemalaFlagDark" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#4997d0;stop-opacity:1"></stop>
+              <stop offset="100%" style="stop-color:#0d456d;stop-opacity:1"></stop>
+            </linearGradient>
+          </defs>
+          <path
+            class="flag-path"
+            d="M4 14.225h1.125l.575-1.65h2.6l.6 1.65H10l-2.425-6.45h-1.15zm2.025-2.575l.95-2.675h.05l.95 2.675zM14 9.9V8.2q.825-.35 1.688-.525T17.5 7.5q.65 0 1.275.1T20 7.85v1.6q-.6-.225-1.213-.337T17.5 9q-.95 0-1.825.238T14 9.9m0 5.5v-1.7q.825-.35 1.688-.525T17.5 13q.65 0 1.275.1t1.225.25v1.6q-.6-.225-1.213-.338T17.5 14.5q-.95 0-1.825.225T14 15.4m0-2.75v-1.7q.825-.35 1.688-.525t1.812-.175q.65 0 1.275.1T20 10.6v1.6q-.6-.225-1.213-.338T17.5 11.75q-.95 0-1.825.238T14 12.65m-1 4.4q1.1-.525 2.213-.788T17.5 16q.9 0 1.763.15T21 16.6V6.7q-.825-.35-1.713-.525T17.5 6q-1.175 0-2.325.3T13 7.2zM12 20q-1.2-.95-2.6-1.475T6.5 18q-1.05 0-2.062.275T2.5 19.05q-.525.275-1.012-.025T1 18.15V6.1q0-.275.138-.525T1.55 5.2q1.15-.6 2.4-.9T6.5 4q1.45 0 2.838.375T12 5.5q1.275-.75 2.663-1.125T17.5 4q1.3 0 2.55.3t2.4.9q.275.125.413.375T23 6.1v12.05q0 .575-.487.875t-1.013.025q-.925-.5-1.937-.775T17.5 18q-1.5 0-2.9.525T12 20"
+          ></path>
+        </svg>
       </span>
+      <span>{title}</span>
     </a>
 
     <!-- Navegación desktop -->
@@ -163,6 +166,38 @@ const prefix = lang === "en" ? "/en" : "/es";
     .xs\:inline {
       display: inline;
     }
+  }
+
+  .gt-badge-flag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .gt-badge-flag svg {
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+  }
+
+  .gt-badge-flag .flag-path {
+    fill: url(#guatemalaFlag);
+  }
+
+  .gt-badge-flag:hover svg {
+    transform: scale(1.05);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+
+  [data-theme="dark"] .gt-badge-flag .flag-path {
+    fill: url(#guatemalaFlagDark);
+  }
+
+  [data-theme="dark"] .gt-badge-flag svg {
+    filter: drop-shadow(0 2px 3px rgba(73, 151, 208, 0.4));
+  }
+
+  [data-theme="dark"] .gt-badge-flag:hover svg {
+    filter: drop-shadow(0 3px 6px rgba(73, 151, 208, 0.5));
   }
 </style>
 <script is:inline>

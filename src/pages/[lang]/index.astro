@@ -30,17 +30,7 @@ const top =
     : [...allWords].sort(() => Math.random() - 0.5).slice(0, 6);
 ---
 
-<Base
-  title={t("home.title") +
-    " — " +
-    (lang === "es" ? "Glosario de Chapinismos y Guatemaltequismos" : "Guatemalan Slang Dictionary")}
-  description={lang === "es"
-    ? "Diccionario completo de chapinismos, palabras guatemaltecas, modismos y expresiones típicas de Guatemala con definiciones, ejemplos y uso correcto."
-    : "Complete dictionary of Guatemalan slang, words, idioms and typical expressions from Guatemala with definitions, examples and correct usage."}
-  keywords={lang === "es"
-    ? "diccionario chapín, chapinismos, guatemaltequismos, palabras chapinas, jerga guatemalteca, modismos Guatemala"
-    : "guatemalan dictionary, guatemalan slang, chapin words, guatemalan expressions, guatemala idioms"}
->
+<Base title={t("home.title")} description={t("home.description")} keywords={t("home.keywords")}>
   <HeroSection lang={lang} />
 
   <section class="mx-auto max-w-[1100px] px-6">

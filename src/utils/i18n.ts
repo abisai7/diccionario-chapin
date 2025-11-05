@@ -1,6 +1,8 @@
 export const translations = {
     es: {
         "home.title": "Chapinismos",
+        "home.description": "Diccionario completo de chapinismos, palabras guatemaltecas, modismos y expresiones típicas de Guatemala con definiciones, ejemplos y uso correcto.",
+        "home.keywords": "diccionario chapín, chapinismos, guatemaltequismos, palabras chapinas, jerga guatemalteca, modismos Guatemala",
         "home.subtitle": "Descubre el significado de las palabras y expresiones más usadas en Guatemala",
         "home.search.placeholder": "Buscar chapinismos...",
         "home.search.tip": "Presiona",
@@ -32,6 +34,8 @@ export const translations = {
     },
     en: {
         "home.title": "Chapinismos",
+        "home.description": "Complete dictionary of Guatemalan slang, words, idioms and typical expressions from Guatemala with definitions, examples and correct usage.",
+        "home.keywords": "guatemalan dictionary, guatemalan slang, chapin words, guatemalan expressions, guatemala idioms",
         "home.subtitle": "Discover the meaning of the most used words and expressions in Guatemala",
         "home.search.placeholder": "Search Guatemalan slang...",
         "home.search.tip": "Press",

@@ -155,7 +155,7 @@ export const prerender = true;
 
     <script>
       // Client-side language detection and redirect
-      const browserLang = navigator.language || navigator.userLanguage;
+      const browserLang = navigator.language || navigator.language;
       const lang = browserLang?.toLowerCase().startsWith("es") ? "es" : "en";
 
       // Redirect immediately
