@@ -3,6 +3,7 @@ export const prerender = true;
 
 import Base from "../../../layouts/Base.astro";
 import { getCollection } from "astro:content";
+import { useTranslations } from "../../../utils/i18n";
 
 export async function getStaticPaths() {
   const esWords = await getCollection("words-es");
@@ -26,6 +27,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 const word = entry.data;
 
+const t = useTranslations(lang);
 // SEO optimization
 const description = `${word.word}: ${word.meaning} ${word.examples?.[0] ? `${lang === "es" ? "Ejemplo" : "Example"}: "${word.examples[0]}"` : ""}`;
 const keywords = `${word.word}, ${lang === "es" ? "chapinismo, guatemaltequismo" : "guatemalan slang"}, ${word.category || (lang === "es" ? "palabra chapina" : "guatemalan word")}, ${lang === "es" ? "jerga guatemalteca" : "guatemalan expressions"}, ${word.synonyms?.join(", ") || ""}`;
@@ -59,7 +61,7 @@ function getCategoryColor(category: string) {
 ---
 
 <Base
-  title={`${word.word} — ${lang === "es" ? "Diccionario Chapín" : "Guatemalan Dictionary"}`}
+  title={`${t("word.page.title")}`}
   description={description}
   keywords={keywords}
   type="article"

@@ -31,6 +31,8 @@ export const translations = {
         "nav.home": "Inicio",
         "nav.search": "Buscar",
         "nav.index": "Índice",
+
+        "word.page.title": "Chapinismos",
     },
     en: {
         "home.title": "Chapinismos",
@@ -64,6 +66,8 @@ export const translations = {
         "nav.home": "Home",
         "nav.search": "Search",
         "nav.index": "Index",
+
+        "word.page.title": "Chapinismos",
     },
 };
 
