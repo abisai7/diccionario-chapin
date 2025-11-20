@@ -18,11 +18,11 @@ const t = useTranslations(lang);
     <p class="text-muted mx-4 text-base">
       {t("home.subtitle")}
     </p>
-    <div class="mx-4 grid grid-cols-1">
+    <div class="mx-4 mb-4 grid grid-cols-1">
       <SearchBox placeholder={t("home.search.placeholder")} />
     </div>
     <div
-      class="border-theme bg-glow-primary text-muted mx-4 mb-4 rounded-lg border px-3 py-2 text-sm backdrop-blur-sm"
+      class="border-theme bg-glow-primary text-muted mx-4 mb-4 hidden rounded-lg border px-3 py-2 text-sm backdrop-blur-sm md:block"
     >
       <span class="inline-flex items-center gap-2">
         <svg
