@@ -1,19 +1,30 @@
 ---
 import { slugify } from "../utils/slug.js";
-const { words = [], lang = "es" } = Astro.props;
+
+const { words = [], lang = "es" }: { words?: string[]; lang?: string } = Astro.props;
 const prefix = `/${lang}`;
-const repeated = [...words, ...words, ...words];
-function chunk(arr: any[], size: number): any[][] {
-  const out: any[][] = [];
-  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
-  return out;
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
-const rows = chunk(repeated, Math.ceil(repeated.length / 3));
+
+const shuffled = shuffle(words);
+const perRow = Math.ceil(shuffled.length / 3);
+const baseRows: string[][] = [
+  shuffled.slice(0, perRow),
+  shuffled.slice(perRow, perRow * 2),
+  shuffled.slice(perRow * 2, perRow * 3),
+].map((r) => r.filter(Boolean));
 ---
 
-<div class="ticker-container my-6 grid gap-3">
+<div class="ticker-container my-6 grid gap-3" data-prefix={prefix}>
   {
-    rows.map((row, idx) => (
+    baseRows.map((row, idx) => (
       <div class="ticker-row relative overflow-hidden backdrop-blur-sm">
         {/* Gradientes de fade en los bordes */}
         <div class="ticker-fade-left" />
@@ -46,6 +57,69 @@ const rows = chunk(repeated, Math.ceil(repeated.length / 3));
   }
 </div>
 
+<script>
+  (function () {
+    const container = document.querySelector(".ticker-container");
+    if (!container) return;
+    const prefix = container.getAttribute("data-prefix") || "";
+    const rows = [...container.querySelectorAll(".ticker-content")];
+    const words = [
+      ...new Set(
+        rows.flatMap((r) =>
+          [...r.querySelectorAll(".ticker-text")].map((s) => s.textContent.trim())
+        )
+      ),
+    ];
+    function shuffle(a: any) {
+      const arr = [...a];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+    const shuffled = shuffle(words);
+    const perRow = Math.ceil(shuffled.length / rows.length);
+    let index = 0;
+    rows.forEach((r, rowIdx) => {
+      const slice = shuffled.slice(index, index + perRow);
+      index += perRow;
+      r.innerHTML = "";
+      slice.forEach((w) => {
+        const slug = w
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+        const a = document.createElement("a");
+        a.href = prefix + "/palabras/" + slug;
+        a.className =
+          "ticker-word bg-card border-theme shadow-theme-sm text-theme inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-medium transition-all duration-300 hover:-translate-y-1 hover:scale-105 active:scale-95";
+        a.tabIndex = -1;
+        a.setAttribute("aria-hidden", "true");
+        const dot = document.createElement("span");
+        dot.className = "ticker-dot h-2 w-2 animate-pulse rounded-xl";
+        dot.style.background = "var(--primary)";
+        dot.style.boxShadow = "0 0 8px var(--primary)";
+        const text = document.createElement("span");
+        text.className = "ticker-text";
+        text.textContent = w;
+        a.appendChild(dot);
+        a.appendChild(text);
+        r.appendChild(a);
+      });
+      const original = [...r.children];
+      original.forEach((n) => r.appendChild(n.cloneNode(true)));
+      original.forEach((n) => r.appendChild(n.cloneNode(true)));
+      const baseDuration = 22;
+      const variance = 6;
+      const speed = baseDuration + rowIdx * variance;
+      (r as HTMLElement).style.animationDuration = speed + "s";
+    });
+  })();
+</script>
+
 <style>
   .ticker-container {
     position: relative;
@@ -65,7 +139,7 @@ const rows = chunk(repeated, Math.ceil(repeated.length / 3));
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 60px;
+    width: clamp(40px, 8vw, 80px);
     z-index: 10;
     pointer-events: none;
   }
@@ -102,6 +176,11 @@ const rows = chunk(repeated, Math.ceil(repeated.length / 3));
   .ticker-word:hover .ticker-dot {
     animation: none;
     transform: scale(1.2);
+  }
+
+  .ticker-word:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
   }
 
   .ticker-content {
