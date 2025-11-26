@@ -33,11 +33,11 @@ const top =
 <Base title={t("home.title")} description={t("home.description")} keywords={t("home.keywords")}>
   <HeroSection lang={lang} />
 
+  <FeaturedWords words={top} lang={lang} />
+
   <section class="mx-auto max-w-[1100px] px-6">
     <Ticker words={featured} lang={lang} />
   </section>
-
-  <FeaturedWords words={top} lang={lang} />
 
   <ContributeSection lang={lang} />
 </Base>
