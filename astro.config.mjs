@@ -6,7 +6,14 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://chapinismos.org",
   output: "static",
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: "es",
+        locales: ["es", "en"],
+      },
+    }),
+  ],
   i18n: {
     defaultLocale: "es",
     locales: ["es", "en"],
