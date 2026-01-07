@@ -22,13 +22,28 @@ const prefix = lang === "en" ? "/en" : "/es";
 
     <!-- Navegación desktop -->
     <nav class="hidden items-center gap-2 md:flex">
-      <a href={`${prefix}/`} class="nav-link px-3 py-2" data-umami-event="Nav Home" data-umami-event-device="desktop">
+      <a
+        href={`${prefix}/`}
+        class="nav-link px-3 py-2"
+        data-umami-event="Nav Home"
+        data-umami-event-device="desktop"
+      >
         {t("nav.home")}
       </a>
-      <a href={`${prefix}/indice`} class="nav-link px-3 py-2" data-umami-event="Nav Index" data-umami-event-device="desktop">
+      <a
+        href={`${prefix}/indice`}
+        class="nav-link px-3 py-2"
+        data-umami-event="Nav Index"
+        data-umami-event-device="desktop"
+      >
         {t("nav.index")}
       </a>
-      <a href={`${prefix}/buscar`} class="nav-link px-3 py-2" data-umami-event="Nav Search" data-umami-event-device="desktop">
+      <a
+        href={`${prefix}/buscar`}
+        class="nav-link px-3 py-2"
+        data-umami-event="Nav Search"
+        data-umami-event-device="desktop"
+      >
         {t("nav.search")}
       </a>
       <LanguageSwitcher />
@@ -138,13 +153,28 @@ const prefix = lang === "en" ? "/en" : "/es";
     id="mobile-menu"
     class="border-theme mt-4 hidden flex-col gap-2 border-t pt-4 pb-2 md:hidden"
   >
-    <a href={`${prefix}/`} class="nav-link px-4 py-2.5 text-center" data-umami-event="Nav Home" data-umami-event-device="mobile">
+    <a
+      href={`${prefix}/`}
+      class="nav-link px-4 py-2.5 text-center"
+      data-umami-event="Nav Home"
+      data-umami-event-device="mobile"
+    >
       {t("nav.home")}
     </a>
-    <a href={`${prefix}/indice`} class="nav-link px-4 py-2.5 text-center" data-umami-event="Nav Index" data-umami-event-device="mobile">
+    <a
+      href={`${prefix}/indice`}
+      class="nav-link px-4 py-2.5 text-center"
+      data-umami-event="Nav Index"
+      data-umami-event-device="mobile"
+    >
       {t("nav.index")}
     </a>
-    <a href={`${prefix}/buscar`} class="nav-link px-4 py-2.5 text-center" data-umami-event="Nav Search" data-umami-event-device="mobile">
+    <a
+      href={`${prefix}/buscar`}
+      class="nav-link px-4 py-2.5 text-center"
+      data-umami-event="Nav Search"
+      data-umami-event-device="mobile"
+    >
       {t("nav.search")}
     </a>
   </nav>

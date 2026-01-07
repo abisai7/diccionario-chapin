@@ -8,13 +8,12 @@ const prefix = lang === "en" ? "/en" : "/es";
   transition:name={`word-card-${slug}`}
 >
   <h3 class="m-0 mb-1.5 text-lg font-semibold">
-    <a 
-      href={`${prefix}/palabras/${slug}`} 
+    <a
+      href={`${prefix}/palabras/${slug}`}
       class="word-title text-theme transition-colors"
       data-umami-event="Word Title Click"
       data-umami-event-word={word}
-      data-umami-event-slug={slug}
-    >{word}</a
+      data-umami-event-slug={slug}>{word}</a
     >
   </h3>
   <p class="text-secondary m-0 text-sm leading-relaxed">{meaning}</p>
