@@ -79,4 +79,17 @@ const action = `${prefix}/buscar`;
       input?.focus();
     }
   });
+
+  // Track search submissions
+  document.addEventListener("astro:page-load", () => {
+    const form = document.querySelector('form[action*="buscar"]') as HTMLFormElement;
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        const input = form.querySelector('input[name="q"]') as HTMLInputElement;
+        if (input && input.value && window.umami) {
+          window.umami.track("Search", { query: input.value });
+        }
+      });
+    }
+  });
 </script>

@@ -14,19 +14,21 @@ const prefix = lang === "en" ? "/en" : "/es";
     <a
       href={`${prefix}/`}
       class="flex shrink-0 items-center gap-2 text-base font-bold sm:gap-2.5 sm:text-lg"
+      data-umami-event="Logo Click"
+      data-umami-event-location="header"
     >
       <Logo height={100} />
     </a>
 
     <!-- Navegación desktop -->
     <nav class="hidden items-center gap-2 md:flex">
-      <a href={`${prefix}/`} class="nav-link px-3 py-2">
+      <a href={`${prefix}/`} class="nav-link px-3 py-2" data-umami-event="Nav Home" data-umami-event-device="desktop">
         {t("nav.home")}
       </a>
-      <a href={`${prefix}/indice`} class="nav-link px-3 py-2">
+      <a href={`${prefix}/indice`} class="nav-link px-3 py-2" data-umami-event="Nav Index" data-umami-event-device="desktop">
         {t("nav.index")}
       </a>
-      <a href={`${prefix}/buscar`} class="nav-link px-3 py-2">
+      <a href={`${prefix}/buscar`} class="nav-link px-3 py-2" data-umami-event="Nav Search" data-umami-event-device="desktop">
         {t("nav.search")}
       </a>
       <LanguageSwitcher />
@@ -35,6 +37,8 @@ const prefix = lang === "en" ? "/en" : "/es";
         class="theme-toggle-btn inline-flex cursor-pointer items-center gap-2 px-2.5 py-2"
         type="button"
         aria-label="Cambiar tema"
+        data-umami-event="Theme Toggle"
+        data-umami-event-device="desktop"
       >
         <svg id="moon" class="block" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
           ><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79Z"></path></svg
@@ -64,6 +68,8 @@ const prefix = lang === "en" ? "/en" : "/es";
         class="theme-toggle-btn inline-flex cursor-pointer items-center gap-2 px-2.5 py-2"
         type="button"
         aria-label="Cambiar tema"
+        data-umami-event="Theme Toggle"
+        data-umami-event-device="mobile"
       >
         <svg
           id="moon-mobile"
@@ -95,6 +101,7 @@ const prefix = lang === "en" ? "/en" : "/es";
         type="button"
         aria-label="Abrir menú"
         aria-expanded="false"
+        data-umami-event="Mobile Menu Toggle"
       >
         <svg
           id="menu-icon"
@@ -131,13 +138,13 @@ const prefix = lang === "en" ? "/en" : "/es";
     id="mobile-menu"
     class="border-theme mt-4 hidden flex-col gap-2 border-t pt-4 pb-2 md:hidden"
   >
-    <a href={`${prefix}/`} class="nav-link px-4 py-2.5 text-center">
+    <a href={`${prefix}/`} class="nav-link px-4 py-2.5 text-center" data-umami-event="Nav Home" data-umami-event-device="mobile">
       {t("nav.home")}
     </a>
-    <a href={`${prefix}/indice`} class="nav-link px-4 py-2.5 text-center">
+    <a href={`${prefix}/indice`} class="nav-link px-4 py-2.5 text-center" data-umami-event="Nav Index" data-umami-event-device="mobile">
       {t("nav.index")}
     </a>
-    <a href={`${prefix}/buscar`} class="nav-link px-4 py-2.5 text-center">
+    <a href={`${prefix}/buscar`} class="nav-link px-4 py-2.5 text-center" data-umami-event="Nav Search" data-umami-event-device="mobile">
       {t("nav.search")}
     </a>
   </nav>

@@ -8,13 +8,22 @@ const prefix = lang === "en" ? "/en" : "/es";
   transition:name={`word-card-${slug}`}
 >
   <h3 class="m-0 mb-1.5 text-lg font-semibold">
-    <a href={`${prefix}/palabras/${slug}`} class="word-title text-theme transition-colors">{word}</a
+    <a 
+      href={`${prefix}/palabras/${slug}`} 
+      class="word-title text-theme transition-colors"
+      data-umami-event="Word Title Click"
+      data-umami-event-word={word}
+      data-umami-event-slug={slug}
+    >{word}</a
     >
   </h3>
   <p class="text-secondary m-0 text-sm leading-relaxed">{meaning}</p>
   <a
     href={`${prefix}/palabras/${slug}`}
     class="word-link text-primary-light mt-2 inline-flex items-center gap-1 text-sm font-medium transition-colors"
+    data-umami-event="View Word Details"
+    data-umami-event-word={word}
+    data-umami-event-slug={slug}
   >
     {lang === "en" ? "View details" : "Ver detalle"}
     <svg

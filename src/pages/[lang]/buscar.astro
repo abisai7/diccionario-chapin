@@ -147,7 +147,10 @@ const wordData = JSON.stringify(
             .map(
               (item) => `
             <a href="${prefix}/palabras/${item.slug}" 
-               class="block no-underline p-4 border border-theme rounded-lg bg-card shadow-theme-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-theme-md">
+               class="block no-underline p-4 border border-theme rounded-lg bg-card shadow-theme-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-theme-md"
+               data-umami-event="Search Result Click"
+               data-umami-event-word="${item.word}"
+               data-umami-event-category="${item.category}">
               <div class="flex items-center justify-between mb-2">
                 <h3 class="m-0 text-xl font-semibold text-theme">
                   ${item.word}

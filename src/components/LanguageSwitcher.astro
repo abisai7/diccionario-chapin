@@ -16,6 +16,9 @@ const targetPath = `/${targetLang}${basePath}`;
   href={targetPath}
   class="language-switcher border-theme bg-card text-theme hover:bg-card-hover hover:border-primary-light inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-all"
   aria-label={lang === "es" ? "Switch to English" : "Cambiar a Español"}
+  data-umami-event="Language Switch"
+  data-umami-event-from={lang}
+  data-umami-event-to={targetLang}
 >
   <svg
     width="18"
