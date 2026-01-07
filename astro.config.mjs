@@ -8,6 +8,7 @@ export default defineConfig({
   output: "static",
   integrations: [
     sitemap({
+      filter: (page) => page !== "https://chapinismos.org/",
       i18n: {
         defaultLocale: "es",
         locales: {
