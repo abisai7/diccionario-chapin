@@ -104,7 +104,7 @@ const letters = Object.keys(grouped).sort();
                 const prefix = lang === "es" ? "/es" : "/en";
                 return (
                   <a
-                    href={`${prefix}/palabras/${item.slug}`}
+                    href={`${prefix}/palabras/${item.slug}/`}
                     class="group border-theme bg-card shadow-theme-sm hover:shadow-theme-md hover:border-primary-light block rounded-lg border p-4 transition-all hover:-translate-y-0.5"
                     data-umami-event="Index Word Click"
                     data-umami-event-word={item.data.word}
