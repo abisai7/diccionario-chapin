@@ -101,7 +101,7 @@ const baseRows: string[][] = [
           .replace(/[^a-z0-9]+/g, "-")
           .replace(/^-+|-+$/g, "");
         const a = document.createElement("a");
-        a.href = prefix + "/palabras/" + slug;
+        a.href = prefix + "/palabras/" + slug + "/";
         a.className =
           "ticker-word bg-card border-theme shadow-theme-sm text-theme inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-medium transition-all duration-300 hover:-translate-y-1 hover:scale-105 active:scale-95";
         a.tabIndex = -1;
