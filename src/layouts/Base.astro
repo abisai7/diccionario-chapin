@@ -18,6 +18,10 @@ const {
 const siteUrl = Astro.site || "https://chapinismos.org";
 const fullCanonicalUrl = new URL(canonicalUrl, siteUrl).toString();
 const fullOgImage = new URL(ogImage, siteUrl).toString();
+
+// Set og:locale based on language
+const ogLocale = lang === "en" ? "en_US" : "es_GT";
+const alternateOgLocale = lang === "en" ? "es_GT" : "en_US";
 ---
 
 <!doctype html>
@@ -47,7 +51,8 @@ const fullOgImage = new URL(ogImage, siteUrl).toString();
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={fullOgImage} />
-    <meta property="og:locale" content="es_GT" />
+    <meta property="og:locale" content={ogLocale} />
+    {alternateUrls.es && alternateUrls.en && <meta property="og:locale:alternate" content={alternateOgLocale} />}
     <meta property="og:site_name" content="Diccionario Chapín" />
 
     <!-- Twitter -->

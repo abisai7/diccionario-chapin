@@ -6,6 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://chapinismos.org",
   output: "static",
+  trailingSlash: "always", // Ensure consistent URLs with trailing slashes
   integrations: [
     sitemap({
       filter: (page) => page !== "https://chapinismos.org/",
