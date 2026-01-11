@@ -4,7 +4,7 @@ import { getLangFromUrl } from "../utils/i18n";
 const { placeholder = "Buscar palabra...", query = "" } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const prefix = lang === "en" ? "/en" : "/es";
-const action = `${prefix}/buscar`;
+const action = `${prefix}/buscar/`;
 ---
 
 <form
