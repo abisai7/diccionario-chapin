@@ -28,6 +28,14 @@ const { Content } = await entry.render();
 const word = entry.data;
 
 const t = useTranslations(lang);
+
+// Hreflang URLs for multilingual SEO
+const alternateUrls = {
+  es: `/es/palabras/${entry.slug}/`,
+  en: `/en/palabras/${entry.slug}/`,
+  xDefault: `/es/palabras/${entry.slug}/`,
+};
+
 // SEO optimization
 const description = `${word.word}: ${word.meaning} ${word.examples?.[0] ? `${lang === "es" ? "Ejemplo" : "Example"}: "${word.examples[0]}"` : ""}`;
 const keywords = `${word.word}, ${lang === "es" ? "chapinismo, guatemaltequismo" : "guatemalan slang"}, ${word.category || (lang === "es" ? "palabra chapina" : "guatemalan word")}, ${lang === "es" ? "jerga guatemalteca" : "guatemalan expressions"}, ${word.synonyms?.join(", ") || ""}`;
@@ -65,6 +73,8 @@ function getCategoryColor(category: string) {
   description={description}
   keywords={keywords}
   type="article"
+  lang={lang}
+  alternateUrls={alternateUrls}
 >
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 

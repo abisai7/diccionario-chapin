@@ -15,6 +15,14 @@ const t = useTranslations(lang);
 
 const collectionName = lang === "es" ? "words-es" : "words-en";
 const allWords = await getCollection(collectionName);
+
+// Hreflang URLs for multilingual SEO
+const alternateUrls = {
+  es: "/es/buscar/",
+  en: "/en/buscar/",
+  xDefault: "/es/buscar/",
+};
+
 const wordData = JSON.stringify(
   allWords.map((w) => ({
     slug: w.slug,
@@ -33,6 +41,8 @@ const wordData = JSON.stringify(
   keywords={lang === "es"
     ? "buscar chapinismos, buscar palabras guatemaltecas, diccionario chapín buscar"
     : "search guatemalan slang, search guatemalan words, guatemalan dictionary search"}
+  lang={lang}
+  alternateUrls={alternateUrls}
 >
   <div class="mx-auto max-w-[1100px] px-6">
     <div class="card-with-gradient shadow-theme-lg my-6 grid gap-3.5 backdrop-blur-sm">

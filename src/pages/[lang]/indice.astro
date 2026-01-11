@@ -14,6 +14,14 @@ const t = useTranslations(lang);
 
 const collectionName = lang === "es" ? "words-es" : "words-en";
 const allWords = await getCollection(collectionName);
+
+// Hreflang URLs for multilingual SEO
+const alternateUrls = {
+  es: "/es/indice/",
+  en: "/en/indice/",
+  xDefault: "/es/indice/",
+};
+
 const sortedWords = [...allWords].sort((a, b) => a.data.word.localeCompare(b.data.word, "es"));
 
 // Group by first letter
@@ -35,6 +43,8 @@ const letters = Object.keys(grouped).sort();
   keywords={lang === "es"
     ? "índice chapinismos, lista palabras chapinas, alfabético diccionario chapín"
     : "guatemalan slang index, guatemalan words list, alphabetical guatemalan dictionary"}
+  lang={lang}
+  alternateUrls={alternateUrls}
 >
   <div class="mx-auto max-w-[1100px] px-6">
     <div class="card-with-gradient shadow-theme-lg my-6 grid gap-3.5 backdrop-blur-sm">

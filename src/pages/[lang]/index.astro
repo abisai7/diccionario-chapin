@@ -18,6 +18,13 @@ const t = useTranslations(lang);
 
 const collectionName = lang === "es" ? "words-es" : "words-en";
 const allWords = await getCollection(collectionName);
+
+// Hreflang URLs for multilingual SEO
+const alternateUrls = {
+  es: "/es/",
+  en: "/en/",
+  xDefault: "/es/", // Default to Spanish
+};
 const wordList = allWords.map((w) => w.data.word);
 const shuffled = [...wordList].sort(() => Math.random() - 0.5);
 const featured = shuffled.slice(0, Math.min(45, shuffled.length));
@@ -30,7 +37,13 @@ const top =
     : [...allWords].sort(() => Math.random() - 0.5).slice(0, 6);
 ---
 
-<Base title={t("home.title")} description={t("home.description")} keywords={t("home.keywords")}>
+<Base 
+  title={t("home.title")} 
+  description={t("home.description")} 
+  keywords={t("home.keywords")}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
   <HeroSection lang={lang} />
 
   <FeaturedWords words={top} lang={lang} />
