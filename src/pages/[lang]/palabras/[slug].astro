@@ -69,7 +69,7 @@ function getCategoryColor(category: string) {
 ---
 
 <Base
-  title={`${word.word} - ${t("word.page.title")}`}
+  title={`${t("word.page.title").replace("{word}", word.word)}`}
   description={description}
   keywords={keywords}
   type="article"
