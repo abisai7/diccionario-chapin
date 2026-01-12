@@ -1,6 +1,6 @@
 ---
 word: "Patojo"
-meaning: "Niño o joven; persona de corta edad, usado comúnmente en Guatemala para referirse de forma coloquial a menores."
+meaning: "Niño o joven; persona de corta edad, usado comúnmente en Guatemala para referirse de forma coloquial a menores. Puede usarse en forma masculina (patojo) o femenina (patoja)."
 examples:
   - "El patojo de la tienda siempre me ayuda a cargar las bolsas."
   - "Cuando era patojo jugaba en la calle con mis amigos."

@@ -1,6 +1,6 @@
 ---
-word: "Patojo/a"
-meaning: "Kid, child, young person"
+word: "Patojo"
+meaning: "Kid, child, young person. It can be used in masculine (patojo) or feminine (patoja) forms."
 category: "noun"
 examples:
   - "That patojo is very smart"
