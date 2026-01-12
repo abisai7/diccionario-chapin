@@ -40,7 +40,7 @@ export const translations = {
     "nav.search": "Buscar",
     "nav.index": "Índice",
 
-    "word.page.title": "Chapinismos",
+    "word.page.title": "Chapinismos - Diccionario de Palabras Guatemaltecas",
   },
   en: {
     "home.title": "Chapinismos - Guatemalan Slang Dictionary",
@@ -82,7 +82,7 @@ export const translations = {
     "nav.search": "Search",
     "nav.index": "Index",
 
-    "word.page.title": "Chapinismos",
+    "word.page.title": "Chapinismos - Guatemalan Slang Dictionary",
   },
 };
 
