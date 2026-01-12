@@ -35,12 +35,12 @@ export const translations = {
 
     "word.back": "Volver al inicio",
     "word.share": "Compartir imagen",
+    "word.page.title": "{word} - Definición | Chapinismos",
 
     "nav.home": "Inicio",
     "nav.search": "Buscar",
     "nav.index": "Índice",
 
-    "word.page.title": "Chapinismos - Diccionario de Palabras Guatemaltecas",
   },
   en: {
     "home.title": "Chapinismos - Guatemalan Slang Dictionary",
@@ -77,12 +77,12 @@ export const translations = {
 
     "word.back": "Back to home",
     "word.share": "Share image",
+    "word.page.title": "{word} - Meaning and Details | Chapinismos",
 
     "nav.home": "Home",
     "nav.search": "Search",
     "nav.index": "Index",
 
-    "word.page.title": "Chapinismos - Guatemalan Slang Dictionary",
   },
 };
 
