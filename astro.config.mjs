@@ -4,12 +4,12 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: "https://www.chapinismos.org",
+  site: "https://chapinismos.org",
   output: "static",
   trailingSlash: "always", // Ensure consistent URLs with trailing slashes
   integrations: [
     sitemap({
-      filter: (page) => page !== "https://www.chapinismos.org/",
+      filter: (page) => page !== "https://chapinismos.org/",
       i18n: {
         defaultLocale: "es",
         locales: {
