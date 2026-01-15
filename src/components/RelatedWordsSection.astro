@@ -1,0 +1,112 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  words: CollectionEntry<"words-es" | "words-en">[];
+  title: string;
+  icon: "chat" | "pencil";
+  lang: string;
+}
+
+function getCategoryColor(category: string) {
+  const colors: Record<string, string> = {
+    sustantivo: "#10b981",
+    noun: "#10b981",
+    verbo: "#3b82f6",
+    verb: "#3b82f6",
+    adjetivo: "#f59e0b",
+    adjective: "#f59e0b",
+    adverbio: "#8b5cf6",
+    adverb: "#8b5cf6",
+    expresion: "#ec4899",
+    expression: "#ec4899",
+    interjección: "#ef4444",
+    interjection: "#ef4444",
+  };
+  return colors[category] || "#3b82f6";
+}
+
+const { words, title, icon, lang } = Astro.props;
+
+const svgPaths = {
+  chat: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z",
+  pencil: "M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19H4v-3L16.5 3.5z",
+};
+---
+
+{
+  words.length > 0 && (
+    <div class="border-theme mt-8 border-t pt-6">
+      <h3 class="my-0 mb-4 flex items-center gap-2 text-lg font-semibold">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d={svgPaths[icon]} />
+        </svg>
+        {title}
+      </h3>
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {words.map((entry) => (
+          <a
+            href={`/${lang}/palabras/${entry.slug}/`}
+            class="word-related-card bg-card border-theme hover:shadow-theme-md relative rounded-lg border p-4 transition-all duration-200 hover:-translate-y-1"
+          >
+            {entry.data.category && (
+              <span
+                class="absolute top-3 right-3 inline-block rounded px-2 py-0.5 text-xs font-medium text-white"
+                style={`background-color: ${getCategoryColor(entry.data.category)};`}
+              >
+                {entry.data.category}
+              </span>
+            )}
+            <h4 class="text-text m-0 mb-2 font-semibold">{entry.data.word}</h4>
+            <p class="text-secondary m-0 line-clamp-2 text-sm leading-relaxed">
+              {entry.data.meaning}
+            </p>
+            <span class="text-primary mt-2 inline-flex items-center text-xs font-medium">
+              {lang === "es" ? "Ver más" : "Learn more"}
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                class="ml-1"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+<style>
+  .word-related-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .word-related-card:hover {
+    border-color: var(--primary);
+    background-color: var(--card-hover);
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

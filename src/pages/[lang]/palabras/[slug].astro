@@ -4,6 +4,7 @@ export const prerender = true;
 import Base from "../../../layouts/Base.astro";
 import { getCollection } from "astro:content";
 import { useTranslations } from "../../../utils/i18n";
+import RelatedWordsSection from "../../../components/RelatedWordsSection.astro";
 
 export async function getStaticPaths() {
   const esWords = await getCollection("words-es");
@@ -22,10 +23,33 @@ export async function getStaticPaths() {
   return [...esPaths, ...enPaths];
 }
 
+function getRandomWords(allWords: any[], currentSlug: string, count: number = 3) {
+  const filtered = allWords.filter((w) => w.slug !== currentSlug);
+  const shuffled = filtered.sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+}
+
+function getRandomWordsByCategory(
+  allWords: any[],
+  currentSlug: string,
+  category: string,
+  count: number = 3
+) {
+  const filtered = allWords.filter((w) => w.slug !== currentSlug && w.data.category === category);
+  const shuffled = filtered.sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+}
+
 const { lang } = Astro.params;
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 const word = entry.data;
+
+// Get related words
+const collection =
+  lang === "es" ? await getCollection("words-es") : await getCollection("words-en");
+const relatedWords = getRandomWordsByCategory(collection, entry.slug, word.category, 3);
+const otherWords = getRandomWords(collection, entry.slug, 3);
 
 const t = useTranslations(lang);
 
@@ -171,11 +195,25 @@ function getCategoryColor(category: string) {
 
       {
         Content && (
-          <div class="prose border-theme mt-6 border-t pt-4">
+          <div class="prose border-theme mt-6 pt-4">
             <Content />
           </div>
         )
       }
+
+      <RelatedWordsSection
+        words={relatedWords}
+        title={lang === "es" ? "Palabras relacionadas" : "Related words"}
+        icon="chat"
+        lang={lang}
+      />
+
+      <RelatedWordsSection
+        words={otherWords}
+        title={lang === "es" ? "Consulta otras palabras" : "Explore other words"}
+        icon="pencil"
+        lang={lang}
+      />
     </article>
   </section>
 
