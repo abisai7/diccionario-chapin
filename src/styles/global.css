@@ -121,7 +121,7 @@ a {
 }
 
 a:hover {
-  color: var(--primary-light);
+  color: var(--primary-dark);
 }
 
 h1 {

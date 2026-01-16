@@ -29,7 +29,7 @@ export const translations = {
       "Busca entre todas las palabras y expresiones guatemaltecas del diccionario chapín",
 
     "index.title": "Índice Alfabético",
-    "index.subtitle": "Explora todas las {count} palabras del diccionario",
+    "index.subtitle": "Explora las {count} palabras del diccionario",
     "index.description":
       "Índice alfabético completo de todos los chapinismos y guatemaltequismos del diccionario",
 

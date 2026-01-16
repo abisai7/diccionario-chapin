@@ -25,12 +25,15 @@ const alternateUrls = {
 const sortedWords = [...allWords].sort((a, b) => a.data.word.localeCompare(b.data.word, "es"));
 
 // Group by first letter
-const grouped = sortedWords.reduce((acc, item) => {
-  const firstLetter = item.data.word[0].toUpperCase();
-  if (!acc[firstLetter]) acc[firstLetter] = [];
-  acc[firstLetter].push(item);
-  return acc;
-}, {});
+const grouped = sortedWords.reduce(
+  (acc, item) => {
+    const firstLetter = item.data.word[0].toUpperCase();
+    if (!acc[firstLetter]) acc[firstLetter] = [];
+    acc[firstLetter].push(item);
+    return acc;
+  },
+  {} as Record<string, typeof sortedWords>
+);
 
 const letters = Object.keys(grouped).sort();
 ---
@@ -66,7 +69,7 @@ const letters = Object.keys(grouped).sort();
         letters.map((letter) => (
           <a
             href={`#${letter}`}
-            class="border-theme bg-accent text-theme hover:bg-primary-light flex h-10 w-10 items-center justify-center rounded-md border font-semibold transition-all hover:scale-110 hover:text-white"
+            class="border-theme hover:shadow-theme-md hover:border-primary-light bg-accent text-theme flex h-10 w-10 items-center justify-center rounded-md border font-semibold transition-all hover:scale-110 hover:text-white"
             data-umami-event="Index Letter Jump"
             data-umami-event-letter={letter}
           >
