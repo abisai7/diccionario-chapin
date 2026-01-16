@@ -319,8 +319,7 @@ const structuredData = {
       fill='white'></path></g></svg>`;
 
       const logoImg = new Image();
-      const logoBlob = new Blob([logoSvg], { type: "image/svg+xml" });
-      const logoUrl = URL.createObjectURL(logoBlob);
+      const logoUrl = `data:image/svg+xml;utf8,${encodeURIComponent(logoSvg)}`;
 
       // Logo/Título del diccionario
       ctx.fillStyle = "#60a5fa";
@@ -401,7 +400,6 @@ const structuredData = {
           const logoX = canvas.width - logoWidth - 40;
           const logoY = canvas.height - logoHeight - 0;
           ctx.drawImage(logoImg, logoX, logoY, logoWidth, logoHeight);
-          URL.revokeObjectURL(logoUrl);
           resolve();
         };
         logoImg.src = logoUrl;
