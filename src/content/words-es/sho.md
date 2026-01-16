@@ -1,10 +1,13 @@
 ---
 word: Sho
-meaning: Frase comunmente usada para callar a alguien.
-category: sustantivo
+meaning: Es una interjección muy común para pedir silencio, llamar la atención o como una forma informal de decir "oye", "calla" o "mira"
+category: interjección
 examples:
-  - Sho vos cerote
+  - Sho, ya voy.
+  - Sho, ¡callate!
 region: Guatemala
 synonyms:
-  - Calláte
+  - callate
+  - oye
+  - mira
 ---

@@ -1,13 +1,13 @@
 ---
 word: Mula
-meaning: Money or cash
+meaning: A naive person or someone who makes careless mistakes; it can also refer to a mistake or foolishness.
 category: noun
 examples:
-  - I need some mula
-  - Do you have mula?
+  - Don't be such a mula.
+  - That was a big mula on your part.
 region: Guatemala
 synonyms:
-  - money
-  - cash
-  - dough
+  - foolish person
+  - naive person
+  - mistake
 ---

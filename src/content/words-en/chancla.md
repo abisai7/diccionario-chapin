@@ -1,10 +1,10 @@
 ---
-word: Chancle
+word: Chancla
 meaning: Flip-flop or sandal
 category: noun
 examples:
-  - Put on your chancles
-  - I lost my chancle
+  - Put on your chanclas
+  - I lost my chanclas at the beach
 region: Guatemala
 synonyms:
   - flip-flop

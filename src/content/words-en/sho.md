@@ -1,13 +1,13 @@
 ---
 word: Sho
-meaning: Yes, yeah (informal)
+meaning: It is a very common interjection used to ask for silence, to get someone's attention, or as an informal way of saying "hey," "be quiet," or "look."
 category: interjection
 examples:
-  - Sho, I'm coming
-  - Sho, that's right
+  - Sho, listen to me.
+  - Sho, be quiet!
 region: Guatemala
 synonyms:
-  - yes
-  - yeah
-  - yup
+  - Be quiet
+  - Hey
+  - Listen
 ---

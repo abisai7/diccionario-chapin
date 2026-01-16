@@ -1,9 +1,9 @@
 ---
 word: Plata
-meaning: Money or silver
+meaning: Money or cash
 category: noun
 examples:
-  - I need plata
+  - I need plata.
   - Do you have plata?
 region: Guatemala
 synonyms:
