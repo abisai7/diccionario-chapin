@@ -10,4 +10,3 @@ synonyms:
   - bus
   - chicken bus
 ---
-

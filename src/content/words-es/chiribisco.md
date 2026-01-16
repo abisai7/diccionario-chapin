@@ -10,4 +10,3 @@ synonyms:
   - Rama delgada
   - Leña fina
 ---
-

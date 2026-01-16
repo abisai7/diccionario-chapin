@@ -86,7 +86,11 @@ const svgPaths = {
                 {entry.data.category}
               </span>
             )}
-            <h4 class="text-text m-0 mb-2 font-semibold">{entry.data.word}</h4>
+            {titleLevel === "h2" ? (
+              <h3 class="text-text m-0 mb-2 font-semibold">{entry.data.word}</h3>
+            ) : (
+              <h4 class="text-text m-0 mb-2 font-semibold">{entry.data.word}</h4>
+            )}
             <p class="text-secondary m-0 line-clamp-2 text-sm leading-relaxed">
               {entry.data.meaning}
             </p>

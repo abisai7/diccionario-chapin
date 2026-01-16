@@ -41,9 +41,25 @@ const alternateOgLocale = lang === "en" ? "es_GT" : "en_US";
     <link rel="canonical" href={fullCanonicalUrl} />
 
     <!-- Hreflang tags for multilingual SEO -->
-    {alternateUrls.es && <link rel="alternate" hreflang="es" href={new URL(alternateUrls.es, siteUrl).toString()} />}
-    {alternateUrls.en && <link rel="alternate" hreflang="en" href={new URL(alternateUrls.en, siteUrl).toString()} />}
-    {alternateUrls.xDefault && <link rel="alternate" hreflang="x-default" href={new URL(alternateUrls.xDefault, siteUrl).toString()} />}
+    {
+      alternateUrls.es && (
+        <link rel="alternate" hreflang="es" href={new URL(alternateUrls.es, siteUrl).toString()} />
+      )
+    }
+    {
+      alternateUrls.en && (
+        <link rel="alternate" hreflang="en" href={new URL(alternateUrls.en, siteUrl).toString()} />
+      )
+    }
+    {
+      alternateUrls.xDefault && (
+        <link
+          rel="alternate"
+          hreflang="x-default"
+          href={new URL(alternateUrls.xDefault, siteUrl).toString()}
+        />
+      )
+    }
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />
@@ -52,7 +68,11 @@ const alternateOgLocale = lang === "en" ? "es_GT" : "en_US";
     <meta property="og:description" content={description} />
     <meta property="og:image" content={fullOgImage} />
     <meta property="og:locale" content={ogLocale} />
-    {alternateUrls.es && alternateUrls.en && <meta property="og:locale:alternate" content={alternateOgLocale} />}
+    {
+      alternateUrls.es && alternateUrls.en && (
+        <meta property="og:locale:alternate" content={alternateOgLocale} />
+      )
+    }
     <meta property="og:site_name" content="Diccionario Chapín" />
 
     <!-- Twitter -->

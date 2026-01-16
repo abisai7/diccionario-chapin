@@ -40,7 +40,6 @@ export const translations = {
     "nav.home": "Inicio",
     "nav.search": "Buscar",
     "nav.index": "Índice",
-
   },
   en: {
     "home.title": "Chapinismos - Guatemalan Slang Dictionary",
@@ -82,7 +81,6 @@ export const translations = {
     "nav.home": "Home",
     "nav.search": "Search",
     "nav.index": "Index",
-
   },
 };
 
