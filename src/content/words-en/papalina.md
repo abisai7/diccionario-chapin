@@ -1,13 +1,12 @@
 ---
 word: Papalina
-meaning: Drunk or intoxicated
-category: adjective
+meaning: Typical Guatemalan french fries, usually served with ketchup, mayonnaise, and hot sauce. They are generally sold as street food. They are also known as "cart fries."
+category: noun
 examples:
-  - He got papalina last night
-  - She's feeling papalina
+  - I bought some papalinas from the street vendor.
+  - Papalinas are a popular snack in Guatemala.
 region: Guatemala
 synonyms:
-  - drunk
-  - wasted
-  - hammered
+  - french fries
+  - cart fries
 ---
