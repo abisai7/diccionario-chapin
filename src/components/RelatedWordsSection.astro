@@ -6,6 +6,7 @@ interface Props {
   title: string;
   icon: "chat" | "pencil";
   lang: string;
+  titleLevel?: "h2" | "h3";
 }
 
 function getCategoryColor(category: string) {
@@ -26,7 +27,7 @@ function getCategoryColor(category: string) {
   return colors[category] || "#3b82f6";
 }
 
-const { words, title, icon, lang } = Astro.props;
+const { words, title, icon, lang, titleLevel = "h3" } = Astro.props;
 
 const svgPaths = {
   chat: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z",
@@ -36,22 +37,41 @@ const svgPaths = {
 
 {
   words.length > 0 && (
-    <div class="border-theme mt-8 border-t pt-6">
-      <h3 class="my-0 mb-4 flex items-center gap-2 text-lg font-semibold">
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d={svgPaths[icon]} />
-        </svg>
-        {title}
-      </h3>
+    <div class={title ? "border-theme mt-8 border-t pt-6" : ""}>
+      {title && titleLevel === "h2" && (
+        <h2 class="my-0 mb-4 flex items-center gap-2 text-lg font-semibold">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d={svgPaths[icon]} />
+          </svg>
+          {title}
+        </h2>
+      )}
+      {title && titleLevel === "h3" && (
+        <h3 class="my-0 mb-4 flex items-center gap-2 text-lg font-semibold">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d={svgPaths[icon]} />
+          </svg>
+          {title}
+        </h3>
+      )}
       <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {words.map((entry) => (
           <a

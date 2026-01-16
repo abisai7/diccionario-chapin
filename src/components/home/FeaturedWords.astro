@@ -1,5 +1,5 @@
 ---
-import WordCard from "../WordCard.astro";
+import RelatedWordsSection from "../RelatedWordsSection.astro";
 import { useTranslations } from "../../utils/i18n";
 
 interface Props {
@@ -12,12 +12,6 @@ const t = useTranslations(lang);
 ---
 
 <section class="mx-auto max-w-[1100px] px-6">
-  <h2 class="m-0 mb-2.5 text-2xl font-bold">{t("home.featured")}</h2>
-  <div class="mt-4 grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-3.5">
-    {
-      words.map((item) => (
-        <WordCard word={item.data.word} meaning={item.data.meaning} slug={item.slug} lang={lang} />
-      ))
-    }
-  </div>
+  <h2 class="m-0 mb-6 text-2xl font-bold">{t("home.featured")}</h2>
+  <RelatedWordsSection words={words} title="" icon="chat" lang={lang} titleLevel="h2" />
 </section>
