@@ -1,57 +1,72 @@
 ---
-const { word, meaning, slug, lang = "es" } = Astro.props;
-const prefix = lang === "en" ? "/en" : "/es";
+import type { CollectionEntry } from "astro:content";
+import { getCategoryColor } from "../utils/categoryColors";
+
+interface Props {
+  entry: CollectionEntry<"words-es" | "words-en">;
+  lang: string;
+  titleLevel?: "h3" | "h4";
+}
+
+const { entry, lang, titleLevel = "h4" } = Astro.props;
 ---
 
-<div
-  class="word-card bg-card border-theme shadow-theme-sm rounded-lg border p-4 transition-all duration-200"
-  transition:name={`word-card-${slug}`}
+<a
+  href={`/${lang}/palabras/${entry.slug}/`}
+  class="word-related-card bg-card border-theme hover:shadow-theme-md relative rounded-lg border p-4 transition-all duration-200 hover:-translate-y-1"
 >
-  <h3 class="m-0 mb-1.5 text-lg font-semibold">
-    <a
-      href={`${prefix}/palabras/${slug}/`}
-      class="word-title text-theme transition-colors"
-      data-umami-event="Word Title Click"
-      data-umami-event-word={word}
-      data-umami-event-slug={slug}>{word}</a
-    >
-  </h3>
-  <p class="text-secondary m-0 text-sm leading-relaxed">{meaning}</p>
-  <a
-    href={`${prefix}/palabras/${slug}/`}
-    class="word-link text-primary-light mt-2 inline-flex items-center gap-1 text-sm font-medium transition-colors"
-    data-umami-event="View Word Details"
-    data-umami-event-word={word}
-    data-umami-event-slug={slug}
-  >
-    {lang === "en" ? "View details" : "Ver detalle"}
+  {
+    entry.data.category && (
+      <span
+        class="absolute top-3 right-3 inline-block rounded px-2 py-0.5 text-xs font-medium text-white"
+        style={`background-color: ${getCategoryColor(entry.data.category)};`}
+      >
+        {entry.data.category}
+      </span>
+    )
+  }
+  {
+    titleLevel === "h3" ? (
+      <h3 class="text-text m-0 mb-2 font-semibold">{entry.data.word}</h3>
+    ) : (
+      <h4 class="text-text m-0 mb-2 font-semibold">{entry.data.word}</h4>
+    )
+  }
+  <p class="text-secondary m-0 line-clamp-2 text-sm leading-relaxed">
+    {entry.data.meaning}
+  </p>
+  <span class="text-primary mt-2 inline-flex items-center text-xs font-medium">
+    {lang === "es" ? "Ver más" : "Learn more"}
     <svg
-      width="14"
-      height="14"
+      width="12"
+      height="12"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      class="ml-1"
     >
       <path d="M5 12h14M12 5l7 7-7 7"></path>
     </svg>
-  </a>
-</div>
+  </span>
+</a>
 
 <style>
-  .word-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px var(--shadow-md);
+  .word-related-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
   }
 
-  .word-title:hover {
-    color: var(--primary) !important;
+  .word-related-card:hover {
+    border-color: var(--primary);
+    background-color: var(--card-hover);
   }
 
-  .word-link:hover {
-    color: #6bb6e8 !important;
-    text-decoration: underline;
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 </style>
