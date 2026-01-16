@@ -1,6 +1,6 @@
 ---
 word: Caquero
-meaning: Persona de clase alta, pija o pretenciosa; similar a "chancle".
+meaning: Persona que se cree sofisticada y que solo le gustan las cosas caras. Presumido.
 category: adjetivo
 examples:
   - Ese es bien caquero, no se junta con cualquiera.
@@ -9,7 +9,4 @@ region: Guatemala
 synonyms:
   - Pijo
   - Fresa
-  - Burgués
-relatedWords:
-  - chancle
 ---

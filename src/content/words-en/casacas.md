@@ -1,13 +1,12 @@
 ---
 word: Casacas
-meaning: To betray or switch sides; traitor
+meaning: Lies or falsehoods.
 category: noun
 examples:
-  - He's a casacas, don't trust him
-  - Don't be a casacas
+  - Everything he says is just casacas.
+  - Don't come to me with casacas.
 region: Guatemala
 synonyms:
-  - traitor
-  - turncoat
-  - backstabber
+  - lies
+  - falsehoods
 ---

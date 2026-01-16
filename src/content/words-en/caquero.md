@@ -1,13 +1,12 @@
 ---
 word: Caquero
-meaning: Cowardly person, chicken
+meaning: A person who thinks they're sophisticated and only likes expensive things. Conceited.
 category: noun
 examples:
-  - Don't be a caquero, do it!
-  - He's such a caquero
+  - Don't be such a caquero, just enjoy the simple things in life.
+  - She's acting like a caquera just because she bought a designer bag.
 region: Guatemala
 synonyms:
-  - coward
-  - chicken
-  - wimp
+  - conceited
+  - snob
 ---

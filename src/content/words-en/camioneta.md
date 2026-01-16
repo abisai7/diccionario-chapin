@@ -1,13 +1,12 @@
 ---
 word: Camioneta
-meaning: Pickup truck or SUV
+meaning: Public urban or interurban bus in Guatemala. Commonly known as a "chicken bus" in English.
 category: noun
 examples:
-  - I bought a new camioneta
-  - Let's go in the camioneta
+  - I saw a colorful camioneta coming down the street.
+  - We took the camioneta to get to the next town.
 region: Guatemala
 synonyms:
-  - pickup
-  - truck
-  - SUV
+  - bus
+  - chicken bus
 ---
