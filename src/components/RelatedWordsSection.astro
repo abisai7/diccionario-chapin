@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { getCategoryColor } from "../utils/categoryColors";
 
 interface Props {
   words: CollectionEntry<"words-es" | "words-en">[];
@@ -7,24 +8,6 @@ interface Props {
   icon: "chat" | "pencil";
   lang: string;
   titleLevel?: "h2" | "h3";
-}
-
-function getCategoryColor(category: string) {
-  const colors: Record<string, string> = {
-    sustantivo: "#10b981",
-    noun: "#10b981",
-    verbo: "#3b82f6",
-    verb: "#3b82f6",
-    adjetivo: "#f59e0b",
-    adjective: "#f59e0b",
-    adverbio: "#8b5cf6",
-    adverb: "#8b5cf6",
-    expresion: "#ec4899",
-    expression: "#ec4899",
-    interjección: "#ef4444",
-    interjection: "#ef4444",
-  };
-  return colors[category] || "#3b82f6";
 }
 
 const { words, title, icon, lang, titleLevel = "h3" } = Astro.props;

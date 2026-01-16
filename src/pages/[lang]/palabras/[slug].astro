@@ -4,6 +4,7 @@ export const prerender = true;
 import Base from "../../../layouts/Base.astro";
 import { getCollection } from "astro:content";
 import { useTranslations } from "../../../utils/i18n";
+import { getCategoryColor } from "../../../utils/categoryColors";
 import RelatedWordsSection from "../../../components/RelatedWordsSection.astro";
 
 export async function getStaticPaths() {
@@ -72,24 +73,6 @@ const structuredData = {
   inDefinedTermSet: lang === "es" ? "Diccionario Chapín" : "Guatemalan Slang Dictionary",
   termCode: entry.slug,
 };
-
-function getCategoryColor(category: string) {
-  const colors: Record<string, string> = {
-    sustantivo: "#10b981",
-    noun: "#10b981",
-    verbo: "#3b82f6",
-    verb: "#3b82f6",
-    adjetivo: "#f59e0b",
-    adjective: "#f59e0b",
-    adverbio: "#8b5cf6",
-    adverb: "#8b5cf6",
-    expresion: "#ec4899",
-    expression: "#ec4899",
-    interjección: "#ef4444",
-    interjection: "#ef4444",
-  };
-  return colors[category] || "#3b82f6";
-}
 ---
 
 <Base

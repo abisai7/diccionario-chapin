@@ -5,6 +5,7 @@ import Base from "../../layouts/Base.astro";
 import SearchBox from "../../components/SearchBox.astro";
 import { getCollection } from "astro:content";
 import { useTranslations } from "../../utils/i18n";
+import { getCategoryColor } from "../../utils/categoryColors";
 
 export async function getStaticPaths() {
   return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
@@ -31,6 +32,22 @@ const wordData = JSON.stringify(
     category: w.data.category,
   }))
 );
+
+// Create a map of category colors for the client script
+const categoryColorsData = JSON.stringify({
+  sustantivo: getCategoryColor("sustantivo"),
+  noun: getCategoryColor("noun"),
+  verbo: getCategoryColor("verbo"),
+  verb: getCategoryColor("verb"),
+  adjetivo: getCategoryColor("adjetivo"),
+  adjective: getCategoryColor("adjective"),
+  adverbio: getCategoryColor("adverbio"),
+  adverb: getCategoryColor("adverb"),
+  expresion: getCategoryColor("expresion"),
+  expression: getCategoryColor("expression"),
+  interjección: getCategoryColor("interjección"),
+  interjection: getCategoryColor("interjection"),
+});
 ---
 
 <Base
@@ -60,7 +77,7 @@ const wordData = JSON.stringify(
     <div id="searchResults" class="mt-8 pb-12"></div>
   </div>
 
-  <script is:inline define:vars={{ wordData, lang }}>
+  <script is:inline define:vars={{ wordData, categoryColorsData, lang }}>
     const words = JSON.parse(wordData);
     const input = document.querySelector('input[type="search"]');
     const resultsContainer = document.getElementById("searchResults");
@@ -95,6 +112,7 @@ const wordData = JSON.stringify(
     };
 
     const t = translations[lang];
+    const categoryColors = JSON.parse(categoryColorsData);
 
     function normalizeText(text) {
       return text
@@ -104,21 +122,7 @@ const wordData = JSON.stringify(
     }
 
     function getCategoryColor(category) {
-      const colors = {
-        sustantivo: "#10b981",
-        noun: "#10b981",
-        verbo: "#3b82f6",
-        verb: "#3b82f6",
-        adjetivo: "#f59e0b",
-        adjective: "#f59e0b",
-        adverbio: "#8b5cf6",
-        adverb: "#8b5cf6",
-        expresion: "#ec4899",
-        expression: "#ec4899",
-        interjección: "#ef4444",
-        interjection: "#ef4444",
-      };
-      return colors[category] || "var(--primary-light)";
+      return categoryColors[category] || "#1e40af";
     }
 
     function getCategoryLabel(category) {
