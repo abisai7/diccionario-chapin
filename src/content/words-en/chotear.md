@@ -1,13 +1,13 @@
 ---
 word: Chotear
-meaning: To make fun of or mock someone
+meaning: To watch someone or something with your eyes.
 category: verb
 examples:
-  - Stop choteando me
-  - They're choteando him about his haircut
+  - He was choteando the whole time.
+  - Don't chotees too much, it's rude.
 region: Guatemala
 synonyms:
-  - mock
-  - tease
-  - make fun of
+  - watch
+  - observe
+  - look at
 ---
