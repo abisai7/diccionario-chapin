@@ -1,12 +1,13 @@
 ---
 word: Burra
-meaning: Bicycle or bike
+meaning: Old or poorly maintained bus, often used for public transportation.
 category: noun
 examples:
-  - Let's go on our burras
-  - I need to fix my burra
+  - That old burra is no good anymore, it needs to be replaced.
+  - My burra has taken me everywhere.
 region: Guatemala
 synonyms:
-  - bike
-  - bicycle
+  - bus
+  - chicken bus
 ---
+
