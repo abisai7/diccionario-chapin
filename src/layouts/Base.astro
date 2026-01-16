@@ -108,7 +108,9 @@ const alternateOgLocale = lang === "en" ? "es_GT" : "en_US";
   </head>
   <body>
     <Header />
-    <slot />
+    <main id="main-content" role="main">
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>
