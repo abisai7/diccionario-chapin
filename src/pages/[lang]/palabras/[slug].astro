@@ -62,15 +62,15 @@ const alternateUrls = {
 };
 
 // SEO optimization
-const description = `${word.word}: ${word.meaning} ${word.examples?.[0] ? `${lang === "es" ? "Ejemplo" : "Example"}: "${word.examples[0]}"` : ""}`;
-const keywords = `${word.word}, ${lang === "es" ? "chapinismo, guatemaltequismo" : "guatemalan slang"}, ${word.category || (lang === "es" ? "palabra chapina" : "guatemalan word")}, ${lang === "es" ? "jerga guatemalteca" : "guatemalan expressions"}, ${word.synonyms?.join(", ") || ""}`;
+const description = `${word.word}: ${word.meaning} ${word.examples?.[0] ? `${t("word.example.label")}: "${word.examples[0]}"` : ""}`;
+const keywords = `${word.word}, ${t("word.slang.label")}, ${word.category || t("word.slang.label")}, ${word.synonyms?.join(", ") || ""}`;
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "DefinedTerm",
   name: word.word,
   description: word.meaning,
-  inDefinedTermSet: lang === "es" ? "Diccionario Chapín" : "Guatemalan Slang Dictionary",
+  inDefinedTermSet: t("word.type"),
   termCode: entry.slug,
 };
 ---
@@ -90,7 +90,7 @@ const structuredData = {
       onclick="history.back()"
       class="back-btn mb-4 cursor-pointer px-4 py-2.5 font-semibold transition-all duration-200 active:scale-95"
     >
-      ← {lang === "es" ? "Volver" : "Back"}
+      ← {t("word.back")}
     </button>
 
     <article class="article-card p-6 transition-all duration-200" transition:animate="slide">
@@ -104,7 +104,7 @@ const structuredData = {
           </h1>
           <div class="flex items-center gap-2 text-sm">
             <span class="text-muted italic">
-              [ {lang === "es" ? "chapinismo" : "guatemalan slang"} ]
+              [ {t("word.slang.label")} ]
             </span>
             {
               word.category && (
@@ -138,18 +138,35 @@ const structuredData = {
             <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
             <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
           </svg>
-          <span class="hidden sm:inline">{lang === "es" ? "Compartir" : "Share"}</span>
+          <span class="hidden sm:inline">{t("word.share")}</span>
         </button>
       </div>
 
-      <div class="accent-box my-4 rounded-lg p-4 text-base leading-relaxed">
-        {word.meaning}
+      <div class="border-theme mt-6 border-t pt-4">
+        <h2 class="my-0 mb-3 flex items-center gap-2 text-lg font-semibold">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19H4v-3L16.5 3.5z"></path>
+          </svg>
+          {t("word.definition")}
+        </h2>
+        <div class="accent-box my-4 rounded-lg p-4 text-base leading-relaxed">
+          {word.meaning}
+        </div>
       </div>
 
       {
         word.examples && word.examples.length > 0 && (
           <div class="border-theme mt-6 border-t pt-4">
-            <h3 class="my-0 mb-3 flex items-center gap-2 text-lg font-semibold">
+            <h2 class="my-0 mb-3 flex items-center gap-2 text-lg font-semibold">
               <svg
                 width="20"
                 height="20"
@@ -160,13 +177,15 @@ const structuredData = {
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <path d="M3 3v18h18" />
-                <path d="M18 17V9" />
-                <path d="M13 17V5" />
-                <path d="M8 17v-3" />
+                <line x1="8" y1="6" x2="21" y2="6" />
+                <line x1="8" y1="12" x2="21" y2="12" />
+                <line x1="8" y1="18" x2="21" y2="18" />
+                <line x1="3" y1="6" x2="3.01" y2="6" />
+                <line x1="3" y1="12" x2="3.01" y2="12" />
+                <line x1="3" y1="18" x2="3.01" y2="18" />
               </svg>
-              {lang === "es" ? "Ejemplos" : "Examples"}
-            </h3>
+              {t("word.examples")}
+            </h2>
             <ul class="mt-4 space-y-2 pl-5">
               {word.examples.map((ex) => (
                 <li class="example-box my-2 p-3 text-sm leading-relaxed italic">"{ex}"</li>
@@ -186,7 +205,7 @@ const structuredData = {
 
       <RelatedWordsSection
         words={relatedWords}
-        title={lang === "es" ? "Palabras relacionadas" : "Related words"}
+        title={t("word.related")}
         icon="chat"
         lang={lang}
         titleLevel="h3"
@@ -194,7 +213,7 @@ const structuredData = {
 
       <RelatedWordsSection
         words={otherWords}
-        title={lang === "es" ? "Consulta otras palabras" : "Explore other words"}
+        title={t("word.explore")}
         icon="pencil"
         lang={lang}
         titleLevel="h3"

@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCategoryColor } from "../utils/categoryColors";
+import { useTranslations } from "../utils/i18n";
 
 interface Props {
   entry: CollectionEntry<"words-es" | "words-en">;
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const { entry, lang, titleLevel = "h4" } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <a
@@ -36,7 +38,7 @@ const { entry, lang, titleLevel = "h4" } = Astro.props;
     {entry.data.meaning}
   </p>
   <span class="text-primary mt-2 inline-flex items-center text-xs font-medium">
-    {lang === "es" ? "Ver más" : "Learn more"}
+    {t("word.learn_more")}
     <svg
       width="12"
       height="12"
