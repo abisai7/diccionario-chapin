@@ -42,7 +42,7 @@
     "@fontsource-variable/baloo-2": "^5.2.7",
     "@fontsource/alice": "^5.2.8",
     "@tailwindcss/vite": "^4.1.15",
-    "astro": "^5.15.3",
+    "astro": "^5.16.11",
     "tailwindcss": "^4.1.15"
   },
   "engines": {
