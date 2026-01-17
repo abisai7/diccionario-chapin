@@ -24,37 +24,115 @@ La forma más fácil de contribuir es agregando nuevas palabras chapinas. Aquí 
 
 1. **Fork el repositorio**
 
-2. **Edita el archivo `src/data/words.json`**
+2. **Instala las dependencias:**
 
-3. **Agrega tu palabra siguiendo este formato:**
+```bash
+pnpm install
+# o
+npm install
+```
 
-```json
-{
-  "word": "La palabra chapina",
-  "meaning": "Definición clara y concisa del término",
-  "examples": [
-    "Ejemplo 1 de cómo se usa en una oración",
-    "Ejemplo 2 mostrando otro contexto de uso"
-  ]
-}
+3. **Crea un archivo Markdown para la versión en español en `src/content/words-es/`**
+
+El nombre del archivo debe ser la palabra en minúsculas sin tilde, con guiones en lugar de espacios (ej: `chapin.md`). Si es una expresión o modismo, usa el nombre completo (ej: `ponerse-las-pilas.md`).
+
+```markdown
+---
+word: "Chapín"
+meaning: "Persona originaria de Guatemala; gentilicio coloquial."
+examples:
+  - "Me siento orgulloso de ser chapín."
+  - "Los chapines somos trabajadores y amables."
+  - "Ese restaurante tiene comida bien chapina."
+category: "sustantivo"
+region: "Guatemala"
+featured: true
+---
+
+## Etimología
+
+El término viene del español antiguo "chapín", un tipo de calzado con plataforma de corcho que usaban los españoles en el siglo XVI.
+
+## Notas
+
+Puedes agregar contexto adicional, etimología o información cultural aquí (opcional).
+```
+
+4. **Crea el mismo archivo para la versión en inglés en `src/content/words-en/`**
+
+Usa el **mismo nombre de archivo** y traduce el contenido:
+
+```markdown
+---
+word: "Chapín"
+meaning: "A person from Guatemala; Guatemalan"
+examples:
+  - "He's a chapín, born and raised in Guatemala City"
+  - "Chapines are known for their friendly nature"
+  - "The chapín culture is very rich and diverse"
+category: "noun"
+region: "Guatemala"
+featured: true
+---
+
+## Etymology
+
+The term comes from the old Spanish word referring to a type of wooden clog shoe with a cork platform that was popular in Spain during the 16th century.
+
+## Notes
+
+You can add additional context, etymology, or cultural information here (optional).
 ```
 
 **Lineamientos para palabras:**
 
+**Campos obligatorios:**
+- ✅ `word` - La palabra en español o inglés según la carpeta
+- ✅ `meaning` - Definición clara y concisa
+- ✅ `examples` - Array con al menos 2 ejemplos de uso
+
+**Campos opcionales:**
+- `category` - Tipo: `"sustantivo"`, `"verbo"`, `"adjetivo"`, `"expresión"`, `"modismo"` (español) o `"noun"`, `"verb"`, `"adjective"`, `"expression"`, `"idiom"` (inglés)
+- `region` - Por defecto "Guatemala"
+- `synonyms` - Array de sinónimos
+- `relatedWords` - Array de palabras relacionadas
+- `featured` - `true` para destacar en la página principal (solo 6 palabras)
+
+**Reglas importantes:**
 - ✅ Debe ser un término usado en Guatemala
 - ✅ La definición debe ser clara y comprensible
-- ✅ Incluye al menos 2 ejemplos de uso
 - ✅ Los ejemplos deben ser naturales y contextualizados
+- ✅ Nombres de archivo en minúsculas, sin acentos, con guiones
+- ✅ El mismo nombre de archivo debe existir en `words-es/` y `words-en/`
 - ❌ No uses lenguaje ofensivo o discriminatorio
-- ❌ Evita regionalismos muy específicos de una sola área
 
-4. **Commit tus cambios:**
+5. **Formatea el código antes de hacer commit:**
 
 ```bash
-git commit -m "feat: agregar palabra 'tupalabra'"
+pnpm run format
+# o
+npm run format
 ```
 
-5. **Envía un Pull Request**
+6. **Verifica que el proyecto compile sin errores:**
+
+```bash
+pnpm run build
+# o
+npm run build
+```
+
+El sistema usa **Zod** para validar automáticamente que todos los campos estén correctos. Si hay errores, el build fallará con un mensaje descriptivo.
+
+7. **Commit tus cambios:**
+
+```bash
+git commit -m "feat: agregar palabra 'chapin'"
+```
+
+8. **Envía un Pull Request**
+
+Para más detalles sobre cómo agregar palabras, consulta [src/content/WORDS_README.md](src/content/WORDS_README.md).
 
 ### Reportar Bugs
 
@@ -113,12 +191,17 @@ Al buscar la palabra "patojo", no se muestran resultados a pesar de que la palab
 ### Checklist antes de enviar PR
 
 - [ ] Mi código sigue las guías de estilo del proyecto
-- [ ] He probado mis cambios localmente
+- [ ] He formateado el código con `pnpm run format`
+- [ ] He ejecutado el linter con `pnpm run lint`
+- [ ] He probado mis cambios localmente con `pnpm run dev`
+- [ ] Si agregué palabras, creé ambos archivos (español e inglés)
+- [ ] He verificado que los archivos tengan el mismo nombre en ambas carpetas
 - [ ] He agregado comentarios en código complejo
 - [ ] Mis commits tienen mensajes descriptivos
 - [ ] He actualizado la documentación si es necesario
 - [ ] No hay errores en la consola
-- [ ] El build de producción funciona (`npm run build`)
+- [ ] El build de producción funciona (`pnpm run build`)
+- [ ] El sistema de validación Zod no reporta errores
 
 ## Guías de Estilo
 
@@ -142,15 +225,18 @@ Ejemplos:
 git commit -m "feat: agregar palabra 'chilero'"
 git commit -m "fix: corregir búsqueda case-sensitive"
 git commit -m "docs: actualizar README con nuevas instrucciones"
+git commit -m "style: formatear código con prettier"
 ```
 
 ### Código JavaScript/Astro
 
 - Usa **2 espacios** para indentación
-- Usa **comillas simples** para strings
+- Usa **comillas dobles** para strings (configurado en Prettier)
 - Usa **const** en lugar de let cuando sea posible
 - Nombres de variables y funciones en **camelCase**
 - Nombres de componentes en **PascalCase**
+- El proyecto incluye **auto-formateo** con Prettier
+- Las **clases de Tailwind se ordenan automáticamente** con prettier-plugin-tailwindcss
 
 ```javascript
 // ✅ Bueno
@@ -164,6 +250,22 @@ var user_name = "Juan";
 function get_user_data() {
   return { name: user_name };
 }
+```
+
+**Comandos útiles:**
+
+```bash
+# Formatear todo el código
+pnpm run format
+
+# Verificar formato sin modificar
+pnpm run format:check
+
+# Ejecutar linter
+pnpm run lint
+
+# Arreglar problemas automáticamente
+pnpm run lint:fix
 ```
 
 ### CSS/Tailwind
@@ -187,14 +289,16 @@ function get_user_data() {
 - **Páginas** en `src/pages/`
 - **Utilidades** en `src/utils/`
 - **Estilos globales** en `src/styles/`
-- **Datos** en `src/data/`
+- **Palabras en español** en `src/content/words-es/`
+- **Palabras en inglés** en `src/content/words-en/`
+- **Configuración de contenido** en `src/content/config.ts`
 
 ### Nombres de Archivos
 
 - Componentes Astro: `PascalCase.astro`
 - JavaScript: `camelCase.js`
 - CSS: `kebab-case.css`
-- Datos: `kebab-case.json`
+- Palabras (Markdown): `kebab-case.md` (sin acentos, todo minúsculas)
 
 ## Tipos de Contribuciones
 
@@ -241,9 +345,13 @@ Todos los contribuidores serán reconocidos en el proyecto. Tu nombre aparecerá
 ## Recursos Útiles
 
 - [Documentación de Astro](https://docs.astro.build)
+- [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/)
 - [Documentación de Tailwind](https://tailwindcss.com/docs)
 - [Conventional Commits](https://www.conventionalcommits.org/)
 - [Markdown Guide](https://www.markdownguide.org/)
+- [Zod Documentation](https://zod.dev/) - Sistema de validación usado en el proyecto
+- [Prettier](https://prettier.io/) - Formateador de código
+- [ESLint](https://eslint.org/) - Linter de JavaScript
 
 ---
 
