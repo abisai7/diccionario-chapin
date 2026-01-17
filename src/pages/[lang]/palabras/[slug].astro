@@ -121,7 +121,7 @@ const structuredData = {
         <button
           id="share-image-btn"
           class="badge-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
-          data-umami-event="share-image-button"
+          data-umami-event={`share-image-${word.word}-${lang}`}
         >
           <svg
             width="18"
