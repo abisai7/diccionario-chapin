@@ -1,9 +1,12 @@
 ---
-export const prerender = true;
+// Disable prerendering for this page to allow server-side language detection
+export const prerender = false;
 
 // Server-side language detection and redirect
 const acceptLanguage = Astro.request.headers.get('Accept-Language') || '';
 const lang = acceptLanguage.toLowerCase().includes('es') ? 'es' : 'en';
 
+// Use 302 (temporary) redirect for language-based routing
+// This tells search engines that the redirect depends on user context
 return Astro.redirect(`/${lang}/`, 302);
 ---

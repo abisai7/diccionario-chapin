@@ -39,6 +39,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@astrojs/vercel": "^9.0.4",
     "@fontsource-variable/baloo-2": "^5.2.7",
     "@fontsource/alice": "^5.2.8",
     "@tailwindcss/vite": "^4.1.15",
