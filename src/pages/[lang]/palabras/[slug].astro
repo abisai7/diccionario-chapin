@@ -89,6 +89,8 @@ const structuredData = {
     <button
       onclick="history.back()"
       class="back-btn mb-4 cursor-pointer px-4 py-2.5 font-semibold transition-all duration-200 active:scale-95"
+      data-umami-event="Word Back Button Click"
+      data-umami-event-word={word.word}
     >
       ← {t("word.back")}
     </button>
@@ -121,6 +123,9 @@ const structuredData = {
         <button
           id="share-image-btn"
           class="badge-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
+          data-umami-event="Word Share Image Button Click"
+          data-umami-event-word={word.word}
+          data-umami-event-lang={lang}
         >
           <svg
             width="18"
@@ -319,8 +324,7 @@ const structuredData = {
       fill='white'></path></g></svg>`;
 
       const logoImg = new Image();
-      const logoBlob = new Blob([logoSvg], { type: "image/svg+xml" });
-      const logoUrl = URL.createObjectURL(logoBlob);
+      const logoUrl = `data:image/svg+xml;utf8,${encodeURIComponent(logoSvg)}`;
 
       // Logo/Título del diccionario
       ctx.fillStyle = "#60a5fa";
@@ -401,7 +405,6 @@ const structuredData = {
           const logoX = canvas.width - logoWidth - 40;
           const logoY = canvas.height - logoHeight - 0;
           ctx.drawImage(logoImg, logoX, logoY, logoWidth, logoHeight);
-          URL.revokeObjectURL(logoUrl);
           resolve();
         };
         logoImg.src = logoUrl;

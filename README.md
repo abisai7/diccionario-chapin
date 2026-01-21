@@ -11,7 +11,7 @@
 
 - 🎨 **Diseño Moderno** - Interfaz limpia y profesional con Tailwind CSS
 - 🌓 **Tema Claro/Oscuro** - Toggle para cambiar entre temas con persistencia en localStorage
-- 🔍 **Búsqueda Avanzada** - Busca por palabra, significado o ejemplos
+- 🔍 **Búsqueda Avanzada** - Busca por palabra
 - 📱 **Responsive** - Optimizado para móviles, tablets y desktop
 - ⚡ **Rendimiento** - Sitio estático generado con Astro (SSG)
 - 🎭 **Animaciones Suaves** - Transiciones y efectos pulidos
@@ -23,7 +23,7 @@
 
 ### Prerrequisitos
 
-- Node.js 18+ y pnpm (o npm)
+- Node.js 22+ y pnpm (o npm)
 - Git
 
 ### Instalación
@@ -82,7 +82,7 @@ pnpm run lint:fix
 
 ## 📁 Estructura del Proyecto
 
-```
+```text
 diccionario-chapin/
 ├── public/                  # Archivos estáticos
 ├── src/
@@ -122,8 +122,7 @@ diccionario-chapin/
 ### 🔍 Buscador (`/buscar`)
 
 - Campo de búsqueda con parámetros URL
-- Filtrado por palabra, significado y ejemplos
-- Resultados en tiempo real
+- Filtrado por palabra
 
 ### 📑 Índice (`/indice`)
 
@@ -135,6 +134,7 @@ diccionario-chapin/
 
 - Definición completa
 - Lista de ejemplos de uso
+- Botón para generar una imagen y compartirla
 - Botón de navegación
 
 ## 🛠️ Tecnologías
@@ -182,22 +182,24 @@ Las palabras se gestionan mediante **Content Collections** de Astro con archivos
 
 ### Crear una Nueva Palabra
 
-1. Crea un archivo en `src/content/words/` con el nombre de la palabra (ej: `tuani.md`)
+1. Crea un archivo en `src/content/words-es/` con el nombre de la palabra (ej: `chapin.md`)
 2. Usa el siguiente formato:
 
 ```markdown
 ---
-word: "Tuani"
-meaning: "Algo muy bueno, genial o extraordinario."
+word: "Chapín"
+meaning: "Persona originaria de Guatemala; gentilicio coloquial."
 examples:
-  - "Ese concierto estuvo tuani."
-  - "¡Qué tuani tu carro nuevo!"
-category: "adjetivo"
+  - "Me siento orgulloso de ser chapín."
+  - "Los chapines somos trabajadores."
+category: "sustantivo"
 region: "Guatemala"
 ---
 
 Contenido adicional opcional en Markdown...
 ```
+
+1. Repite el proceso para agregar la versión en inglés en `src/content/words-en/`, el nombre del archivo debe ser el mismo, igual que la palabra.
 
 ### Campos Disponibles
 
@@ -206,10 +208,10 @@ Contenido adicional opcional en Markdown...
 - `word` - La palabra en español
 - `meaning` - Definición completa
 - `examples` - Array de ejemplos de uso
-
+- `category` - `sustantivo`, `verbo`, `adjetivo`, `expresión`, `modismo`
+  
 **Opcionales:**
 
-- `category` - `sustantivo`, `verbo`, `adjetivo`, `expresión`, `modismo`
 - `region` - Región donde se usa (por defecto "Guatemala")
 - `synonyms` - Array de sinónimos
 - `relatedWords` - Array de palabras relacionadas
@@ -224,10 +226,6 @@ El sistema usa **TypeScript + Zod** para validar automáticamente:
 
 Ver [src/content/WORDS_README.md](src/content/WORDS_README.md) para más detalles.
 
-## ⌨️ Atajos de Teclado
-
-- **`/`** - Enfocar el buscador desde cualquier página
-
 ## 🚀 Optimizaciones
 
 - ✅ **Sitio Estático** - Pre-renderizado en build time
@@ -239,10 +237,8 @@ Ver [src/content/WORDS_README.md](src/content/WORDS_README.md) para más detalle
 
 ## 📚 Documentación Adicional
 
-- [CHANGELOG.md](./CHANGELOG.md) - Historial de cambios
-- [DESIGN_IMPROVEMENTS.md](./DESIGN_IMPROVEMENTS.md) - Mejoras de diseño
-- [VISUAL_CONSISTENCY.md](./VISUAL_CONSISTENCY.md) - Sistema de consistencia visual
-- [BUTTON_IMPROVEMENTS.md](./BUTTON_IMPROVEMENTS.md) - Mejoras del botón de búsqueda
+- [WORDS_README.md](src/content/WORDS_README.md) -Instrucciones para agregar una nueva palabra
+- [CONTRIBUTING.md](CONTRIBUTING.md) - Guía para contribuir al proyecto
 
 ## 🤝 Contribuir
 
@@ -254,13 +250,15 @@ Las contribuciones son bienvenidas! Por favor:
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
+Consulta [CONTRIBUTING.md](CONTRIBUTING.md) para más detalles.
+
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
 
 ## 👨‍💻 Autor
 
-**Abisai Herrera**
+Abisai Herrera
 
 - GitHub: [@abisai7](https://github.com/abisai7)
 - Website: [abisai.dev](https://abisai.dev)

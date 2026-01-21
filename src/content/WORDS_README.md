@@ -4,7 +4,7 @@ Este directorio contiene todos los chapinismos del diccionario en formato Markdo
 
 ## 📄 Estructura de un Archivo
 
-Cada palabra debe estar en su propio archivo `.md` con el siguiente formato:
+Cada palabra debe estar en su propio archivo `.md` y en la carpeta `src/content/words-es/` (para la versión en español) y la carpeta `src/content/words-en/` (para la versión en inglés) con el siguiente formato:
 
 ```markdown
 ---
@@ -16,7 +16,7 @@ examples:
 category: "sustantivo"
 region: "Guatemala"
 synonyms: ["cipote", "güiro"]
-relatedWords: ["patoja"]
+relatedWords: ["güiro"]
 ---
 
 Contenido adicional opcional en Markdown...
@@ -36,6 +36,7 @@ Puedes agregar contexto extra, etimología, o cualquier información adicional a
 
 - `category`: Tipo gramatical
   - Opciones: `"sustantivo"`, `"verbo"`, `"adjetivo"`, `"expresión"`, `"modismo"`
+  - Opciones para la versión en inglés: `"noun"`, `"verb"`, `"adjective"`, `"expression"`, `"idiom"`
 - `region`: Región donde se usa (String)
   - Por defecto: `"Guatemala"`
 - `synonyms`: Palabras similares (Array de Strings)
@@ -58,11 +59,12 @@ Puedes agregar contexto extra, etimología, o cualquier información adicional a
 
 ```markdown
 ---
-word: "Tuani"
-meaning: "Algo muy bueno, genial o extraordinario."
+word: "Patojo"
+meaning: "Niño o joven; persona de corta edad."
 examples:
-  - "Ese concierto estuvo tuani."
-  - "¡Qué tuani tu carro nuevo!"
+  - "El patojo de la tienda siempre me ayuda."
+  - "Cuando era patojo jugaba en la calle."
+category: "sustantivo"
 ---
 ```
 
@@ -133,7 +135,7 @@ El sistema automáticamente:
 Para contribuir con nuevas palabras:
 
 1. Fork el repositorio
-2. Crea una nueva palabra en `src/content/words/`
+2. Crea una nueva palabra en `src/content/words-es/` y `src/content/words-en/`
 3. Haz commit con un mensaje descriptivo
 4. Crea un Pull Request
 
