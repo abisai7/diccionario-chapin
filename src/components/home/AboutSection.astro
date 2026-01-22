@@ -9,26 +9,10 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<section class="mx-auto max-w-[1100px] px-6 py-6">
+<section class="mx-auto mt-6 max-w-[1100px] px-6 py-6">
   <div class="mx-auto max-w-full">
     <!-- Title with decorative element -->
     <div class="mb-10 text-center">
-      <div class="bg-primary/10 mb-4 inline-flex items-center gap-2 rounded-full px-4 py-2">
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="text-primary-light"
-        >
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-        </svg>
-        <span class="text-primary-light text-sm font-medium">Cultura guatemalteca</span>
-      </div>
       <h2 class="gradient-text text-3xl font-bold md:text-4xl">
         {t("home.about.title")}
       </h2>
