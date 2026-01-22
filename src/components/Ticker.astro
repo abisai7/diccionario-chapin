@@ -5,8 +5,9 @@ export interface Props {
   words?: string[];
   lang?: string;
   variant?: "default" | "vibrant";
+  rows?: number;
 }
-const { words = [], lang = "es", variant = "default" }: Props = Astro.props;
+const { words = [], lang = "es", variant = "default", rows: numRows = 3 }: Props = Astro.props;
 const prefix = `/${lang}`;
 
 function shuffle<T>(arr: T[]): T[] {
@@ -19,12 +20,10 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 const shuffled = shuffle(words);
-const perRow = Math.ceil(shuffled.length / 3);
-const baseRows: string[][] = [
-  shuffled.slice(0, perRow),
-  shuffled.slice(perRow, perRow * 2),
-  shuffled.slice(perRow * 2, perRow * 3),
-].map((r) => r.filter(Boolean));
+const perRow = Math.ceil(shuffled.length / numRows);
+const baseRows: string[][] = Array.from({ length: numRows }, (_, i) =>
+  shuffled.slice(i * perRow, (i + 1) * perRow)
+).map((r) => r.filter(Boolean));
 ---
 
 <div
