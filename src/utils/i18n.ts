@@ -23,6 +23,18 @@ export const translations = {
       "Pronto habrá más formas de contribuir sin necesidad de conocimientos técnicos.",
     "home.contribute.all.status": "Próximamente",
 
+    "home.about.title": "¿Qué son los Chapinismos?",
+    "home.about.paragraph1":
+      "Los <span class='relative inline-block'><span class='relative z-10'>chapinismos</span><span class='absolute bottom-0 left-0 h-0.5 w-full bg-primary-light'></span></span> son las palabras, expresiones y modismos propios de Guatemala, que forman parte integral de la identidad cultural chapina. Estas expresiones únicas reflejan la creatividad, el humor y la forma particular en que los guatemaltecos nos comunicamos en el día a día.",
+    "home.about.paragraph2":
+      "Cada <span class='relative inline-block'><span class='relative z-10'>chapinismo</span><span class='absolute bottom-0 left-0 h-0.5 w-full bg-primary-light'></span></span> cuenta una historia y representa siglos de mestizaje cultural, fusionando influencias del español colonial, lenguas mayas, y expresiones surgidas de la vida cotidiana guatemalteca. Desde el altiplano hasta la costa, estas palabras nos conectan como pueblo y enriquecen nuestro patrimonio lingüístico.",
+    "home.about.cultural.title": "Riqueza Cultural Guatemalteca",
+    "home.about.cultural.description":
+      "Guatemala es un país multilingüe y multicultural donde conviven más de 20 lenguas mayas junto al español. Esta diversidad se refleja en nuestro vocabulario cotidiano, donde los <span class='relative inline-block'><span class='relative z-10'>chapinismos</span><span class='absolute bottom-0 left-0 h-0.5 w-full bg-primary-light'></span></span> se convierten en puentes culturales que expresan nuestra forma única de ver el mundo, nuestra historia compartida y el orgullo de ser chapines.",
+
+    "home.about.card1.title": "Identidad y lenguaje chapín",
+    "home.about.card2.title": "Historia y comunidad",
+
     "search.title": "Buscar",
     "search.subtitle": "Encuentra el chapinismo que estás buscando",
     "search.description":
@@ -74,6 +86,18 @@ export const translations = {
     "home.contribute.all.description":
       "Soon there will be more ways to contribute without technical knowledge.",
     "home.contribute.all.status": "Coming Soon",
+
+    "home.about.title": "What are Chapinismos?",
+    "home.about.paragraph1":
+      "<span class='relative inline-block'><span class='relative z-10'>Chapinismos</span><span class='absolute bottom-0 left-0 h-0.5 w-full bg-primary-light'></span></span> are the words, expressions, and idioms unique to Guatemala, forming an integral part of Guatemalan cultural identity. These unique expressions reflect the creativity, humor, and particular way in which Guatemalans communicate in daily life.",
+    "home.about.paragraph2":
+      "Each <span class='relative inline-block'><span class='relative z-10'>chapinismo</span><span class='absolute bottom-0 left-0 h-0.5 w-full bg-primary-light'></span></span> tells a story and represents centuries of cultural mestizaje, fusing influences from colonial Spanish, Mayan languages, and expressions born from everyday Guatemalan life. From the highlands to the coast, these words connect us as a people and enrich our linguistic heritage.",
+    "home.about.cultural.title": "Guatemalan Cultural Richness",
+    "home.about.cultural.description":
+      "Guatemala is a multilingual and multicultural country where more than 20 Mayan languages coexist with Spanish. This diversity is reflected in our daily vocabulary, where <span class='relative inline-block'><span class='relative z-10'>chapinismos</span><span class='absolute bottom-0 left-0 h-0.5 w-full bg-primary-light'></span></span> become cultural bridges that express our unique way of seeing the world, our shared history, and the pride of being Guatemalan.",
+
+    "home.about.card1.title": "Chapín Identity and Language",
+    "home.about.card2.title": "History and Community",
 
     "search.title": "Search",
     "search.subtitle": "Find the Guatemalan slang you're looking for",

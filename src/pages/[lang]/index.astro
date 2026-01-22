@@ -4,6 +4,7 @@ export const prerender = true;
 import Base from "../../layouts/Base.astro";
 import Ticker from "../../components/Ticker.astro";
 import HeroSection from "../../components/home/HeroSection.astro";
+import AboutSection from "../../components/home/AboutSection.astro";
 import FeaturedWords from "../../components/home/FeaturedWords.astro";
 import ContributeSection from "../../components/home/ContributeSection.astro";
 import { getCollection } from "astro:content";
@@ -47,6 +48,8 @@ const top =
   <HeroSection lang={lang} />
 
   <FeaturedWords words={top} lang={lang} />
+
+  <AboutSection lang={lang} />
 
   <section class="mx-auto max-w-[1100px] px-6">
     <Ticker words={featured} lang={lang} variant="vibrant" />

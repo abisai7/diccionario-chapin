@@ -1,0 +1,130 @@
+---
+import { useTranslations } from "../../utils/i18n";
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="mx-auto max-w-[1100px] px-6 py-6">
+  <div class="mx-auto max-w-full">
+    <!-- Title with decorative element -->
+    <div class="mb-10 text-center">
+      <div class="bg-primary/10 mb-4 inline-flex items-center gap-2 rounded-full px-4 py-2">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="text-primary-light"
+        >
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span class="text-primary-light text-sm font-medium">Cultura guatemalteca</span>
+      </div>
+      <h2 class="gradient-text text-3xl font-bold md:text-4xl">
+        {t("home.about.title")}
+      </h2>
+    </div>
+
+    <!-- Content cards -->
+    <div class="grid gap-6 md:grid-cols-2">
+      <!-- Card 1 -->
+      <div
+        class="border-theme bg-card group shadow-theme-md hover:shadow-theme-lg rounded-xl border p-6 transition-all duration-300"
+      >
+        <div class="mb-4 flex items-start gap-3 md:items-center">
+          <div class="bg-primary/10 flex-shrink-0 rounded-lg p-3">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary-light"
+            >
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold md:text-xl">{t("home.about.card1.title")}</h3>
+        </div>
+        <p class="text-muted text-base leading-relaxed" set:html={t("home.about.paragraph1")} />
+      </div>
+
+      <!-- Card 2 -->
+      <div
+        class="border-theme bg-card group shadow-theme-md hover:shadow-theme-lg rounded-xl border p-6 transition-all duration-300"
+      >
+        <div class="mb-4 flex items-start gap-3 md:items-center">
+          <div class="bg-primary/10 flex-shrink-0 rounded-lg p-3">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary-light"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold md:text-xl">{t("home.about.card2.title")}</h3>
+        </div>
+        <p class="text-muted text-base leading-relaxed" set:html={t("home.about.paragraph2")} />
+      </div>
+    </div>
+
+    <!-- Highlighted cultural section -->
+    <div
+      class="bg-glow-primary border-theme mt-8 overflow-hidden rounded-2xl border backdrop-blur-sm"
+    >
+      <div class="from-primary/10 to-primary/5 bg-gradient-to-br p-8">
+        <div class="flex items-start gap-4">
+          <div class="bg-primary/20 flex-shrink-0 rounded-lg p-3">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-primary-light"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="mb-3 text-xl font-bold md:text-2xl">
+              {t("home.about.cultural.title")}
+            </h3>
+            <p
+              class="text-muted text-base leading-relaxed md:text-lg"
+              set:html={t("home.about.cultural.description")}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
