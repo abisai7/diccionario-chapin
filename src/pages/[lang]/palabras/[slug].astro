@@ -62,7 +62,7 @@ const alternateUrls = {
 };
 
 // SEO optimization
-const description = `${word.word}: ${word.meaning} | ${word.category} | ${word.examples?.[0] ? `${t("word.example.label")}: "${word.examples[0]}"` : ""}`;
+const description = `${word.word}: ${word.meaning} | ${word.category} | ${word.examples?.[0] ? `${t("word.example.label")}: "${word.examples[0]}"` : ""}${word.examples?.[1] ? ` | "${word.examples[1]}"` : ""}`;
 const keywords = `${word.word}, ${t("word.slang.label")}, ${word.category || t("word.slang.label")}, ${word.synonyms?.join(", ") || ""}`;
 
 const structuredData = {
