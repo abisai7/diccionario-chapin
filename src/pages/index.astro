@@ -3,8 +3,8 @@
 export const prerender = false;
 
 // Server-side language detection and redirect
-const acceptLanguage = Astro.request.headers.get('Accept-Language') || '';
-const lang = acceptLanguage.toLowerCase().includes('es') ? 'es' : 'en';
+const acceptLanguage = Astro.request.headers.get("Accept-Language") || "";
+const lang = acceptLanguage.toLowerCase().includes("es") ? "es" : "en";
 
 // Use 302 (temporary) redirect for language-based routing
 // This tells search engines that the redirect depends on user context

@@ -209,7 +209,7 @@ Contenido adicional opcional en Markdown...
 - `meaning` - Definición completa
 - `examples` - Array de ejemplos de uso
 - `category` - `sustantivo`, `verbo`, `adjetivo`, `expresión`, `modismo`
-  
+
 **Opcionales:**
 
 - `region` - Región donde se usa (por defecto "Guatemala")

@@ -32,7 +32,7 @@ pnpm install
 npm install
 ```
 
-3. **Crea un archivo Markdown para la versión en español en `src/content/words-es/`**
+1. **Crea un archivo Markdown para la versión en español en `src/content/words-es/`**
 
 El nombre del archivo debe ser la palabra en minúsculas sin tilde, con guiones en lugar de espacios (ej: `chapin.md`). Si es una expresión o modismo, usa el nombre completo (ej: `ponerse-las-pilas.md`).
 
@@ -58,7 +58,7 @@ El término viene del español antiguo "chapín", un tipo de calzado con platafo
 Puedes agregar contexto adicional, etimología o información cultural aquí (opcional).
 ```
 
-4. **Crea el mismo archivo para la versión en inglés en `src/content/words-en/`**
+1. **Crea el mismo archivo para la versión en inglés en `src/content/words-en/`**
 
 Usa el **mismo nombre de archivo** y traduce el contenido:
 
@@ -87,18 +87,20 @@ You can add additional context, etymology, or cultural information here (optiona
 **Lineamientos para palabras:**
 
 **Campos obligatorios:**
+
 - ✅ `word` - La palabra en español o inglés según la carpeta
 - ✅ `meaning` - Definición clara y concisa
 - ✅ `examples` - Array con al menos 2 ejemplos de uso
+- ✅ `category` - Tipo: `"sustantivo"`, `"verbo"`, `"adjetivo"`, `"expresión"`, `"modismo"` (español) o `"noun"`, `"verb"`, `"adjective"`, `"expression"`, `"idiom"` (inglés)
+  **Campos opcionales:**
 
-**Campos opcionales:**
-- `category` - Tipo: `"sustantivo"`, `"verbo"`, `"adjetivo"`, `"expresión"`, `"modismo"` (español) o `"noun"`, `"verb"`, `"adjective"`, `"expression"`, `"idiom"` (inglés)
 - `region` - Por defecto "Guatemala"
 - `synonyms` - Array de sinónimos
 - `relatedWords` - Array de palabras relacionadas
 - `featured` - `true` para destacar en la página principal (solo 6 palabras)
 
 **Reglas importantes:**
+
 - ✅ Debe ser un término usado en Guatemala
 - ✅ La definición debe ser clara y comprensible
 - ✅ Los ejemplos deben ser naturales y contextualizados
@@ -106,7 +108,7 @@ You can add additional context, etymology, or cultural information here (optiona
 - ✅ El mismo nombre de archivo debe existir en `words-es/` y `words-en/`
 - ❌ No uses lenguaje ofensivo o discriminatorio
 
-5. **Formatea el código antes de hacer commit:**
+1. **Formatea el código antes de hacer commit:**
 
 ```bash
 pnpm run format
@@ -114,7 +116,7 @@ pnpm run format
 npm run format
 ```
 
-6. **Verifica que el proyecto compile sin errores:**
+1. **Verifica que el proyecto compile sin errores:**
 
 ```bash
 pnpm run build
@@ -124,13 +126,13 @@ npm run build
 
 El sistema usa **Zod** para validar automáticamente que todos los campos estén correctos. Si hay errores, el build fallará con un mensaje descriptivo.
 
-7. **Commit tus cambios:**
+1. **Commit tus cambios:**
 
 ```bash
 git commit -m "feat: agregar palabra 'chapin'"
 ```
 
-8. **Envía un Pull Request**
+1. **Envía un Pull Request**
 
 Para más detalles sobre cómo agregar palabras, consulta [src/content/WORDS_README.md](src/content/WORDS_README.md).
 

@@ -31,12 +31,12 @@ Puedes agregar contexto extra, etimología, o cualquier información adicional a
 - `word`: La palabra en español (String)
 - `meaning`: Definición completa (String)
 - `examples`: Array de ejemplos de uso (Array de Strings)
-
-## 🔤 Campos Opcionales
-
 - `category`: Tipo gramatical
   - Opciones: `"sustantivo"`, `"verbo"`, `"adjetivo"`, `"expresión"`, `"modismo"`
   - Opciones para la versión en inglés: `"noun"`, `"verb"`, `"adjective"`, `"expression"`, `"idiom"`
+
+## 🔤 Campos Opcionales
+
 - `region`: Región donde se usa (String)
   - Por defecto: `"Guatemala"`
 - `synonyms`: Palabras similares (Array de Strings)
