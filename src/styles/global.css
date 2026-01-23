@@ -101,7 +101,7 @@ html[data-theme="light"] {
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
@@ -117,6 +117,33 @@ body {
     background 0.4s ease,
     color 0.3s ease;
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Overlay para la imagen de fondo decorativa */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 100%;
+  background: url("/images/bg.webp") center top / 100% auto repeat-y;
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.4s ease;
+}
+
+html[data-theme="light"] body::before {
+  opacity: 0.05;
+}
+
+/* Ensure main content is above background decorations */
+#main-content {
+  position: relative;
+  z-index: 1;
 }
 
 /* Improved link hover effects */
