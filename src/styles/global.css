@@ -130,7 +130,7 @@ body::before {
   right: 0;
   min-height: 100%;
   background: url("/images/bg.webp") center top / 100% auto repeat-y;
-  opacity: 0.02;
+  opacity: 0.03;
   pointer-events: none;
   z-index: 0;
   transition: opacity 0.4s ease;
