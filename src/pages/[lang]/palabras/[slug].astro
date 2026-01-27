@@ -205,6 +205,31 @@ const structuredData = {
       }
 
       {
+        word.synonyms && word.synonyms.length > 0 && (
+          <div class="border-theme mt-6 border-t pt-4">
+            <h2 class="my-0 mb-3 flex items-center gap-2 text-lg font-semibold">
+              <svg width="20" height="20" viewBox="0 0 14 14">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <>
+                    <path d="m6 10.5l-2-2h6m-2-5l2 2H4" />
+                    <circle cx="7" cy="7" r="6.5" />
+                  </>
+                </g>
+              </svg>
+              {t("word.synonyms")}
+            </h2>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {word.synonyms.map((syn) => (
+                <span class="synonym-badge inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm italic">
+                  {syn}
+                </span>
+              ))}
+            </div>
+          </div>
+        )
+      }
+
+      {
         Content && (
           <div class="prose border-theme mt-6 pt-4">
             <Content />
@@ -231,6 +256,26 @@ const structuredData = {
   </section>
 
   <style>
+    .synonym-badge {
+      background: linear-gradient(
+        135deg,
+        rgba(95, 168, 220, 0.12) 0%,
+        rgba(73, 151, 208, 0.18) 100%
+      );
+      border: 1px solid rgba(73, 151, 208, 0.25);
+      color: var(--text);
+      box-shadow: 0 2px 4px var(--shadow-sm);
+    }
+
+    html[data-theme="light"] .synonym-badge {
+      background: linear-gradient(
+        135deg,
+        rgba(95, 168, 220, 0.08) 0%,
+        rgba(56, 133, 189, 0.12) 100%
+      );
+      border-color: rgba(73, 151, 208, 0.2);
+    }
+
     .prose {
       color: var(--prose-text);
       max-width: 65ch;
