@@ -8,11 +8,11 @@ examples:
   - "Lend me some pisto for the bus"
 ---
 
-## Definition
+### Definition
 
 "Pisto" is the colloquial Guatemalan term for money. It's equivalent to "cash," "dough," or "bucks" in English. This word is used daily in informal conversations and is understood across all regions of Guatemala.
 
-## Usage
+### Usage
 
 The word is used in various everyday situations:
 
@@ -21,7 +21,7 @@ The word is used in various everyday situations:
 - **Making purchases**: "¿Cuánto pisto cuesta?" (How much money does it cost?)
 - **Informal loans**: "Préstame pisto" (Lend me some money)
 
-## Etymology
+### Etymology
 
 The origin of "pisto" as a term for money is uncertain, but there are several theories:
 
@@ -29,7 +29,7 @@ The origin of "pisto" as a term for money is uncertain, but there are several th
 2. It might come from "pistola" (pistol), as money gives power
 3. Some suggest it comes from the word "peseta," an old Spanish currency
 
-## Regional usage
+### Regional usage
 
 While "pisto" is universal in Guatemala, other Central American countries use different terms:
 
@@ -37,7 +37,7 @@ While "pisto" is universal in Guatemala, other Central American countries use di
 - **Honduras**: Prefers "lempira" or "plata"
 - **Costa Rica**: Uses "plata" or "teja"
 
-## Common expressions
+### Common expressions
 
 - **"Sin pisto"**: Broke, without money
 - **"Hacer pisto"**: To make money

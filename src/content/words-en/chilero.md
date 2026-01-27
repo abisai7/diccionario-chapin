@@ -9,11 +9,11 @@ examples:
 featured: true
 ---
 
-## Definition
+### Definition
 
 "Chilero" is one of the most versatile and commonly used words in Guatemalan Spanish. It's an adjective that expresses approval, admiration, or enthusiasm about something or someone. It can be applied to virtually any situation where you want to express that something is good, cool, or awesome.
 
-## Usage
+### Usage
 
 The word can be used to describe:
 
@@ -22,13 +22,13 @@ The word can be used to describe:
 - **People**: "Es un tipo chilero" (He's a cool guy)
 - **Situations**: "Qué chilero que vengas" (How cool that you're coming)
 
-## Variations
+### Variations
 
 - **Chilero/a**: Changes according to grammatical gender
 - **Súper chilero**: Emphasizes the degree of awesomeness
 - **Bien chilero**: Another way to emphasize
 - **Chilerísimo**: Superlative form (extremely cool)
 
-## Cultural context
+### Cultural context
 
 This word is so emblematic of Guatemala that Guatemalans living abroad often use it as a way to identify other "chapines." It's part of the cultural identity and is used across all social classes and age groups.

@@ -9,11 +9,11 @@ examples:
 featured: true
 ---
 
-## Definition
+### Definition
 
 "Patojo" or "patoja" is an affectionate term used in Guatemala to refer to children, teenagers, or young people in general. It's similar to "kid" or "youngster" in English, but carries a warmer, more endearing connotation.
 
-## Usage
+### Usage
 
 The term can be used in various contexts:
 
@@ -22,17 +22,17 @@ The term can be used in various contexts:
 - **Affectionately**: "¡Qué patojo más lindo!" (What a cute kid!)
 - **Informally**: Between friends to refer to someone younger
 
-## Grammatical variations
+### Grammatical variations
 
 - **Patojo**: Masculine singular
 - **Patoja**: Feminine singular
 - **Patojos**: Masculine plural
 - **Patojas**: Feminine plural
 
-## Etymology
+### Etymology
 
 The origin of the word is uncertain, but it's believed to come from the indigenous languages of Guatemala. Some theories suggest it derives from words related to "small" or "young" in Mayan languages.
 
-## Cultural context
+### Cultural context
 
 This is one of the most characteristic words of Guatemalan Spanish and is used daily by people of all ages and social classes. It's a term that reflects the warmth and affection with which Guatemalans refer to the younger generations.
