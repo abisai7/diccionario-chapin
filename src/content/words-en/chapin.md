@@ -7,6 +7,9 @@ examples:
   - "Chapines are known for their friendly nature"
   - "The chapín culture is very rich and diverse"
 featured: true
+synonyms:
+  - "guatemalan"
+  - "chapina"
 ---
 
 ## Etymology
