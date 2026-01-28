@@ -101,6 +101,9 @@ const alternateOgLocale = lang === "en" ? "es_GT" : "en_US";
     <!-- Sitemap -->
     <link rel="sitemap" href="/sitemap-index.xml" />
 
+    <!-- Preload background image for better performance -->
+    <link rel="preload" href="/images/bg.webp" as="image" fetchpriority="high" />
+
     <!-- Analytics: Umami  -->
     <script
       defer
