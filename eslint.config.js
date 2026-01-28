@@ -33,11 +33,25 @@ export default [
       "jsx-a11y/html-has-lang": "warn",
       "jsx-a11y/iframe-has-title": "warn",
       "jsx-a11y/img-redundant-alt": "warn",
-      "jsx-a11y/no-access-key": "warn",
+    },
+  },
+  // Deshabilitar reglas problemáticas en archivos Astro
+  {
+    files: ["**/*.astro"],
+    rules: {
+      "jsx-a11y/no-access-key": "off",
     },
   },
   // Ignorar archivos
   {
-    ignores: ["dist/**", ".astro/**", "node_modules/**", "*.config.js", "*.config.mjs"],
+    ignores: [
+      "dist/**",
+      ".astro/**",
+      ".vercel/**",
+      "node_modules/**",
+      "*.config.js",
+      "*.config.mjs",
+      "**/*.min.js",
+    ],
   },
 ];
