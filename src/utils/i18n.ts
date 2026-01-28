@@ -39,6 +39,15 @@ export const translations = {
     "search.subtitle": "Encuentra el chapinismo que estás buscando",
     "search.description":
       "Busca entre todas las palabras y expresiones guatemaltecas del diccionario chapín",
+    "search.noResults": "No se encontraron resultados",
+    "search.tryAnother": "Intenta con otra palabra",
+    "search.results": "resultados",
+    "search.category.sustantivo": "Sustantivo",
+    "search.category.verbo": "Verbo",
+    "search.category.adjetivo": "Adjetivo",
+    "search.category.adverbio": "Adverbio",
+    "search.category.expresion": "Expresión",
+    "search.category.interjección": "Interjección",
 
     "index.title": "Índice Alfabético",
     "index.subtitle": "Explora las {count} palabras del diccionario",
@@ -105,6 +114,15 @@ export const translations = {
     "search.subtitle": "Find the Guatemalan slang you're looking for",
     "search.description":
       "Search among all Guatemalan words and expressions in the slang dictionary",
+    "search.noResults": "No results found",
+    "search.tryAnother": "Try another word",
+    "search.results": "results",
+    "search.category.noun": "Noun",
+    "search.category.verb": "Verb",
+    "search.category.adjective": "Adjective",
+    "search.category.adverb": "Adverb",
+    "search.category.expression": "Expression",
+    "search.category.interjection": "Interjection",
 
     "index.title": "Alphabetical Index",
     "index.subtitle": "Explore all {count} words in the dictionary",

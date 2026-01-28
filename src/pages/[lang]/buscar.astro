@@ -77,41 +77,38 @@ const categoryColorsData = JSON.stringify({
     <div id="searchResults" class="mt-8 pb-12"></div>
   </div>
 
-  <script is:inline define:vars={{ wordData, categoryColorsData, lang }}>
+  <script
+    is:inline
+    define:vars={{
+      wordData,
+      categoryColorsData,
+      searchTranslations: JSON.stringify({
+        noResults: t("search.noResults"),
+        tryAnother: t("search.tryAnother"),
+        results: t("search.results"),
+        categories: {
+          sustantivo: t("search.category.sustantivo"),
+          verbo: t("search.category.verbo"),
+          adjetivo: t("search.category.adjetivo"),
+          adverbio: t("search.category.adverbio"),
+          expresion: t("search.category.expresion"),
+          interjección: t("search.category.interjección"),
+          noun: t("search.category.noun"),
+          verb: t("search.category.verb"),
+          adjective: t("search.category.adjective"),
+          adverb: t("search.category.adverb"),
+          expression: t("search.category.expression"),
+          interjection: t("search.category.interjection"),
+        },
+      }),
+      lang,
+    }}
+  >
     const words = JSON.parse(wordData);
     const input = document.querySelector('input[type="search"]');
     const resultsContainer = document.getElementById("searchResults");
 
-    const translations = {
-      es: {
-        noResults: "No se encontraron resultados",
-        tryAnother: "Intenta con otra palabra",
-        results: "resultados",
-        categories: {
-          sustantivo: "Sustantivo",
-          verbo: "Verbo",
-          adjetivo: "Adjetivo",
-          adverbio: "Adverbio",
-          expresion: "Expresión",
-          interjección: "Interjección",
-        },
-      },
-      en: {
-        noResults: "No results found",
-        tryAnother: "Try another word",
-        results: "results",
-        categories: {
-          noun: "Noun",
-          verb: "Verb",
-          adjective: "Adjective",
-          adverb: "Adverb",
-          expression: "Expression",
-          interjection: "Interjection",
-        },
-      },
-    };
-
-    const t = translations[lang];
+    const t = JSON.parse(searchTranslations);
     const categoryColors = JSON.parse(categoryColorsData);
 
     function normalizeText(text) {
