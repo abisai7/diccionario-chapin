@@ -50,7 +50,7 @@ export function setupShareImage({
         await navigator.share({
           files: [new File([blob], fileName, { type: "image/png" })],
           title: `${word.word} - ${title}`,
-          text: `${window.location.href}`,
+          text: `${word.word} - ${window.location.href}`,
         });
       } catch (err: any) {
         if (err.name !== "AbortError") downloadImage(blob, fileName);
