@@ -31,5 +31,23 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      cssCodeSplit: true, // Split CSS for better loading
+      minify: "esbuild",
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            // Split vendor chunks for better caching
+            if (id.includes("node_modules")) {
+              return "vendor";
+            }
+          },
+        },
+      },
+    },
+  },
+  compressHTML: true,
+  build: {
+    inlineStylesheets: "auto", // Inline critical CSS automatically
   },
 });

@@ -101,6 +101,12 @@ const alternateOgLocale = lang === "en" ? "es_GT" : "en_US";
     <!-- Sitemap -->
     <link rel="sitemap" href="/sitemap-index.xml" />
 
+    <!-- Preconnect to external origins for better performance -->
+    <link rel="preconnect" href="https://api-gateway.umami.dev" crossorigin />
+    <link rel="dns-prefetch" href="https://api-gateway.umami.dev" />
+    <link rel="preconnect" href="https://cloud.umami.is" crossorigin />
+    <link rel="dns-prefetch" href="https://cloud.umami.is" />
+
     <!-- Preload background image for better performance -->
     <link rel="preload" href="/images/bg.webp" as="image" fetchpriority="high" />
 
