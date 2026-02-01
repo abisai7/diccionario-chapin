@@ -9,6 +9,6 @@ examples:
 region: Guatemala
 synonyms:
   - press
-  - push  
+  - push
   - crush
 ---

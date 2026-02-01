@@ -43,7 +43,8 @@ function getRandomWordsByCategory(
 
 const { lang } = Astro.params;
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const hasContent = entry.body?.replace(/\s+/g, "").length > 0;
+const { Content } = hasContent ? await entry.render() : {};
 const word = entry.data;
 
 // Get related words
