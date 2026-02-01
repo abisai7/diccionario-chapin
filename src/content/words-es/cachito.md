@@ -8,9 +8,9 @@ examples:
   - ¿Puedes darme un cachito de queso?
 region: Guatemala
 synonyms:
-    - Poco
-    - Poquito
-    - Pedazo
-    - Trozo
-    - Porción
+  - Poco
+  - Poquito
+  - Pedazo
+  - Trozo
+  - Porción
 ---
