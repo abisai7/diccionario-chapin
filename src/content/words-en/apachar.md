@@ -1,14 +1,14 @@
 ---
 word: Apachar
-meaning: Pulsar un botón o ejercer presión sobre un objeto para reducir su tamaño o deformarlo.
-category: verbo
+meaning: To press a button or apply pressure to an object to reduce its size or deform it.
+category: verb
 examples:
-  - Apachá el botón para que encienda.
-  - Necesito apachar la masa para que quede más delgada.
-  - Apachó la lata para que entrara en el bote.
+  - Apachá the button to turn it on.
+  - I need to apachar the dough so it becomes thinner.
+  - He/She apachó the can so it would fit in the bin.
 region: Guatemala
 synonyms:
-  - presionar
-  - pulsar
-  - aplastar
+  - press
+  - push  
+  - crush
 ---
