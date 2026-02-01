@@ -48,6 +48,12 @@ export default defineConfig({
   },
   compressHTML: true,
   build: {
-    inlineStylesheets: "auto", // Inline critical CSS automatically
+    // Always inline CSS under 10KB to reduce render-blocking requests
+    inlineStylesheets: "always",
+  },
+  prefetch: {
+    // Prefetch links on hover for faster navigation
+    prefetchAll: false,
+    defaultStrategy: "hover",
   },
 });

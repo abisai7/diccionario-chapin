@@ -30,6 +30,12 @@ const alternateOgLocale = lang === "en" ? "es_GT" : "en_US";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Preconnect to external origins FIRST for better performance -->
+    <link rel="preconnect" href="https://api-gateway.umami.dev" crossorigin />
+    <link rel="dns-prefetch" href="https://api-gateway.umami.dev" />
+    <link rel="preconnect" href="https://cloud.umami.is" crossorigin />
+    <link rel="dns-prefetch" href="https://cloud.umami.is" />
+
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
@@ -101,26 +107,19 @@ const alternateOgLocale = lang === "en" ? "es_GT" : "en_US";
     <!-- Sitemap -->
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <!-- Preconnect to external origins for better performance -->
-    <link rel="preconnect" href="https://api-gateway.umami.dev" crossorigin />
-    <link rel="dns-prefetch" href="https://api-gateway.umami.dev" />
-    <link rel="preconnect" href="https://cloud.umami.is" crossorigin />
-    <link rel="dns-prefetch" href="https://cloud.umami.is" />
+    <!-- Preload background image with lower priority (not critical for LCP) -->
+    <link rel="preload" href="/images/bg.webp" as="image" fetchpriority="low" />
 
-    <!-- Preload background image for better performance -->
-    <link rel="preload" href="/images/bg.webp" as="image" fetchpriority="high" />
-
-    <!-- Analytics: Umami  -->
+    <!-- View Transitions - loaded with fallback to reduce blocking -->
+    <ClientRouter fallback="none" />
+  </head>
+  <body>
+    <!-- Analytics: Umami - moved to body end and loaded async to prevent render blocking -->
     <script
-      defer
+      async
       src="https://cloud.umami.is/script.js"
       data-website-id="7e8f3679-b1bd-4ee9-97e8-cc136e9416f2"
       data-endpoint="/api/umami-proxy"></script>
-
-    <!-- View Transitions -->
-    <ClientRouter />
-  </head>
-  <body>
     <Header />
     <main id="main-content" role="main">
       <slot />

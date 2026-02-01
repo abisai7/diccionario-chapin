@@ -1,9 +1,20 @@
 @import "tailwindcss";
-@import "@fontsource-variable/baloo-2";
-@import "@fontsource/alice";
+@import "@fontsource-variable/baloo-2/wght.css";
+@import "@fontsource/alice/400.css";
 
 /*@import "@fontsource-variable/cairo";
 @import "@fontsource-variable/overpass";*/
+
+/* Ensure fonts use font-display: swap for better performance */
+@font-face {
+  font-family: "Baloo 2 Variable";
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alice";
+  font-display: swap;
+}
 
 @theme {
   /* Primary brand color - vibrant blue */
