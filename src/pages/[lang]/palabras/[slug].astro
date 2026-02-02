@@ -8,6 +8,7 @@ import { getCategoryColor } from "../../../utils/categoryColors";
 import RelatedWordsSection from "../../../components/RelatedWordsSection.astro";
 import BreadcrumbSchema from "../../../components/schemas/BreadcrumbSchema.astro";
 import WordSchema from "../../../components/schemas/WordSchema.astro";
+import FAQSchema from "../../../components/schemas/FAQSchema.astro";
 
 export async function getStaticPaths() {
   const esWords = await getCollection("words-es");
@@ -89,6 +90,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
     ]}
   />
   <WordSchema slot="schema" lang={lang} siteUrl={siteUrl} word={word} slug={entry.slug} />
+  <FAQSchema slot="schema" lang={lang} word={word} />
 
   <section class="mx-auto max-w-[1100px] px-6">
     <button

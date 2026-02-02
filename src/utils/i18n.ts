@@ -95,6 +95,15 @@ export const translations = {
     "schema.featured.name": "Palabras destacadas",
     "schema.featured.description": "Palabras chapinas destacadas del diccionario guatemalteco",
     "schema.word.headline": "{word} - Definición y ejemplos",
+
+    // FAQ Schema translations
+    "schema.faq.meaning.question": "¿Qué significa {word}?",
+    "schema.faq.usage.question": "¿Cómo se usa {word} en una oración?",
+    "schema.faq.usage.answer": "Ejemplos de uso: {examples}",
+    "schema.faq.category.question": "¿Qué tipo de palabra es {word}?",
+    "schema.faq.category.answer": "{word} es un {category} usado en Guatemala.",
+    "schema.faq.synonyms.question": "¿Cuáles son los sinónimos de {word}?",
+    "schema.faq.synonyms.answer": "Algunos sinónimos o palabras relacionadas son: {synonyms}.",
   },
   en: {
     "home.title": "Chapinismos - Guatemalan Slang Dictionary",
@@ -191,6 +200,15 @@ export const translations = {
     "schema.featured.name": "Featured Words",
     "schema.featured.description": "Featured Guatemalan slang words from the dictionary",
     "schema.word.headline": "{word} - Definition and examples",
+
+    // FAQ Schema translations
+    "schema.faq.meaning.question": "What does {word} mean?",
+    "schema.faq.usage.question": "How do you use {word} in a sentence?",
+    "schema.faq.usage.answer": "Usage examples: {examples}",
+    "schema.faq.category.question": "What type of word is {word}?",
+    "schema.faq.category.answer": "{word} is a {category} used in Guatemala.",
+    "schema.faq.synonyms.question": "What are the synonyms of {word}?",
+    "schema.faq.synonyms.answer": "Some synonyms or related words are: {synonyms}.",
   },
 };
 

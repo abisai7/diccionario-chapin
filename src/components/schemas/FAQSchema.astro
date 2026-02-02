@@ -1,0 +1,66 @@
+---
+import { useTranslations } from "../../utils/i18n";
+
+interface Props {
+  lang: string;
+  word: {
+    word: string;
+    meaning: string;
+    examples?: string[];
+    category?: string;
+    synonyms?: string[];
+  };
+}
+
+const { lang, word } = Astro.props;
+const t = useTranslations(lang);
+
+// Build FAQ items dynamically based on available content
+const faqItems: { question: string; answer: string }[] = [];
+
+// Q1: What does {word} mean?
+faqItems.push({
+  question: t("schema.faq.meaning.question", { word: word.word }),
+  answer: word.meaning,
+});
+
+// Q2: How to use {word}? (if examples exist)
+if (word.examples?.length) {
+  const examplesFormatted = word.examples.map((ex) => `"${ex}"`).join("; ");
+  faqItems.push({
+    question: t("schema.faq.usage.question", { word: word.word }),
+    answer: t("schema.faq.usage.answer", { examples: examplesFormatted }),
+  });
+}
+
+// Q3: What type of word is {word}? (if category exists)
+if (word.category) {
+  faqItems.push({
+    question: t("schema.faq.category.question", { word: word.word }),
+    answer: t("schema.faq.category.answer", { word: word.word, category: word.category }),
+  });
+}
+
+// Q4: Synonyms (if they exist)
+if (word.synonyms?.length) {
+  faqItems.push({
+    question: t("schema.faq.synonyms.question", { word: word.word }),
+    answer: t("schema.faq.synonyms.answer", { synonyms: word.synonyms.join(", ") }),
+  });
+}
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
