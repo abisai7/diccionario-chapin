@@ -4,6 +4,8 @@ export const prerender = true;
 import Base from "../../layouts/Base.astro";
 import { getCollection } from "astro:content";
 import { useTranslations } from "../../utils/i18n";
+import BreadcrumbSchema from "../../components/schemas/BreadcrumbSchema.astro";
+import CollectionPageSchema from "../../components/schemas/CollectionPageSchema.astro";
 
 export async function getStaticPaths() {
   return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
@@ -36,19 +38,33 @@ const grouped = sortedWords.reduce(
 );
 
 const letters = Object.keys(grouped).sort();
+
+const siteUrl = Astro.site || "https://chapinismos.org";
 ---
 
 <Base
-  title={t("index.title") +
-    " — " +
-    (lang === "es" ? "Diccionario Chapín" : "Guatemalan Dictionary")}
+  title={t("index.title") + " — " + t("schema.site.name")}
   description={t("index.description")}
-  keywords={lang === "es"
-    ? "índice chapinismos, lista palabras chapinas, alfabético diccionario chapín"
-    : "guatemalan slang index, guatemalan words list, alphabetical guatemalan dictionary"}
+  keywords={t("index.keywords")}
   lang={lang}
   alternateUrls={alternateUrls}
 >
+  <BreadcrumbSchema
+    slot="schema"
+    lang={lang}
+    siteUrl={siteUrl}
+    items={[{ name: t("nav.index"), url: `/${lang}/indice/` }]}
+  />
+  <CollectionPageSchema
+    slot="schema"
+    lang={lang}
+    siteUrl={siteUrl}
+    title={t("index.title")}
+    description={t("index.description")}
+    url={`/${lang}/indice/`}
+    words={sortedWords.slice(0, 50)}
+    totalCount={allWords.length}
+  />
   <div class="mx-auto max-w-[1100px] px-6">
     <div class="card-with-gradient shadow-theme-lg my-6 grid gap-3.5 backdrop-blur-sm">
       <h1

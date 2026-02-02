@@ -7,6 +7,8 @@ import HeroSection from "../../components/home/HeroSection.astro";
 import AboutSection from "../../components/home/AboutSection.astro";
 import FeaturedWords from "../../components/home/FeaturedWords.astro";
 import ContributeSection from "../../components/home/ContributeSection.astro";
+import BreadcrumbSchema from "../../components/schemas/BreadcrumbSchema.astro";
+import FeaturedWordsSchema from "../../components/schemas/FeaturedWordsSchema.astro";
 import { getCollection } from "astro:content";
 import { useTranslations } from "../../utils/i18n";
 
@@ -36,6 +38,8 @@ const top =
   featuredWords.length >= 6
     ? featuredWords.slice(0, 6)
     : [...allWords].sort(() => Math.random() - 0.5).slice(0, 6);
+
+const siteUrl = Astro.site || "https://chapinismos.org";
 ---
 
 <Base
@@ -45,6 +49,8 @@ const top =
   lang={lang}
   alternateUrls={alternateUrls}
 >
+  <BreadcrumbSchema slot="schema" lang={lang} siteUrl={siteUrl} items={[]} />
+  <FeaturedWordsSchema slot="schema" lang={lang} siteUrl={siteUrl} words={top} />
   <HeroSection lang={lang} />
 
   <FeaturedWords words={top} lang={lang} />

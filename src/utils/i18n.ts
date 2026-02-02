@@ -39,6 +39,8 @@ export const translations = {
     "search.subtitle": "Encuentra el chapinismo que estás buscando",
     "search.description":
       "Busca entre todas las palabras y expresiones guatemaltecas del diccionario chapín",
+    "search.keywords":
+      "buscar chapinismos, buscar palabras guatemaltecas, diccionario chapín buscar",
     "search.noResults": "No se encontraron resultados",
     "search.tryAnother": "Intenta con otra palabra",
     "search.results": "resultados",
@@ -48,11 +50,18 @@ export const translations = {
     "search.category.adverbio": "Adverbio",
     "search.category.expresion": "Expresión",
     "search.category.interjección": "Interjección",
+    "search.category.noun": "Sustantivo",
+    "search.category.verb": "Verbo",
+    "search.category.adjective": "Adjetivo",
+    "search.category.adverb": "Adverbio",
+    "search.category.expression": "Expresión",
+    "search.category.interjection": "Interjección",
 
     "index.title": "Índice Alfabético",
     "index.subtitle": "Explora las {count} palabras del diccionario",
     "index.description":
       "Índice alfabético completo de todos los chapinismos y guatemaltequismos del diccionario",
+    "index.keywords": "índice chapinismos, lista palabras chapinas, alfabético diccionario chapín",
 
     "word.back": "Volver al inicio",
     "word.share": "Compartir imagen",
@@ -74,6 +83,18 @@ export const translations = {
     "nav.home": "Inicio",
     "nav.search": "Buscar",
     "nav.index": "Índice",
+
+    // Schema translations
+    "schema.site.name": "Diccionario Chapín",
+    "schema.site.alternateName": "Chapinismos",
+    "schema.site.description":
+      "Diccionario de chapinismos guatemaltecos con definiciones y ejemplos",
+    "schema.site.fullDescription":
+      "Diccionario completo de chapinismos, palabras y expresiones guatemaltecas",
+    "schema.dictionary.name": "Diccionario de Chapinismos",
+    "schema.featured.name": "Palabras destacadas",
+    "schema.featured.description": "Palabras chapinas destacadas del diccionario guatemalteco",
+    "schema.word.headline": "{word} - Definición y ejemplos",
   },
   en: {
     "home.title": "Chapinismos - Guatemalan Slang Dictionary",
@@ -114,6 +135,8 @@ export const translations = {
     "search.subtitle": "Find the Guatemalan slang you're looking for",
     "search.description":
       "Search among all Guatemalan words and expressions in the slang dictionary",
+    "search.keywords":
+      "search guatemalan slang, search guatemalan words, guatemalan dictionary search",
     "search.noResults": "No results found",
     "search.tryAnother": "Try another word",
     "search.results": "results",
@@ -123,11 +146,19 @@ export const translations = {
     "search.category.adverb": "Adverb",
     "search.category.expression": "Expression",
     "search.category.interjection": "Interjection",
+    "search.category.sustantivo": "Noun",
+    "search.category.verbo": "Verb",
+    "search.category.adjetivo": "Adjective",
+    "search.category.adverbio": "Adverb",
+    "search.category.expresion": "Expression",
+    "search.category.interjección": "Interjection",
 
     "index.title": "Alphabetical Index",
     "index.subtitle": "Explore all {count} words in the dictionary",
     "index.description":
       "Complete alphabetical index of all Guatemalan slang and expressions in the dictionary",
+    "index.keywords":
+      "guatemalan slang index, guatemalan words list, alphabetical guatemalan dictionary",
 
     "word.back": "Back to home",
     "word.share": "Share image",
@@ -149,6 +180,17 @@ export const translations = {
     "nav.home": "Home",
     "nav.search": "Search",
     "nav.index": "Index",
+
+    // Schema translations
+    "schema.site.name": "Diccionario Chapín",
+    "schema.site.alternateName": "Chapinismos",
+    "schema.site.description": "Guatemalan slang dictionary with definitions and examples",
+    "schema.site.fullDescription":
+      "Complete dictionary of Guatemalan slang, expressions and idioms",
+    "schema.dictionary.name": "Guatemalan Slang Dictionary",
+    "schema.featured.name": "Featured Words",
+    "schema.featured.description": "Featured Guatemalan slang words from the dictionary",
+    "schema.word.headline": "{word} - Definition and examples",
   },
 };
 

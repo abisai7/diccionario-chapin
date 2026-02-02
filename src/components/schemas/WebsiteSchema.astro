@@ -1,0 +1,35 @@
+---
+import { useTranslations } from "../../utils/i18n";
+
+interface Props {
+  lang: string;
+  siteUrl: string | URL;
+}
+
+const { lang, siteUrl } = Astro.props;
+const t = useTranslations(lang);
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: t("schema.site.name"),
+  alternateName: t("schema.site.alternateName"),
+  url: siteUrl.toString(),
+  description: t("schema.site.fullDescription"),
+  inLanguage: ["es", "en"],
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: new URL(`/${lang}/buscar/?q={search_term_string}`, siteUrl).toString(),
+    },
+    "query-input": "required name=search_term_string",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: t("schema.site.name"),
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />

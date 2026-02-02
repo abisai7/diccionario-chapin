@@ -6,6 +6,8 @@ import { getCollection } from "astro:content";
 import { useTranslations } from "../../../utils/i18n";
 import { getCategoryColor } from "../../../utils/categoryColors";
 import RelatedWordsSection from "../../../components/RelatedWordsSection.astro";
+import BreadcrumbSchema from "../../../components/schemas/BreadcrumbSchema.astro";
+import WordSchema from "../../../components/schemas/WordSchema.astro";
 
 export async function getStaticPaths() {
   const esWords = await getCollection("words-es");
@@ -66,14 +68,7 @@ const alternateUrls = {
 const description = `${word.word}: ${word.meaning} | ${word.category} | ${word.examples?.[0] ? `${t("word.example.label")}: "${word.examples[0]}"` : ""}${word.examples?.[1] ? ` | "${word.examples[1]}"` : ""}`;
 const keywords = `${word.word}, ${t("word.slang.label")}, ${word.category || t("word.slang.label")}, ${word.synonyms?.join(", ") || ""}`;
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "DefinedTerm",
-  name: word.word,
-  description: word.meaning,
-  inDefinedTermSet: t("word.type"),
-  termCode: entry.slug,
-};
+const siteUrl = Astro.site || "https://chapinismos.org";
 ---
 
 <Base
@@ -84,7 +79,16 @@ const structuredData = {
   lang={lang}
   alternateUrls={alternateUrls}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  <BreadcrumbSchema
+    slot="schema"
+    lang={lang}
+    siteUrl={siteUrl}
+    items={[
+      { name: t("nav.index"), url: `/${lang}/indice/` },
+      { name: word.word, url: `/${lang}/palabras/${entry.slug}/` },
+    ]}
+  />
+  <WordSchema slot="schema" lang={lang} siteUrl={siteUrl} word={word} slug={entry.slug} />
 
   <section class="mx-auto max-w-[1100px] px-6">
     <button

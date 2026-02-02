@@ -1,0 +1,69 @@
+---
+import { useTranslations } from "../../utils/i18n";
+
+interface Props {
+  lang: string;
+  siteUrl: string | URL;
+  word: {
+    word: string;
+    meaning: string;
+    category?: string;
+    synonyms?: string[];
+  };
+  slug: string;
+}
+
+const { lang, siteUrl, word, slug } = Astro.props;
+const t = useTranslations(lang);
+
+const wordUrl = new URL(`/${lang}/palabras/${slug}/`, siteUrl).toString();
+
+// JSON-LD DefinedTerm Schema
+const definedTermSchema = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "@id": wordUrl,
+  name: word.word,
+  description: word.meaning,
+  inDefinedTermSet: {
+    "@type": "DefinedTermSet",
+    name: t("schema.dictionary.name"),
+    url: siteUrl.toString(),
+  },
+  termCode: slug,
+  ...(word.category && { additionalType: word.category }),
+  ...(word.synonyms?.length && { sameAs: word.synonyms }),
+  inLanguage: lang,
+  isPartOf: {
+    "@type": "WebSite",
+    name: t("schema.site.name"),
+    url: siteUrl.toString(),
+  },
+};
+
+// JSON-LD Article Schema
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: t("schema.word.headline", { word: word.word }),
+  description: word.meaning,
+  url: wordUrl,
+  inLanguage: lang,
+  about: {
+    "@type": "DefinedTerm",
+    name: word.word,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: t("schema.site.name"),
+    url: siteUrl.toString(),
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": wordUrl,
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(definedTermSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />

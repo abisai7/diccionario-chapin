@@ -1,0 +1,47 @@
+---
+interface WordItem {
+  slug: string;
+  data: {
+    word: string;
+    meaning: string;
+  };
+}
+
+interface Props {
+  lang: string;
+  siteUrl: string | URL;
+  title: string;
+  description: string;
+  url: string;
+  words: WordItem[];
+  totalCount: number;
+}
+
+const { lang, siteUrl, title, description, url, words, totalCount } = Astro.props;
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: title,
+  description: description,
+  url: new URL(url, siteUrl).toString(),
+  inLanguage: lang,
+  numberOfItems: totalCount,
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: totalCount,
+    itemListElement: words.map((word, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "DefinedTerm",
+        name: word.data.word,
+        description: word.data.meaning,
+        url: new URL(`/${lang}/palabras/${word.slug}/`, siteUrl).toString(),
+      },
+    })),
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />

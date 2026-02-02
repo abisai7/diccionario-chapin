@@ -1,0 +1,40 @@
+---
+import { useTranslations } from "../../utils/i18n";
+
+interface WordItem {
+  slug: string;
+  data: {
+    word: string;
+    meaning: string;
+  };
+}
+
+interface Props {
+  lang: string;
+  siteUrl: string | URL;
+  words: WordItem[];
+}
+
+const { lang, siteUrl, words } = Astro.props;
+const t = useTranslations(lang);
+
+const featuredWordsSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: t("schema.featured.name"),
+  description: t("schema.featured.description"),
+  numberOfItems: words.length,
+  itemListElement: words.map((word, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "DefinedTerm",
+      name: word.data.word,
+      description: word.data.meaning,
+      url: new URL(`/${lang}/palabras/${word.slug}/`, siteUrl).toString(),
+    },
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(featuredWordsSchema)} />
