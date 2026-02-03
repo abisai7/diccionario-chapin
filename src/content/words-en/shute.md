@@ -7,7 +7,7 @@ examples:
   - Don't be shute!
 region: Guatemala
 synonyms:
-  - Nosy
-  - Meddlesome
-  - Interfering
+  - nosy
+  - meddlesome
+  - interfering
 ---
