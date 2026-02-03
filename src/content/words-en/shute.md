@@ -1,13 +1,13 @@
 ---
 word: Shute
-meaning: Jail or prison
-category: noun
+meaning: Nosy, meddlesome, or interfering person
+category: expression
 examples:
-  - He's in the shute
-  - They took him to the shute
+  - That guy over there is really shute
+  - Don't be shute!
 region: Guatemala
 synonyms:
-  - jail
-  - prison
-  - slammer
+  - nosy
+  - meddlesome
+  - interfering
 ---
