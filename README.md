@@ -1,4 +1,4 @@
-# 📖 Chapinismos
+# ![icon](./public/favicon.svg) Chapinismos.org
 
 > Un glosario interactivo de chapinismos guatemaltecos con definiciones y ejemplos. Desarrollado con Astro y Tailwind CSS.
 
