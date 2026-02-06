@@ -1,0 +1,33 @@
+---
+import { getLangFromUrl, useTranslations } from "../utils/i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const prefix = lang === "en" ? "/en" : "/es";
+---
+
+<!-- Navegación desktop -->
+<a
+  href={`${prefix}/`}
+  class="nav-link px-3 py-2"
+  data-umami-event="Nav Home"
+  data-umami-event-device="desktop"
+>
+  {t("nav.home")}
+</a>
+<a
+  href={`${prefix}/indice/`}
+  class="nav-link px-3 py-2"
+  data-umami-event="Nav Index"
+  data-umami-event-device="desktop"
+>
+  {t("nav.index")}
+</a>
+<a
+  href={`${prefix}/buscar/`}
+  class="nav-link px-3 py-2"
+  data-umami-event="Nav Search"
+  data-umami-event-device="desktop"
+>
+  {t("nav.search")}
+</a>

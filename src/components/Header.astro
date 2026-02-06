@@ -2,13 +2,16 @@
 import { getLangFromUrl, useTranslations } from "../utils/i18n";
 import Logo from "./icons/Logo.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
+import Navigation from "./Navigation.astro";
+import MobileMenu from "./MobileMenu.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const prefix = lang === "en" ? "/en" : "/es";
 ---
 
-<header class="mx-auto max-w-[1100px] px-4 py-4 sm:px-6" transition:persist>
+<header class="relative mx-auto max-w-[1100px] px-4 py-4 sm:px-6" transition:persist>
   <div class="flex items-center justify-between gap-4">
     <!-- Logo y título -->
     <a
@@ -18,322 +21,61 @@ const prefix = lang === "en" ? "/en" : "/es";
       data-umami-event="Logo Click"
       data-umami-event-location="header"
     >
-      <Logo height={100} />
+      <Logo height={75} />
     </a>
 
-    <!-- Navegación desktop -->
+    <!-- Navegación y controles desktop -->
     <nav class="hidden items-center gap-2 md:flex">
-      <a
-        href={`${prefix}/`}
-        class="nav-link px-3 py-2"
-        data-umami-event="Nav Home"
-        data-umami-event-device="desktop"
-      >
-        {t("nav.home")}
-      </a>
-      <a
-        href={`${prefix}/indice/`}
-        class="nav-link px-3 py-2"
-        data-umami-event="Nav Index"
-        data-umami-event-device="desktop"
-      >
-        {t("nav.index")}
-      </a>
-      <a
-        href={`${prefix}/buscar/`}
-        class="nav-link px-3 py-2"
-        data-umami-event="Nav Search"
-        data-umami-event-device="desktop"
-      >
-        {t("nav.search")}
-      </a>
+      <Navigation />
       <LanguageSwitcher />
-      <button
-        id="theme-toggle"
-        class="theme-toggle-btn inline-flex cursor-pointer items-center gap-2 px-2.5 py-2"
-        type="button"
-        aria-label="Cambiar tema"
-        data-umami-event="Theme Toggle"
-        data-umami-event-device="desktop"
-      >
-        <svg id="moon" class="block" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
-          ><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79Z"></path></svg
-        >
-        <svg
-          id="sun"
-          class="hidden"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          ><circle cx="12" cy="12" r="4"></circle><path
-            d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
-          ></path></svg
-        >
-      </button>
+      <ThemeToggle />
     </nav>
 
     <!-- Controles móviles -->
     <div class="flex items-center gap-2 md:hidden">
       <LanguageSwitcher />
-      <button
-        id="theme-toggle-mobile"
-        class="theme-toggle-btn inline-flex cursor-pointer items-center gap-2 px-2.5 py-2"
-        type="button"
-        aria-label="Cambiar tema"
-        data-umami-event="Theme Toggle"
-        data-umami-event-device="mobile"
-      >
-        <svg
-          id="moon-mobile"
-          class="block"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          ><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79Z"></path></svg
-        >
-        <svg
-          id="sun-mobile"
-          class="hidden"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          ><circle cx="12" cy="12" r="4"></circle><path
-            d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
-          ></path></svg
-        >
-      </button>
-      <button
-        id="menu-toggle"
-        class="border-theme bg-background hover:bg-card-hover inline-flex cursor-pointer items-center rounded-md border px-2.5 py-2 transition-all"
-        type="button"
-        aria-label="Abrir menú"
-        aria-expanded="false"
-        data-umami-event="Mobile Menu Toggle"
-      >
-        <svg
-          id="menu-icon"
-          class="block"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          ><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"
-          ></line><line x1="3" y1="18" x2="21" y2="18"></line></svg
-        >
-        <svg
-          id="close-icon"
-          class="hidden"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          ><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"
-          ></line></svg
-        >
-      </button>
+      <ThemeToggle isMobile={true} />
+      <MobileMenu />
     </div>
-  </div>
 
-  <!-- Menú móvil -->
-  <nav
-    id="mobile-menu"
-    class="border-theme mt-4 hidden flex-col gap-2 border-t pt-4 pb-2 md:hidden"
-  >
-    <a
-      href={`${prefix}/`}
-      class="nav-link px-4 py-2.5 text-center"
-      data-umami-event="Nav Home"
-      data-umami-event-device="mobile"
-    >
-      {t("nav.home")}
-    </a>
-    <a
-      href={`${prefix}/indice/`}
-      class="nav-link px-4 py-2.5 text-center"
-      data-umami-event="Nav Index"
-      data-umami-event-device="mobile"
-    >
-      {t("nav.index")}
-    </a>
-    <a
-      href={`${prefix}/buscar/`}
-      class="nav-link px-4 py-2.5 text-center"
-      data-umami-event="Nav Search"
-      data-umami-event-device="mobile"
-    >
-      {t("nav.search")}
-    </a>
-  </nav>
-</header>
-
-<style>
-  @media (min-width: 480px) {
-    .xs\:inline {
-      display: inline;
-    }
-  }
-
-  .gt-badge-flag {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-  }
-
-  .gt-badge-flag svg {
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
-  }
-
-  .gt-badge-flag .flag-path {
-    fill: url(#guatemalaFlag);
-  }
-
-  .gt-badge-flag:hover svg {
-    transform: scale(1.05);
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-  }
-
-  [data-theme="dark"] .gt-badge-flag .flag-path {
-    fill: url(#guatemalaFlagDark);
-  }
-
-  [data-theme="dark"] .gt-badge-flag svg {
-    filter: drop-shadow(0 2px 3px rgba(73, 151, 208, 0.4));
-  }
-
-  [data-theme="dark"] .gt-badge-flag:hover svg {
-    filter: drop-shadow(0 3px 6px rgba(73, 151, 208, 0.5));
-  }
-</style>
-<script is:inline>
-  const el = document.documentElement;
-  const saved = localStorage.getItem("theme") || "dark";
-  el.setAttribute("data-theme", saved);
-
-  function setupHeader() {
-    // Botones de tema
-    const btn = document.getElementById("theme-toggle");
-    const btnMobile = document.getElementById("theme-toggle-mobile");
-    const m = document.getElementById("moon");
-    const s = document.getElementById("sun");
-    const mMobile = document.getElementById("moon-mobile");
-    const sMobile = document.getElementById("sun-mobile");
-
-    function updateIcons() {
-      const t = el.getAttribute("data-theme");
-      if (t === "light") {
-        s?.classList.remove("hidden");
-        m?.classList.add("hidden");
-        sMobile?.classList.remove("hidden");
-        mMobile?.classList.add("hidden");
-      } else {
-        s?.classList.add("hidden");
-        m?.classList.remove("hidden");
-        sMobile?.classList.add("hidden");
-        mMobile?.classList.remove("hidden");
-      }
-    }
-
-    updateIcons();
-
-    function toggleTheme() {
-      const next = el.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      el.setAttribute("data-theme", next);
-      localStorage.setItem("theme", next);
-      updateIcons();
-    }
-
-    // Remove old listeners by cloning nodes
-    if (btn) {
-      const newBtn = btn.cloneNode(true);
-      btn.parentNode?.replaceChild(newBtn, btn);
-      document.getElementById("theme-toggle")?.addEventListener("click", toggleTheme);
-    }
-
-    if (btnMobile) {
-      const newBtnMobile = btnMobile.cloneNode(true);
-      btnMobile.parentNode?.replaceChild(newBtnMobile, btnMobile);
-      document.getElementById("theme-toggle-mobile")?.addEventListener("click", toggleTheme);
-    }
-
-    // Menú móvil
-    const menuToggle = document.getElementById("menu-toggle");
-
-    if (menuToggle) {
-      const newMenuToggle = menuToggle.cloneNode(true);
-      menuToggle.parentNode?.replaceChild(newMenuToggle, menuToggle);
-
-      document.getElementById("menu-toggle")?.addEventListener("click", () => {
-        const menu = document.getElementById("mobile-menu");
-        const icon = document.getElementById("menu-icon");
-        const close = document.getElementById("close-icon");
-        const toggle = document.getElementById("menu-toggle");
-        const isOpen = menu?.classList.contains("flex");
-
-        if (isOpen) {
-          menu?.classList.remove("flex");
-          menu?.classList.add("hidden");
-          icon?.classList.remove("hidden");
-          icon?.classList.add("block");
-          close?.classList.remove("block");
-          close?.classList.add("hidden");
-          toggle?.setAttribute("aria-expanded", "false");
-        } else {
-          menu?.classList.remove("hidden");
-          menu?.classList.add("flex");
-          icon?.classList.remove("block");
-          icon?.classList.add("hidden");
-          close?.classList.remove("hidden");
-          close?.classList.add("block");
-          toggle?.setAttribute("aria-expanded", "true");
+    <style>
+      @media (min-width: 480px) {
+        .xs\:inline {
+          display: inline;
         }
-      });
-    }
+      }
 
-    // Cerrar menú al hacer clic en un enlace
-    const mobileLinks = document.getElementById("mobile-menu")?.querySelectorAll("a");
-    mobileLinks?.forEach((link) => {
-      link.addEventListener("click", () => {
-        const menu = document.getElementById("mobile-menu");
-        const icon = document.getElementById("menu-icon");
-        const close = document.getElementById("close-icon");
-        const toggle = document.getElementById("menu-toggle");
+      .gt-badge-flag {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
 
-        menu?.classList.remove("flex");
-        menu?.classList.add("hidden");
-        icon?.classList.remove("hidden");
-        icon?.classList.add("block");
-        close?.classList.remove("block");
-        close?.classList.add("hidden");
-        toggle?.setAttribute("aria-expanded", "false");
-      });
-    });
-  }
+      .gt-badge-flag svg {
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+      }
 
-  // Setup on initial load
-  setupHeader();
+      .gt-badge-flag .flag-path {
+        fill: url(#guatemalaFlag);
+      }
 
-  // Re-setup after each page navigation
-  document.addEventListener("astro:page-load", setupHeader);
+      .gt-badge-flag:hover svg {
+        transform: scale(1.05);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      }
 
-  // Mantener el tema durante las transiciones
-  document.addEventListener("astro:after-swap", () => {
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    document.documentElement.setAttribute("data-theme", savedTheme);
-  });
-</script>
+      [data-theme="dark"] .gt-badge-flag .flag-path {
+        fill: url(#guatemalaFlagDark);
+      }
+
+      [data-theme="dark"] .gt-badge-flag svg {
+        filter: drop-shadow(0 2px 3px rgba(73, 151, 208, 0.4));
+      }
+
+      [data-theme="dark"] .gt-badge-flag:hover svg {
+        filter: drop-shadow(0 3px 6px rgba(73, 151, 208, 0.5));
+      }
+    </style>
+  </div>
+</header>
