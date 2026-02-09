@@ -13,6 +13,6 @@ synonyms:
   - por supuesto
 ---
 
-## Uso
+### Uso
 
 Se usa para expresar alegría, sorpresa o aprobación cuando algo impresiona de verdad. Con un tono más serio puede indicar que algo es ineludible u obligatorio. También aparece en la variante "qué de a huevo" para recalcar admiración o apoyo.

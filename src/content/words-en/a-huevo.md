@@ -13,6 +13,6 @@ synonyms:
   - definitely
 ---
 
-## Usage
+### Usage
 
 Used to express excitement, surprise, or approval when something truly impresses you. With a serious tone, it can signal that something is unavoidable or mandatory. It also appears as "qué de a huevo" to emphasize admiration or support.
