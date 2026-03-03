@@ -37,7 +37,7 @@ const device = isMobile ? "mobile" : "desktop";
   >
 </button>
 
-<script is:inline>
+<script is:inline type="module">
   const el = document.documentElement;
   const saved = localStorage.getItem("theme") || "dark";
   el.setAttribute("data-theme", saved);
