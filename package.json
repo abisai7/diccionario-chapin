@@ -42,6 +42,7 @@
     "@astrojs/vercel": "^9.0.4",
     "@fontsource-variable/baloo-2": "^5.2.7",
     "@fontsource/alice": "^5.2.8",
+    "@lucide/astro": "^0.563.0",
     "@tailwindcss/vite": "^4.1.15",
     "astro": "^5.16.11",
     "tailwindcss": "^4.1.15"
