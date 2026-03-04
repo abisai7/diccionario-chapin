@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from "@/utils/i18n";
+import { Menu, X } from "@lucide/astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -14,37 +15,10 @@ const prefix = lang === "en" ? "/en" : "/es";
   aria-expanded="false"
   data-umami-event="Mobile Menu Toggle"
 >
-  <svg
-    id="menu-icon"
-    class="block"
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    ><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line
-      x1="3"
-      y1="18"
-      x2="21"
-      y2="18"></line></svg
-  >
-  <svg
-    id="close-icon"
-    class="hidden"
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    ><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg
-  >
+  <Menu id="menu-icon" size="20" />
+  <X id="close-icon" class="hidden" size="20" />
 </button>
 
-<!-- Menú móvil desplegable -->
 <nav
   id="mobile-menu"
   class="border-theme bg-card/95 absolute top-full right-0 left-0 z-20 mx-2 -mt-8 hidden flex-col gap-3 rounded-xl border px-3 pt-5 pb-4 shadow-2xl backdrop-blur-sm md:hidden"
@@ -111,7 +85,6 @@ const prefix = lang === "en" ? "/en" : "/es";
       });
     }
 
-    // Cerrar menú al hacer clic en un enlace
     const mobileLinks = document.getElementById("mobile-menu")?.querySelectorAll("a");
     mobileLinks?.forEach((link) => {
       link.addEventListener("click", () => {

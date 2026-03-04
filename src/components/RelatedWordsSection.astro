@@ -1,21 +1,17 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import WordCard from "./WordCard.astro";
+import type { AstroComponent } from "@lucide/astro";
 
 interface Props {
   words: CollectionEntry<"words-es" | "words-en">[];
   title: string;
-  icon: "chat" | "pencil";
+  icon?: AstroComponent;
   lang: string;
   titleLevel?: "h2" | "h3";
 }
 
-const { words, title, icon, lang, titleLevel = "h3" } = Astro.props;
-
-const svgPaths = {
-  chat: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z",
-  pencil: "M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19H4v-3L16.5 3.5z",
-};
+const { words, title, icon: Icon, lang, titleLevel = "h3" } = Astro.props;
 ---
 
 {
@@ -23,35 +19,13 @@ const svgPaths = {
     <div class={title ? "border-theme mt-8 border-t pt-6" : ""}>
       {title && titleLevel === "h2" && (
         <h2 class="my-0 mb-4 flex items-center gap-2 text-lg font-semibold">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d={svgPaths[icon]} />
-          </svg>
+          {Icon && <Icon class="text-primary-light" size={20} />}
           {title}
         </h2>
       )}
       {title && titleLevel === "h3" && (
         <h3 class="my-0 mb-4 flex items-center gap-2 text-lg font-semibold">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d={svgPaths[icon]} />
-          </svg>
+          {Icon && <Icon class="text-primary-light" size={20} />}
           {title}
         </h3>
       )}

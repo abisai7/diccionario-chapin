@@ -1,6 +1,14 @@
 ---
 export const prerender = true;
-
+import {
+  BookOpenCheck,
+  CircleEqual,
+  CirclePile,
+  CirclePlus,
+  ListCheck,
+  Share2,
+  SwatchBook,
+} from "@lucide/astro";
 import Base from "../../../layouts/Base.astro";
 import { getCollection } from "astro:content";
 import { useTranslations } from "../../../utils/i18n";
@@ -138,40 +146,14 @@ const siteUrl = Astro.site || "https://chapinismos.org";
           data-slug={entry.slug}
           data-lang={lang}
         >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="18" cy="5" r="3"></circle>
-            <circle cx="6" cy="12" r="3"></circle>
-            <circle cx="18" cy="19" r="3"></circle>
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-          </svg>
+          <Share2 size="18" color="currentColor" />
           <span class="hidden sm:inline">{t("word.share")}</span>
         </button>
       </div>
 
       <div class="border-theme mt-6 border-t pt-4">
         <h2 class="my-0 mb-3 flex items-center gap-2 text-xl font-semibold">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19H4v-3L16.5 3.5z"></path>
-          </svg>
+          <BookOpenCheck size={20} color="currentColor" />
           {t("word.definition")}
         </h2>
         <div class="accent-box my-4 rounded-lg p-4 text-base leading-relaxed">
@@ -183,23 +165,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
         word.examples && word.examples.length > 0 && (
           <div class="border-theme mt-6 border-t pt-4">
             <h2 class="my-0 mb-3 flex items-center gap-2 text-xl font-semibold">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <line x1="8" y1="6" x2="21" y2="6" />
-                <line x1="8" y1="12" x2="21" y2="12" />
-                <line x1="8" y1="18" x2="21" y2="18" />
-                <line x1="3" y1="6" x2="3.01" y2="6" />
-                <line x1="3" y1="12" x2="3.01" y2="12" />
-                <line x1="3" y1="18" x2="3.01" y2="18" />
-              </svg>
+              <ListCheck size="20" color="currentColor" />
               {t("word.examples")}
             </h2>
             <ul class="mt-4 space-y-2 pl-5">
@@ -215,14 +181,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
         word.synonyms && word.synonyms.length > 0 && (
           <div class="border-theme mt-6 border-t pt-4">
             <h2 class="my-0 mb-3 flex items-center gap-2 text-xl font-semibold">
-              <svg width="20" height="20" viewBox="0 0 14 14">
-                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                  <>
-                    <path d="m6 10.5l-2-2h6m-2-5l2 2H4" />
-                    <circle cx="7" cy="7" r="6.5" />
-                  </>
-                </g>
-              </svg>
+              <CircleEqual size="20" color="currentColor" />
               {t("word.synonyms")}
             </h2>
             <div class="mt-4 flex flex-wrap gap-2">
@@ -240,18 +199,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
         Content && (
           <div class="border-theme mt-6 border-t pt-4">
             <h2 class="my-0 mb-3 flex items-center gap-2 text-xl font-semibold">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19H4v-3L16.5 3.5z" />
-              </svg>
+              <CirclePlus size="20" color="currentColor" />
               {t("word.more_info")}
             </h2>
             <div class="prose border-theme mt-6">
@@ -264,7 +212,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
       <RelatedWordsSection
         words={relatedWords}
         title={t("word.related")}
-        icon="chat"
+        icon={CirclePile}
         lang={lang}
         titleLevel="h3"
       />
@@ -272,7 +220,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
       <RelatedWordsSection
         words={otherWords}
         title={t("word.explore")}
-        icon="pencil"
+        icon={SwatchBook}
         lang={lang}
         titleLevel="h3"
       />

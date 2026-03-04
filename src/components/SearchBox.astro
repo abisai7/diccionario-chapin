@@ -1,5 +1,5 @@
 ---
-import { SearchIcon } from "@lucide/astro";
+import { Search } from "@lucide/astro";
 import { getLangFromUrl, useTranslations } from "../utils/i18n";
 
 const { placeholder = "Buscar palabra...", query = "" } = Astro.props;
@@ -28,7 +28,7 @@ const action = `${prefix}/buscar/`;
     aria-label={t("search.button_aria_label")}
   >
     <span class="relative z-10 flex items-center gap-2 text-white">
-      <SearchIcon size={16} color="currentColor" />
+      <Search size={16} color="currentColor" />
       <span class="hidden md:inline"> {t("search.button_text")} </span>
     </span>
   </button>

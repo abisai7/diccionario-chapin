@@ -1,4 +1,5 @@
 ---
+import { Moon, Sun } from "@lucide/astro";
 interface Props {
   isMobile?: boolean;
 }
@@ -18,86 +19,79 @@ const device = isMobile ? "mobile" : "desktop";
   data-umami-event="Theme Toggle"
   data-umami-event-device={device}
 >
-  <svg id={moonId} class="block" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
-    ><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79Z"></path></svg
-  >
-  <svg
-    id={sunId}
-    class="hidden"
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    ><circle cx="12" cy="12" r="4"></circle><path
-      d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
-    ></path></svg
-  >
+  <Moon id={moonId} class="block" size="18" />
+  <Sun id={sunId} class="hidden" size="18" />
 </button>
 
 <script is:inline type="module">
   const el = document.documentElement;
-  const saved = localStorage.getItem("theme") || "dark";
-  el.setAttribute("data-theme", saved);
 
-  function setupThemeToggle() {
-    // Botones de tema
-    const btn = document.getElementById("theme-toggle");
-    const btnMobile = document.getElementById("theme-toggle-mobile");
+  function getTheme() {
+    return localStorage.getItem("theme") || "dark";
+  }
+
+  function restoreTheme() {
+    const theme = getTheme();
+    el.setAttribute("data-theme", theme);
+  }
+
+  function updateIcons() {
+    const t = el.getAttribute("data-theme");
     const m = document.getElementById("moon");
     const s = document.getElementById("sun");
     const mMobile = document.getElementById("moon-mobile");
     const sMobile = document.getElementById("sun-mobile");
 
-    function updateIcons() {
-      const t = el.getAttribute("data-theme");
-      if (t === "light") {
-        s?.classList.remove("hidden");
-        m?.classList.add("hidden");
-        sMobile?.classList.remove("hidden");
-        mMobile?.classList.add("hidden");
-      } else {
-        s?.classList.add("hidden");
-        m?.classList.remove("hidden");
-        sMobile?.classList.add("hidden");
-        mMobile?.classList.remove("hidden");
-      }
-    }
-
-    updateIcons();
-
-    function toggleTheme() {
-      const next = el.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      el.setAttribute("data-theme", next);
-      localStorage.setItem("theme", next);
-      updateIcons();
-    }
-
-    // Remove old listeners by cloning nodes
-    if (btn) {
-      const newBtn = btn.cloneNode(true);
-      btn.parentNode?.replaceChild(newBtn, btn);
-      document.getElementById("theme-toggle")?.addEventListener("click", toggleTheme);
-    }
-
-    if (btnMobile) {
-      const newBtnMobile = btnMobile.cloneNode(true);
-      btnMobile.parentNode?.replaceChild(newBtnMobile, btnMobile);
-      document.getElementById("theme-toggle-mobile")?.addEventListener("click", toggleTheme);
+    if (t === "light") {
+      s?.classList.remove("hidden");
+      m?.classList.add("hidden");
+      sMobile?.classList.remove("hidden");
+      mMobile?.classList.add("hidden");
+    } else {
+      s?.classList.add("hidden");
+      m?.classList.remove("hidden");
+      sMobile?.classList.add("hidden");
+      mMobile?.classList.remove("hidden");
     }
   }
 
+  function toggleTheme() {
+    const next = el.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    el.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+    updateIcons();
+  }
+
+  function setupThemeToggle() {
+    const btn = document.getElementById("theme-toggle");
+    const btnMobile = document.getElementById("theme-toggle-mobile");
+
+    if (btn && !btn.hasListener) {
+      btn.addEventListener("click", toggleTheme);
+      btn.hasListener = true;
+    }
+
+    if (btnMobile && !btnMobile.hasListener) {
+      btnMobile.addEventListener("click", toggleTheme);
+      btnMobile.hasListener = true;
+    }
+
+    updateIcons();
+  }
+
+  // Initialize theme on page load
+  function initialize() {
+    restoreTheme();
+    setupThemeToggle();
+  }
+
   // Setup on initial load
-  setupThemeToggle();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initialize);
+  } else {
+    initialize();
+  }
 
   // Re-setup after each page navigation
-  document.addEventListener("astro:page-load", setupThemeToggle);
-
-  // Mantener el tema durante las transiciones
-  document.addEventListener("astro:after-swap", () => {
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    document.documentElement.setAttribute("data-theme", savedTheme);
-  });
+  document.addEventListener("astro:page-load", initialize);
 </script>

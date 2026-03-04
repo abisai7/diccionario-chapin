@@ -1,4 +1,5 @@
 ---
+import { Clock, ExternalLink, HeartHandshake } from "@lucide/astro";
 import { useTranslations } from "../../utils/i18n";
 
 interface Props {
@@ -12,21 +13,7 @@ const t = useTranslations(lang);
 <section class="mx-auto max-w-[1100px] px-6 pb-12">
   <div class="border-theme bg-card shadow-theme-md mt-8 rounded-lg border p-6">
     <h2 class="m-0 mb-3 flex items-center gap-2 text-xl font-semibold">
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="text-primary-light"
-      >
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-        <circle cx="9" cy="7" r="4"></circle>
-        <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
-      </svg>
+      <HeartHandshake class="text-primary-light" size={20} />
       {t("home.contribute.title")}
     </h2>
     <p class="text-secondary mb-4 text-sm leading-relaxed">
@@ -63,60 +50,21 @@ const t = useTranslations(lang);
           data-umami-event="Contribute GitHub Click"
           data-umami-event-type="technical"
         >
-          {t("home.contribute.tech.button")}
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>
+          <span class="mt-1">{t("home.contribute.tech.button")}</span>
+          <ExternalLink size={16} />
         </a>
       </div>
       <div class="border-theme bg-accent rounded-md border p-4">
         <h3 class="m-0 mb-2 flex items-center gap-2 text-base font-semibold">
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="text-primary-light"
-          >
-            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-            ></path>
-            <path d="M12 6v6l4 2"></path>
-          </svg>
+          <Clock class="text-primary-light" size={20} />
           {t("home.contribute.all.title")}
         </h3>
         <p class="text-muted mb-3 text-sm leading-relaxed">
           {t("home.contribute.all.description")}
         </p>
         <span class="text-muted inline-flex items-center gap-1.5 text-sm font-medium">
-          {t("home.contribute.all.status")}
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
+          <span class="mt-0.5">{t("home.contribute.all.status")}</span>
+          <Clock size={14} />
         </span>
       </div>
     </div>

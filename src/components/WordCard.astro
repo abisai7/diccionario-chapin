@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { getCategoryColor } from "../utils/categoryColors";
 import { useTranslations } from "../utils/i18n";
+import { ArrowRight } from "@lucide/astro";
 
 interface Props {
   entry: CollectionEntry<"words-es" | "words-en">;
@@ -37,19 +38,9 @@ const t = useTranslations(lang);
   <p class="text-secondary m-0 line-clamp-2 text-sm leading-relaxed">
     {entry.data.meaning}
   </p>
-  <span class="text-primary mt-2 inline-flex items-center text-xs font-medium">
+  <span class="text-primary mt-2 inline-flex items-center gap-1 text-xs font-medium">
     {t("word.learn_more")}
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      class="ml-1"
-    >
-      <path d="M5 12h14M12 5l7 7-7 7"></path>
-    </svg>
+    <ArrowRight size={12} />
   </span>
 </a>
 
