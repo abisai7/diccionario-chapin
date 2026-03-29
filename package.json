@@ -39,19 +39,19 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@astrojs/vercel": "^9.0.4",
+    "@astrojs/vercel": "^10.0.3",
     "@fontsource-variable/baloo-2": "^5.2.7",
     "@fontsource/alice": "^5.2.8",
     "@lucide/astro": "0.576.0",
     "@tailwindcss/vite": "^4.2.1",
-    "astro": "^5.18.0",
+    "astro": "^6.1.1",
     "tailwindcss": "^4.2.1"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/sitemap": "^3.7.2",
     "@typescript-eslint/parser": "8.56.1",
     "eslint": "10.0.2",
     "eslint-plugin-astro": "1.6.0",

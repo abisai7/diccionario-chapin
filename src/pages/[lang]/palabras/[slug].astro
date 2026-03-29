@@ -10,7 +10,7 @@ import {
   SwatchBook,
 } from "@lucide/astro";
 import Base from "../../../layouts/Base.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import { useTranslations } from "../../../utils/i18n";
 import { getCategoryColor } from "../../../utils/categoryColors";
 import RelatedWordsSection from "../../../components/RelatedWordsSection.astro";
@@ -23,12 +23,12 @@ export async function getStaticPaths() {
   const enWords = await getCollection("words-en");
 
   const esPaths = esWords.map((entry) => ({
-    params: { lang: "es", slug: entry.slug },
+    params: { lang: "es", slug: entry.id },
     props: { entry },
   }));
 
   const enPaths = enWords.map((entry) => ({
-    params: { lang: "en", slug: entry.slug },
+    params: { lang: "en", slug: entry.id },
     props: { entry },
   }));
 
@@ -36,7 +36,7 @@ export async function getStaticPaths() {
 }
 
 function getRandomWords(allWords: any[], currentSlug: string, count: number = 3) {
-  const filtered = allWords.filter((w) => w.slug !== currentSlug);
+  const filtered = allWords.filter((w) => w.id !== currentSlug);
   const shuffled = filtered.sort(() => Math.random() - 0.5);
   return shuffled.slice(0, count);
 }
@@ -47,30 +47,30 @@ function getRandomWordsByCategory(
   category: string,
   count: number = 3
 ) {
-  const filtered = allWords.filter((w) => w.slug !== currentSlug && w.data.category === category);
+  const filtered = allWords.filter((w) => w.id !== currentSlug && w.data.category === category);
   const shuffled = filtered.sort(() => Math.random() - 0.5);
   return shuffled.slice(0, count);
 }
 
 const { lang } = Astro.params;
 const { entry } = Astro.props;
-const hasContent = entry.body?.replace(/\s+/g, "").length > 0;
-const { Content } = hasContent ? await entry.render() : {};
+const hasContent = entry.body ? entry.body?.replace(/\s+/g, "").length > 0 : false;
+const { Content } = hasContent ? await render(entry) : {};
 const word = entry.data;
 
 // Get related words
 const collection =
   lang === "es" ? await getCollection("words-es") : await getCollection("words-en");
-const relatedWords = getRandomWordsByCategory(collection, entry.slug, word.category, 3);
-const otherWords = getRandomWords(collection, entry.slug, 3);
+const relatedWords = getRandomWordsByCategory(collection, entry.id, word.category, 3);
+const otherWords = getRandomWords(collection, entry.id, 3);
 
 const t = useTranslations(lang);
 
 // Hreflang URLs for multilingual SEO
 const alternateUrls = {
-  es: `/es/palabras/${entry.slug}/`,
-  en: `/en/palabras/${entry.slug}/`,
-  xDefault: `/es/palabras/${entry.slug}/`,
+  es: `/es/palabras/${entry.id}/`,
+  en: `/en/palabras/${entry.id}/`,
+  xDefault: `/es/palabras/${entry.id}/`,
 };
 
 // SEO optimization
@@ -94,10 +94,10 @@ const siteUrl = Astro.site || "https://chapinismos.org";
     siteUrl={siteUrl}
     items={[
       { name: t("nav.index"), url: `/${lang}/indice/` },
-      { name: word.word, url: `/${lang}/palabras/${entry.slug}/` },
+      { name: word.word, url: `/${lang}/palabras/${entry.id}/` },
     ]}
   />
-  <WordSchema slot="schema" lang={lang} siteUrl={siteUrl} word={word} slug={entry.slug} />
+  <WordSchema slot="schema" lang={lang} siteUrl={siteUrl} word={word} slug={entry.id} />
   <FAQSchema slot="schema" lang={lang} word={word} />
 
   <section class="mx-auto max-w-[1100px] px-6">
@@ -143,7 +143,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
           data-umami-event-word={word.word}
           data-umami-event-lang={lang}
           data-word-data={JSON.stringify(word)}
-          data-slug={entry.slug}
+          data-slug={entry.id}
           data-lang={lang}
         >
           <Share2 size="18" color="currentColor" />

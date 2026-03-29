@@ -1,6 +1,6 @@
 ---
 interface WordItem {
-  slug: string;
+  id: string;
   data: {
     word: string;
     meaning: string;
@@ -37,7 +37,7 @@ const collectionSchema = {
         "@type": "DefinedTerm",
         name: word.data.word,
         description: word.data.meaning,
-        url: new URL(`/${lang}/palabras/${word.slug}/`, siteUrl).toString(),
+        url: new URL(`/${lang}/palabras/${word.id}/`, siteUrl).toString(),
       },
     })),
   },
