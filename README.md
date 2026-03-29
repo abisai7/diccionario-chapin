@@ -3,7 +3,7 @@
 > Un glosario interactivo de chapinismos guatemaltecos con definiciones y ejemplos. Desarrollado con Astro y Tailwind CSS.
 
 ![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
-![Astro](https://img.shields.io/badge/Astro-5.14.8-FF5D01.svg)
+![Astro](https://img.shields.io/badge/Astro-6.1.1-FF5D01.svg)
 ![Tailwind](https://img.shields.io/badge/Tailwind-4.1.15-38B2AC.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
