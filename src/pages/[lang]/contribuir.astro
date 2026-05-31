@@ -322,7 +322,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
         status.className = "text-sm";
 
         try {
-          const response = await fetch("/api/contribute/", {
+          const response = await fetch("/api/contribute", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
