@@ -1,4 +1,4 @@
-const { Resend } = require("resend");
+import { Resend } from "resend";
 
 const MAX_WORD_LENGTH = 80;
 const MAX_TEXT_LENGTH = 1200;
@@ -65,7 +65,7 @@ function getBody(req) {
   });
 }
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method === "OPTIONS") {
     res.statusCode = 204;
     res.setHeader("Allow", "POST, OPTIONS");
@@ -166,4 +166,4 @@ module.exports = async (req, res) => {
   } catch {
     sendJson(res, 500, { error: "Unable to send contribution" });
   }
-};
+}

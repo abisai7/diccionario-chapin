@@ -2,7 +2,7 @@
 // Deployed on Vercel at /api/umami-proxy — client calls same-origin, server forwards.
 const TARGET = "https://api-gateway.umami.dev/api/send";
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   // Allow basic CORS for safety (client is same-origin, but keep it tolerant)
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -42,4 +42,4 @@ module.exports = async (req, res) => {
     res.setHeader("Content-Type", "application/json");
     res.end(JSON.stringify({ error: String(err) }));
   }
-};
+}
