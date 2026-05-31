@@ -1,0 +1,358 @@
+---
+export const prerender = true;
+
+import Base from "../../layouts/Base.astro";
+import BreadcrumbSchema from "../../components/schemas/BreadcrumbSchema.astro";
+import { useTranslations } from "../../utils/i18n";
+import { Send } from "@lucide/astro";
+import { Info } from "@lucide/astro";
+
+export async function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang);
+
+const alternateUrls = {
+  es: "/es/contribuir/",
+  en: "/en/contribuir/",
+  xDefault: "/es/contribuir/",
+};
+
+const siteUrl = Astro.site || "https://chapinismos.org";
+---
+
+<Base
+  title={`${t("contribute.page.title")} | ${t("schema.site.name")}`}
+  description={t("contribute.page.description")}
+  keywords={t("contribute.page.keywords")}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <BreadcrumbSchema
+    slot="schema"
+    lang={lang}
+    siteUrl={siteUrl}
+    items={[{ name: t("contribute.page.title"), url: `/${lang}/contribuir/` }]}
+  />
+
+  <section class="mx-auto max-w-230 px-6 pb-14">
+    <div class="border-theme bg-card shadow-theme-lg mt-6 rounded-xl border p-6 md:p-8">
+      <h1 class="gradient-text m-0 text-[clamp(1.8rem,2.4vw,2.4rem)]">
+        {t("contribute.page.title")}
+      </h1>
+      <p class="text-secondary mt-3 mb-7 text-base leading-relaxed">
+        {t("contribute.page.description")}
+      </p>
+
+      <form id="contributeForm" class="grid gap-5" novalidate>
+        <div class="grid gap-2">
+          <label class="text-theme text-sm font-semibold" for="word">
+            {t("contribute.form.word.label")}
+          </label>
+          <input
+            id="word"
+            name="word"
+            type="text"
+            required
+            maxlength="80"
+            autocomplete="off"
+            class="border-theme bg-accent text-theme rounded-lg border px-3 py-2.5"
+            placeholder={t("contribute.form.word.placeholder")}
+          />
+          <p id="wordError" class="m-0 hidden text-sm text-red-400"></p>
+        </div>
+
+        <div class="grid gap-2">
+          <label class="text-theme text-sm font-semibold" for="meaning">
+            {t("contribute.form.meaning.label")}
+          </label>
+          <textarea
+            id="meaning"
+            name="meaning"
+            rows="4"
+            maxlength="1200"
+            class="border-theme bg-accent text-theme rounded-lg border px-3 py-2.5"
+            placeholder={t("contribute.form.meaning.placeholder")}
+          ></textarea>
+          <p id="meaningError" class="m-0 hidden text-sm text-red-400"></p>
+          <p class="text-secondary m-0 inline-flex items-start gap-2 text-sm">
+            <Info size={14} class="mt-0.5 shrink-0" aria-hidden="true" />
+            <span>{t("contribute.form.meaning.hint")}</span>
+          </p>
+        </div>
+
+        <div class="grid gap-2">
+          <label class="text-theme text-sm font-semibold" for="examples">
+            {t("contribute.form.examples.label")}
+          </label>
+          <textarea
+            id="examples"
+            name="examples"
+            rows="4"
+            maxlength="1200"
+            class="border-theme bg-accent text-theme rounded-lg border px-3 py-2.5"
+            placeholder={t("contribute.form.examples.placeholder")}
+          ></textarea>
+          <p id="examplesError" class="m-0 hidden text-sm text-red-400"></p>
+          <p class="text-secondary m-0 inline-flex items-start gap-2 text-sm">
+            <Info size={14} class="mt-0.5 shrink-0" aria-hidden="true" />
+            <span>{t("contribute.form.examples.hint")}</span>
+          </p>
+        </div>
+
+        <div class="grid gap-2 md:grid-cols-2">
+          <div class="grid gap-2">
+            <label class="text-theme text-sm font-semibold" for="name">
+              {t("contribute.form.name.label")}
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              maxlength="120"
+              autocomplete="name"
+              class="border-theme bg-accent text-theme rounded-lg border px-3 py-2.5"
+              placeholder={t("contribute.form.name.placeholder")}
+            />
+            <p id="nameError" class="m-0 hidden text-sm text-red-400"></p>
+          </div>
+
+          <div class="grid gap-2">
+            <label class="text-theme text-sm font-semibold" for="email">
+              {t("contribute.form.email.label")}
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              maxlength="254"
+              autocomplete="email"
+              class="border-theme bg-accent text-theme rounded-lg border px-3 py-2.5"
+              placeholder={t("contribute.form.email.placeholder")}
+            />
+            <p id="emailError" class="m-0 hidden text-sm text-red-400"></p>
+          </div>
+        </div>
+        <p class="text-secondary m-0 inline-flex items-start gap-2 text-sm">
+          <Info size={14} class="mt-0.5 shrink-0" aria-hidden="true" />
+          <span>{t("contribute.form.contact.hint")}</span>
+        </p>
+
+        <input
+          type="text"
+          name="company"
+          tabindex="-1"
+          autocomplete="off"
+          class="hidden"
+          aria-hidden="true"
+        />
+
+        <div class="flex items-center gap-3">
+          <button
+            id="contributeSubmit"
+            type="submit"
+          class="badge-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white! transition-all duration-200 hover:-translate-y-0.5 active:scale-95 hover:text-white! focus-visible:text-white!"
+          >
+            <Send size={14} />
+            <span id="contributeSubmitLabel">{t("contribute.form.submit")}</span>
+          </button>
+          <p id="contributeStatus" class="text-sm" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script
+    is:inline
+    define:vars={{
+      sendingText: t("contribute.form.sending"),
+      successText: t("contribute.form.success"),
+      errorText: t("contribute.form.error"),
+      wordRequiredText: t("contribute.form.validation.wordRequired"),
+      emailInvalidText: t("contribute.form.validation.emailInvalid"),
+      tooLongText: t("contribute.form.validation.tooLong"),
+      fixFieldsText: t("contribute.form.validation.fixFields"),
+    }}
+  >
+    const initContributeForm = () => {
+      const form = document.getElementById("contributeForm");
+      const status = document.getElementById("contributeStatus");
+      const submit = document.getElementById("contributeSubmit");
+      const submitLabel = document.getElementById("contributeSubmitLabel");
+      const wordInput = document.getElementById("word");
+
+      if (!form || !status || !submit || !submitLabel || form.dataset.bound === "1") {
+        return;
+      }
+
+      const fields = Array.from(
+        form.querySelectorAll("input:not([type='hidden']), textarea"),
+      ).filter((field) => field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement);
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      const setFieldError = (field, message) => {
+        const errorElement = document.getElementById(`${field.id}Error`);
+        if (!(errorElement instanceof HTMLParagraphElement)) {
+          return;
+        }
+
+        field.setAttribute("aria-invalid", "true");
+        field.classList.add("border-red-500", "focus:border-red-500");
+        field.classList.remove("border-theme");
+
+        errorElement.textContent = message;
+        errorElement.classList.remove("hidden");
+      };
+
+      const clearFieldError = (field) => {
+        const errorElement = document.getElementById(`${field.id}Error`);
+        if (!(errorElement instanceof HTMLParagraphElement)) {
+          return;
+        }
+
+        field.removeAttribute("aria-invalid");
+        field.classList.remove("border-red-500", "focus:border-red-500");
+        field.classList.add("border-theme");
+
+        errorElement.textContent = "";
+        errorElement.classList.add("hidden");
+      };
+
+      const getFieldErrorMessage = (field) => {
+        const value = field.value;
+
+        if (field.id === "word" && !value.trim()) {
+          return wordRequiredText;
+        }
+
+        if (field.validity.tooLong) {
+          return tooLongText;
+        }
+
+        if (field.id === "email") {
+          const emailValue = value.trim();
+          if (emailValue && !emailPattern.test(emailValue)) {
+            return emailInvalidText;
+          }
+        }
+
+        if (field.validity.typeMismatch && field instanceof HTMLInputElement && field.type === "email") {
+          return emailInvalidText;
+        }
+
+        return "";
+      };
+
+      const validateField = (field) => {
+        const message = getFieldErrorMessage(field);
+        if (message) {
+          setFieldError(field, message);
+          return false;
+        }
+
+        clearFieldError(field);
+        return true;
+      };
+
+      const validateForm = () => {
+        let firstInvalidField = null;
+
+        for (const field of fields) {
+          const isValid = validateField(field);
+          if (!isValid && !firstInvalidField) {
+            firstInvalidField = field;
+          }
+        }
+
+        return {
+          valid: !firstInvalidField,
+          firstInvalidField,
+        };
+      };
+
+      for (const field of fields) {
+        field.addEventListener("input", () => {
+          validateField(field);
+          if (status.classList.contains("text-red-400")) {
+            status.textContent = "";
+            status.className = "text-sm";
+          }
+        });
+        field.addEventListener("blur", () => {
+          validateField(field);
+        });
+      }
+
+      if (wordInput instanceof HTMLInputElement) {
+        const params = new URLSearchParams(window.location.search);
+        const prefilledWord = params.get("word")?.trim();
+        if (prefilledWord && !wordInput.value.trim()) {
+          wordInput.value = prefilledWord;
+        }
+      }
+
+      form.dataset.bound = "1";
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const validation = validateForm();
+        if (!validation.valid) {
+          status.textContent = fixFieldsText;
+          status.className = "text-sm text-red-400";
+          validation.firstInvalidField?.focus();
+          return;
+        }
+
+        const formData = new FormData(form);
+        const payload = {
+          word: String(formData.get("word") || "").trim(),
+          meaning: String(formData.get("meaning") || "").trim(),
+          examples: String(formData.get("examples") || "").trim(),
+          name: String(formData.get("name") || "").trim(),
+          email: String(formData.get("email") || "").trim(),
+          company: String(formData.get("company") || "").trim(),
+        };
+
+        submit.disabled = true;
+        submitLabel.textContent = sendingText;
+        status.textContent = "";
+        status.className = "text-sm";
+
+        try {
+          const response = await fetch("/api/contribute/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) {
+            throw new Error("Request failed");
+          }
+
+          form.reset();
+          for (const field of fields) {
+            clearFieldError(field);
+          }
+          status.textContent = successText;
+          status.className = "text-sm text-emerald-400";
+        } catch {
+          status.textContent = errorText;
+          status.className = "text-sm text-red-400";
+        } finally {
+          submit.disabled = false;
+          submitLabel.textContent = form.dataset.submitText || submitLabel.textContent;
+        }
+      });
+
+      form.dataset.submitText = submitLabel.textContent || "";
+    };
+
+    initContributeForm();
+    document.addEventListener("astro:page-load", initContributeForm);
+  </script>
+</Base>

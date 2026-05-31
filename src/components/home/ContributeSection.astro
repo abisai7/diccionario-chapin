@@ -1,5 +1,5 @@
 ---
-import { Clock, ExternalLink, HeartHandshake } from "@lucide/astro";
+import { ExternalLink, HeartHandshake, Link, MessageCirclePlus } from "@lucide/astro";
 import { useTranslations } from "../../utils/i18n";
 
 interface Props {
@@ -8,9 +8,10 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const prefix = lang === "en" ? "/en" : "/es";
 ---
 
-<section class="mx-auto max-w-[1100px] px-6 pb-12">
+<section class="mx-auto max-w-275 px-6 pb-12">
   <div class="border-theme bg-card shadow-theme-md mt-8 rounded-lg border p-6">
     <h2 class="m-0 mb-3 flex items-center gap-2 text-xl font-semibold">
       <HeartHandshake class="text-primary-light" size={20} />
@@ -20,6 +21,24 @@ const t = useTranslations(lang);
       {t("home.contribute.subtitle")}
     </p>
     <div class="grid gap-4 md:grid-cols-2">
+      <div class="border-theme bg-accent rounded-md border p-4">
+        <h3 class="m-0 mb-2 flex items-center gap-2 text-base font-semibold">
+          <MessageCirclePlus class="text-primary-light" size={20} />
+          {t("home.contribute.all.title")}
+        </h3>
+        <p class="text-muted mb-3 text-sm leading-relaxed">
+          {t("home.contribute.all.description")}
+        </p>
+        <a
+          href={`${prefix}/contribuir/`}
+          class="badge-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white! transition-all duration-200 hover:-translate-y-0.5 active:scale-95 hover:text-white! focus-visible:text-white!"
+          data-umami-event="Contribute Non Technical Click"
+          data-umami-event-type="non-technical"
+        >
+          <Link size={14} />
+          <span class="mt-0.5">{t("home.contribute.all.button")}</span>
+        </a>
+      </div>
       <div class="border-theme bg-accent rounded-md border p-4">
         <h3 class="m-0 mb-2 flex items-center gap-2 text-base font-semibold">
           <svg
@@ -54,19 +73,7 @@ const t = useTranslations(lang);
           <ExternalLink size={16} />
         </a>
       </div>
-      <div class="border-theme bg-accent rounded-md border p-4">
-        <h3 class="m-0 mb-2 flex items-center gap-2 text-base font-semibold">
-          <Clock class="text-primary-light" size={20} />
-          {t("home.contribute.all.title")}
-        </h3>
-        <p class="text-muted mb-3 text-sm leading-relaxed">
-          {t("home.contribute.all.description")}
-        </p>
-        <span class="text-muted inline-flex items-center gap-1.5 text-sm font-medium">
-          <span class="mt-0.5">{t("home.contribute.all.status")}</span>
-          <Clock size={14} />
-        </span>
-      </div>
+      
     </div>
   </div>
 </section>

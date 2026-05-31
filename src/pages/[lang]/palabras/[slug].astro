@@ -1,6 +1,8 @@
 ---
 export const prerender = true;
 import {
+  Info,
+  TriangleAlert,
   BookOpenCheck,
   CircleEqual,
   CirclePile,
@@ -78,6 +80,7 @@ const description = `${word.word}: ${word.meaning} | ${word.category} | ${word.e
 const keywords = `${word.word}, ${t("word.slang.label")}, ${word.category || t("word.slang.label")}, ${word.synonyms?.join(", ") || ""}`;
 
 const siteUrl = Astro.site || "https://chapinismos.org";
+const correctionUrl = `/${lang}/contribuir/?word=${encodeURIComponent(word.word)}`;
 ---
 
 <Base
@@ -100,7 +103,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
   <WordSchema slot="schema" lang={lang} siteUrl={siteUrl} word={word} slug={entry.id} />
   <FAQSchema slot="schema" lang={lang} word={word} />
 
-  <section class="mx-auto max-w-[1100px] px-6">
+  <section class="mx-auto max-w-275 px-6">
     <button
       onclick="history.back()"
       class="back-btn mb-4 cursor-pointer px-4 py-2.5 font-semibold transition-all duration-200 active:scale-95"
@@ -135,20 +138,50 @@ const siteUrl = Astro.site || "https://chapinismos.org";
             }
           </div>
         </div>
-        <button
-          id="share-image-btn"
-          class="badge-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
-          aria-label={t("word.share")}
-          data-umami-event="Word Share Image Button Click"
-          data-umami-event-word={word.word}
-          data-umami-event-lang={lang}
-          data-word-data={JSON.stringify(word)}
-          data-slug={entry.id}
-          data-lang={lang}
-        >
-          <Share2 size="18" color="currentColor" />
-          <span class="hidden sm:inline">{t("word.share")}</span>
-        </button>
+        <div class="flex shrink-0 flex-col items-end gap-2">
+          <button
+            id="share-image-btn"
+            class="badge-primary-gradient hover:shadow-theme-lg inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
+            aria-label={t("word.share")}
+            data-umami-event="Word Share Image Button Click"
+            data-umami-event-word={word.word}
+            data-umami-event-lang={lang}
+            data-word-data={JSON.stringify(word)}
+            data-slug={entry.id}
+            data-lang={lang}
+          >
+            <Share2 size="18" color="currentColor" />
+            <span class="hidden sm:inline">{t("word.share")}</span>
+          </button>
+          <div class="flex items-center gap-1.5">
+            <a
+              href={correctionUrl}
+              class="border-theme bg-card text-primary-light! hover:text-primary-dark! hover:bg-(--glow-primary) inline-flex w-fit items-center gap-1.5 rounded-md border border-l-3 border-l-amber-400 px-2 py-1 text-xs font-semibold transition-all"
+              data-umami-event="Word Correction CTA Click"
+              data-umami-event-word={word.word}
+              data-umami-event-lang={lang}
+              aria-label={t("word.correction.prompt")}
+            >
+              <TriangleAlert size={14} class="text-amber-400" />
+              {t("word.correction.button")}
+            </a>
+
+            <details class="relative">
+              <summary
+                class="border-theme bg-card text-primary-light! hover:text-primary-dark! hover:bg-(--glow-primary) inline-flex cursor-pointer items-center justify-center rounded-md border p-1.5 transition-all [&::-webkit-details-marker]:hidden"
+                aria-label={t("word.correction.prompt")}
+              >
+                <Info size={14} />
+              </summary>
+              <div
+                class="border-theme bg-card text-secondary shadow-theme-md absolute top-[calc(100%+0.4rem)] right-0 z-20 w-[min(18rem,80vw)] rounded-lg border p-2 text-xs leading-relaxed"
+                role="tooltip"
+              >
+                {t("word.correction.info")}
+              </div>
+            </details>
+          </div>
+        </div>
       </div>
 
       <div class="border-theme mt-6 border-t pt-4">

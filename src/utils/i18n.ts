@@ -18,10 +18,46 @@ export const translations = {
     "home.contribute.tech.description":
       "Desarrolladores pueden agregar nuevas palabras, mejorar el código, o reportar errores en GitHub.",
     "home.contribute.tech.button": "Ver en GitHub",
-    "home.contribute.all.title": "Otras Formas de Contribuir",
+    "home.contribute.all.title": "Envía una contribución o idea",
     "home.contribute.all.description":
-      "Pronto habrá más formas de contribuir sin necesidad de conocimientos técnicos.",
-    "home.contribute.all.status": "Próximamente",
+      "Puedes contribuir sin conocimientos técnicos enviándonos nuevas palabras, correcciones, significados o ejemplos de uso a través de un simple formulario. Tu aporte nos ayuda a mantener vivo y en crecimiento el diccionario.",
+    "home.contribute.all.status": "Ya disponible",
+    "home.contribute.all.button": "¡Contribuir ahora!",
+
+    "contribute.page.title": "Contribuir o sugerir una palabra",
+    "contribute.page.description":
+      "Sugiere nuevas palabras chapinas o corrige definiciones existentes. Tu aporte ayuda a mantener vivo el diccionario.",
+    "contribute.page.keywords":
+      "contribuir diccionario chapin, sugerir palabra guatemala, corregir chapinismo",
+    "contribute.form.word.label": "Palabra que deseas que se agregue",
+    "contribute.form.word.placeholder": "Ejemplo: chapin",
+    "contribute.form.meaning.label":
+      "Posible significado o corrección si es una palabra que ya está en el diccionario",
+    "contribute.form.meaning.placeholder":
+      "Si conoces el significado o quieres corregir uno existente, escríbelo aquí.",
+    "contribute.form.meaning.hint":
+      "Si no conoces el significado, puedes dejar este campo en blanco.",
+    "contribute.form.examples.label": "Ejemplos de uso",
+    "contribute.form.examples.placeholder":
+      "Comparte uno o varios ejemplos de cómo se usa esta palabra.",
+    "contribute.form.examples.hint": "También puedes dejar este campo en blanco.",
+    "contribute.form.name.label": "Nombre (opcional)",
+    "contribute.form.name.placeholder": "Tu nombre",
+    "contribute.form.email.label": "Correo electrónico (opcional)",
+    "contribute.form.email.placeholder": "tu@correo.com",
+    "contribute.form.contact.hint":
+      "Si deseas, deja tu nombre y correo para poder avisarte cuando hagamos el cambio.",
+    "contribute.form.validation.wordRequired": "La palabra es obligatoria.",
+    "contribute.form.validation.emailInvalid": "Ingresa un correo valido.",
+    "contribute.form.validation.tooLong": "El contenido excede el maximo permitido.",
+    "contribute.form.validation.fixFields":
+      "Revisa los campos marcados en rojo antes de enviar.",
+    "contribute.form.submit": "Enviar contribución",
+    "contribute.form.sending": "Enviando...",
+    "contribute.form.success":
+      "Gracias por contribuir. Revisaremos tu aporte pronto.",
+    "contribute.form.error":
+      "No se pudo enviar tu contribución. Inténtalo de nuevo en unos minutos.",
 
     "home.about.title": "¿Qué son los Chapinismos?",
     "home.about.paragraph1":
@@ -44,6 +80,8 @@ export const translations = {
     "search.noResults": "No se encontraron resultados",
     "search.tryAnother": "Intenta con otra palabra",
     "search.results": "resultados",
+    "search.missing.prompt": "¿No encontraste lo que buscabas?",
+    "search.missing.button": "Solicitar agregar una palabra",
     "search.category.sustantivo": "Sustantivo",
     "search.category.verbo": "Verbo",
     "search.category.adjetivo": "Adjetivo",
@@ -75,6 +113,10 @@ export const translations = {
     "word.related": "Palabras relacionadas",
     "word.explore": "Consulta otras palabras",
     "word.learn_more": "Ver más",
+    "word.correction.prompt": "¿Encontraste algo que corregir en esta palabra?",
+    "word.correction.button": "Enviar corrección",
+    "word.correction.info":
+      "Si encontraste una corrección o algún error en esta palabra o frase, puedes enviarnos la sugerencia con este botón.",
     "search.aria_label": "Buscar palabra",
     "search.button_aria_label": "Buscar",
     "search.button_text": "Buscar",
@@ -123,10 +165,42 @@ export const translations = {
     "home.contribute.tech.description":
       "Developers can add new words, improve the code, or report bugs on GitHub.",
     "home.contribute.tech.button": "View on GitHub",
-    "home.contribute.all.title": "Other Ways to Contribute",
+    "home.contribute.all.title": "Send a Contribution or Idea",
     "home.contribute.all.description":
-      "Soon there will be more ways to contribute without technical knowledge.",
-    "home.contribute.all.status": "Coming Soon",
+      "You can contribute without technical knowledge by sending us new words, corrections, meanings, or usage examples through a simple form. Your contribution helps us keep the dictionary alive and growing.",
+    "home.contribute.all.status": "Available now",
+    "home.contribute.all.button": "Contribute now!",
+
+    "contribute.page.title": "Contribute or suggest a word",
+    "contribute.page.description":
+      "Suggest new Guatemalan slang words or corrections to existing meanings. Your contribution helps keep the dictionary alive.",
+    "contribute.page.keywords":
+      "contribute guatemalan dictionary, suggest slang word, chapinismo correction",
+    "contribute.form.word.label": "Word you want to add",
+    "contribute.form.word.placeholder": "Example: chapin",
+    "contribute.form.meaning.label":
+      "Possible meaning or correction if it is already in the dictionary",
+    "contribute.form.meaning.placeholder":
+      "If you know the meaning or want to correct one, write it here.",
+    "contribute.form.meaning.hint": "If you do not know the meaning, leave this field blank.",
+    "contribute.form.examples.label": "Usage examples",
+    "contribute.form.examples.placeholder":
+      "Share one or more examples of how this word is used.",
+    "contribute.form.examples.hint": "You can also leave this field blank.",
+    "contribute.form.name.label": "Name (optional)",
+    "contribute.form.name.placeholder": "Your name",
+    "contribute.form.email.label": "Email (optional)",
+    "contribute.form.email.placeholder": "you@email.com",
+    "contribute.form.contact.hint":
+      "If you want, leave your name and email so we can notify you when the change is made.",
+    "contribute.form.validation.wordRequired": "Word is required.",
+    "contribute.form.validation.emailInvalid": "Enter a valid email address.",
+    "contribute.form.validation.tooLong": "The content exceeds the maximum allowed length.",
+    "contribute.form.validation.fixFields": "Review the fields marked in red before sending.",
+    "contribute.form.submit": "Send contribution",
+    "contribute.form.sending": "Sending...",
+    "contribute.form.success": "Thanks for contributing. We will review your suggestion soon.",
+    "contribute.form.error": "Your contribution could not be sent. Please try again shortly.",
 
     "home.about.title": "What are Chapinismos?",
     "home.about.paragraph1":
@@ -149,6 +223,8 @@ export const translations = {
     "search.noResults": "No results found",
     "search.tryAnother": "Try another word",
     "search.results": "results",
+    "search.missing.prompt": "Didn't find what you were looking for?",
+    "search.missing.button": "Request to add a word",
     "search.category.noun": "Noun",
     "search.category.verb": "Verb",
     "search.category.adjective": "Adjective",
@@ -181,6 +257,10 @@ export const translations = {
     "word.related": "Related words",
     "word.explore": "Explore other words",
     "word.learn_more": "Learn more",
+    "word.correction.prompt": "Found something to correct in this word?",
+    "word.correction.button": "Send a correction",
+    "word.correction.info":
+      "If you found a correction or any error in this word or phrase, you can send us your suggestion with this button.",
     "search.aria_label": "Search word",
     "search.button_aria_label": "Search",
     "search.button_text": "Search",

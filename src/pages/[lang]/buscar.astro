@@ -8,6 +8,7 @@ import { useTranslations } from "../../utils/i18n";
 import { getCategoryColor } from "../../utils/categoryColors";
 import BreadcrumbSchema from "../../components/schemas/BreadcrumbSchema.astro";
 import SearchPageSchema from "../../components/schemas/SearchPageSchema.astro";
+import { MessageCirclePlus } from "@lucide/astro";
 
 export async function getStaticPaths() {
   return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
@@ -15,6 +16,7 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params;
 const t = useTranslations(lang);
+const contributePath = `/${lang}/contribuir/`;
 
 const collectionName = lang === "es" ? "words-es" : "words-en";
 const allWords = await getCollection(collectionName);
@@ -75,7 +77,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
     description={t("search.description")}
     url={`/${lang}/buscar/`}
   />
-  <div class="mx-auto max-w-[1100px] px-6">
+  <div class="mx-auto max-w-275 px-6">
     <div class="card-with-gradient shadow-theme-lg my-6 grid gap-3.5 backdrop-blur-sm">
       <h1 class="gradient-text mx-4 mt-4 text-[clamp(1.8rem,2.4vw,2.6rem)]">
         {t("search.title")}
@@ -89,6 +91,19 @@ const siteUrl = Astro.site || "https://chapinismos.org";
     </div>
 
     <div id="searchResults" class="mt-8 pb-12"></div>
+
+    <section class="border-theme bg-card mt-10 mb-12 rounded-lg border p-5 text-center shadow-theme-sm">
+      <p class="text-theme m-5 text-base font-semibold">{t("search.missing.prompt")}</p>
+      <a
+        href={contributePath}
+          class="badge-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white! transition-all duration-200 hover:-translate-y-0.5 active:scale-95 hover:text-white! focus-visible:text-white!"
+        data-umami-event="Search Missing Word CTA Click"
+        data-umami-event-lang={lang}
+      >
+        <MessageCirclePlus size={14} />
+        {t("search.missing.button")}
+      </a>
+    </section>
   </div>
 
   <script
