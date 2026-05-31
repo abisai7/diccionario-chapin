@@ -24,22 +24,22 @@ export const translations = {
     "home.contribute.all.status": "Ya disponible",
     "home.contribute.all.button": "¡Contribuir ahora!",
 
-    "contribute.page.title": "Contribuir o sugerir una palabra",
+    "contribute.page.title": "Contribuir o sugerir una palabra o frase",
     "contribute.page.description":
       "Sugiere nuevas palabras chapinas o corrige definiciones existentes. Tu aporte ayuda a mantener vivo el diccionario.",
     "contribute.page.keywords":
-      "contribuir diccionario chapin, sugerir palabra guatemala, corregir chapinismo",
-    "contribute.form.word.label": "Palabra que deseas que se agregue",
+      "contribuir diccionario chapin, sugerir palabra o frase guatemala, corregir chapinismo",
+    "contribute.form.word.label": "Palabra o frase que deseas que se agregue",
     "contribute.form.word.placeholder": "Ejemplo: chapin",
     "contribute.form.meaning.label":
-      "Posible significado o corrección si es una palabra que ya está en el diccionario",
+      "Posible significado o corrección si es una palabra o frase que ya está en el diccionario",
     "contribute.form.meaning.placeholder":
       "Si conoces el significado o quieres corregir uno existente, escríbelo aquí.",
     "contribute.form.meaning.hint":
       "Si no conoces el significado, puedes dejar este campo en blanco.",
     "contribute.form.examples.label": "Ejemplos de uso",
     "contribute.form.examples.placeholder":
-      "Comparte uno o varios ejemplos de cómo se usa esta palabra.",
+      "Comparte uno o varios ejemplos de cómo se usa esta palabra o frase.",
     "contribute.form.examples.hint": "También puedes dejar este campo en blanco.",
     "contribute.form.name.label": "Nombre (opcional)",
     "contribute.form.name.placeholder": "Tu nombre",
@@ -47,7 +47,7 @@ export const translations = {
     "contribute.form.email.placeholder": "tu@correo.com",
     "contribute.form.contact.hint":
       "Si deseas, deja tu nombre y correo para poder avisarte cuando hagamos el cambio.",
-    "contribute.form.validation.wordRequired": "La palabra es obligatoria.",
+    "contribute.form.validation.wordRequired": "La palabra o frase es obligatoria.",
     "contribute.form.validation.emailInvalid": "Ingresa un correo valido.",
     "contribute.form.validation.tooLong": "El contenido excede el maximo permitido.",
     "contribute.form.validation.fixFields":
@@ -81,7 +81,7 @@ export const translations = {
     "search.tryAnother": "Intenta con otra palabra",
     "search.results": "resultados",
     "search.missing.prompt": "¿No encontraste lo que buscabas?",
-    "search.missing.button": "Solicitar agregar una palabra",
+    "search.missing.button": "Solicitar agregar una palabra o frase",
     "search.category.sustantivo": "Sustantivo",
     "search.category.verbo": "Verbo",
     "search.category.adjetivo": "Adjetivo",
@@ -125,6 +125,7 @@ export const translations = {
     "nav.home": "Inicio",
     "nav.search": "Buscar",
     "nav.index": "Índice",
+    "nav.contribute": "Contribuir",
 
     // Schema translations
     "schema.site.name": "Diccionario Chapín",
@@ -171,12 +172,12 @@ export const translations = {
     "home.contribute.all.status": "Available now",
     "home.contribute.all.button": "Contribute now!",
 
-    "contribute.page.title": "Contribute or suggest a word",
+    "contribute.page.title": "Contribute or suggest a word or phrase",
     "contribute.page.description":
-      "Suggest new Guatemalan slang words or corrections to existing meanings. Your contribution helps keep the dictionary alive.",
+      "Suggest new Guatemalan slang words or phrases, or corrections to existing meanings. Your contribution helps keep the dictionary alive.",
     "contribute.page.keywords":
-      "contribute guatemalan dictionary, suggest slang word, chapinismo correction",
-    "contribute.form.word.label": "Word you want to add",
+      "contribute guatemalan dictionary, suggest slang word or phrase, chapinismo correction",
+    "contribute.form.word.label": "Word or phrase you want to add",
     "contribute.form.word.placeholder": "Example: chapin",
     "contribute.form.meaning.label":
       "Possible meaning or correction if it is already in the dictionary",
@@ -185,7 +186,7 @@ export const translations = {
     "contribute.form.meaning.hint": "If you do not know the meaning, leave this field blank.",
     "contribute.form.examples.label": "Usage examples",
     "contribute.form.examples.placeholder":
-      "Share one or more examples of how this word is used.",
+      "Share one or more examples of how this word or phrase is used.",
     "contribute.form.examples.hint": "You can also leave this field blank.",
     "contribute.form.name.label": "Name (optional)",
     "contribute.form.name.placeholder": "Your name",
@@ -193,7 +194,7 @@ export const translations = {
     "contribute.form.email.placeholder": "you@email.com",
     "contribute.form.contact.hint":
       "If you want, leave your name and email so we can notify you when the change is made.",
-    "contribute.form.validation.wordRequired": "Word is required.",
+    "contribute.form.validation.wordRequired": "Word or phrase is required.",
     "contribute.form.validation.emailInvalid": "Enter a valid email address.",
     "contribute.form.validation.tooLong": "The content exceeds the maximum allowed length.",
     "contribute.form.validation.fixFields": "Review the fields marked in red before sending.",
@@ -224,7 +225,7 @@ export const translations = {
     "search.tryAnother": "Try another word",
     "search.results": "results",
     "search.missing.prompt": "Didn't find what you were looking for?",
-    "search.missing.button": "Request to add a word",
+    "search.missing.button": "Request to add a word or phrase",
     "search.category.noun": "Noun",
     "search.category.verb": "Verb",
     "search.category.adjective": "Adjective",
@@ -269,6 +270,7 @@ export const translations = {
     "nav.home": "Home",
     "nav.search": "Search",
     "nav.index": "Index",
+    "nav.contribute": "Contribute",
 
     // Schema translations
     "schema.site.name": "Diccionario Chapín",
