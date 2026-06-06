@@ -8,6 +8,7 @@ examples:
   - "Despite being seco, he is very strong and resilient."
   - "The seco easily took the ball away during the match."
 region: "Guatemala"
+featured: true
 synonyms:
   - "Thin"
   - "Skinny"

@@ -8,6 +8,7 @@ examples:
   - "A pesar de ser seco, es muy fuerte y resistente."
   - "El seco se llevó la pelota con facilidad durante el partido."
 region: Guatemala
+featured: true
 synonyms:
   - Delgado
   - Flaco
