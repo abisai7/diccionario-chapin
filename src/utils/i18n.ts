@@ -29,8 +29,10 @@ export const translations = {
       "Sugiere nuevas palabras chapinas o corrige definiciones existentes. Tu aporte ayuda a mantener vivo el diccionario.",
     "contribute.page.keywords":
       "contribuir diccionario chapin, sugerir palabra o frase guatemala, corregir chapinismo",
-    "contribute.form.word.label": "Palabra o frase que deseas que se agregue",
+    "contribute.form.word.label": "Palabra o frase",
     "contribute.form.word.placeholder": "Ejemplo: chapin",
+    "contribute.form.word.hint":
+      "Ingresa la palabra o frase que deseas agregar, corregir o solicitar. Este campo es obligatorio.",
     "contribute.form.meaning.label":
       "Posible significado o corrección si es una palabra o frase que ya está en el diccionario",
     "contribute.form.meaning.placeholder":
@@ -175,7 +177,9 @@ export const translations = {
       "Suggest new Guatemalan slang words or phrases, or corrections to existing meanings. Your contribution helps keep the dictionary alive.",
     "contribute.page.keywords":
       "contribute guatemalan dictionary, suggest slang word or phrase, chapinismo correction",
-    "contribute.form.word.label": "Word or phrase you want to add",
+    "contribute.form.word.label": "Word or phrase",
+    "contribute.form.word.hint":
+      "Enter the word or phrase you want to contribute, correct, or suggest. This field is required.",
     "contribute.form.word.placeholder": "Example: chapin",
     "contribute.form.meaning.label":
       "Possible meaning or correction if it is already in the dictionary",
