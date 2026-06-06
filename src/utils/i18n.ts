@@ -50,12 +50,10 @@ export const translations = {
     "contribute.form.validation.wordRequired": "La palabra o frase es obligatoria.",
     "contribute.form.validation.emailInvalid": "Ingresa un correo valido.",
     "contribute.form.validation.tooLong": "El contenido excede el maximo permitido.",
-    "contribute.form.validation.fixFields":
-      "Revisa los campos marcados en rojo antes de enviar.",
+    "contribute.form.validation.fixFields": "Revisa los campos marcados en rojo antes de enviar.",
     "contribute.form.submit": "Enviar contribución",
     "contribute.form.sending": "Enviando...",
-    "contribute.form.success":
-      "Gracias por contribuir. Revisaremos tu aporte pronto.",
+    "contribute.form.success": "Gracias por contribuir. Revisaremos tu aporte pronto.",
     "contribute.form.error":
       "No se pudo enviar tu contribución. Inténtalo de nuevo en unos minutos.",
 

@@ -10,17 +10,18 @@ const lang = getLangFromUrl(Astro.url);
 const prefix = lang === "en" ? "/en" : "/es";
 ---
 
-<header class="relative mx-auto max-w-[1100px] px-4 py-4 sm:px-6" transition:persist>
+<header class="relative mx-auto max-w-275 px-6 py-6" transition:persist>
   <div class="flex items-center justify-between gap-4">
     <!-- Logo y título -->
     <a
       href={`${prefix}/`}
-      class="flex shrink-0 items-center gap-2 text-base font-bold sm:gap-2.5 sm:text-lg"
+      class="flex shrink-0 items-center gap-1 text-base font-bold sm:gap-2 sm:text-lg"
       aria-label="Ir a la página principal"
       data-umami-event="Logo Click"
       data-umami-event-location="header"
     >
-      <Logo height={75} />
+      <Logo height={38} width={38} />
+      <span class="xs:inline gradient-text hidden text-xl">chapinismos.org</span>
     </a>
 
     <!-- Navegación y controles desktop -->

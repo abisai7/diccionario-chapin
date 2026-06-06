@@ -156,7 +156,7 @@ const correctionUrl = `/${lang}/contribuir/?word=${encodeURIComponent(word.word)
           <div class="relative flex w-full flex-wrap items-center gap-1.5 sm:w-auto sm:flex-nowrap">
             <a
               href={correctionUrl}
-              class="border-theme bg-card text-primary-light! hover:text-primary-dark! hover:bg-(--glow-primary) inline-flex max-w-full items-center gap-1.5 rounded-md border border-l-3 border-l-amber-400 px-2 py-1 text-left text-xs font-semibold whitespace-normal wrap-break-word transition-all sm:whitespace-nowrap"
+              class="border-theme bg-card text-primary-light! hover:text-primary-dark! inline-flex max-w-full items-center gap-1.5 rounded-md border border-l-3 border-l-amber-400 px-2 py-1 text-left text-xs font-semibold wrap-break-word whitespace-normal transition-all hover:bg-(--glow-primary) sm:whitespace-nowrap"
               data-umami-event="Word Correction CTA Click"
               data-umami-event-word={word.word}
               data-umami-event-lang={lang}
@@ -168,7 +168,7 @@ const correctionUrl = `/${lang}/contribuir/?word=${encodeURIComponent(word.word)
 
             <details>
               <summary
-                class="border-theme bg-card text-primary-light! hover:text-primary-dark! hover:bg-(--glow-primary) inline-flex cursor-pointer items-center justify-center rounded-md border p-1.5 transition-all [&::-webkit-details-marker]:hidden"
+                class="border-theme bg-card text-primary-light! hover:text-primary-dark! inline-flex cursor-pointer items-center justify-center rounded-md border p-1.5 transition-all hover:bg-(--glow-primary) [&::-webkit-details-marker]:hidden"
                 aria-label={t("word.correction.prompt")}
               >
                 <Info size={14} />

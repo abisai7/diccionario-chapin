@@ -74,8 +74,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
             rows="4"
             maxlength="1200"
             class="border-theme bg-accent text-theme rounded-lg border px-3 py-2.5"
-            placeholder={t("contribute.form.meaning.placeholder")}
-          ></textarea>
+            placeholder={t("contribute.form.meaning.placeholder")}></textarea>
           <p id="meaningError" class="m-0 hidden text-sm text-red-400"></p>
           <p class="text-secondary m-0 inline-flex items-start gap-2 text-sm">
             <Info size={14} class="mt-0.5 shrink-0" aria-hidden="true" />
@@ -93,8 +92,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
             rows="4"
             maxlength="1200"
             class="border-theme bg-accent text-theme rounded-lg border px-3 py-2.5"
-            placeholder={t("contribute.form.examples.placeholder")}
-          ></textarea>
+            placeholder={t("contribute.form.examples.placeholder")}></textarea>
           <p id="examplesError" class="m-0 hidden text-sm text-red-400"></p>
           <p class="text-secondary m-0 inline-flex items-start gap-2 text-sm">
             <Info size={14} class="mt-0.5 shrink-0" aria-hidden="true" />
@@ -153,7 +151,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
           <button
             id="contributeSubmit"
             type="submit"
-          class="badge-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white! transition-all duration-200 hover:-translate-y-0.5 active:scale-95 hover:text-white! focus-visible:text-white!"
+            class="badge-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white! transition-all duration-200 hover:-translate-y-0.5 hover:text-white! focus-visible:text-white! active:scale-95"
           >
             <Send size={14} />
             <span id="contributeSubmitLabel">{t("contribute.form.submit")}</span>
@@ -188,8 +186,10 @@ const siteUrl = Astro.site || "https://chapinismos.org";
       }
 
       const fields = Array.from(
-        form.querySelectorAll("input:not([type='hidden']), textarea"),
-      ).filter((field) => field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement);
+        form.querySelectorAll("input:not([type='hidden']), textarea")
+      ).filter(
+        (field) => field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement
+      );
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
       const setFieldError = (field, message) => {
@@ -238,7 +238,11 @@ const siteUrl = Astro.site || "https://chapinismos.org";
           }
         }
 
-        if (field.validity.typeMismatch && field instanceof HTMLInputElement && field.type === "email") {
+        if (
+          field.validity.typeMismatch &&
+          field instanceof HTMLInputElement &&
+          field.type === "email"
+        ) {
           return emailInvalidText;
         }
 
