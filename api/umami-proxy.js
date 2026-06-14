@@ -1,6 +1,6 @@
 // Simple proxy to forward Umami events to the Umami gateway
 // Deployed on Vercel at /api/umami-proxy — client calls same-origin, server forwards.
-const TARGET = "https://api-gateway.umami.dev/api/send";
+const TARGET = "https://gateway.umami.is/api/send";
 
 module.exports = async (req, res) => {
   // Allow basic CORS for safety (client is same-origin, but keep it tolerant)
