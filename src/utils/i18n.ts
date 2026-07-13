@@ -156,6 +156,7 @@ export const translations = {
     "a11y.nav_main": "Menú principal",
     "a11y.theme_toggle_dark": "Cambiar a tema oscuro",
     "a11y.theme_toggle_light": "Cambiar a tema claro",
+    "a11y.breadcrumb": "Breadcrumb",
   },
   en: {
     "home.title": "Chapinismos - Guatemalan Slang Dictionary",
@@ -311,6 +312,7 @@ export const translations = {
     "a11y.nav_main": "Main menu",
     "a11y.theme_toggle_dark": "Switch to dark theme",
     "a11y.theme_toggle_light": "Switch to light theme",
+    "a11y.breadcrumb": "Breadcrumb",
   },
 };
 

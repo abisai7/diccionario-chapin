@@ -6,6 +6,7 @@ import SearchBox from "../../components/SearchBox.astro";
 import { getCollection } from "astro:content";
 import { useTranslations } from "../../utils/i18n";
 import { getCategoryColor } from "../../utils/categoryColors";
+import Breadcrumb from "../../components/Breadcrumb.astro";
 import BreadcrumbSchema from "../../components/schemas/BreadcrumbSchema.astro";
 import SearchPageSchema from "../../components/schemas/SearchPageSchema.astro";
 import { MessageCirclePlus } from "@lucide/astro";
@@ -78,6 +79,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
     url={`/${lang}/buscar/`}
   />
   <div class="mx-auto max-w-275 px-6">
+    <Breadcrumb lang={lang} items={[{ label: t("search.title"), href: `/${lang}/buscar/` }]} />
     <div class="card-with-gradient shadow-theme-lg my-6 grid gap-3.5 backdrop-blur-sm">
       <h1 class="gradient-text mx-4 mt-4 text-[clamp(1.8rem,2.4vw,2.6rem)]">
         {t("search.title")}

@@ -16,6 +16,7 @@ import { getCollection, render } from "astro:content";
 import { useTranslations } from "../../../utils/i18n";
 import { getCategoryColor } from "../../../utils/categoryColors";
 import RelatedWordsSection from "../../../components/RelatedWordsSection.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
 import BreadcrumbSchema from "../../../components/schemas/BreadcrumbSchema.astro";
 import WordSchema from "../../../components/schemas/WordSchema.astro";
 import FAQSchema from "../../../components/schemas/FAQSchema.astro";
@@ -123,14 +124,13 @@ const correctionUrl = `/${lang}/contribuir/?word=${encodeURIComponent(word.word)
   <FAQSchema slot="schema" lang={lang} word={word} />
 
   <section class="mx-auto max-w-275 px-6">
-    <button
-      onclick="history.back()"
-      class="back-btn mb-4 cursor-pointer px-4 py-2.5 font-semibold transition-all duration-200 active:scale-95"
-      data-umami-event="Word Back Button Click"
-      data-umami-event-word={word.word}
-    >
-      ← {t("word.back")}
-    </button>
+    <Breadcrumb
+      lang={lang}
+      items={[
+        { label: t("nav.index"), href: `/${lang}/indice/` },
+        { label: word.word, href: `/${lang}/palabras/${entry.id}/` },
+      ]}
+    />
 
     <article class="article-card p-6 transition-all duration-200" transition:animate="slide">
       <div class="mb-4 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
