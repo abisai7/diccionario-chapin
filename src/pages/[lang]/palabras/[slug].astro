@@ -189,12 +189,13 @@ const correctionUrl = `/${lang}/contribuir/?word=${encodeURIComponent(word.word)
               <summary
                 class="border-theme bg-card text-primary-light! hover:text-primary-dark! inline-flex cursor-pointer items-center justify-center rounded-md border p-1.5 transition-all hover:bg-(--glow-primary) [&::-webkit-details-marker]:hidden"
                 aria-label={t("word.correction.prompt")}
+                aria-describedby="correction-tooltip"
               >
                 <Info size={14} />
               </summary>
               <div
                 class="border-theme bg-card text-secondary shadow-theme-md absolute top-[calc(100%+0.4rem)] right-0 z-20 w-[min(18rem,80vw)] rounded-lg border p-2 text-xs leading-relaxed"
-                role="tooltip"
+                id="correction-tooltip"
               >
                 {t("word.correction.info")}
               </div>

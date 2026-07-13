@@ -23,6 +23,7 @@ const prefix = lang === "en" ? "/en" : "/es";
   id="mobile-menu"
   class="border-theme bg-card/95 absolute top-full right-0 left-0 z-20 mx-2 -mt-8 hidden flex-col gap-3 rounded-xl border px-3 pt-5 pb-4 shadow-2xl backdrop-blur-sm md:hidden"
   style="max-height: calc(100vh - 100px); overflow-y: auto;"
+  aria-label={t("a11y.nav_main")}
 >
   <a
     href={`${prefix}/`}
@@ -81,6 +82,7 @@ const prefix = lang === "en" ? "/en" : "/es";
           close?.classList.remove("block");
           close?.classList.add("hidden");
           toggle?.setAttribute("aria-expanded", "false");
+          toggle?.focus();
         } else {
           menu?.classList.remove("hidden");
           menu?.classList.add("flex");
@@ -89,11 +91,46 @@ const prefix = lang === "en" ? "/en" : "/es";
           close?.classList.remove("hidden");
           close?.classList.add("block");
           toggle?.setAttribute("aria-expanded", "true");
+          const firstLink = menu?.querySelector("a");
+          firstLink?.focus();
         }
       });
     }
 
-    const mobileLinks = document.getElementById("mobile-menu")?.querySelectorAll("a");
+    const menu = document.getElementById("mobile-menu");
+    const toggle = document.getElementById("menu-toggle");
+
+    menu?.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        menu?.classList.remove("flex");
+        menu?.classList.add("hidden");
+        document.getElementById("menu-icon")?.classList.remove("hidden");
+        document.getElementById("menu-icon")?.classList.add("block");
+        document.getElementById("close-icon")?.classList.remove("block");
+        document.getElementById("close-icon")?.classList.add("hidden");
+        toggle?.setAttribute("aria-expanded", "false");
+        toggle?.focus();
+        return;
+      }
+
+      if (e.key === "Tab") {
+        const links = menu?.querySelectorAll("a");
+        if (!links || links.length === 0) return;
+
+        const firstLink = links[0];
+        const lastLink = links[links.length - 1];
+
+        if (e.shiftKey && document.activeElement === firstLink) {
+          e.preventDefault();
+          lastLink.focus();
+        } else if (!e.shiftKey && document.activeElement === lastLink) {
+          e.preventDefault();
+          firstLink.focus();
+        }
+      }
+    });
+
+    const mobileLinks = menu?.querySelectorAll("a");
     mobileLinks?.forEach((link) => {
       link.addEventListener("click", () => {
         const menu = document.getElementById("mobile-menu");

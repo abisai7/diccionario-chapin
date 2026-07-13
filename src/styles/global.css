@@ -294,6 +294,17 @@ h1 {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.01s;
+  }
+  ::view-transition-old(slide),
+  ::view-transition-new(slide) {
+    animation-duration: 0.01s;
+  }
+}
+
 /* Utility Classes */
 @layer utilities {
   .text-primary-light {

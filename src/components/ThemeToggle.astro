@@ -1,10 +1,15 @@
 ---
 import { Moon, Sun } from "@lucide/astro";
+import { useTranslations } from "../utils/i18n";
+import { getLangFromUrl } from "../utils/i18n";
+
 interface Props {
   isMobile?: boolean;
 }
 
 const { isMobile = false } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const buttonId = isMobile ? "theme-toggle-mobile" : "theme-toggle";
 const moonId = isMobile ? "moon-mobile" : "moon";
 const sunId = isMobile ? "sun-mobile" : "sun";
@@ -15,7 +20,7 @@ const device = isMobile ? "mobile" : "desktop";
   id={buttonId}
   class="theme-toggle-btn inline-flex cursor-pointer items-center gap-2 px-2.5 py-2"
   type="button"
-  aria-label="Cambiar tema"
+  aria-label={t("a11y.theme_toggle_dark")}
   data-umami-event="Theme Toggle"
   data-umami-event-device={device}
 >
@@ -23,7 +28,13 @@ const device = isMobile ? "mobile" : "desktop";
   <Sun id={sunId} class="hidden" size="18" />
 </button>
 
-<script is:inline type="module">
+<script
+  is:inline
+  define:vars={{
+    darkLabel: t("a11y.theme_toggle_dark"),
+    lightLabel: t("a11y.theme_toggle_light"),
+  }}
+>
   const el = document.documentElement;
 
   function getTheme() {
@@ -53,6 +64,10 @@ const device = isMobile ? "mobile" : "desktop";
       sMobile?.classList.add("hidden");
       mMobile?.classList.remove("hidden");
     }
+
+    const label = t === "light" ? darkLabel : lightLabel;
+    document.getElementById("theme-toggle")?.setAttribute("aria-label", label);
+    document.getElementById("theme-toggle-mobile")?.setAttribute("aria-label", label);
   }
 
   function toggleTheme() {

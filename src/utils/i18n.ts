@@ -148,6 +148,11 @@ export const translations = {
     "schema.faq.category.answer": "{word} es un {category} usado en Guatemala.",
     "schema.faq.synonyms.question": "¿Cuáles son los sinónimos de {word}?",
     "schema.faq.synonyms.answer": "Algunos sinónimos o palabras relacionadas son: {synonyms}.",
+
+    "a11y.skip_to_content": "Saltar al contenido",
+    "a11y.nav_main": "Menú principal",
+    "a11y.theme_toggle_dark": "Cambiar a tema oscuro",
+    "a11y.theme_toggle_light": "Cambiar a tema claro",
   },
   en: {
     "home.title": "Chapinismos - Guatemalan Slang Dictionary",
@@ -295,6 +300,11 @@ export const translations = {
     "schema.faq.category.answer": "{word} is a {category} used in Guatemala.",
     "schema.faq.synonyms.question": "What are the synonyms of {word}?",
     "schema.faq.synonyms.answer": "Some synonyms or related words are: {synonyms}.",
+
+    "a11y.skip_to_content": "Skip to content",
+    "a11y.nav_main": "Main menu",
+    "a11y.theme_toggle_dark": "Switch to dark theme",
+    "a11y.theme_toggle_light": "Switch to light theme",
   },
 };
 
