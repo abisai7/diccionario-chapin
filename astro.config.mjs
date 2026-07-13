@@ -1,5 +1,7 @@
 import { defineConfig } from "astro/config";
+import { remarkModifiedTime } from "./remark-modified-time.mjs";
 import sitemap from "@astrojs/sitemap";
+import { unified } from "@astrojs/markdown-remark";
 import vercel from "@astrojs/vercel";
 
 import tailwindcss from "@tailwindcss/vite";
@@ -28,6 +30,11 @@ export default defineConfig({
       prefixDefaultLocale: true, // Importante: true para tener /es/ y /en/
       redirectToDefaultLocale: false, // Disable auto-redirect to allow custom redirect page
     },
+  },
+  markdown: {
+    processor: unified({
+      remarkPlugins: [remarkModifiedTime],
+    }),
   },
   vite: {
     plugins: [tailwindcss()],

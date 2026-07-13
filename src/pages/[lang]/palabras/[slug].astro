@@ -1,5 +1,6 @@
 ---
 export const prerender = true;
+import fs from "node:fs";
 import {
   Info,
   TriangleAlert,
@@ -57,8 +58,29 @@ function getRandomWordsByCategory(
 const { lang } = Astro.params;
 const { entry } = Astro.props;
 const hasContent = entry.body ? entry.body?.replace(/\s+/g, "").length > 0 : false;
-const { Content } = hasContent ? await render(entry) : {};
+const { Content, remarkPluginFrontmatter } = hasContent ? await render(entry) : {};
 const word = entry.data;
+
+const fileCreatedAt = (() => {
+  if (!entry.filePath) return null;
+  try {
+    const stat = fs.statSync(entry.filePath);
+    return stat.birthtime;
+  } catch {
+    return null;
+  }
+})();
+
+const lastModified = remarkPluginFrontmatter?.lastModified
+  ? new Date(remarkPluginFrontmatter.lastModified).toLocaleDateString(lang, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "UTC",
+    })
+  : "";
 
 // Get related words
 const collection =
@@ -100,7 +122,15 @@ const correctionUrl = `/${lang}/contribuir/?word=${encodeURIComponent(word.word)
       { name: word.word, url: `/${lang}/palabras/${entry.id}/` },
     ]}
   />
-  <WordSchema slot="schema" lang={lang} siteUrl={siteUrl} word={word} slug={entry.id} />
+  <WordSchema
+    slot="schema"
+    lang={lang}
+    siteUrl={siteUrl}
+    word={word}
+    slug={entry.id}
+    datePublished={fileCreatedAt}
+    lastModified={remarkPluginFrontmatter?.lastModified}
+  />
   <FAQSchema slot="schema" lang={lang} word={word} />
 
   <section class="mx-auto max-w-275 px-6">
@@ -241,6 +271,14 @@ const correctionUrl = `/${lang}/contribuir/?word=${encodeURIComponent(word.word)
           </div>
         )
       }
+
+      <div>
+        <p class="text-muted mt-6 text-sm">
+          <time datetime={remarkPluginFrontmatter?.lastModified}>
+            {t("word.last_modified", { lastModified })}
+          </time>
+        </p>
+      </div>
 
       <RelatedWordsSection
         words={relatedWords}

@@ -121,6 +121,7 @@ export const translations = {
     "search.button_aria_label": "Buscar",
     "search.button_text": "Buscar",
     "word.page.title": "{word} - Definición | Chapinismos",
+    "word.last_modified": "Última modificación: {lastModified}",
 
     "nav.home": "Inicio",
     "nav.search": "Buscar",
@@ -264,6 +265,7 @@ export const translations = {
     "word.correction.button": "Send a correction",
     "word.correction.info":
       "If you found a correction or any error in this word or phrase, you can send us your suggestion with this button.",
+    "word.last_modified": "Last modified: {lastModified}",
     "search.aria_label": "Search word",
     "search.button_aria_label": "Search",
     "search.button_text": "Search",

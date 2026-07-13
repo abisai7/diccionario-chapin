@@ -11,12 +11,26 @@ interface Props {
     synonyms?: string[];
   };
   slug: string;
+  lastModified?: string | Date | null;
+  datePublished?: string | Date | null;
 }
 
-const { lang, siteUrl, word, slug } = Astro.props;
+const { lang, siteUrl, word, slug, lastModified, datePublished } = Astro.props;
 const t = useTranslations(lang);
 
 const wordUrl = new URL(`/${lang}/palabras/${slug}/`, siteUrl).toString();
+const normalizedLastModified = (() => {
+  if (!lastModified) return undefined;
+
+  const date = new Date(lastModified);
+  return Number.isNaN(date.getTime()) ? undefined : date.toISOString();
+})();
+const normalizedDatePublished = (() => {
+  if (!datePublished) return undefined;
+
+  const date = new Date(datePublished);
+  return Number.isNaN(date.getTime()) ? undefined : date.toISOString();
+})();
 
 // JSON-LD DefinedTerm Schema
 const definedTermSchema = {
@@ -62,6 +76,8 @@ const articleSchema = {
     "@type": "WebPage",
     "@id": wordUrl,
   },
+  ...(normalizedDatePublished ? { datePublished: normalizedDatePublished } : {}),
+  ...(normalizedLastModified ? { dateModified: normalizedLastModified } : {}),
 };
 ---
 
