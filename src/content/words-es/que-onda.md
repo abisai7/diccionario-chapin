@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: ¿Qué onda?
 meaning: ¿Qué pasa? ¿Cómo estás? Saludo informal
 category: expresión

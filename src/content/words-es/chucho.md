@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Chucho"
 meaning: "Perro; también puede referirse a una persona tacaña o muy ahorrativa."
 examples:

@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Chupete
 meaning: Piruleta o chupa chups; dulce en forma de paleta.
 category: sustantivo

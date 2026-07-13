@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Burra
 meaning: Old or poorly maintained bus, often used for public transportation.
 category: noun

@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Chompipe
 meaning: Sinónimo de pavo. También es común escucharlo en la frase "chompipe de la fiesta", que se utliza para referirse a alguien que es el centro de atención en una reunión o fiesta.
 category: adjetivo

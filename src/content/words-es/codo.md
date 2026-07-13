@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Codo
 meaning: Persona tacaña o avara que no le gusta gastar dinero.
 category: adjetivo

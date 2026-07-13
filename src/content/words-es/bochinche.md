@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Bochinche"
 meaning: "Alboroto o escándalo generado por varias personas."
 examples:

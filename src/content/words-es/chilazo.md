@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Chilazo"
 meaning: "Pronto, rápido, inmediatamente. Usado con el artículo 'al', como en 'al chilazo'."
 examples:

@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Puchis"
 meaning: "Expression of surprise or astonishment, similar to púchica but with a more casual or colloquial tone."
 examples:

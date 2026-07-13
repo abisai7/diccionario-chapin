@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: A huevo
 meaning: Versatile expression that affirms strongly or shows enthusiasm, admiration, or approval; depending on tone it can also imply obligation.
 category: expression

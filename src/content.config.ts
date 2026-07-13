@@ -6,6 +6,7 @@ const wordsSchema = z.object({
   word: z.string(),
   meaning: z.string(),
   examples: z.array(z.string()),
+  publishedDate: z.string(),
   category: z.enum([
     "sustantivo",
     "verbo",

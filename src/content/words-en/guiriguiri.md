@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Güirigüiri"
 meaning: "Lengthy and insubstantial conversations or speech; gossip or chatter sometimes without foundation."
 examples:

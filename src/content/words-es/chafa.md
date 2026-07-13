@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Chafa
 meaning: De mala calidad, malo o que no funciona bien
 category: adjetivo

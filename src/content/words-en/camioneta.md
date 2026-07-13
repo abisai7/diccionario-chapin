@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Camioneta
 meaning: Public urban or interurban bus in Guatemala. Commonly known as a "chicken bus" in English.
 category: noun

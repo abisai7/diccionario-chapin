@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Caquero
 meaning: A person who thinks they're sophisticated and only likes expensive things. Conceited.
 category: noun

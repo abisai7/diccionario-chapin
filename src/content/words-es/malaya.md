@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Malaya"
 meaning: "Expresión utilizada para manifestar un deseo intenso, añoranza o esperanza."
 examples:

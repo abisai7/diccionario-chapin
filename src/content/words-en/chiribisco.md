@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Chiribisco
 meaning: Thin branches for cooking or as fuel, especially in rural areas.
 category: noun

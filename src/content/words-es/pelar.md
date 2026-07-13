@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Pelar
 meaning: Criticar o hablar mal de alguien a sus espaldas. También puede referirse a dejar un lugar.
 category: verbo

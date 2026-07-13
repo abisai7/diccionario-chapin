@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Pisado"
 meaning: "Persona en apuros o con mala suerte; también se utiliza como insulto coloquial, dependiendo del contexto."
 examples:

@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Primero Dios"
 meaning: "Ojalá; expresión usada para desear que algo se cumpla o pase."
 examples:

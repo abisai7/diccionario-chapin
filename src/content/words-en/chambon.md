@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Chambón"
 meaning: "Clumsy or inept person in a particular activity or job."
 examples:

@@ -39,6 +39,7 @@ El nombre del archivo debe ser la palabra en minúsculas sin tilde, con guiones 
 ```markdown
 ---
 word: "Chapín"
+publishedDate: "2026-01-01T00:00:00.000Z"
 meaning: "Persona originaria de Guatemala; gentilicio coloquial."
 examples:
   - "Me siento orgulloso de ser chapín."
@@ -65,6 +66,7 @@ Usa el **mismo nombre de archivo** y traduce el contenido:
 ```markdown
 ---
 word: "Chapín"
+publishedDate: "2026-01-01T00:00:00.000Z"
 meaning: "A person from Guatemala; Guatemalan"
 examples:
   - "He's a chapín, born and raised in Guatemala City"
@@ -89,6 +91,7 @@ You can add additional context, etymology, or cultural information here (optiona
 **Campos obligatorios:**
 
 - ✅ `word` - La palabra en español o inglés según la carpeta
+- ✅ `publishedDate` - Fecha de publicación en formato ISO 8601 (ej: `"2026-01-01T00:00:00.000Z"`)
 - ✅ `meaning` - Definición clara y concisa
 - ✅ `examples` - Array con al menos 2 ejemplos de uso
 - ✅ `category` - Tipo: `"sustantivo"`, `"verbo"`, `"adjetivo"`, `"expresión"`, `"modismo"` (español) o `"noun"`, `"verb"`, `"adjective"`, `"expression"`, `"idiom"` (inglés)

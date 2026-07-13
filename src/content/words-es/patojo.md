@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Patojo"
 meaning: "Niño o joven; persona de corta edad, usado comúnmente en Guatemala para referirse de forma coloquial a menores. Puede usarse en forma masculina (patojo) o femenina (patoja)."
 examples:

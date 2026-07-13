@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: A huevo
 meaning: Expresión versátil para afirmar con fuerza o mostrar entusiasmo, admiración o aprobación; según el tono también puede indicar obligación.
 category: expresión

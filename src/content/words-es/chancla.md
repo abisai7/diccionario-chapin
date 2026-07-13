@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Chancla
 meaning: Sandalia o calzado informal, generalmente de goma o plástico, usado comúnmente en climas cálidos. En Guatemala, el término "chancla" también se asocia culturalmente con la figura materna que utiliza la chancla como un medio de disciplina.
 category: sustantivo

@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Seco
 meaning: Se utiliza de manera coloquial como sobrenombre o adjetivo para referirse a una persona muy delgada o flaca.
 category: adjetivo

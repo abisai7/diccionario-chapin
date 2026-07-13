@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Cabal"
 meaning: "Exacto, correcto o justo; usado para afirmar algo con seguridad."
 examples:

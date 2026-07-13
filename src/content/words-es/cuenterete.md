@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Cuenterete"
 meaning: "Palabra utilizada para nombrar algo de lo cual no se sabe el nombre exacto o simplemente no se recuerda en el instante que se quiere decir."
 examples:

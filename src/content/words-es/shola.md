@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Shola"
 meaning: "Cabeza; parte superior del cuerpo humano."
 examples:

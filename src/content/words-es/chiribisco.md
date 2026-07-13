@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Chiribisco
 meaning: Ramas delgadas para cocinar o como combustible, especialmente en áreas rurales.
 category: sustantivo

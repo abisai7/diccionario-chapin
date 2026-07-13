@@ -1,7 +1,5 @@
 ---
 export const prerender = true;
-import { execSync } from "node:child_process";
-import path from "node:path";
 import {
   Info,
   TriangleAlert,
@@ -62,20 +60,6 @@ const hasContent = entry.body ? entry.body?.replace(/\s+/g, "").length > 0 : fal
 const { Content, remarkPluginFrontmatter } = hasContent ? await render(entry) : {};
 const word = entry.data;
 
-const fileCreatedAt = (() => {
-  if (!entry.filePath) return null;
-  try {
-    const relativePath = path.relative(process.cwd(), entry.filePath).replace(/\\/g, "/");
-    const result = execSync(
-      `git log --follow --pretty="format:%cI" --diff-filter=A -- "${relativePath}"`
-    );
-    const dateStr = result.toString().trim();
-    return dateStr ? new Date(dateStr) : null;
-  } catch {
-    return null;
-  }
-})();
-
 const lastModified = remarkPluginFrontmatter?.lastModified
   ? new Date(remarkPluginFrontmatter.lastModified).toLocaleDateString(lang, {
       year: "numeric",
@@ -133,7 +117,7 @@ const correctionUrl = `/${lang}/contribuir/?word=${encodeURIComponent(word.word)
     siteUrl={siteUrl}
     word={word}
     slug={entry.id}
-    datePublished={fileCreatedAt}
+    datePublished={word.publishedDate}
     lastModified={remarkPluginFrontmatter?.lastModified}
   />
   <FAQSchema slot="schema" lang={lang} word={word} />

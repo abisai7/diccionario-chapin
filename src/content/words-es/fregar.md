@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Fregar"
 meaning: "Molestar o incomodar a alguien; en otros contextos significa arruinar algo."
 examples:

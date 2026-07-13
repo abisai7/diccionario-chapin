@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Pache"
 meaning: "Platillo tradicional guatemalteco similar al tamal, pero elaborado con masa de papa."
 examples:

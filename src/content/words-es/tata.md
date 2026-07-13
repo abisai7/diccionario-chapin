@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Tata"
 meaning: "Padre; usado de manera afectuosa o respetuosa. A veces se utiliza como una forma de decirle a alguien que se tiene autoridad sobre él o ella."
 examples:

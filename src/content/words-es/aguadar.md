@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Aguadar"
 meaning: "Mezclar un líquido con agua; debilitar o hacer flaquear."
 examples:

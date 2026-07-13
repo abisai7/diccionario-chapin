@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Shuco
 meaning: Dirty or filthy, also a popular hot sandwich in Guatemala made with bread, grilled meat or sausage, shredded cabbage, and various spicy sauces.
 category: adjective

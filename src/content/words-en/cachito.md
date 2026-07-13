@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Cachito
 meaning: A small piece or bit of something, often used affectionately.
 category: noun

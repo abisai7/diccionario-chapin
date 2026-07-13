@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Cerote
 meaning: Insulto fuerte y vulgar; término despectivo para referirse a alguien de manera ofensiva.
 category: sustantivo

@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Bagre
 meaning: Feo o de mala calidad; término despectivo para referirse a algo o alguien poco atractivo.
 category: adjetivo

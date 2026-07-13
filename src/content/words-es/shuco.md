@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Shuco"
 meaning: "Sándwich caliente típico de Guatemala, preparado con pan, carne asada o embutido, repollo y diversas salsas. También se puede definir como algo sucio en otros contextos."
 examples:

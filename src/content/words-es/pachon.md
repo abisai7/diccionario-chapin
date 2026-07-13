@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Pachón"
 meaning: "Término coloquial utilizado para referirse a una botella de agua reutilizable o cantimplora. Es una palabra de uso diario, especialmente para recipientes plásticos o metálicos que sirven para llevar agua o bebidas al gimnasio, a la escuela o al trabajo."
 examples:

@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Apachar
 meaning: Pulsar un botón o ejercer presión sobre un objeto para reducir su tamaño o deformarlo.
 category: verbo

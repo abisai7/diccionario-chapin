@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Ni modo"
 meaning: "Expression meaning there's no other choice; resignation to an inevitable situation."
 examples:

@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Puchis"
 meaning: "Expresión de asombro, similar a púchica pero con un tono más casual o coloquial."
 examples:

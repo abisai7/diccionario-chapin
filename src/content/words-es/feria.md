@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Feria
 meaning: Dinero suelto, cambio o monedas
 category: sustantivo

@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Bien clavado
 meaning: Muy difícil o complicado; situación extremadamente problemática.
 category: expresión

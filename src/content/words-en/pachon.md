@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Pachón"
 meaning: "A colloquial term used to refer to a reusable water bottle or canteen. It is a commonly used word in Guatemala, especially for plastic or metal containers used to carry water or other beverages to the gym, school, or work."
 examples:

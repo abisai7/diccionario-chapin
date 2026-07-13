@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Ahuevarse
 meaning: To get lazy, to become unmotivated or unwilling to do something
 category: verb

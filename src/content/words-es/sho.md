@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Sho
 meaning: Es una interjección muy común para pedir silencio, llamar la atención o como una forma informal de decir "oye", "calla" o "mira"
 category: interjección

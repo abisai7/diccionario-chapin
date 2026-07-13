@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Pajero
 meaning: Persona que miente frecuentemente o cuenta historias falsas.
 category: adjetivo

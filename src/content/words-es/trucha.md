@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Trucha"
 meaning: "Estar alerta o atento para evitar problemas o aprovechar oportunidades."
 examples:

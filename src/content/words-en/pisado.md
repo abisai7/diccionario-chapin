@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Pisado
 meaning: Unlucky or having bad luck. It is also used as a colloquial insult, depending on the context.
 category: adjective

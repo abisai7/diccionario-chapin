@@ -9,6 +9,7 @@ Cada palabra debe estar en su propio archivo `.md` y en la carpeta `src/content/
 ```markdown
 ---
 word: "Patojo"
+publishedDate: "2026-01-01T00:00:00.000Z"
 meaning: "Niño o joven; persona de corta edad..."
 examples:
   - "El patojo de la tienda siempre me ayuda..."
@@ -29,6 +30,7 @@ Puedes agregar contexto extra, etimología, o cualquier información adicional a
 ## 📋 Campos Obligatorios
 
 - `word`: La palabra en español (String)
+- `publishedDate`: Fecha de publicación en formato ISO 8601 (String, ej: `"2026-01-01T00:00:00.000Z"`)
 - `meaning`: Definición completa (String)
 - `examples`: Array de ejemplos de uso (Array de Strings)
 - `category`: Tipo gramatical
@@ -60,6 +62,7 @@ Puedes agregar contexto extra, etimología, o cualquier información adicional a
 ```markdown
 ---
 word: "Patojo"
+publishedDate: "2026-01-01T00:00:00.000Z"
 meaning: "Niño o joven; persona de corta edad."
 examples:
   - "El patojo de la tienda siempre me ayuda."
@@ -73,6 +76,7 @@ category: "sustantivo"
 ```markdown
 ---
 word: "Chunche"
+publishedDate: "2026-01-01T00:00:00.000Z"
 meaning: "Objeto indeterminado o cuyo nombre no se recuerda."
 examples:
   - "Pasame ese chunche que está en la mesa."

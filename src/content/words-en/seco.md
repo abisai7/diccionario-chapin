@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Seco"
 meaning: "A colloquial term used as a nickname or adjective to describe a person who is very thin or skinny."
 category: "adjective"

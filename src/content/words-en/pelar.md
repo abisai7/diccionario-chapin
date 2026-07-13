@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: Pelar
 meaning: To leave, go away, or die. It can also refer to criticize or speak ill of someone behind their back.
 category: verb

@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Pache"
 meaning: "Guatemalan traditional dish similar to a tamale, but made with potato dough. It can also refer to a person of short stature."
 examples:

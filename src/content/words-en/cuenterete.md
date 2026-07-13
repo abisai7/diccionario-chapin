@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "Cuenterete"
 meaning: "Word used to name something whose exact name is unknown or simply not remembered at the moment one wants to say it."
 examples:

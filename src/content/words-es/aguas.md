@@ -1,4 +1,5 @@
 ---
+publishedDate: "2026-01-01T00:00:00.000Z"
 word: "¡Aguas!"
 meaning: "¡Cuidado! Expresión de advertencia para indicar precaución o peligro."
 examples:
