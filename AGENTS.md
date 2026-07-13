@@ -54,6 +54,7 @@ Invalid content will fail the build — `pnpm run build` is your validation step
 ## Formatting
 
 Prettier config (`.prettierrc`):
+
 - Double quotes, semicolons, 2-space indent, trailing commas (es5), 100-char print width
 - Plugins: `prettier-plugin-astro`, `prettier-plugin-tailwindcss` (auto-sorts Tailwind classes)
 
@@ -66,6 +67,7 @@ Vercel with `@astrojs/vercel` adapter. `vercel.json` configures security headers
 ## Environment variables
 
 Required for the contribute API (`src/pages/api/contribute.ts`):
+
 - `RESEND_API_KEY`
 - `RESEND_FROM_EMAIL`
 - `CONTRIBUTIONS_TO_EMAIL`
