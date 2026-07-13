@@ -11,6 +11,7 @@ export const translations = {
     "home.search.tip": "Presiona",
     "home.search.tip2": "para buscar rápidamente",
     "home.featured": "Palabras destacadas",
+    "home.latest": "Últimas palabras agregadas",
     "home.contribute.title": "Contribuye al Diccionario",
     "home.contribute.subtitle":
       "Este es un proyecto de código abierto y cualquiera puede contribuir para hacer crecer el diccionario.",
@@ -167,6 +168,7 @@ export const translations = {
     "home.search.tip": "Press",
     "home.search.tip2": "to search quickly",
     "home.featured": "Featured Words",
+    "home.latest": "Latest words added",
     "home.contribute.title": "Contribute to the Dictionary",
     "home.contribute.subtitle":
       "This is an open source project and anyone can contribute to grow the dictionary.",

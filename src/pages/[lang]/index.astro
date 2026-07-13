@@ -6,6 +6,7 @@ import Ticker from "../../components/Ticker.astro";
 import HeroSection from "../../components/home/HeroSection.astro";
 import AboutSection from "../../components/home/AboutSection.astro";
 import FeaturedWords from "../../components/home/FeaturedWords.astro";
+import LatestWords from "../../components/home/LatestWords.astro";
 import ContributeSection from "../../components/home/ContributeSection.astro";
 import BreadcrumbSchema from "../../components/schemas/BreadcrumbSchema.astro";
 import FeaturedWordsSchema from "../../components/schemas/FeaturedWordsSchema.astro";
@@ -39,6 +40,12 @@ const top =
     ? featuredWords.slice(0, 6)
     : [...allWords].sort(() => Math.random() - 0.5).slice(0, 6);
 
+const latestWords = [...allWords]
+  .sort(
+    (a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime()
+  )
+  .slice(0, 6);
+
 const siteUrl = Astro.site || "https://chapinismos.org";
 ---
 
@@ -54,6 +61,8 @@ const siteUrl = Astro.site || "https://chapinismos.org";
   <HeroSection lang={lang} />
 
   <FeaturedWords words={top} lang={lang} />
+
+  <LatestWords words={latestWords} lang={lang} />
 
   <AboutSection lang={lang} />
 
