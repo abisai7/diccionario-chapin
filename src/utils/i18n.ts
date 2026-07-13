@@ -70,6 +70,8 @@ export const translations = {
 
     "home.about.card1.title": "Identidad y lenguaje chapín",
     "home.about.card2.title": "Historia y comunidad",
+    "home.about.note":
+      "Las palabras incluidas en este diccionario se usan normalmente en Guatemala, pero eso no significa que no se utilicen en otros países de la región. De hecho, algunas pudieron haberse originado en países vecinos.",
 
     "search.title": "Buscar",
     "search.subtitle": "Encuentra el chapinismo que estás buscando",
@@ -222,6 +224,8 @@ export const translations = {
 
     "home.about.card1.title": "Chapín Identity and Language",
     "home.about.card2.title": "History and Community",
+    "home.about.note":
+      "The words in this dictionary are commonly used in Guatemala, but that doesn't mean they aren't used in other countries in the region. In fact, some may have originated in neighboring countries.",
 
     "search.title": "Search",
     "search.subtitle": "Find the Guatemalan slang you're looking for",
