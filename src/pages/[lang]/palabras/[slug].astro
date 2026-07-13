@@ -1,6 +1,6 @@
 ---
 export const prerender = true;
-import fs from "node:fs";
+import { execSync } from "node:child_process";
 import {
   Info,
   TriangleAlert,
@@ -64,8 +64,11 @@ const word = entry.data;
 const fileCreatedAt = (() => {
   if (!entry.filePath) return null;
   try {
-    const stat = fs.statSync(entry.filePath);
-    return stat.birthtime;
+    const result = execSync(
+      `git log --follow --pretty="format:%cI" --diff-filter=A -- "${entry.filePath}"`
+    );
+    const dateStr = result.toString().trim();
+    return dateStr ? new Date(dateStr) : null;
   } catch {
     return null;
   }
