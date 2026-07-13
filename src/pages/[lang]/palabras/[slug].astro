@@ -1,6 +1,7 @@
 ---
 export const prerender = true;
 import { execSync } from "node:child_process";
+import path from "node:path";
 import {
   Info,
   TriangleAlert,
@@ -64,8 +65,9 @@ const word = entry.data;
 const fileCreatedAt = (() => {
   if (!entry.filePath) return null;
   try {
+    const relativePath = path.relative(process.cwd(), entry.filePath).replace(/\\/g, "/");
     const result = execSync(
-      `git log --follow --pretty="format:%cI" --diff-filter=A -- "${entry.filePath}"`
+      `git log --follow --pretty="format:%cI" --diff-filter=A -- "${relativePath}"`
     );
     const dateStr = result.toString().trim();
     return dateStr ? new Date(dateStr) : null;
