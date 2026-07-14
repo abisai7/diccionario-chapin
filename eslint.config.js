@@ -1,8 +1,8 @@
 import eslintPluginAstro from "eslint-plugin-astro";
 
 export default [
-  // Configuración base de ESLint
   {
+    files: ["**/*.js", "**/*.mjs"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
@@ -14,10 +14,7 @@ export default [
       "no-var": "error",
     },
   },
-  // Configuración para archivos Astro
   ...eslintPluginAstro.configs.recommended,
-
-  // Ignorar archivos
   {
     ignores: [
       "dist/**",
