@@ -114,7 +114,7 @@ export const translations = {
     "search.tryAnother": "Intenta con otra palabra",
     "search.results": "resultados",
     "search.missing.prompt": "¿No encontraste lo que buscabas?",
-    "search.missing.button": "Solicitar agregar una palabra o frase",
+    "search.missing.button": "Solicitar una palabra o frase",
     "search.category.sustantivo": "Sustantivo",
     "search.category.verbo": "Verbo",
     "search.category.adjetivo": "Adjetivo",
@@ -135,7 +135,7 @@ export const translations = {
     "index.keywords": "índice chapinismos, lista palabras chapinas, alfabético diccionario chapín",
 
     "word.back": "Volver al inicio",
-    "word.share": "Compartir imagen",
+    "word.share": "Compartir",
     "word.definition": "Definición",
     "word.examples": "Ejemplos",
     "word.example.label": "Ejemplo",
@@ -321,7 +321,7 @@ export const translations = {
       "guatemalan slang index, guatemalan words list, alphabetical guatemalan dictionary",
 
     "word.back": "Back to home",
-    "word.share": "Share image",
+    "word.share": "Share",
     "word.definition": "Definition",
     "word.examples": "Examples",
     "word.example.label": "Example",
