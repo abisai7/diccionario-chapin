@@ -76,6 +76,12 @@
   /* Link/CTA color (dark theme default) */
   --link-primary: #60a5fa;
 
+  /* State colors (dark theme defaults) */
+  --color-error: #f87171;
+  --color-error-soft: rgba(248, 113, 113, 0.12);
+  --color-success: #34d399;
+  --color-success-soft: rgba(52, 211, 153, 0.12);
+
   /* Consistent border radius */
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -108,6 +114,12 @@ html[data-theme="light"] {
 
   /* Link/CTA color tuned for light backgrounds */
   --link-primary: #1f5e9c;
+
+  /* State colors — stronger for AA contrast on white */
+  --color-error: #dc2626;
+  --color-error-soft: rgba(220, 38, 38, 0.08);
+  --color-success: #059669;
+  --color-success-soft: rgba(5, 150, 105, 0.08);
 }
 
 html,
@@ -439,6 +451,69 @@ h1 {
   .badge-primary-gradient {
     background: linear-gradient(135deg, var(--primary-light), var(--primary));
     box-shadow: 0 2px 8px var(--shadow-md);
+  }
+
+  /* Primary CTA — solid stop on the deep end for AA contrast on white text */
+  .cta-primary-gradient {
+    background: linear-gradient(135deg, var(--primary-hover), var(--primary-deep));
+    box-shadow: 0 2px 8px var(--btn-primary-shadow);
+  }
+
+  .cta-primary-gradient:hover {
+    box-shadow: 0 4px 12px var(--btn-primary-shadow);
+  }
+
+  /* State colors (error / success) — token-driven, themed */
+  .text-error {
+    color: var(--color-error);
+  }
+
+  .text-success {
+    color: var(--color-success);
+  }
+
+  .border-error {
+    border-color: var(--color-error);
+  }
+
+  .bg-error-soft {
+    background: var(--color-error-soft);
+  }
+
+  .bg-success-soft {
+    background: var(--color-success-soft);
+  }
+
+  /* Inline spinner — used for async submit state */
+  .spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid color-mix(in srgb, currentColor 25%, transparent);
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spinner {
+      animation-duration: 1.6s;
+    }
+  }
+
+  /* High-contrast users get a solid h1 instead of the gradient (decorative → functional) */
+  @media (prefers-contrast: more) {
+    .gradient-text {
+      background: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
+      color: var(--text);
+    }
   }
 
   /* Accent box with border */

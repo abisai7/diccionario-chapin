@@ -46,7 +46,7 @@ export const translations = {
       "Comparte uno o varios ejemplos de cómo se usa esta palabra o frase.",
     "contribute.form.examples.hint": "También puedes dejar este campo en blanco.",
     "contribute.form.name.label": "Nombre (opcional)",
-    "contribute.form.name.placeholder": "Tu nombre",
+    "contribute.form.name.placeholder": "María Pérez",
     "contribute.form.email.label": "Correo electrónico (opcional)",
     "contribute.form.email.placeholder": "tu@correo.com",
     "contribute.form.contact.hint":
@@ -60,6 +60,13 @@ export const translations = {
     "contribute.form.success": "Gracias por contribuir. Revisaremos tu aporte pronto.",
     "contribute.form.error":
       "No se pudo enviar tu contribución. Inténtalo de nuevo en unos minutos.",
+
+    "contribute.form.success.heading": "¡Gracias por compartir!",
+    "contribute.form.success.body":
+      "Recibimos tu aporte para «{word}». Lo revisaremos en los próximos días. Si dejaste tu correo, te avisaremos cuando se publique.",
+    "contribute.form.success.cta.another": "Contribuir otra palabra",
+    "contribute.form.success.cta.browse": "Explorar el diccionario",
+    "contribute.form.field.required": "obligatorio",
 
     "home.about.title": "¿Qué son los Chapinismos?",
     "home.about.paragraph1":
@@ -226,7 +233,7 @@ export const translations = {
       "Share one or more examples of how this word or phrase is used.",
     "contribute.form.examples.hint": "You can also leave this field blank.",
     "contribute.form.name.label": "Name (optional)",
-    "contribute.form.name.placeholder": "Your name",
+    "contribute.form.name.placeholder": "Jane Doe",
     "contribute.form.email.label": "Email (optional)",
     "contribute.form.email.placeholder": "you@email.com",
     "contribute.form.contact.hint":
@@ -239,6 +246,13 @@ export const translations = {
     "contribute.form.sending": "Sending...",
     "contribute.form.success": "Thanks for contributing. We will review your suggestion soon.",
     "contribute.form.error": "Your contribution could not be sent. Please try again shortly.",
+
+    "contribute.form.success.heading": "Thanks for sharing!",
+    "contribute.form.success.body":
+      "We received your contribution for “{word}”. We will review it in the next few days. If you left your email, we will let you know when it goes live.",
+    "contribute.form.success.cta.another": "Contribute another word",
+    "contribute.form.success.cta.browse": "Browse the dictionary",
+    "contribute.form.field.required": "required",
 
     "home.about.title": "What are Chapinismos?",
     "home.about.paragraph1":

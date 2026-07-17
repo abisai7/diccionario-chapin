@@ -7,6 +7,9 @@ import BreadcrumbSchema from "../../components/schemas/BreadcrumbSchema.astro";
 import { useTranslations } from "../../utils/i18n";
 import { Send } from "@lucide/astro";
 import { Info } from "@lucide/astro";
+import { Check } from "@lucide/astro";
+import { BookOpen } from "@lucide/astro";
+import { Plus } from "@lucide/astro";
 
 export async function getStaticPaths() {
   return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
@@ -14,6 +17,7 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params;
 const t = useTranslations(lang);
+const prefix = lang === "en" ? "/en" : "/es";
 
 const alternateUrls = {
   es: "/es/contribuir/",
@@ -43,18 +47,36 @@ const siteUrl = Astro.site || "https://chapinismos.org";
       lang={lang}
       items={[{ label: t("contribute.page.title"), href: `/${lang}/contribuir/` }]}
     />
-    <div class="border-theme bg-card shadow-theme-lg mt-6 rounded-xl border p-6 md:p-8">
-      <h1 class="gradient-text m-0 text-[clamp(1.8rem,2.4vw,2.4rem)]">
+    <div class="border-theme bg-card shadow-theme-md mt-6 rounded-2xl border p-6 md:p-8">
+      <h1 class="gradient-text m-0 text-[clamp(1.8rem,2.4vw,2.6rem)]" style="text-wrap: balance;">
         {t("contribute.page.title")}
       </h1>
       <p class="text-secondary mt-3 mb-7 text-base leading-relaxed">
         {t("contribute.page.description")}
       </p>
 
-      <form id="contributeForm" class="grid gap-5" novalidate>
+      <form
+        id="contributeForm"
+        class="grid gap-5"
+        novalidate
+        aria-describedby="contributeFormIntro"
+      >
+        <div hidden>
+          <label for="company">Company</label>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+          />
+        </div>
+
         <div class="grid gap-2">
           <label class="text-theme text-sm font-semibold" for="word">
             {t("contribute.form.word.label")}
+            <span class="text-error ms-1" aria-hidden="true">*</span>
           </label>
           <input
             id="word"
@@ -63,14 +85,21 @@ const siteUrl = Astro.site || "https://chapinismos.org";
             required
             maxlength="80"
             autocomplete="off"
-            class="border-theme bg-accent text-theme rounded-lg border px-3 py-2.5"
+            aria-required="true"
+            aria-describedby="wordHint wordError"
+            class="border-theme bg-accent text-theme focus:border-primary rounded-lg border px-3 py-2.5 transition-colors focus:outline-hidden"
             placeholder={t("contribute.form.word.placeholder")}
           />
-          <p id="wordError" class="m-0 hidden text-sm text-red-400"></p>
-          <p class="text-secondary m-0 inline-flex items-start gap-2 text-sm">
-            <Info size={14} class="mt-0.5 shrink-0" aria-hidden="true" />
-            <span>{t("contribute.form.word.hint")}</span>
-          </p>
+          <div class="flex items-center justify-between gap-3">
+            <p id="wordHint" class="text-secondary m-0 inline-flex items-start gap-2 text-sm">
+              <Info size={14} class="mt-0.5 shrink-0" aria-hidden="true" />
+              <span>{t("contribute.form.word.hint")}</span>
+            </p>
+            <span id="wordCount" class="text-muted shrink-0 text-xs tabular-nums" aria-live="polite"
+              >0/80</span
+            >
+          </div>
+          <p id="wordError" class="text-error m-0 hidden text-sm" role="alert"></p>
         </div>
 
         <div class="grid gap-2">
@@ -82,13 +111,21 @@ const siteUrl = Astro.site || "https://chapinismos.org";
             name="meaning"
             rows="4"
             maxlength="1200"
-            class="border-theme bg-accent text-theme rounded-lg border px-3 py-2.5"
+            aria-describedby="meaningHint meaningError"
+            class="border-theme bg-accent text-theme focus:border-primary rounded-lg border px-3 py-2.5 transition-colors focus:outline-hidden"
             placeholder={t("contribute.form.meaning.placeholder")}></textarea>
-          <p id="meaningError" class="m-0 hidden text-sm text-red-400"></p>
-          <p class="text-secondary m-0 inline-flex items-start gap-2 text-sm">
-            <Info size={14} class="mt-0.5 shrink-0" aria-hidden="true" />
-            <span>{t("contribute.form.meaning.hint")}</span>
-          </p>
+          <div class="flex items-center justify-between gap-3">
+            <p id="meaningHint" class="text-secondary m-0 inline-flex items-start gap-2 text-sm">
+              <Info size={14} class="mt-0.5 shrink-0" aria-hidden="true" />
+              <span>{t("contribute.form.meaning.hint")}</span>
+            </p>
+            <span
+              id="meaningCount"
+              class="text-muted shrink-0 text-xs tabular-nums"
+              aria-live="polite">0/1200</span
+            >
+          </div>
+          <p id="meaningError" class="text-error m-0 hidden text-sm" role="alert"></p>
         </div>
 
         <div class="grid gap-2">
@@ -100,13 +137,21 @@ const siteUrl = Astro.site || "https://chapinismos.org";
             name="examples"
             rows="4"
             maxlength="1200"
-            class="border-theme bg-accent text-theme rounded-lg border px-3 py-2.5"
+            aria-describedby="examplesHint examplesError"
+            class="border-theme bg-accent text-theme focus:border-primary rounded-lg border px-3 py-2.5 transition-colors focus:outline-hidden"
             placeholder={t("contribute.form.examples.placeholder")}></textarea>
-          <p id="examplesError" class="m-0 hidden text-sm text-red-400"></p>
-          <p class="text-secondary m-0 inline-flex items-start gap-2 text-sm">
-            <Info size={14} class="mt-0.5 shrink-0" aria-hidden="true" />
-            <span>{t("contribute.form.examples.hint")}</span>
-          </p>
+          <div class="flex items-center justify-between gap-3">
+            <p id="examplesHint" class="text-secondary m-0 inline-flex items-start gap-2 text-sm">
+              <Info size={14} class="mt-0.5 shrink-0" aria-hidden="true" />
+              <span>{t("contribute.form.examples.hint")}</span>
+            </p>
+            <span
+              id="examplesCount"
+              class="text-muted shrink-0 text-xs tabular-nums"
+              aria-live="polite">0/1200</span
+            >
+          </div>
+          <p id="examplesError" class="text-error m-0 hidden text-sm" role="alert"></p>
         </div>
 
         <div class="grid gap-2 md:grid-cols-2">
@@ -120,10 +165,11 @@ const siteUrl = Astro.site || "https://chapinismos.org";
               type="text"
               maxlength="120"
               autocomplete="name"
-              class="border-theme bg-accent text-theme rounded-lg border px-3 py-2.5"
+              aria-describedby="nameError"
+              class="border-theme bg-accent text-theme focus:border-primary rounded-lg border px-3 py-2.5 transition-colors focus:outline-hidden"
               placeholder={t("contribute.form.name.placeholder")}
             />
-            <p id="nameError" class="m-0 hidden text-sm text-red-400"></p>
+            <p id="nameError" class="text-error m-0 hidden text-sm" role="alert"></p>
           </div>
 
           <div class="grid gap-2">
@@ -136,10 +182,11 @@ const siteUrl = Astro.site || "https://chapinismos.org";
               type="email"
               maxlength="254"
               autocomplete="email"
-              class="border-theme bg-accent text-theme rounded-lg border px-3 py-2.5"
+              aria-describedby="emailError"
+              class="border-theme bg-accent text-theme focus:border-primary rounded-lg border px-3 py-2.5 transition-colors focus:outline-hidden"
               placeholder={t("contribute.form.email.placeholder")}
             />
-            <p id="emailError" class="m-0 hidden text-sm text-red-400"></p>
+            <p id="emailError" class="text-error m-0 hidden text-sm" role="alert"></p>
           </div>
         </div>
         <p class="text-secondary m-0 inline-flex items-start gap-2 text-sm">
@@ -147,27 +194,59 @@ const siteUrl = Astro.site || "https://chapinismos.org";
           <span>{t("contribute.form.contact.hint")}</span>
         </p>
 
-        <input
-          type="text"
-          name="company"
-          tabindex="-1"
-          autocomplete="off"
-          class="hidden"
-          aria-hidden="true"
-        />
-
-        <div class="flex items-center gap-3">
+        <div class="mt-2 flex flex-wrap items-center gap-3" data-state="idle" id="contributeFooter">
           <button
             id="contributeSubmit"
             type="submit"
             class="badge-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white! transition-all duration-200 hover:-translate-y-0.5 hover:text-white! focus-visible:text-white! active:scale-95"
           >
-            <Send size={14} />
+            <Send id="contributeSubmitIcon" size={14} aria-hidden="true" />
+            <span id="contributeSpinner" class="spinner hidden" aria-hidden="true"></span>
             <span id="contributeSubmitLabel">{t("contribute.form.submit")}</span>
           </button>
-          <p id="contributeStatus" class="text-sm" aria-live="polite"></p>
+          <p id="contributeStatus" class="text-sm" data-state="idle" aria-live="polite"></p>
         </div>
       </form>
+
+      <div
+        id="contributeSuccess"
+        class="bg-success-soft border-theme hidden rounded-2xl border p-6 md:p-8"
+        role="status"
+        aria-live="polite"
+      >
+        <div
+          class="bg-success mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full text-white"
+          aria-hidden="true"
+        >
+          <Check size={24} />
+        </div>
+        <h2 class="m-0 mb-2 text-center text-2xl font-bold">
+          {t("contribute.form.success.heading")}
+        </h2>
+        <p
+          id="contributeSuccessBody"
+          class="text-secondary m-0 mb-6 text-center text-base leading-relaxed"
+        >
+          <!-- filled by JS with the submitted word -->
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <button
+            id="contributeAnother"
+            type="button"
+            class="badge-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white! transition-all duration-200 hover:-translate-y-0.5 hover:text-white! focus-visible:text-white! active:scale-95"
+          >
+            <Plus size={14} aria-hidden="true" />
+            <span>{t("contribute.form.success.cta.another")}</span>
+          </button>
+          <a
+            href={`${prefix}/`}
+            class="border-theme bg-card text-theme hover:border-primary hover:bg-card-hover focus-visible:outline-primary inline-flex shrink-0 items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-95"
+          >
+            <BookOpen size={14} aria-hidden="true" />
+            <span>{t("contribute.form.success.cta.browse")}</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -177,20 +256,39 @@ const siteUrl = Astro.site || "https://chapinismos.org";
       sendingText: t("contribute.form.sending"),
       successText: t("contribute.form.success"),
       errorText: t("contribute.form.error"),
+      successHeadingText: t("contribute.form.success.heading"),
+      successBodyText: t("contribute.form.success.body"),
       wordRequiredText: t("contribute.form.validation.wordRequired"),
       emailInvalidText: t("contribute.form.validation.emailInvalid"),
       tooLongText: t("contribute.form.validation.tooLong"),
       fixFieldsText: t("contribute.form.validation.fixFields"),
+      successCtaAnotherText: t("contribute.form.success.cta.another"),
+      successCtaBrowseText: t("contribute.form.success.cta.browse"),
     }}
   >
     const initContributeForm = () => {
       const form = document.getElementById("contributeForm");
       const status = document.getElementById("contributeStatus");
+      const footer = document.getElementById("contributeFooter");
       const submit = document.getElementById("contributeSubmit");
       const submitLabel = document.getElementById("contributeSubmitLabel");
+      const submitIcon = document.getElementById("contributeSubmitIcon");
+      const spinner = document.getElementById("contributeSpinner");
       const wordInput = document.getElementById("word");
+      const successCard = document.getElementById("contributeSuccess");
+      const successBody = document.getElementById("contributeSuccessBody");
+      const anotherBtn = document.getElementById("contributeAnother");
 
-      if (!form || !status || !submit || !submitLabel || form.dataset.bound === "1") {
+      if (
+        !form ||
+        !status ||
+        !footer ||
+        !submit ||
+        !submitLabel ||
+        !successCard ||
+        !successBody ||
+        form.dataset.bound === "1"
+      ) {
         return;
       }
 
@@ -201,6 +299,11 @@ const siteUrl = Astro.site || "https://chapinismos.org";
       );
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+      const setStatus = (message, state) => {
+        status.textContent = message || "";
+        status.dataset.state = state || "idle";
+      };
+
       const setFieldError = (field, message) => {
         const errorElement = document.getElementById(`${field.id}Error`);
         if (!(errorElement instanceof HTMLParagraphElement)) {
@@ -208,8 +311,8 @@ const siteUrl = Astro.site || "https://chapinismos.org";
         }
 
         field.setAttribute("aria-invalid", "true");
-        field.classList.add("border-red-500", "focus:border-red-500");
-        field.classList.remove("border-theme");
+        field.classList.add("border-error", "focus:border-error");
+        field.classList.remove("border-theme", "focus:border-primary");
 
         errorElement.textContent = message;
         errorElement.classList.remove("hidden");
@@ -222,8 +325,8 @@ const siteUrl = Astro.site || "https://chapinismos.org";
         }
 
         field.removeAttribute("aria-invalid");
-        field.classList.remove("border-red-500", "focus:border-red-500");
-        field.classList.add("border-theme");
+        field.classList.remove("border-error", "focus:border-error");
+        field.classList.add("border-theme", "focus:border-primary");
 
         errorElement.textContent = "";
         errorElement.classList.add("hidden");
@@ -285,17 +388,37 @@ const siteUrl = Astro.site || "https://chapinismos.org";
         };
       };
 
+      const counters = {
+        word: document.getElementById("wordCount"),
+        meaning: document.getElementById("meaningCount"),
+        examples: document.getElementById("examplesCount"),
+      };
+
+      const updateCounter = (field) => {
+        const counter = counters[field.id];
+        if (!counter) return;
+        const max = field.getAttribute("maxlength") || "0";
+        const length = field.value.length;
+        const ratio = length / Number(max);
+        counter.textContent = `${length}/${max}`;
+        counter.classList.remove("text-error");
+        if (ratio >= 1) {
+          counter.classList.add("text-error");
+        }
+      };
+
       for (const field of fields) {
         field.addEventListener("input", () => {
           validateField(field);
-          if (status.classList.contains("text-red-400")) {
-            status.textContent = "";
-            status.className = "text-sm";
+          updateCounter(field);
+          if (status.dataset.state === "error") {
+            setStatus("", "idle");
           }
         });
         field.addEventListener("blur", () => {
           validateField(field);
         });
+        updateCounter(field);
       }
 
       if (wordInput instanceof HTMLInputElement) {
@@ -303,18 +426,70 @@ const siteUrl = Astro.site || "https://chapinismos.org";
         const prefilledWord = params.get("word")?.trim();
         if (prefilledWord && !wordInput.value.trim()) {
           wordInput.value = prefilledWord;
+          updateCounter(wordInput);
         }
       }
 
+      const setSubmitting = (isSubmitting) => {
+        if (isSubmitting) {
+          submit.disabled = true;
+          submit.setAttribute("aria-busy", "true");
+          footer.dataset.state = "submitting";
+          submitIcon?.classList.add("hidden");
+          spinner?.classList.remove("hidden");
+          submitLabel.textContent = sendingText;
+        } else {
+          submit.disabled = false;
+          submit.removeAttribute("aria-busy");
+          footer.dataset.state = footer.dataset.state === "success" ? "success" : "idle";
+          submitIcon?.classList.remove("hidden");
+          spinner?.classList.add("hidden");
+          submitLabel.textContent = form.dataset.submitText || successCtaAnotherText;
+        }
+      };
+
+      const showSuccess = (submittedWord) => {
+        const safeWord = (submittedWord || "").replace(/[<>]/g, "");
+        successBody.textContent = successBodyText.replace("{word}", safeWord);
+        form.classList.add("hidden");
+        successCard.classList.remove("hidden");
+        footer.dataset.state = "success";
+        setStatus("", "idle");
+        successCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      };
+
+      const showForm = () => {
+        successCard.classList.add("hidden");
+        form.classList.remove("hidden");
+        footer.dataset.state = "idle";
+        form.reset();
+        for (const field of fields) {
+          clearFieldError(field);
+          updateCounter(field);
+        }
+        wordInput?.focus();
+      };
+
+      anotherBtn?.addEventListener("click", showForm);
+
+      form.addEventListener("keydown", (event) => {
+        if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
+          event.preventDefault();
+          if (!submit.disabled) {
+            form.requestSubmit();
+          }
+        }
+      });
+
       form.dataset.bound = "1";
+      form.dataset.submitText = submitLabel.textContent || "";
 
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const validation = validateForm();
         if (!validation.valid) {
-          status.textContent = fixFieldsText;
-          status.className = "text-sm text-red-400";
+          setStatus(fixFieldsText, "error");
           validation.firstInvalidField?.focus();
           return;
         }
@@ -329,10 +504,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
           company: String(formData.get("company") || "").trim(),
         };
 
-        submit.disabled = true;
-        submitLabel.textContent = sendingText;
-        status.textContent = "";
-        status.className = "text-sm";
+        setSubmitting(true);
 
         try {
           const response = await fetch("/api/contribute/", {
@@ -347,22 +519,16 @@ const siteUrl = Astro.site || "https://chapinismos.org";
             throw new Error("Request failed");
           }
 
-          form.reset();
-          for (const field of fields) {
-            clearFieldError(field);
-          }
-          status.textContent = successText;
-          status.className = "text-sm text-emerald-400";
+          showSuccess(payload.word);
         } catch {
-          status.textContent = errorText;
-          status.className = "text-sm text-red-400";
+          setStatus(errorText, "error");
+          footer.dataset.state = "error";
         } finally {
-          submit.disabled = false;
-          submitLabel.textContent = form.dataset.submitText || submitLabel.textContent;
+          setSubmitting(false);
+          // Restore the standard label, not the success state
+          submitLabel.textContent = form.dataset.submitText || "";
         }
       });
-
-      form.dataset.submitText = submitLabel.textContent || "";
     };
 
     initContributeForm();
