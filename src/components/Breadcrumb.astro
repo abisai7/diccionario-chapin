@@ -1,5 +1,5 @@
 ---
-import { House } from "@lucide/astro";
+import { ChevronRight, House } from "@lucide/astro";
 import { useTranslations } from "../utils/i18n";
 
 interface BreadcrumbItem {
@@ -16,22 +16,37 @@ const { lang, items } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<nav aria-label={t("a11y.breadcrumb")} class="mb-4 flex items-center gap-2 text-sm">
+<nav
+  aria-label={t("a11y.breadcrumb")}
+  class="border-theme bg-card/50 mb-4 inline-flex items-center gap-1 rounded-lg border px-3 py-1.5 text-sm"
+>
   <a
     href={`/${lang}/`}
-    class="text-muted hover:text-primary-light flex items-center gap-1.5 transition-colors"
+    class="text-muted hover:text-primary-light flex items-center gap-1.5 rounded-md py-1.5 pr-1 transition-colors"
   >
     <House size={14} />
     <span>{t("nav.home")}</span>
   </a>
   {
-    items.map((item) => (
-      <>
-        <span class="text-muted">/</span>
-        <a href={item.href} class="text-muted hover:text-primary-light transition-colors">
-          {item.label}
-        </a>
-      </>
-    ))
+    items.map((item, index) => {
+      const isLast = index === items.length - 1;
+      return (
+        <>
+          <ChevronRight size={12} class="text-muted -my-px" aria-hidden="true" />
+          {isLast ? (
+            <span class="text-muted rounded-md px-1 py-1.5" aria-current="page">
+              {item.label}
+            </span>
+          ) : (
+            <a
+              href={item.href}
+              class="text-muted hover:text-primary-light rounded-md px-1 py-1.5 transition-colors"
+            >
+              {item.label}
+            </a>
+          )}
+        </>
+      );
+    })
   }
 </nav>

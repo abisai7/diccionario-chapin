@@ -99,8 +99,9 @@ const siteUrl = Astro.site || "https://chapinismos.org";
     >
       <p class="text-theme m-5 text-base font-semibold">{t("search.missing.prompt")}</p>
       <a
+        id="searchContributeLink"
         href={contributePath}
-        class="badge-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white! transition-all duration-200 hover:-translate-y-0.5 hover:text-white! focus-visible:text-white! active:scale-95"
+        class="cta-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white! transition-all duration-200 hover:-translate-y-0.5 hover:text-white! focus-visible:text-white! active:scale-95"
         data-umami-event="Search Missing Word CTA Click"
         data-umami-event-lang={lang}
       >
@@ -242,8 +243,16 @@ const siteUrl = Astro.site || "https://chapinismos.org";
       }
     });
 
+    const contributeLink = document.getElementById("searchContributeLink");
+
     input?.addEventListener("input", (e) => {
       search(e.target.value);
+      if (contributeLink) {
+        const q = e.target.value.trim();
+        contributeLink.href = q
+          ? `${contributePath}?word=${encodeURIComponent(q)}`
+          : contributePath;
+      }
     });
 
     // Search on page load if there's a query in the URL
