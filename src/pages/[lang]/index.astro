@@ -8,6 +8,7 @@ import AboutSection from "../../components/home/AboutSection.astro";
 import FeaturedWords from "../../components/home/FeaturedWords.astro";
 import LatestWords from "../../components/home/LatestWords.astro";
 import GuatemalaSlider from "../../components/home/GuatemalaSlider.astro";
+import HowToSection from "../../components/home/HowToSection.astro";
 import ContributeSection from "../../components/home/ContributeSection.astro";
 import BreadcrumbSchema from "../../components/schemas/BreadcrumbSchema.astro";
 import FeaturedWordsSchema from "../../components/schemas/FeaturedWordsSchema.astro";
@@ -92,6 +93,8 @@ if (unsplashKey) {
   {guatemalaImages.length > 0 && <GuatemalaSlider images={guatemalaImages} />}
 
   <AboutSection lang={lang} />
+
+  <HowToSection lang={lang} />
 
   <section class="mx-auto max-w-275 px-6">
     <Ticker words={featured} lang={lang} variant="vibrant" rows={1} />

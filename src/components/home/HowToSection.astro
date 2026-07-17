@@ -1,0 +1,104 @@
+---
+import {
+  ArrowRight,
+  BookOpen,
+  Clock,
+  Languages,
+  MessageCirclePlus,
+  Search,
+  Star,
+} from "@lucide/astro";
+import { useTranslations } from "../../utils/i18n";
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const prefix = lang === "en" ? "/en" : "/es";
+
+const steps = [
+  {
+    num: 1,
+    icon: Search,
+    titleKey: "home.howto.step1.title",
+    descKey: "home.howto.step1.description",
+    href: `${prefix}/buscar/`,
+  },
+  {
+    num: 2,
+    icon: Star,
+    titleKey: "home.howto.step2.title",
+    descKey: "home.howto.step2.description",
+    href: "#featured-words",
+  },
+  {
+    num: 3,
+    icon: Clock,
+    titleKey: "home.howto.step3.title",
+    descKey: "home.howto.step3.description",
+    href: "#latest-words",
+  },
+  {
+    num: 4,
+    icon: BookOpen,
+    titleKey: "home.howto.step4.title",
+    descKey: "home.howto.step4.description",
+    href: `${prefix}/indice/`,
+  },
+  {
+    num: 5,
+    icon: Languages,
+    titleKey: "home.howto.step5.title",
+    descKey: "home.howto.step5.description",
+    href: "#header",
+  },
+  {
+    num: 6,
+    icon: MessageCirclePlus,
+    titleKey: "home.howto.step6.title",
+    descKey: "home.howto.step6.description",
+    href: `${prefix}/contribuir/`,
+  },
+];
+---
+
+<section id="how-to" class="mx-auto max-w-275 px-6 py-6">
+  <div class="mx-auto max-w-full">
+    <div class="mb-10 text-center">
+      <h2 class="gradient-text text-3xl font-bold md:text-4xl">
+        {t("home.howto.title")}
+      </h2>
+      <p class="text-muted mt-3 text-base leading-relaxed">
+        {t("home.howto.subtitle")}
+      </p>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      {
+        steps.map((step) => (
+          <div class="border-theme bg-card group shadow-theme-md hover:shadow-theme-lg rounded-xl border p-4 transition-all duration-300">
+            <div class="mb-3 flex items-center gap-2">
+              <div class="bg-primary/10 flex size-8 shrink-0 items-center justify-center rounded-lg">
+                <span class="text-primary-light text-xs font-bold">{step.num}</span>
+              </div>
+              <div class="bg-primary/10 shrink-0 rounded-lg p-2">
+                <step.icon class="text-primary-light" size="20" />
+              </div>
+              <h3 class="text-base font-semibold">{t(step.titleKey)}</h3>
+            </div>
+            <p class="text-muted text-sm leading-relaxed" set:html={t(step.descKey)} />
+            <a
+              href={step.href}
+              class="text-primary-light mt-2 inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
+            >
+              <span class="mt-0.5">{t("word.learn_more")}</span>
+              <ArrowRight size={14} />
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

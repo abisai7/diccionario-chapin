@@ -75,6 +75,28 @@ export const translations = {
     "home.about.note":
       "Las palabras incluidas en este diccionario se usan normalmente en Guatemala, pero eso no significa que no se utilicen en otros países de la región. De hecho, algunas pudieron haberse originado en países vecinos.",
 
+    "home.howto.title": "Cómo usar el diccionario",
+    "home.howto.subtitle":
+      "Sigue estos pasos para aprovechar al máximo todas las funciones del diccionario.",
+    "home.howto.step1.title": "Busca palabras",
+    "home.howto.step1.description":
+      "Escribe cualquier palabra o frase en la barra de búsqueda. Puedes presionar <kbd>/</kbd> para acceder rápidamente desde cualquier parte del sitio.",
+    "home.howto.step2.title": "Palabras destacadas",
+    "home.howto.step2.description":
+      "Explora la selección de chapinismos más populares e interesantes, curados por nuestro equipo.",
+    "home.howto.step3.title": "Últimas agregadas",
+    "home.howto.step3.description":
+      "Descubre las palabras y expresiones más recientes que se han incorporado al diccionario.",
+    "home.howto.step4.title": "Índice alfabético",
+    "home.howto.step4.description":
+      "Navega por todas las palabras organizadas de la A a la Z en el índice completo del diccionario.",
+    "home.howto.step5.title": "Cambia de idioma",
+    "home.howto.step5.description":
+      "Alterna entre español e inglés usando el interruptor de idioma en la barra de navegación.",
+    "home.howto.step6.title": "Contribuye",
+    "home.howto.step6.description":
+      "¿Conoces un chapinismo que no está? Envíanoslo a través del formulario de contribuciones.",
+
     "search.title": "Buscar",
     "search.subtitle": "Encuentra el chapinismo que estás buscando",
     "search.description":
@@ -231,6 +253,27 @@ export const translations = {
     "home.about.card2.title": "History and Community",
     "home.about.note":
       "The words in this dictionary are commonly used in Guatemala, but that doesn't mean they aren't used in other countries in the region. In fact, some may have originated in neighboring countries.",
+
+    "home.howto.title": "How to use the dictionary",
+    "home.howto.subtitle": "Follow these steps to make the most of all the dictionary's features.",
+    "home.howto.step1.title": "Search for words",
+    "home.howto.step1.description":
+      "Type any word or phrase in the search bar. You can press <kbd>/</kbd> to quickly access it from anywhere on the site.",
+    "home.howto.step2.title": "Featured words",
+    "home.howto.step2.description":
+      "Explore the selection of the most popular and interesting chapinismos, curated by our team.",
+    "home.howto.step3.title": "Latest additions",
+    "home.howto.step3.description":
+      "Discover the most recent words and expressions that have been added to the dictionary.",
+    "home.howto.step4.title": "Alphabetical index",
+    "home.howto.step4.description":
+      "Browse all words organized from A to Z in the complete dictionary index.",
+    "home.howto.step5.title": "Switch language",
+    "home.howto.step5.description":
+      "Toggle between Spanish and English using the language switcher in the navigation bar.",
+    "home.howto.step6.title": "Contribute",
+    "home.howto.step6.description":
+      "Know a chapinismo that's missing? Send it to us through the contribution form.",
 
     "search.title": "Search",
     "search.subtitle": "Find the Guatemalan slang you're looking for",
