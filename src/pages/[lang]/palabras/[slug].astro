@@ -262,13 +262,17 @@ const correctionUrl = `/${lang}/contribuir/?word=${encodeURIComponent(word.word)
         )
       }
 
-      <div>
-        <p class="text-muted mt-6 text-sm">
-          <time datetime={remarkPluginFrontmatter?.lastModified}>
-            {t("word.last_modified", { lastModified })}
-          </time>
-        </p>
-      </div>
+      {
+        lastModified && (
+          <div>
+            <p class="text-muted mt-6 text-sm">
+              <time datetime={remarkPluginFrontmatter?.lastModified}>
+                {t("word.last_modified", { lastModified })}
+              </time>
+            </p>
+          </div>
+        )
+      }
 
       <RelatedWordsSection
         words={relatedWords}
