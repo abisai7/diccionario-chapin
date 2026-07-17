@@ -39,3 +39,8 @@ snyk_rules.instructions.md
 
 # Vercel deployment files
 .vercel/
+
+# Impeccable AI Skills, only for local test skill development 
+.github/skills/impeccable/
+.impeccable/
+.opencode/skills/impeccable/
