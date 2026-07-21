@@ -18,7 +18,7 @@ const { words, title, icon: Icon, lang, titleLevel = "h3" } = Astro.props;
   words.length > 0 && (
     <div class={title ? "border-theme mt-8 border-t pt-6" : ""}>
       {title && titleLevel === "h2" && (
-        <h2 class="my-0 mb-4 flex items-center gap-2 text-lg font-semibold">
+        <h2 class="my-0 mb-4 flex items-center gap-2 text-lg">
           {Icon && <Icon class="text-primary-light" size={20} />}
           {title}
         </h2>

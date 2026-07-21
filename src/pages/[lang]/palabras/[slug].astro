@@ -205,7 +205,7 @@ const correctionUrl = `/${lang}/contribuir/?word=${encodeURIComponent(word.word)
       </div>
 
       <div class="border-theme mt-6 border-t pt-4">
-        <h2 class="my-0 mb-3 flex items-center gap-2 text-xl font-semibold">
+        <h2 class="my-0 mb-3 flex items-center gap-2 text-xl">
           <BookOpenCheck size={20} color="currentColor" />
           {t("word.definition")}
         </h2>
@@ -217,7 +217,7 @@ const correctionUrl = `/${lang}/contribuir/?word=${encodeURIComponent(word.word)
       {
         word.examples && word.examples.length > 0 && (
           <div class="border-theme mt-6 border-t pt-4">
-            <h2 class="my-0 mb-3 flex items-center gap-2 text-xl font-semibold">
+            <h2 class="my-0 mb-3 flex items-center gap-2 text-xl">
               <ListCheck size="20" color="currentColor" />
               {t("word.examples")}
             </h2>
@@ -233,7 +233,7 @@ const correctionUrl = `/${lang}/contribuir/?word=${encodeURIComponent(word.word)
       {
         word.synonyms && word.synonyms.length > 0 && (
           <div class="border-theme mt-6 border-t pt-4">
-            <h2 class="my-0 mb-3 flex items-center gap-2 text-xl font-semibold">
+            <h2 class="my-0 mb-3 flex items-center gap-2 text-xl">
               <CircleEqual size="20" color="currentColor" />
               {t("word.synonyms")}
             </h2>
@@ -251,7 +251,7 @@ const correctionUrl = `/${lang}/contribuir/?word=${encodeURIComponent(word.word)
       {
         Content && (
           <div class="border-theme mt-6 border-t pt-4">
-            <h2 class="my-0 mb-3 flex items-center gap-2 text-xl font-semibold">
+            <h2 class="my-0 mb-3 flex items-center gap-2 text-xl">
               <CirclePlus size="20" color="currentColor" />
               {t("word.more_info")}
             </h2>

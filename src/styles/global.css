@@ -180,7 +180,8 @@ a:hover {
   color: var(--primary-dark);
 }
 
-h1 {
+h1,
+h2 {
   font-family: "Alice", serif;
 }
 
