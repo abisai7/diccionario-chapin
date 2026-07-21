@@ -1,0 +1,227 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCategoryColor } from "../../utils/categoryColors";
+import { useTranslations } from "../../utils/i18n";
+import { CalendarHeart } from "@lucide/astro";
+
+interface Props {
+  words: CollectionEntry<"words-es" | "words-en">[];
+  lang: string;
+  standalone?: boolean;
+}
+
+const { words, lang, standalone = true } = Astro.props;
+const t = useTranslations(lang);
+
+if (words.length === 0) {
+  return;
+}
+
+const today = new Date();
+const dateFormatter = new Intl.DateTimeFormat(lang === "es" ? "es-GT" : "en-US", {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+const formattedDate = dateFormatter.format(today);
+const todayISO = today.toISOString().slice(0, 10);
+
+const wordEntries = words.map((entry) => ({
+  id: entry.id,
+  word: entry.data.word,
+  meaning: entry.data.meaning,
+  examples: entry.data.examples ?? [],
+  synonyms: entry.data.synonyms?.filter(Boolean) ?? [],
+  category: entry.data.category,
+  color: getCategoryColor(entry.data.category),
+}));
+
+const jsonData = JSON.stringify(wordEntries);
+const learnMoreLabel = t("home.dailyWord.learnMore");
+const synonymsLabel = t("home.dailyWord.synonyms");
+
+const fallback = words[0];
+const fallbackColor = getCategoryColor(fallback.data.category);
+
+function cardBody(word: typeof fallback.data, color: string, wordId: string) {
+  const examples = (word.examples ?? []).slice(0, 2);
+  const synonyms = (word.synonyms ?? []).filter(Boolean);
+  return `
+    <div>
+      <div class="mb-3 flex flex-wrap items-center gap-3">
+        <h3 class="text-text my-0 text-2xl font-semibold transition-colors duration-200 ease-out group-hover:text-[var(--primary)]">
+          ${word.word}
+        </h3>
+        <span class="inline-block rounded-full px-2.5 py-0.5 text-xs font-medium text-white" style="background-color: ${color};">
+          ${word.category}
+        </span>
+      </div>
+      <p class="text-secondary my-0 mb-3 text-base leading-relaxed">${word.meaning}</p>
+      ${
+        examples.length > 0
+          ? examples
+              .map(
+                (ex) =>
+                  `<div class="accent-box mb-3 rounded-r-lg px-4 py-2 text-sm">&ldquo;${ex}&rdquo;</div>`
+              )
+              .join("")
+          : ""
+      }
+      ${
+        synonyms.length > 0
+          ? `
+      <div class="mb-3">
+        <span class="text-muted text-xs font-medium">${synonymsLabel}:</span>
+        <div class="mt-1.5 flex flex-wrap gap-1.5">
+          ${synonyms.map((s) => `<span class="border-theme text-muted inline-block rounded-full border px-2 py-0.5 text-xs">${s}</span>`).join("")}
+        </div>
+      </div>`
+          : ""
+      }
+    </div>
+    <div class="mt-auto">
+      <div class="bg-glow-primary mb-3 h-px"></div>
+      <span class="text-sm font-medium text-[var(--link-primary)] group-hover:underline">
+        ${learnMoreLabel} &rarr;
+      </span>
+    </div>`;
+}
+
+const cardClasses =
+  "group border-theme bg-card hover:bg-card-hover flex flex-1 flex-col rounded-xl border p-5 transition duration-200 ease-out hover:-translate-y-1 hover:border-[var(--primary)]";
+---
+
+{
+  standalone ? (
+    <section id="daily-word" class="mx-auto mb-6 max-w-275 px-6">
+      <div class="card-with-gradient relative flex flex-col overflow-hidden p-6">
+        <div class="relative z-10 shrink-0">
+          <h2 class="my-0 flex items-center gap-2 text-2xl text-balance">
+            <CalendarHeart />
+            {t("home.dailyWord.title")}
+          </h2>
+          <p class="text-muted text-sm" id="daily-date">
+            {formattedDate}
+          </p>
+        </div>
+
+        <div class="relative z-10 mt-5 flex min-h-0 flex-1 flex-col" id="daily-word-content">
+          <a href={`/${lang}/palabras/${fallback.id}/`} class={cardClasses}>
+            <Fragment set:html={cardBody(fallback.data, fallbackColor, fallback.id)} />
+          </a>
+        </div>
+      </div>
+    </section>
+  ) : (
+    <div
+      id="daily-word"
+      class="card-with-gradient relative flex h-full flex-col overflow-hidden p-6"
+    >
+      <div class="relative z-10 shrink-0">
+        <h2 class="my-0 flex items-center gap-2 text-2xl text-balance">
+          <CalendarHeart />
+          {t("home.dailyWord.title")}
+        </h2>
+        <p class="text-muted text-sm" id="daily-date">
+          {formattedDate}
+        </p>
+      </div>
+
+      <div class="relative z-10 mt-5 flex min-h-0 flex-1 flex-col" id="daily-word-content">
+        <a href={`/${lang}/palabras/${fallback.id}/`} class={cardClasses}>
+          <Fragment set:html={cardBody(fallback.data, fallbackColor, fallback.id)} />
+        </a>
+      </div>
+    </div>
+  )
+}
+
+<script define:vars={{ dailyWordsJSON: jsonData, learnMoreLabel, synonymsLabel, todayISO }}>
+  (function () {
+    const contentEl = document.getElementById("daily-word-content");
+    if (!contentEl) return;
+
+    try {
+      const words = JSON.parse(dailyWordsJSON);
+      if (!words.length) return;
+
+      function hashCode(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+          const char = str.charCodeAt(i);
+          hash = (hash << 5) - hash + char;
+          hash |= 0;
+        }
+        return Math.abs(hash);
+      }
+
+      const index = hashCode(todayISO) % words.length;
+      const word = words[index];
+
+      const basePath = document.documentElement.lang?.startsWith("en") ? "/en" : "/es";
+
+      function escapeHTML(str) {
+        const div = document.createElement("div");
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+      }
+
+      const examplesHTML =
+        word.examples && word.examples.length > 0
+          ? word.examples
+              .slice(0, 2)
+              .map(
+                (ex) =>
+                  `<div class="accent-box mb-3 rounded-r-lg px-4 py-2 text-sm">&ldquo;${escapeHTML(ex)}&rdquo;</div>`
+              )
+              .join("")
+          : "";
+
+      const synonymsHTML =
+        word.synonyms && word.synonyms.length > 0
+          ? `
+      <div class="mb-3">
+        <span class="text-muted text-xs font-medium">${escapeHTML(synonymsLabel)}:</span>
+        <div class="mt-1.5 flex flex-wrap gap-1.5">
+          ${word.synonyms.map((s) => `<span class="border-theme text-muted inline-block rounded-full border px-2 py-0.5 text-xs">${escapeHTML(s)}</span>`).join("")}
+        </div>
+      </div>`
+          : "";
+
+      contentEl.innerHTML = `
+        <a
+          href="${basePath}/palabras/${word.id}/"
+          class="group flex flex-1 flex-col rounded-xl border border-theme bg-card p-5 transition duration-200 ease-out hover:-translate-y-1 hover:border-[var(--primary)] hover:bg-card-hover"
+        >
+          <div>
+            <div class="mb-3 flex flex-wrap items-center gap-3">
+              <h3 class="my-0 text-2xl font-semibold text-text transition-colors duration-200 ease-out group-hover:text-[var(--primary)]">
+                ${escapeHTML(word.word)}
+              </h3>
+              <span
+                class="inline-block rounded-full px-2.5 py-0.5 text-xs font-medium text-white"
+                style="background-color: ${word.color};"
+              >
+                ${escapeHTML(word.category)}
+              </span>
+            </div>
+            <p class="my-0 mb-3 text-base leading-relaxed text-secondary">
+              ${escapeHTML(word.meaning)}
+            </p>
+            ${examplesHTML}
+            ${synonymsHTML}
+          </div>
+          <div class="mt-auto">
+            <div class="bg-glow-primary mb-3 h-px"></div>
+            <span class="text-sm font-medium text-[var(--link-primary)] group-hover:underline">
+              ${escapeHTML(learnMoreLabel)} &rarr;
+            </span>
+          </div>
+        </a>
+      `;
+    } catch {
+      // Keep the fallback content if JSON parsing fails
+    }
+  })();
+</script>

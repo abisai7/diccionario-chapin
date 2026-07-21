@@ -1,6 +1,7 @@
 ---
 import RelatedWordsSection from "../RelatedWordsSection.astro";
 import { useTranslations } from "../../utils/i18n";
+import { CalendarPlus } from "@lucide/astro";
 
 interface Props {
   words: any[];
@@ -12,6 +13,6 @@ const t = useTranslations(lang);
 ---
 
 <section id="latest-words" class="mx-auto mb-6 max-w-275 px-6">
-  <h2 class="mb-3 text-2xl">{t("home.latest")}</h2>
+  <h2 class="mb-3 flex items-center gap-2 text-2xl"><CalendarPlus /> {t("home.latest")}</h2>
   <RelatedWordsSection words={words} title="" lang={lang} titleLevel="h2" />
 </section>

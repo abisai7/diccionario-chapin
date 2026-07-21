@@ -14,7 +14,9 @@ type CategoryType =
   | "expresion"
   | "expression"
   | "interjección"
-  | "interjection";
+  | "interjection"
+  | "modismo"
+  | "idiom";
 
 const CATEGORY_COLORS: Record<CategoryType, string> = {
   sustantivo: "#047857", // 5.48:1 AA
@@ -29,6 +31,8 @@ const CATEGORY_COLORS: Record<CategoryType, string> = {
   expression: "#be185d", // 6.04:1 AA
   interjección: "#dc2626", // 4.83:1 AA
   interjection: "#dc2626", // 4.83:1 AA
+  modismo: "#1e40af", // 8.72:1 AAA (same as verbo — blue for idioms)
+  idiom: "#1e40af", // 8.72:1 AAA
 };
 
 /**

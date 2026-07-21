@@ -5,6 +5,7 @@ import Base from "../../layouts/Base.astro";
 import Ticker from "../../components/Ticker.astro";
 import HeroSection from "../../components/home/HeroSection.astro";
 import AboutSection from "../../components/home/AboutSection.astro";
+import DailyWord from "../../components/home/DailyWord.astro";
 import FeaturedWords from "../../components/home/FeaturedWords.astro";
 import LatestWords from "../../components/home/LatestWords.astro";
 import GuatemalaSlider from "../../components/home/GuatemalaSlider.astro";
@@ -34,18 +35,21 @@ const wordList = allWords.map((w) => w.data.word);
 const shuffled = [...wordList].sort(() => Math.random() - 0.5);
 const featured = shuffled.slice(0, Math.min(45, shuffled.length));
 
+const FEATURED_WORDS_COUNT = 6;
+const LATEST_WORDS_COUNT = 6;
+
 // Get featured words or fallback to random if none are marked
 const featuredWords = allWords.filter((w) => w.data.featured === true);
 const top =
-  featuredWords.length >= 6
-    ? featuredWords.slice(0, 6)
-    : [...allWords].sort(() => Math.random() - 0.5).slice(0, 6);
+  featuredWords.length >= FEATURED_WORDS_COUNT
+    ? featuredWords.slice(0, FEATURED_WORDS_COUNT)
+    : [...allWords].sort(() => Math.random() - 0.5).slice(0, FEATURED_WORDS_COUNT);
 
 const latestWords = [...allWords]
   .sort(
     (a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime()
   )
-  .slice(0, 6);
+  .slice(0, LATEST_WORDS_COUNT);
 
 const siteUrl = Astro.site || "https://chapinismos.org";
 
@@ -85,9 +89,15 @@ if (unsplashKey) {
 
   <HeroSection lang={lang} />
 
-  <FeaturedWords words={top} lang={lang} />
-
-  <LatestWords words={latestWords} lang={lang} />
+  <div class="mx-auto mb-6 grid max-w-275 grid-cols-1 gap-6 px-6 lg:grid-cols-[5fr_2fr]">
+    <div
+      class="card-with-gradient flex flex-col p-6 [&_section]:mx-0 [&_section]:max-w-none [&_section]:px-0 [&_section:last-child]:mb-0"
+    >
+      <FeaturedWords words={top} lang={lang} />
+      <LatestWords words={latestWords} lang={lang} />
+    </div>
+    <DailyWord words={allWords} lang={lang} standalone={false} />
+  </div>
 
   {guatemalaImages.length > 0 && <GuatemalaSlider images={guatemalaImages} />}
 
