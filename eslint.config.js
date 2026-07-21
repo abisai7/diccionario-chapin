@@ -24,6 +24,8 @@ export default [
       "*.config.js",
       "*.config.mjs",
       "**/*.min.js",
+      ".opencode/skills/**",
+      ".github/skills/**",
     ],
   },
 ];

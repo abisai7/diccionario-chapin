@@ -9,31 +9,31 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="border-theme mx-auto mt-10 max-w-275 border-t px-6 py-10" transition:persist>
-  <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-    <div class="flex flex-col gap-3">
+  <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="flex flex-col gap-4">
       <a
         href={`${prefix}/`}
-        class="flex items-center gap-2 text-lg font-bold"
+        class="flex items-center gap-3 text-lg font-bold"
         aria-label="chapinismos.org"
         data-umami-event="Footer Logo Click"
       >
         <Logo height={32} width={32} />
-        <span class="gradient-text text-base">chapinismos.org</span>
+        <span class="text-base font-bold text-[var(--primary)]">chapinismos.org</span>
       </a>
-      <p class="text-sm leading-relaxed text-[var(--text-secondary)]">
+      <p class="max-w-xs text-sm leading-relaxed text-[var(--text-secondary)]">
         {t("footer.description")}
       </p>
     </div>
 
     <div>
-      <h3 class="mb-3 text-sm font-semibold tracking-wider text-[var(--text)] uppercase">
+      <h3 class="font-title mb-4 text-base font-bold text-[var(--text)]">
         {t("footer.navigation")}
       </h3>
-      <ul class="flex flex-col gap-1">
+      <ul class="flex flex-col gap-1.5">
         <li>
           <a
             href={`${prefix}/`}
-            class="nav-link inline-block px-2 py-1 text-sm"
+            class="nav-link inline-block px-2 py-1.5 text-sm"
             data-umami-event="Footer Nav Home"
           >
             {t("nav.home")}
@@ -42,7 +42,7 @@ const currentYear = new Date().getFullYear();
         <li>
           <a
             href={`${prefix}/indice/`}
-            class="nav-link inline-block px-2 py-1 text-sm"
+            class="nav-link inline-block px-2 py-1.5 text-sm"
             data-umami-event="Footer Nav Index"
           >
             {t("nav.index")}
@@ -51,7 +51,7 @@ const currentYear = new Date().getFullYear();
         <li>
           <a
             href={`${prefix}/buscar/`}
-            class="nav-link inline-block px-2 py-1 text-sm"
+            class="nav-link inline-block px-2 py-1.5 text-sm"
             data-umami-event="Footer Nav Search"
           >
             {t("nav.search")}
@@ -60,7 +60,7 @@ const currentYear = new Date().getFullYear();
         <li>
           <a
             href={`${prefix}/contribuir/`}
-            class="nav-link inline-block px-2 py-1 text-sm"
+            class="nav-link inline-block px-2 py-1.5 text-sm"
             data-umami-event="Footer Nav Contribute"
           >
             {t("nav.contribute")}
@@ -70,14 +70,14 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <div>
-      <h3 class="mb-3 text-sm font-semibold tracking-wider text-[var(--text)] uppercase">
+      <h3 class="font-title mb-4 text-base font-bold text-[var(--text)]">
         {t("footer.project")}
       </h3>
-      <ul class="flex flex-col gap-1">
+      <ul class="flex flex-col gap-1.5">
         <li>
           <a
             href="https://github.com/abisai7/diccionario-chapin"
-            class="nav-link inline-block px-2 py-1 text-sm"
+            class="nav-link inline-block px-2 py-1.5 text-sm"
             target="_blank"
             rel="noopener noreferrer"
             data-umami-event="Footer GitHub"
@@ -88,7 +88,7 @@ const currentYear = new Date().getFullYear();
         <li>
           <a
             href={`${prefix}/contribuir/`}
-            class="nav-link inline-block px-2 py-1 text-sm"
+            class="nav-link inline-block px-2 py-1.5 text-sm"
             data-umami-event="Footer Contribute"
           >
             {t("nav.contribute")}
@@ -98,12 +98,12 @@ const currentYear = new Date().getFullYear();
     </div>
   </div>
 
-  <div class="border-theme mt-8 border-t pt-6 text-center text-sm text-[var(--text-secondary)]">
+  <div class="border-theme mt-10 border-t pt-8 text-center text-sm text-[var(--text-secondary)]">
     <p>
       &copy; {currentYear}
       {t("footer.made_with")}
       <a
-        class="hover:text-primary-dark focus-visible:text-primary-dark font-bold text-[var(--text)] underline"
+        class="hover:text-primary focus-visible:text-primary focus-visible:outline-primary font-bold text-[var(--text)] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2"
         href="https://www.abisai.dev/en/"
         target="_blank"
         rel="noopener noreferrer"
@@ -111,7 +111,7 @@ const currentYear = new Date().getFullYear();
         data-umami-event-destination="abisai.dev"
       >
         Abisai Herrera
-      </a>.
+      </a>
     </p>
   </div>
 </footer>
