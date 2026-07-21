@@ -1,17 +1,117 @@
-<footer
-  class="border-theme text-text mx-auto mt-10 max-w-[1100px] border-t px-6 py-10"
-  style="background: var(--bg)"
-  transition:persist
->
-  Hecho con <span class="text-text">❤️</span> por
-  <a
-    class="text-text hover:text-primary-dark focus-visible:text-primary-dark font-bold underline"
-    href="https://www.abisai.dev/en/"
-    target="_blank"
-    rel="noopener noreferrer"
-    data-umami-event="Footer Author Link"
-    data-umami-event-destination="abisai.dev"
-  >
-    Abisai Herrera
-  </a>.
+---
+import { getLangFromUrl, useTranslations } from "../utils/i18n";
+import Logo from "./icons/Logo.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const prefix = lang === "en" ? "/en" : "/es";
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-theme mx-auto mt-10 max-w-275 border-t px-6 py-10" transition:persist>
+  <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="flex flex-col gap-3">
+      <a
+        href={`${prefix}/`}
+        class="flex items-center gap-2 text-lg font-bold"
+        aria-label="chapinismos.org"
+        data-umami-event="Footer Logo Click"
+      >
+        <Logo height={32} width={32} />
+        <span class="gradient-text text-base">chapinismos.org</span>
+      </a>
+      <p class="text-sm leading-relaxed text-[var(--text-secondary)]">
+        {t("footer.description")}
+      </p>
+    </div>
+
+    <div>
+      <h3 class="mb-3 text-sm font-semibold tracking-wider text-[var(--text)] uppercase">
+        {t("footer.navigation")}
+      </h3>
+      <ul class="flex flex-col gap-1">
+        <li>
+          <a
+            href={`${prefix}/`}
+            class="nav-link inline-block px-2 py-1 text-sm"
+            data-umami-event="Footer Nav Home"
+          >
+            {t("nav.home")}
+          </a>
+        </li>
+        <li>
+          <a
+            href={`${prefix}/indice/`}
+            class="nav-link inline-block px-2 py-1 text-sm"
+            data-umami-event="Footer Nav Index"
+          >
+            {t("nav.index")}
+          </a>
+        </li>
+        <li>
+          <a
+            href={`${prefix}/buscar/`}
+            class="nav-link inline-block px-2 py-1 text-sm"
+            data-umami-event="Footer Nav Search"
+          >
+            {t("nav.search")}
+          </a>
+        </li>
+        <li>
+          <a
+            href={`${prefix}/contribuir/`}
+            class="nav-link inline-block px-2 py-1 text-sm"
+            data-umami-event="Footer Nav Contribute"
+          >
+            {t("nav.contribute")}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="mb-3 text-sm font-semibold tracking-wider text-[var(--text)] uppercase">
+        {t("footer.project")}
+      </h3>
+      <ul class="flex flex-col gap-1">
+        <li>
+          <a
+            href="https://github.com/abisai7/diccionario-chapin"
+            class="nav-link inline-block px-2 py-1 text-sm"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-umami-event="Footer GitHub"
+          >
+            {t("footer.source_code")}
+          </a>
+        </li>
+        <li>
+          <a
+            href={`${prefix}/contribuir/`}
+            class="nav-link inline-block px-2 py-1 text-sm"
+            data-umami-event="Footer Contribute"
+          >
+            {t("nav.contribute")}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-theme mt-8 border-t pt-6 text-center text-sm text-[var(--text-secondary)]">
+    <p>
+      &copy; {currentYear}
+      {t("footer.made_with")}
+      <a
+        class="hover:text-primary-dark focus-visible:text-primary-dark font-bold text-[var(--text)] underline"
+        href="https://www.abisai.dev/en/"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-umami-event="Footer Author Link"
+        data-umami-event-destination="abisai.dev"
+      >
+        Abisai Herrera
+      </a>.
+    </p>
+  </div>
 </footer>

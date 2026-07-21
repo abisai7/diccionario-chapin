@@ -187,6 +187,12 @@ export const translations = {
     "a11y.theme_toggle_dark": "Cambiar a tema oscuro",
     "a11y.theme_toggle_light": "Cambiar a tema claro",
     "a11y.breadcrumb": "Breadcrumb",
+
+    "footer.description": "Diccionario de chapinismos, palabras y expresiones guatemaltecas.",
+    "footer.navigation": "Navegación",
+    "footer.project": "Proyecto",
+    "footer.source_code": "Código fuente",
+    "footer.made_with": "Hecho con ❤️ por",
   },
   en: {
     "home.title": "Chapinismos - Guatemalan Slang Dictionary",
@@ -372,6 +378,12 @@ export const translations = {
     "a11y.theme_toggle_dark": "Switch to dark theme",
     "a11y.theme_toggle_light": "Switch to light theme",
     "a11y.breadcrumb": "Breadcrumb",
+
+    "footer.description": "Dictionary of Guatemalan slang, words, and expressions.",
+    "footer.navigation": "Navigation",
+    "footer.project": "Project",
+    "footer.source_code": "Source code",
+    "footer.made_with": "Made with ❤️ by",
   },
 };
 
