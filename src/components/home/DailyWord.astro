@@ -107,7 +107,12 @@ const cardClasses =
         </div>
 
         <div class="relative z-10 mt-5 flex min-h-0 flex-1 flex-col" id="daily-word-content">
-          <a href={`/${lang}/palabras/${fallback.id}/`} class={cardClasses}>
+          <a
+            href={`/${lang}/palabras/${fallback.id}/`}
+            class={cardClasses}
+            data-umami-event="Daily Word Click"
+            data-umami-event-word={fallback.data.word}
+          >
             <Fragment set:html={cardBody(fallback.data, fallbackColor, fallback.id)} />
           </a>
         </div>
@@ -129,7 +134,12 @@ const cardClasses =
       </div>
 
       <div class="relative z-10 mt-5 flex min-h-0 flex-1 flex-col" id="daily-word-content">
-        <a href={`/${lang}/palabras/${fallback.id}/`} class={cardClasses}>
+        <a
+          href={`/${lang}/palabras/${fallback.id}/`}
+          class={cardClasses}
+          data-umami-event="Daily Word Click"
+          data-umami-event-word={fallback.data.word}
+        >
           <Fragment set:html={cardBody(fallback.data, fallbackColor, fallback.id)} />
         </a>
       </div>
@@ -193,6 +203,8 @@ const cardClasses =
         <a
           href="${basePath}/palabras/${word.id}/"
           class="group flex flex-1 flex-col rounded-xl border border-theme bg-card p-5 transition duration-200 ease-out hover:-translate-y-1 hover:border-[var(--primary)] hover:bg-card-hover"
+          data-umami-event="Daily Word Click"
+          data-umami-event-word="${escapeHTML(word.word)}"
         >
           <div>
             <div class="mb-3 flex flex-wrap items-center gap-3">
