@@ -57,6 +57,14 @@ const prefix = lang === "en" ? "/en" : "/es";
   >
     {t("nav.contribute")}
   </a>
+  <a
+    href={`${prefix}/ayuda/`}
+    class="nav-link hover:bg-primary/15 active:bg-primary/25 rounded-lg px-4 py-3.5 text-center text-base font-bold transition-colors"
+    data-umami-event="Nav Help"
+    data-umami-event-device="mobile"
+  >
+    {t("nav.help")}
+  </a>
 </nav>
 
 <script is:inline>

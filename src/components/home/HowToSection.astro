@@ -31,14 +31,14 @@ const steps = [
     icon: Star,
     titleKey: "home.howto.step2.title",
     descKey: "home.howto.step2.description",
-    href: "#featured-words",
+    href: `${prefix}/#featured-words`,
   },
   {
     num: 3,
     icon: Clock,
     titleKey: "home.howto.step3.title",
     descKey: "home.howto.step3.description",
-    href: "#latest-words",
+    href: `${prefix}/#latest-words`,
   },
   {
     num: 4,
@@ -52,7 +52,7 @@ const steps = [
     icon: Languages,
     titleKey: "home.howto.step5.title",
     descKey: "home.howto.step5.description",
-    href: "#header",
+    href: `${prefix}/#header`,
   },
   {
     num: 6,
@@ -66,34 +66,28 @@ const steps = [
 
 <section id="how-to" class="mx-auto max-w-275 px-6 py-6">
   <div class="mx-auto max-w-full">
-    <div class="mb-10 text-center">
-      <h2 class="gradient-text text-3xl font-bold md:text-4xl">
-        {t("home.howto.title")}
-      </h2>
-      <p class="text-muted mt-3 text-base leading-relaxed">
-        {t("home.howto.subtitle")}
-      </p>
-    </div>
-
-    <div class="grid gap-4 md:grid-cols-2">
+    <div class="grid gap-6 md:grid-cols-2">
       {
         steps.map((step) => (
-          <div class="border-theme bg-card group shadow-theme-md hover:shadow-theme-lg rounded-xl border p-4 transition-all duration-300">
-            <div class="mb-3 flex items-center gap-2">
-              <div class="bg-primary/10 flex size-8 shrink-0 items-center justify-center rounded-lg">
-                <span class="text-primary-light text-xs font-bold">{step.num}</span>
+          <div class="border-theme bg-card group shadow-theme-sm hover:border-primary/30 hover:shadow-theme-md focus-within:ring-primary/50 rounded-xl border p-6 transition-all duration-300 focus-within:ring-2">
+            <div class="mb-4 flex items-center gap-4">
+              <div class="bg-primary/10 group-hover:bg-primary/15 relative flex size-12 shrink-0 items-center justify-center rounded-lg transition-colors duration-300">
+                <step.icon class="text-primary-light" size="24" />
+                <span class="bg-primary absolute -top-1.5 -right-1.5 flex size-5 items-center justify-center rounded-full text-[10px] leading-none font-bold text-white">
+                  {step.num}
+                </span>
               </div>
-              <div class="bg-primary/10 shrink-0 rounded-lg p-2">
-                <step.icon class="text-primary-light" size="20" />
+              <div class="pt-0.5">
+                <h2 class="font-title text-theme text-2xl">{t(step.titleKey)}</h2>
               </div>
-              <h3 class="text-base font-semibold">{t(step.titleKey)}</h3>
             </div>
-            <p class="text-muted text-sm leading-relaxed" set:html={t(step.descKey)} />
+            <p class="text-muted text-base leading-relaxed" set:html={t(step.descKey)} />
+            <div class="border-theme my-5 border-t" />
             <a
               href={step.href}
-              class="text-primary-light mt-2 inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
+              class="text-primary-light border-theme bg-card hover:bg-card-hover hover:border-primary/40 focus-visible:outline-primary inline-flex items-center gap-2 rounded-md border px-3 py-1.5 text-sm font-semibold transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2"
             >
-              <span class="mt-0.5">{t("word.learn_more")}</span>
+              <span>{t(step.titleKey)}</span>
               <ArrowRight size={14} />
             </a>
           </div>

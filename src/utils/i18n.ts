@@ -31,6 +31,14 @@ export const translations = {
       "Sugiere nuevas palabras chapinas o corrige definiciones existentes. Tu aporte ayuda a mantener vivo el diccionario.",
     "contribute.page.keywords":
       "contribuir diccionario chapin, sugerir palabra o frase guatemala, corregir chapinismo",
+
+    "help.page.title": "Cómo usar el diccionario | Chapinismos",
+    "help.page.description":
+      "Guía paso a paso para aprovechar al máximo el diccionario de chapinismos. Aprende a buscar, navegar y contribuir.",
+    "help.page.keywords":
+      "cómo usar diccionario chapin, guía chapinismos, ayuda diccionario guatemalteco",
+    "help.breadcrumb.title": "Ayuda",
+
     "contribute.form.word.label": "Palabra o frase",
     "contribute.form.word.placeholder": "Ejemplo: chapin",
     "contribute.form.word.hint":
@@ -159,6 +167,7 @@ export const translations = {
     "nav.home": "Inicio",
     "nav.search": "Buscar",
     "nav.index": "Índice",
+    "nav.help": "Ayuda",
     "nav.contribute": "Contribuir",
 
     // Schema translations
@@ -225,6 +234,13 @@ export const translations = {
       "Suggest new Guatemalan slang words or phrases, or corrections to existing meanings. Your contribution helps keep the dictionary alive.",
     "contribute.page.keywords":
       "contribute guatemalan dictionary, suggest slang word or phrase, chapinismo correction",
+
+    "help.page.title": "How to use the dictionary | Chapinismos",
+    "help.page.description":
+      "Step-by-step guide to get the most out of the Guatemalan slang dictionary. Learn to search, browse, and contribute.",
+    "help.page.keywords": "how to use chapin dictionary, chapinismos guide, guatemalan slang help",
+    "help.breadcrumb.title": "Help",
+
     "contribute.form.word.label": "Word or phrase",
     "contribute.form.word.hint":
       "Enter the word or phrase you want to contribute, correct, or suggest. This field is required.",
@@ -351,6 +367,7 @@ export const translations = {
     "nav.home": "Home",
     "nav.search": "Search",
     "nav.index": "Index",
+    "nav.help": "Help",
     "nav.contribute": "Contribute",
 
     // Schema translations

@@ -1,0 +1,56 @@
+---
+export const prerender = true;
+
+import Base from "../../layouts/Base.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import BreadcrumbSchema from "../../components/schemas/BreadcrumbSchema.astro";
+import HowToSection from "../../components/home/HowToSection.astro";
+import { useTranslations } from "../../utils/i18n";
+
+export async function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang);
+
+const alternateUrls = {
+  es: "/es/ayuda/",
+  en: "/en/ayuda/",
+  xDefault: "/es/ayuda/",
+};
+
+const siteUrl = Astro.site || "https://chapinismos.org";
+---
+
+<Base
+  title={`${t("help.page.title")} | ${t("schema.site.name")}`}
+  description={t("help.page.description")}
+  keywords={t("help.page.keywords")}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <BreadcrumbSchema
+    slot="schema"
+    lang={lang}
+    siteUrl={siteUrl}
+    items={[{ name: t("help.breadcrumb.title"), url: `/${lang}/ayuda/` }]}
+  />
+
+  <section class="mx-auto max-w-275 px-6">
+    <Breadcrumb
+      lang={lang}
+      items={[{ label: t("help.breadcrumb.title"), href: `/${lang}/ayuda/` }]}
+    />
+    <div class="card-with-gradient shadow-theme-lg my-6 grid gap-3.5 backdrop-blur-sm">
+      <h1 class="gradient-text mx-4 mt-4 text-[clamp(1.8rem,2.4vw,2.6rem)]">
+        {t("help.breadcrumb.title")}
+      </h1>
+      <p class="text-muted mx-4 mb-4 text-base">
+        {t("home.howto.subtitle")}
+      </p>
+    </div>
+  </section>
+
+  <HowToSection lang={lang} />
+</Base>
