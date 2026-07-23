@@ -1,5 +1,5 @@
 ---
-import { Search } from "@lucide/astro";
+import { Search, X } from "@lucide/astro";
 import { getLangFromUrl, useTranslations } from "../utils/i18n";
 
 const { placeholder = "Buscar palabra...", query = "" } = Astro.props;
@@ -9,75 +9,131 @@ const prefix = lang === "en" ? "/en" : "/es";
 const action = `${prefix}/buscar/`;
 ---
 
-<form
-  class="bg-card border-theme shadow-theme-sm flex items-center gap-2 rounded-lg border p-1 transition-all duration-200 sm:gap-2.5 sm:p-2"
-  action={action}
-  method="get"
->
+<form id="search-form" action={action} method="get" class="relative">
   <input
+    id="search-input"
     type="search"
     name="q"
     value={query}
     placeholder={placeholder}
     aria-label={t("search.aria_label")}
-    class="text-theme min-w-0 flex-1 border-none bg-transparent text-base outline-none placeholder:opacity-50"
+    class="text-theme bg-card border-theme shadow-theme-sm h-11 w-full rounded-md border py-2.5 pr-24 pl-3 text-base outline-none placeholder:opacity-65 focus:border-[var(--primary)] focus:shadow-[0_2px_8px_var(--glow-primary)] [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
   />
   <button
-    class="search-btn relative min-w-10 shrink-0 cursor-pointer justify-center overflow-hidden rounded-md border-none px-3 py-2.5 font-semibold text-white transition-all duration-200 active:scale-95 sm:min-w-11 sm:px-4"
+    id="search-clear"
+    type="button"
+    class="text-muted hover:text-theme absolute top-1/2 right-11 flex h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md transition-colors"
+    aria-label={t("search.clear_aria_label")}
+    hidden
+  >
+    <X size={16} aria-hidden="true" />
+  </button>
+  <div
+    class="absolute top-1/2 right-11 hidden h-5 w-px -translate-y-1/2 bg-[var(--border)]"
+    id="search-divider"
+  >
+  </div>
+  <button
+    id="search-submit"
+    class="search-submit absolute top-1.5 right-1.5 flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border-none text-white transition-[box-shadow,transform] duration-200 active:scale-95"
     type="submit"
     aria-label={t("search.button_aria_label")}
   >
-    <span class="relative z-10 flex items-center gap-2 text-white">
-      <Search size={16} color="currentColor" />
-      <span class="hidden md:inline"> {t("search.button_text")} </span>
-    </span>
+    <Search size={16} aria-hidden="true" />
   </button>
 </form>
+<p class="text-muted mt-1 ml-1 hidden text-xs md:block">
+  {t("home.search.tip")}
+  <kbd
+    class="bg-card border-theme text-theme mx-0.5 rounded-sm border px-1.5 py-px font-mono text-[11px]"
+    >/</kbd
+  >
+  {t("home.search.tip2")}
+</p>
 
 <style>
-  .search-btn {
-    position: relative;
+  .search-submit {
     background: var(--btn-primary-bg);
     box-shadow:
-      0 2px 8px var(--btn-primary-shadow),
-      0 1px 3px var(--shadow-md);
+      0 1px 4px var(--btn-primary-shadow),
+      0 1px 2px var(--shadow-md);
   }
 
-  .search-btn:hover {
+  .search-submit:hover {
     box-shadow:
-      0 4px 12px var(--btn-primary-shadow),
-      0 2px 6px var(--shadow-md);
+      0 2px 8px var(--btn-primary-shadow),
+      0 2px 4px var(--shadow-md);
     transform: translateY(-1px);
   }
 
-  .search-btn:active {
-    box-shadow: 0 1px 4px var(--btn-primary-shadow);
+  .search-submit:active {
+    box-shadow: 0 1px 2px var(--btn-primary-shadow);
     transform: translateY(0) scale(0.95);
   }
 
-  .search-btn:focus-visible {
+  .search-submit:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .search-submit {
+      transition-duration: 0s;
+    }
+
+    .search-submit:hover,
+    .search-submit:active {
+      transform: none;
+    }
   }
 </style>
 
 <script>
+  function toggleClearButton() {
+    const input = document.getElementById("search-input") as HTMLInputElement;
+    const clearBtn = document.getElementById("search-clear");
+    const divider = document.getElementById("search-divider");
+    if (input && clearBtn && divider) {
+      const hasValue = input.value.length > 0;
+      clearBtn.hidden = !hasValue;
+      divider.classList.toggle("hidden", !hasValue);
+    }
+  }
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "/" && !(e.target instanceof HTMLInputElement)) {
       e.preventDefault();
-      const input = document.querySelector('input[type="search"]') as HTMLInputElement;
+      const input = document.getElementById("search-input") as HTMLInputElement;
       input?.focus();
     }
   });
 
-  // Track search submissions
   document.addEventListener("astro:page-load", () => {
-    const form = document.querySelector('form[action*="buscar"]') as HTMLFormElement;
+    const form = document.getElementById("search-form") as HTMLFormElement;
+    const input = document.getElementById("search-input") as HTMLInputElement;
+    const clearBtn = document.getElementById("search-clear");
+
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => {
+        if (input) {
+          input.value = "";
+          input.focus();
+          toggleClearButton();
+          input.dispatchEvent(new Event("input", { bubbles: true }));
+        }
+      });
+    }
+
+    if (input) {
+      input.addEventListener("input", toggleClearButton);
+      toggleClearButton();
+    }
+
     if (form) {
       form.addEventListener("submit", () => {
-        const input = form.querySelector('input[name="q"]') as HTMLInputElement;
-        if (input && input.value && window.umami) {
-          window.umami.track("Search", { query: input.value });
+        const q = form.querySelector<HTMLInputElement>('input[name="q"]');
+        if (q?.value && window.umami?.track) {
+          window.umami.track("Search", { query: q.value });
         }
       });
     }

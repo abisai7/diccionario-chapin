@@ -1,5 +1,4 @@
 ---
-import { Info } from "@lucide/astro";
 import SearchBox from "../SearchBox.astro";
 import { useTranslations } from "../../utils/i18n";
 
@@ -12,7 +11,7 @@ const { lang, standalone = true } = Astro.props;
 const t = useTranslations(lang);
 
 const cardClasses = [
-  "card-with-gradient shadow-theme-lg grid gap-3.5 backdrop-blur-sm",
+  "card-with-gradient shadow-theme-lg grid gap-4 backdrop-blur-sm",
   standalone && "m-6",
 ]
   .filter(Boolean)
@@ -28,16 +27,6 @@ const cardClasses = [
         <div class="mx-4 mb-4 grid grid-cols-1">
           <SearchBox placeholder={t("home.search.placeholder")} />
         </div>
-        <div class="border-theme bg-glow-primary text-muted mx-4 mb-4 hidden rounded-lg border px-3 py-2 text-sm backdrop-blur-sm md:block">
-          <span class="inline-flex items-center gap-2">
-            <Info size={16} />
-            {t("home.search.tip")}
-            <kbd class="bg-card border-theme text-theme mx-1 rounded-sm border px-2 py-0.5 font-mono text-xs">
-              /
-            </kbd>
-            {t("home.search.tip2")}
-          </span>
-        </div>
       </div>
     </section>
   ) : (
@@ -46,16 +35,6 @@ const cardClasses = [
       <p class="text-muted mx-4 text-base">{t("home.subtitle")}</p>
       <div class="mx-4 mb-4 grid grid-cols-1">
         <SearchBox placeholder={t("home.search.placeholder")} />
-      </div>
-      <div class="border-theme bg-glow-primary text-muted mx-4 mb-4 hidden rounded-lg border px-3 py-2 text-sm backdrop-blur-sm md:block">
-        <span class="inline-flex items-center gap-2">
-          <Info size={16} />
-          {t("home.search.tip")}
-          <kbd class="bg-card border-theme text-theme mx-1 rounded-sm border px-2 py-0.5 font-mono text-xs">
-            /
-          </kbd>
-          {t("home.search.tip2")}
-        </span>
       </div>
     </div>
   )

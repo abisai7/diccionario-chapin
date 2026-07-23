@@ -80,7 +80,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
   />
   <div class="mx-auto max-w-275 px-6">
     <Breadcrumb lang={lang} items={[{ label: t("search.title"), href: `/${lang}/buscar/` }]} />
-    <div class="card-with-gradient shadow-theme-lg my-6 grid gap-3.5 backdrop-blur-sm">
+    <div class="card-with-gradient shadow-theme-lg my-6 grid gap-4 backdrop-blur-sm">
       <h1 class="gradient-text mx-4 mt-4 text-[clamp(1.8rem,2.4vw,2.6rem)]">
         {t("search.title")}
       </h1>
@@ -94,14 +94,12 @@ const siteUrl = Astro.site || "https://chapinismos.org";
 
     <div id="searchResults" class="mt-8 pb-12"></div>
 
-    <section
-      class="border-theme bg-card shadow-theme-sm mt-0 mb-12 rounded-lg border p-5 text-center"
-    >
+    <section class="border-theme bg-card shadow-theme-sm mb-12 rounded-lg border p-5 text-center">
       <p class="text-theme m-5 text-base font-semibold">{t("search.missing.prompt")}</p>
       <a
         id="searchContributeLink"
         href={contributePath}
-        class="badge-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white! transition-all duration-200 hover:-translate-y-0.5 hover:text-white! focus-visible:text-white! active:scale-95"
+        class="badge-primary-gradient hover:shadow-theme-lg inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white! transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:text-white! focus-visible:text-white! active:scale-95"
         data-umami-event="Search Missing Word CTA Click"
         data-umami-event-lang={lang}
       >
@@ -110,6 +108,22 @@ const siteUrl = Astro.site || "https://chapinismos.org";
       </a>
     </section>
   </div>
+
+  <style is:inline>
+    @media (prefers-reduced-motion: reduce) {
+      #searchContributeLink,
+      #searchResults a {
+        transition-duration: 0s;
+      }
+      #searchContributeLink:hover,
+      #searchResults a:hover {
+        transform: none;
+      }
+      #searchContributeLink:active {
+        transform: none;
+      }
+    }
+  </style>
 
   <script
     is:inline
@@ -139,7 +153,8 @@ const siteUrl = Astro.site || "https://chapinismos.org";
     }}
   >
     const words = JSON.parse(wordData);
-    const input = document.querySelector('input[type="search"]');
+    const input = document.getElementById("search-input");
+    const form = document.getElementById("search-form");
     const resultsContainer = document.getElementById("searchResults");
 
     const t = JSON.parse(searchTranslations);
@@ -192,7 +207,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
             .map(
               (item) => `
             <a href="${prefix}/palabras/${item.slug}/" 
-               class="block no-underline p-4 border border-theme rounded-lg bg-card shadow-theme-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-theme-md"
+               class="block no-underline p-4 border border-theme rounded-lg bg-card shadow-theme-sm transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-theme-md"
                data-umami-event="Search Result Click"
                data-umami-event-word="${item.word}"
                data-umami-event-category="${item.category}">
@@ -234,8 +249,7 @@ const siteUrl = Astro.site || "https://chapinismos.org";
       renderResults(results);
     }
 
-    // Prevent form submission
-    const form = document.querySelector("form");
+    // Prevent form submission — search client-side
     form?.addEventListener("submit", (e) => {
       e.preventDefault();
       if (input) {

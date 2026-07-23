@@ -164,6 +164,7 @@ export const translations = {
     "search.aria_label": "Buscar palabra",
     "search.button_aria_label": "Buscar",
     "search.button_text": "Buscar",
+    "search.clear_aria_label": "Limpiar búsqueda",
     "word.page.title": "{word} - Definición | Chapinismos",
     "word.last_modified": "Última modificación: {lastModified}",
 
@@ -368,6 +369,7 @@ export const translations = {
     "search.aria_label": "Search word",
     "search.button_aria_label": "Search",
     "search.button_text": "Search",
+    "search.clear_aria_label": "Clear search",
     "word.page.title": "{word} - Meaning and Details | Chapinismos",
 
     "nav.home": "Home",
