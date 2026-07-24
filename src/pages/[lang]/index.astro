@@ -12,8 +12,9 @@ import GuatemalaSlider from "../../components/home/GuatemalaSlider.astro";
 import ContributeSection from "../../components/home/ContributeSection.astro";
 import BreadcrumbSchema from "../../components/schemas/BreadcrumbSchema.astro";
 import FeaturedWordsSchema from "../../components/schemas/FeaturedWordsSchema.astro";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import { useTranslations } from "../../utils/i18n";
+import popularSlugs from "../../data/popular-slugs.json";
 
 export async function getStaticPaths() {
   return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
@@ -37,6 +38,12 @@ const featured = shuffled.slice(0, Math.min(45, shuffled.length));
 
 const FEATURED_WORDS_COUNT = 6;
 const LATEST_WORDS_COUNT = 6;
+
+const popularWords = popularSlugs
+  .map((slug) => allWords.find((w) => w.id === slug))
+  .filter((w): w is CollectionEntry<"words-es" | "words-en"> => w !== undefined);
+
+const allWordIds = allWords.map((w) => w.id);
 
 // Get featured words or fallback to random if none are marked
 const featuredWords = allWords.filter((w) => w.data.featured === true);
@@ -87,7 +94,7 @@ if (unsplashKey) {
   <BreadcrumbSchema slot="schema" lang={lang} siteUrl={siteUrl} items={[]} />
   <FeaturedWordsSchema slot="schema" lang={lang} siteUrl={siteUrl} words={top} />
 
-  <HeroSection lang={lang} />
+  <HeroSection lang={lang} popularWords={popularWords} allWordIds={allWordIds} />
 
   <div class="mx-auto mb-6 grid max-w-275 grid-cols-1 gap-6 px-6 lg:grid-cols-[5fr_2fr]">
     <div

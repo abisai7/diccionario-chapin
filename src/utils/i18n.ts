@@ -8,6 +8,7 @@ export const translations = {
     "home.subtitle":
       "Descubre el significado de las palabras y expresiones más usadas en Guatemala",
     "home.search.placeholder": "Buscar chapinismos...",
+    "home.randomWord": "Sorpréndeme",
     "home.search.tip": "Presiona",
     "home.search.tip2": "para buscar rápidamente",
     "home.dailyWord.title": "Palabra del día",
@@ -215,6 +216,7 @@ export const translations = {
       "guatemalan dictionary, guatemalan slang, chapin words, guatemalan expressions, guatemala idioms",
     "home.subtitle": "Discover the meaning of the most used words and expressions in Guatemala",
     "home.search.placeholder": "Search Guatemalan slang...",
+    "home.randomWord": "Surprise me",
     "home.search.tip": "Press",
     "home.search.tip2": "to search quickly",
     "home.dailyWord.title": "Word of the Day",
