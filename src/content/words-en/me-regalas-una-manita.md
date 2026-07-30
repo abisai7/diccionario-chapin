@@ -1,6 +1,6 @@
 ---
 publishedDate: "2026-07-30T00:00:00.000Z"
-word: "¿Me regalas una manita?"
+word: "¿Me regalás una manita?"
 meaning: "Colloquial phrase to ask someone for help or assistance."
 examples:
   - "¿Me regalás una manita to push my car?"
