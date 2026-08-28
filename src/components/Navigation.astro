@@ -25,6 +25,14 @@ const prefix = lang === "en" ? "/en" : "/es";
   {t("nav.index")}
 </a>
 <a
+  href={`${prefix}/blog/`}
+  class="nav-link px-3 py-2"
+  data-umami-event="Nav Blog"
+  data-umami-event-device="desktop"
+>
+  {t("nav.blog")}
+</a>
+<a
   href={`${prefix}/buscar/`}
   class="nav-link px-3 py-2"
   data-umami-event="Nav Search"

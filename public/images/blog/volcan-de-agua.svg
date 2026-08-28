@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Volcán de Agua, Guatemala">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="60%" stop-color="#5fa8dc"/>
+      <stop offset="100%" stop-color="#f9a8d4"/>
+    </linearGradient>
+    <linearGradient id="mountain" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#365314"/>
+      <stop offset="100%" stop-color="#14532d"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#1e40af"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#sky)"/>
+  <circle cx="900" cy="120" r="70" fill="#fef3c7" opacity="0.9"/>
+  <circle cx="900" cy="120" r="90" fill="#fef3c7" opacity="0.3"/>
+  <polygon points="150,480 500,150 620,360 720,280 1050,480" fill="url(#mountain)"/>
+  <polygon points="150,480 500,150 620,360" fill="#4d7c0f" opacity="0.35"/>
+  <polygon points="560,330 620,360 660,300 720,280 800,420 700,480 540,480" fill="#3f6212" opacity="0.8"/>
+  <path d="M0 480 C 200 440, 400 500, 600 470 C 800 440, 1000 500, 1200 460 L 1200 630 L 0 630 Z" fill="url(#water)" opacity="0.9"/>
+  <path d="M0 520 C 250 490, 500 540, 750 505 C 900 485, 1050 515, 1200 495 L 1200 630 L 0 630 Z" fill="#0c4a6e" opacity="0.7"/>
+  <g fill="none" stroke="#ffffff" stroke-width="3" opacity="0.35">
+    <path d="M200 630 C 200 580, 260 560, 280 610"/>
+    <path d="M420 630 C 420 565, 500 545, 520 615"/>
+    <path d="M850 630 C 850 570, 930 555, 950 620"/>
+  </g>
+  <text x="60" y="580" font-family="Georgia, serif" font-size="34" fill="#ffffff" opacity="0.9">La leyenda del Volcán de Agua</text>
+</svg>

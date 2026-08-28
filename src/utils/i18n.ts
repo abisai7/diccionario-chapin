@@ -45,6 +45,35 @@ export const translations = {
       "cómo usar diccionario chapin, guía chapinismos, ayuda diccionario guatemalteco",
     "help.breadcrumb.title": "Ayuda",
 
+    "blog.page.title": "Blog Cultural | Chapinismos",
+    "blog.page.description":
+      "Artículos sobre la cultura de Guatemala: leyendas, lugares turísticos, celebraciones, gastronomía, historia y tradiciones chapinas.",
+    "blog.page.keywords":
+      "blog cultura guatemala, leyendas de guatemala, lugares turísticos guatemala, tradiciones chapinas, celebraciones guatemala",
+    "blog.breadcrumb": "Blog",
+    "blog.subtitle":
+      "Explora la riqueza cultural de Guatemala a través de sus leyendas, lugares y tradiciones",
+    "blog.readMore": "Leer artículo",
+    "blog.readTime": "{min} min de lectura",
+    "blog.latestArticles": "Artículos culturales",
+    "blog.viewAll": "Ver todos los artículos",
+    "blog.backToBlog": "Volver al blog",
+    "blog.publishedOn": "Publicado",
+    "blog.updatedOn": "Actualizado",
+    "blog.by": "por",
+    "blog.category.leyendas": "Leyendas",
+    "blog.category.lugares-turisticos": "Lugares Turísticos",
+    "blog.category.celebraciones": "Celebraciones",
+    "blog.category.gastronomia": "Gastronomía",
+    "blog.category.historia": "Historia",
+    "blog.category.tradiciones": "Tradiciones",
+    "blog.category.legends": "Leyendas",
+    "blog.category.tourist-places": "Lugares Turísticos",
+    "blog.category.celebrations": "Celebraciones",
+    "blog.category.gastronomy": "Gastronomía",
+    "blog.category.history": "Historia",
+    "blog.category.traditions": "Tradiciones",
+
     "contribute.form.word.label": "Palabra o frase",
     "contribute.form.word.placeholder": "Ejemplo: chapin",
     "contribute.form.word.hint":
@@ -174,6 +203,7 @@ export const translations = {
     "nav.home": "Inicio",
     "nav.search": "Buscar",
     "nav.index": "Índice",
+    "nav.blog": "Blog",
     "nav.help": "Ayuda",
     "nav.contribute": "Contribuir",
 
@@ -253,6 +283,35 @@ export const translations = {
       "Step-by-step guide to get the most out of the Guatemalan slang dictionary. Learn to search, browse, and contribute.",
     "help.page.keywords": "how to use chapin dictionary, chapinismos guide, guatemalan slang help",
     "help.breadcrumb.title": "Help",
+
+    "blog.page.title": "Cultural Blog | Chapinismos",
+    "blog.page.description":
+      "Articles about Guatemalan culture: legends, tourist attractions, celebrations, gastronomy, history, and chapín traditions.",
+    "blog.page.keywords":
+      "guatemala cultural blog, guatemalan legends, guatemala tourist attractions, chapin traditions, guatemala celebrations",
+    "blog.breadcrumb": "Blog",
+    "blog.subtitle":
+      "Explore Guatemala's cultural richness through its legends, places, and traditions",
+    "blog.readMore": "Read article",
+    "blog.readTime": "{min} min read",
+    "blog.latestArticles": "Cultural articles",
+    "blog.viewAll": "View all articles",
+    "blog.backToBlog": "Back to blog",
+    "blog.publishedOn": "Published",
+    "blog.updatedOn": "Updated",
+    "blog.by": "by",
+    "blog.category.leyendas": "Legends",
+    "blog.category.lugares-turisticos": "Tourist Places",
+    "blog.category.celebraciones": "Celebrations",
+    "blog.category.gastronomia": "Gastronomy",
+    "blog.category.historia": "History",
+    "blog.category.tradiciones": "Traditions",
+    "blog.category.legends": "Legends",
+    "blog.category.tourist-places": "Tourist Places",
+    "blog.category.celebrations": "Celebrations",
+    "blog.category.gastronomy": "Gastronomy",
+    "blog.category.history": "History",
+    "blog.category.traditions": "Traditions",
 
     "contribute.form.word.label": "Word or phrase",
     "contribute.form.word.hint":
@@ -381,6 +440,7 @@ export const translations = {
     "nav.home": "Home",
     "nav.search": "Search",
     "nav.index": "Index",
+    "nav.blog": "Blog",
     "nav.help": "Help",
     "nav.contribute": "Contribute",
 

@@ -50,6 +50,15 @@ const currentYear = new Date().getFullYear();
         </li>
         <li>
           <a
+            href={`${prefix}/blog/`}
+            class="nav-link inline-block px-2 py-1.5 text-sm"
+            data-umami-event="Footer Nav Blog"
+          >
+            {t("nav.blog")}
+          </a>
+        </li>
+        <li>
+          <a
             href={`${prefix}/buscar/`}
             class="nav-link inline-block px-2 py-1.5 text-sm"
             data-umami-event="Footer Nav Search"

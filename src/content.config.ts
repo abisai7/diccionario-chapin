@@ -29,6 +29,33 @@ const wordsSchema = z.object({
   featured: z.boolean().optional(),
 });
 
+const blogSchema = z.object({
+  title: z.string(),
+  slug: z.string(),
+  description: z.string(),
+  publishedDate: z.string(),
+  updatedDate: z.string().optional(),
+  author: z.string().default("Abisai Herrera"),
+  category: z.enum([
+    "leyendas",
+    "lugares-turisticos",
+    "celebraciones",
+    "gastronomia",
+    "historia",
+    "tradiciones",
+    "legends",
+    "tourist-places",
+    "celebrations",
+    "gastronomy",
+    "history",
+    "traditions",
+  ]),
+  image: z.string(),
+  imageAlt: z.string(),
+  tags: z.array(z.string()).optional(),
+  featured: z.boolean().optional(),
+});
+
 const wordsEsCollection = defineCollection({
   loader: glob({ base: "./src/content/words-es", pattern: "**/*.{md,mdx}" }),
   schema: wordsSchema,
@@ -39,7 +66,19 @@ const wordsEnCollection = defineCollection({
   schema: wordsSchema,
 });
 
+const blogEsCollection = defineCollection({
+  loader: glob({ base: "./src/content/blog-es", pattern: "**/*.{md,mdx}" }),
+  schema: blogSchema,
+});
+
+const blogEnCollection = defineCollection({
+  loader: glob({ base: "./src/content/blog-en", pattern: "**/*.{md,mdx}" }),
+  schema: blogSchema,
+});
+
 export const collections = {
   "words-es": wordsEsCollection,
   "words-en": wordsEnCollection,
+  "blog-es": blogEsCollection,
+  "blog-en": blogEnCollection,
 };

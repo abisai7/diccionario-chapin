@@ -1,0 +1,69 @@
+---
+import { useTranslations } from "../../utils/i18n";
+
+interface Props {
+  lang: string;
+  siteUrl: string | URL;
+  title: string;
+  description: string;
+  slug: string;
+  image: string;
+  imageAlt?: string;
+  author?: string;
+  datePublished?: string | Date | null;
+  dateModified?: string | Date | null;
+  keywords?: string[];
+}
+
+const {
+  lang,
+  siteUrl,
+  title,
+  description,
+  slug,
+  image,
+  imageAlt,
+  author,
+  datePublished,
+  dateModified,
+  keywords,
+} = Astro.props;
+const t = useTranslations(lang);
+
+const articleUrl = new URL(`/${lang}/blog/${slug}/`, siteUrl).toString();
+const fullImage = new URL(image, siteUrl).toString();
+
+const normalizeDate = (value?: string | Date | null) => {
+  if (!value) return undefined;
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? undefined : date.toISOString();
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  image: imageAlt ? fullImage : undefined,
+  url: articleUrl,
+  inLanguage: lang,
+  datePublished: normalizeDate(datePublished),
+  dateModified: normalizeDate(dateModified),
+  author: {
+    "@type": "Person",
+    name: author || "Abisai Herrera",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: t("schema.site.name"),
+    url: siteUrl.toString(),
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": articleUrl,
+  },
+  ...(keywords?.length ? { keywords: keywords.join(", ") } : {}),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />

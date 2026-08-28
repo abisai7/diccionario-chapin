@@ -1,0 +1,138 @@
+---
+export const prerender = true;
+
+import { ArrowLeft, CalendarSync } from "@lucide/astro";
+import Base from "../../../layouts/Base.astro";
+import { getCollection, render } from "astro:content";
+import { useTranslations } from "../../../utils/i18n";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import BreadcrumbSchema from "../../../components/schemas/BreadcrumbSchema.astro";
+import ArticleSchema from "../../../components/schemas/ArticleSchema.astro";
+import BlogHero from "../../../components/blog/BlogHero.astro";
+
+export async function getStaticPaths() {
+  const esArticles = await getCollection("blog-es");
+  const enArticles = await getCollection("blog-en");
+
+  const esPaths = esArticles.map((entry) => ({
+    params: { lang: "es", slug: entry.data.slug || entry.id },
+    props: { entry },
+  }));
+
+  const enPaths = enArticles.map((entry) => ({
+    params: { lang: "en", slug: entry.data.slug || entry.id },
+    props: { entry },
+  }));
+
+  return [...esPaths, ...enPaths];
+}
+
+const { lang } = Astro.params;
+const { entry } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await render(entry);
+const post = entry.data;
+const t = useTranslations(lang);
+
+const postSlug = post.slug || entry.id;
+
+const lastModified = remarkPluginFrontmatter?.lastModified
+  ? new Date(remarkPluginFrontmatter.lastModified).toLocaleDateString(lang, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "UTC",
+    })
+  : "";
+
+const formattedUpdated = post.updatedDate
+  ? new Date(post.updatedDate).toLocaleDateString(lang, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "UTC",
+    })
+  : "";
+
+const updatedDate = post.updatedDate || remarkPluginFrontmatter?.lastModified || post.publishedDate;
+
+const alternateUrls = {
+  es: `/es/blog/${postSlug}/`,
+  en: `/en/blog/${postSlug}/`,
+  xDefault: `/es/blog/${postSlug}/`,
+};
+
+const siteUrl = Astro.site || "https://chapinismos.org";
+---
+
+<Base
+  title={`${post.title} | ${t("schema.site.name")}`}
+  description={post.description}
+  keywords={`${post.category}, ${post.tags?.join(", ") || ""}`}
+  type="article"
+  ogImage={post.image}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <BreadcrumbSchema
+    slot="schema"
+    lang={lang}
+    siteUrl={siteUrl}
+    items={[
+      { name: t("blog.breadcrumb"), url: `/${lang}/blog/` },
+      { name: post.title, url: `/${lang}/blog/${postSlug}/` },
+    ]}
+  />
+  <ArticleSchema
+    slot="schema"
+    lang={lang}
+    siteUrl={siteUrl}
+    title={post.title}
+    description={post.description}
+    slug={postSlug}
+    image={post.image}
+    imageAlt={post.imageAlt}
+    author={post.author}
+    datePublished={post.publishedDate}
+    dateModified={updatedDate}
+    keywords={post.tags}
+  />
+
+  <section class="mx-auto max-w-275 px-6">
+    <Breadcrumb
+      lang={lang}
+      items={[
+        { label: t("blog.breadcrumb"), href: `/${lang}/blog/` },
+        { label: post.title, href: `/${lang}/blog/${postSlug}/` },
+      ]}
+    />
+
+    <BlogHero entry={entry} lang={lang} />
+
+    <article class="article-card prose mt-6 px-6 py-8 sm:px-10 sm:py-10" transition:animate="slide">
+      <Content />
+    </article>
+
+    <div class="mt-4 flex flex-wrap items-center justify-between gap-4">
+      {
+        (formattedUpdated || lastModified) && (
+          <p class="text-muted m-0 text-sm">
+            <time datetime={updatedDate} class="inline-flex items-center gap-1.5">
+              <CalendarSync size={14} aria-hidden="true" />
+              {t("blog.updatedOn")}: {formattedUpdated || lastModified}
+            </time>
+          </p>
+        )
+      }
+
+      <a
+        href={`/${lang}/blog/`}
+        class="border-theme bg-card hover:shadow-theme-md text-primary-light! ml-auto inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-all hover:-translate-y-0.5"
+        data-umami-event="Blog Back To List"
+        data-umami-event-lang={lang}
+      >
+        <ArrowLeft size={16} aria-hidden="true" />
+        {t("blog.backToBlog")}
+      </a>
+    </div>
+  </section>
+</Base>

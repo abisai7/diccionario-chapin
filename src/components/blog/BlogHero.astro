@@ -1,0 +1,91 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { CalendarDays, User, Clock } from "@lucide/astro";
+import { useTranslations } from "../../utils/i18n";
+import BlogCategoryBadge from "./BlogCategoryBadge.astro";
+
+interface Props {
+  entry: CollectionEntry<"blog-es" | "blog-en">;
+  lang: string;
+}
+
+const { entry, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const formattedDate = new Date(entry.data.publishedDate).toLocaleDateString(lang, {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+const readTime = Math.max(1, Math.round((entry.body?.split(/\s+/).length || 600) / 200));
+---
+
+<header class="blog-hero border-theme shadow-theme-lg relative overflow-hidden rounded-2xl border">
+  <img
+    src={entry.data.image}
+    alt={entry.data.imageAlt}
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <div class="blog-hero__overlay absolute inset-0" aria-hidden="true"></div>
+  <div class="bg-card/50 relative flex flex-col gap-4 p-6 backdrop-blur-md sm:p-10">
+    <div>
+      <BlogCategoryBadge category={entry.data.category} lang={lang} />
+    </div>
+    <h1 class="font-title m-0 text-[clamp(1.8rem,4vw,3rem)] leading-tight font-bold text-white">
+      {entry.data.title}
+    </h1>
+    <p class="m-0 max-w-2xl text-base leading-relaxed text-white/90">
+      {entry.data.description}
+    </p>
+    <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/85">
+      <span class="inline-flex items-center gap-1.5">
+        <User size={15} aria-hidden="true" />
+        <span class="font-semibold">{entry.data.author}</span>
+      </span>
+      <time datetime={entry.data.publishedDate} class="inline-flex items-center gap-1.5">
+        <CalendarDays size={15} aria-hidden="true" />
+        {formattedDate}
+      </time>
+      <span class="inline-flex items-center gap-1.5">
+        <Clock size={15} aria-hidden="true" />
+        {t("blog.readTime", { min: readTime })}
+      </span>
+    </div>
+    {
+      entry.data.tags && entry.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {entry.data.tags.map((tag) => (
+            <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-white">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</header>
+
+<style>
+  .blog-hero {
+    background: var(--card);
+  }
+
+  .blog-hero__overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(2, 6, 23, 0.35) 0%,
+      rgba(2, 6, 23, 0.65) 55%,
+      rgba(2, 6, 23, 0.9) 100%
+    );
+  }
+
+  html[data-theme="light"] .blog-hero__overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(15, 23, 42, 0.42) 0%,
+      rgba(15, 23, 42, 0.68) 55%,
+      rgba(15, 23, 42, 0.92) 100%
+    );
+  }
+</style>

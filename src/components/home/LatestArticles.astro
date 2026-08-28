@@ -1,0 +1,52 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Newspaper, ArrowRight } from "@lucide/astro";
+import { useTranslations } from "../../utils/i18n";
+import BlogCard from "../blog/BlogCard.astro";
+
+interface Props {
+  articles: CollectionEntry<"blog-es" | "blog-en">[];
+  lang: string;
+}
+
+const { articles, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const featured = articles
+  .filter((a) => a.data.featured === true)
+  .sort(
+    (a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime()
+  );
+
+const latest = featured.length > 0 ? featured : articles;
+---
+
+{
+  articles.length > 0 && (
+    <section id="latest-articles" class="mx-auto mb-6 max-w-275 px-6">
+      <div class="border-theme card-with-gradient shadow-theme-lg flex flex-col p-6">
+        <h2 class="font-title mb-1 flex items-center gap-2 text-2xl font-semibold">
+          <Newspaper class="text-primary-light" size={22} aria-hidden="true" />
+          {t("blog.latestArticles")}
+        </h2>
+        <p class="text-muted mb-6 text-sm">{t("blog.subtitle")}</p>
+
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {latest.slice(0, 3).map((entry) => (
+            <BlogCard entry={entry} lang={lang} titleLevel="h3" />
+          ))}
+        </div>
+
+        <a
+          href={`/${lang}/blog/`}
+          class="mt-6 inline-flex items-center justify-center gap-2 rounded-lg font-semibold text-[var(--link-primary)] transition-all hover:gap-3"
+          data-umami-event="Home Blog View All"
+          data-umami-event-lang={lang}
+        >
+          {t("blog.viewAll")}
+          <ArrowRight size={18} aria-hidden="true" />
+        </a>
+      </div>
+    </section>
+  )
+}

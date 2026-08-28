@@ -1,0 +1,87 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Clock, ArrowRight } from "@lucide/astro";
+import { useTranslations } from "../../utils/i18n";
+import BlogCategoryBadge from "./BlogCategoryBadge.astro";
+
+interface Props {
+  entry: CollectionEntry<"blog-es" | "blog-en">;
+  lang: string;
+  titleLevel?: "h2" | "h3" | "h4";
+}
+
+const { entry, lang, titleLevel = "h3" } = Astro.props;
+const t = useTranslations(lang);
+
+const postUrl = `/${lang}/blog/${entry.data.slug || entry.id}/`;
+const formattedDate = new Date(entry.data.publishedDate).toLocaleDateString(lang, {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+const readTime = Math.max(1, Math.round((entry.body?.split(/\s+/).length || 200) / 200));
+const HeadingTag = titleLevel;
+---
+
+<a
+  href={postUrl}
+  class="blog-card bg-card border-theme hover:shadow-theme-lg group relative flex cursor-pointer flex-col overflow-hidden rounded-xl border transition-all duration-200 hover:-translate-y-1"
+  data-umami-event="Blog Card Click"
+  data-umami-event-title={entry.data.title}
+  data-umami-event-lang={lang}
+>
+  <div class="relative aspect-[16/9] w-full shrink-0 overflow-hidden">
+    <img
+      src={entry.data.image}
+      alt={entry.data.imageAlt}
+      loading="lazy"
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+    <div class="absolute top-3 left-3">
+      <BlogCategoryBadge category={entry.data.category} lang={lang} />
+    </div>
+  </div>
+
+  <div class="flex flex-1 flex-col gap-2.5 p-5">
+    <HeadingTag
+      class="text-text font-title m-0 line-clamp-2 text-lg leading-snug font-semibold transition-colors"
+    >
+      {entry.data.title}
+    </HeadingTag>
+    <p class="text-secondary m-0 line-clamp-2 text-sm leading-relaxed">
+      {entry.data.description}
+    </p>
+    <div class="text-muted mt-auto flex items-center gap-3 pt-2 text-xs">
+      <time datetime={entry.data.publishedDate}>{formattedDate}</time>
+      <span class="inline-flex items-center gap-1">
+        <Clock size={13} aria-hidden="true" />
+        {t("blog.readTime", { min: readTime })}
+      </span>
+    </div>
+    <span
+      class="text-primary-light! inline-flex items-center gap-1 text-sm font-semibold transition-transform duration-200 group-hover:translate-x-1"
+    >
+      {t("blog.readMore")}
+      <ArrowRight size={15} aria-hidden="true" />
+    </span>
+  </div>
+</a>
+
+<style>
+  .blog-card {
+    text-decoration: none;
+  }
+
+  .blog-card:hover {
+    border-color: var(--primary);
+    background-color: var(--card-hover);
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

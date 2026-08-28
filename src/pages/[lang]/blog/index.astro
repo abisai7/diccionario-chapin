@@ -1,0 +1,72 @@
+---
+export const prerender = true;
+
+import Base from "../../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+import { useTranslations } from "../../../utils/i18n";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import BreadcrumbSchema from "../../../components/schemas/BreadcrumbSchema.astro";
+import BlogCard from "../../../components/blog/BlogCard.astro";
+
+export async function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang);
+
+const blogCollection = lang === "es" ? "blog-es" : "blog-en";
+const allArticles = await getCollection(blogCollection);
+
+const articles = [...allArticles].sort(
+  (a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime()
+);
+
+const alternateUrls = {
+  es: "/es/blog/",
+  en: "/en/blog/",
+  xDefault: "/es/blog/",
+};
+
+const siteUrl = Astro.site || "https://chapinismos.org";
+---
+
+<Base
+  title={t("blog.page.title")}
+  description={t("blog.page.description")}
+  keywords={t("blog.page.keywords")}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <BreadcrumbSchema
+    slot="schema"
+    lang={lang}
+    siteUrl={siteUrl}
+    items={[{ name: t("blog.breadcrumb"), url: `/${lang}/blog/` }]}
+  />
+
+  <div class="mx-auto max-w-275 px-6">
+    <Breadcrumb lang={lang} items={[{ label: t("blog.breadcrumb"), href: `/${lang}/blog/` }]} />
+
+    <div class="card-with-gradient shadow-theme-lg my-6 grid gap-3.5 backdrop-blur-sm">
+      <h1 class="gradient-text mx-4 mt-4 text-[clamp(1.8rem,2.4vw,2.6rem)]">
+        {t("blog.breadcrumb")}
+      </h1>
+      <p class="text-muted mx-4 mb-4 text-base">{t("blog.subtitle")}</p>
+    </div>
+
+    {
+      articles.length > 0 ? (
+        <div class="grid gap-5 pb-12 sm:grid-cols-2 lg:grid-cols-3">
+          {articles.map((entry) => (
+            <BlogCard entry={entry} lang={lang} titleLevel="h3" />
+          ))}
+        </div>
+      ) : (
+        <p class="text-muted pb-12 text-center text-lg">
+          {lang === "es" ? "Aún no hay artículos publicados." : "No articles published yet."}
+        </p>
+      )
+    }
+  </div>
+</Base>

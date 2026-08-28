@@ -10,6 +10,7 @@ import FeaturedWords from "../../components/home/FeaturedWords.astro";
 import LatestWords from "../../components/home/LatestWords.astro";
 import GuatemalaSlider from "../../components/home/GuatemalaSlider.astro";
 import IndependenceSlider from "../../components/home/IndependenceSlider.astro";
+import LatestArticles from "../../components/home/LatestArticles.astro";
 import ContributeSection from "../../components/home/ContributeSection.astro";
 import BreadcrumbSchema from "../../components/schemas/BreadcrumbSchema.astro";
 import FeaturedWordsSchema from "../../components/schemas/FeaturedWordsSchema.astro";
@@ -58,6 +59,14 @@ const latestWords = [...allWords]
     (a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime()
   )
   .slice(0, LATEST_WORDS_COUNT);
+
+const blogCollection = lang === "es" ? "blog-es" : "blog-en";
+const allArticles = await getCollection(blogCollection);
+const publishedArticles = allArticles
+  .filter((a) => new Date(a.data.publishedDate).getTime() <= Date.now())
+  .sort(
+    (a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime()
+  );
 
 const siteUrl = Astro.site || "https://chapinismos.org";
 
@@ -112,6 +121,8 @@ if (unsplashKey) {
   {guatemalaImages.length > 0 && <GuatemalaSlider images={guatemalaImages} />}
 
   <AboutSection lang={lang} />
+
+  <LatestArticles articles={publishedArticles} lang={lang} />
 
   <section class="mx-auto max-w-275 px-6">
     <Ticker words={featured} lang={lang} variant="vibrant" rows={1} />
