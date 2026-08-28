@@ -17,7 +17,7 @@ export const translations = {
     "home.featured": "Palabras destacadas",
     "home.latest": "Últimas palabras agregadas",
     "home.independence.title": "¡Guatemala tu nombre inmortal!",
-    "home.independence.subtitle": "Celebrando septiembre, el mes de la Independencia",
+    "home.independence.subtitle": "Septiembre, mes de la Independencia",
     "home.guatemalaPhotos.title": "Guatemala en fotos",
     "home.contribute.title": "Contribuye al Diccionario",
     "home.contribute.subtitle":
@@ -227,7 +227,7 @@ export const translations = {
     "home.featured": "Featured Words",
     "home.latest": "Latest words added",
     "home.independence.title": "Guatemala, your immortal name!",
-    "home.independence.subtitle": "Celebrating the month of independence",
+    "home.independence.subtitle": "September, the month of independence",
     "home.guatemalaPhotos.title": "Guatemala in photos",
     "home.contribute.title": "Contribute to the Dictionary",
     "home.contribute.subtitle":
