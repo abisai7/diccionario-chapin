@@ -86,7 +86,7 @@ if (slides.length === 0) {
             decoding="async"
             class="h-full w-full object-cover"
           />
-          <figcaption class="absolute right-3 bottom-2 rounded bg-black/40 px-2 py-1 text-xs text-white/80 backdrop-blur-sm">
+          <figcaption class="independence-slider-attribution absolute right-3 bottom-2 rounded bg-black/40 px-2 py-1 text-xs text-white/80 backdrop-blur-sm">
             Photo by{" "}
             <a
               href={`${slide.photographerUrl}?utm_source=chapinismos.org&utm_medium=referral`}
@@ -116,7 +116,9 @@ if (slides.length === 0) {
     >
     </div>
 
-    <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
+    <div
+      class="independence-slider-content absolute inset-0 flex flex-col items-center justify-center gap-3 text-center"
+    >
       <p
         class="rounded-full border border-white/30 bg-black/30 px-4 py-1 text-xs font-medium tracking-widest text-white/90 uppercase backdrop-blur-sm"
       >
@@ -277,3 +279,20 @@ if (slides.length === 0) {
     }
   })();
 </script>
+
+<style>
+  @media (max-width: 768px) {
+    .independence-slider-content {
+      padding: 1.75rem 3.5rem;
+    }
+
+    .independence-slider-arrow {
+      height: 2.25rem;
+      width: 2.25rem;
+    }
+
+    .independence-slider-attribution {
+      font-size: 0.625rem;
+    }
+  }
+</style>
