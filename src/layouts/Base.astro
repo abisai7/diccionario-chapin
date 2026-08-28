@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import ConfettiCelebration from "../components/ConfettiCelebration.astro";
 import { ClientRouter } from "astro:transitions";
 import OrganizationSchema from "../components/schemas/OrganizationSchema.astro";
 import WebsiteSchema from "../components/schemas/WebsiteSchema.astro";
@@ -138,6 +139,7 @@ const alternateOgLocale = lang === "en" ? "es_GT" : "en_US";
       {t("a11y.skip_to_content")}
     </a>
     <Header />
+    <ConfettiCelebration />
     <main id="main-content">
       <slot />
     </main>

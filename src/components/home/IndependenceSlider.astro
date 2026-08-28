@@ -1,0 +1,279 @@
+---
+import { useTranslations } from "../../utils/i18n";
+
+interface Slide {
+  url: string;
+  alt: string;
+  photographer: string;
+  photographerUrl: string;
+}
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const PHOTO_IDS: { id: string; alt: string }[] = [
+  {
+    id: "-hbgU510TzU",
+    alt: "Bandera de Guatemala ondeando bajo un cielo nublado",
+  },
+  {
+    id: "uliZMHrDgzM",
+    alt: "Calle de la ciudad con una torre del reloj al fondo",
+  },
+  {
+    id: "Lej_-3cke2c",
+    alt: "Muelle cerca del agua con una montaña cónica al fondo",
+  },
+];
+
+let slides: Slide[] = [];
+const unsplashKey = import.meta.env.UNSPLASH_ACCESS_KEY;
+if (unsplashKey) {
+  try {
+    const results = await Promise.all(
+      PHOTO_IDS.map(({ id, alt }) =>
+        fetch(`https://api.unsplash.com/photos/${id}?client_id=${unsplashKey}`).then((res) =>
+          res.ok ? res.json() : null
+        )
+      )
+    );
+    slides = results
+      .filter((img): img is any => Boolean(img))
+      .map((img, i) => ({
+        url: img.urls?.regular || img.urls?.small || "",
+        alt: PHOTO_IDS[i]?.alt || img.alt_description || "Guatemala",
+        photographer: img.user?.name || "Unknown",
+        photographerUrl: img.user?.links?.html || "#",
+      }))
+      .filter((s) => s.url);
+  } catch {
+    // Graceful fallback: render nothing if the API fails
+  }
+}
+
+if (slides.length === 0) {
+  return null;
+}
+---
+
+<section
+  class="independence-slider mx-auto max-w-275 px-6 pt-6"
+  aria-roledescription="carrusel"
+  aria-label={t("home.independence.title")}
+>
+  <div
+    class="independence-slider-viewport relative aspect-[16/9] overflow-hidden rounded-2xl sm:aspect-[16/7]"
+    data-slider
+  >
+    {
+      slides.map((slide, i) => (
+        <figure
+          class:list={[
+            "independence-slide absolute inset-0 transition-opacity duration-700",
+            i === 0 ? "opacity-100" : "opacity-0",
+          ]}
+          data-slide
+          data-active={i === 0 ? "true" : "false"}
+        >
+          <img
+            src={slide.url}
+            alt={slide.alt}
+            loading={i === 0 ? "eager" : "lazy"}
+            decoding="async"
+            class="h-full w-full object-cover"
+          />
+          <figcaption class="absolute right-3 bottom-2 rounded bg-black/40 px-2 py-1 text-xs text-white/80 backdrop-blur-sm">
+            Photo by{" "}
+            <a
+              href={`${slide.photographerUrl}?utm_source=chapinismos.org&utm_medium=referral`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-white hover:underline"
+            >
+              {slide.photographer}
+            </a>{" "}
+            on{" "}
+            <a
+              href="https://unsplash.com/?utm_source=chapinismos.org&utm_medium=referral"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-white hover:underline"
+            >
+              Unsplash
+            </a>
+          </figcaption>
+        </figure>
+      ))
+    }
+
+    <div
+      class="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/50"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
+      <p
+        class="rounded-full border border-white/30 bg-black/30 px-4 py-1 text-xs font-medium tracking-widest text-white/90 uppercase backdrop-blur-sm"
+      >
+        {t("home.independence.subtitle")}
+      </p>
+      <h2 class="font-title text-[clamp(1.8rem,5vw,3.5rem)] font-bold text-white drop-shadow-lg">
+        {t("home.independence.title")}
+      </h2>
+    </div>
+
+    <button
+      type="button"
+      class="independence-slider-arrow absolute top-1/2 left-3 z-20 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition hover:bg-black/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      data-prev
+      aria-label="Anterior"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="m15 18-6-6 6-6"></path>
+      </svg>
+    </button>
+    <button
+      type="button"
+      class="independence-slider-arrow absolute top-1/2 right-3 z-20 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition hover:bg-black/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      data-next
+      aria-label="Siguiente"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="m9 18 6-6-6-6"></path>
+      </svg>
+    </button>
+
+    <div
+      class="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2"
+      role="tablist"
+      aria-label={t("home.independence.subtitle")}
+    >
+      {
+        slides.map((_, i) => (
+          <button
+            type="button"
+            class:list={[
+              "independence-dot h-2.5 rounded-full transition-all duration-300",
+              i === 0 ? "w-6 bg-white" : "w-2.5 bg-white/50 hover:bg-white/80",
+            ]}
+            data-dot
+            data-active={i === 0 ? "true" : "false"}
+            aria-label={`Imagen ${i + 1}`}
+            aria-selected={i === 0 ? "true" : "false"}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const viewport = document.querySelector<HTMLElement>("[data-slider]");
+    if (!viewport) return;
+
+    const slides = [...viewport.querySelectorAll<HTMLElement>("[data-slide]")];
+    const dots = [...viewport.querySelectorAll<HTMLElement>("[data-dot]")];
+    const prevBtn = viewport.querySelector<HTMLElement>("[data-prev]");
+    const nextBtn = viewport.querySelector<HTMLElement>("[data-next]");
+
+    let current = 0;
+    let play = true;
+    let interval: ReturnType<typeof setInterval> | undefined;
+
+    function show(index: number) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        const active = i === current;
+        slide.classList.toggle("opacity-100", active);
+        slide.classList.toggle("opacity-0", !active);
+        slide.setAttribute("data-active", active ? "true" : "false");
+      });
+      dots.forEach((dot, i) => {
+        const active = i === current;
+        dot.classList.toggle("w-6", active);
+        dot.classList.toggle("bg-white", active);
+        dot.classList.toggle("w-2.5", !active);
+        dot.classList.toggle("bg-white/50", !active);
+        dot.classList.toggle("hover:bg-white/80", !active);
+        dot.setAttribute("data-active", active ? "true" : "false");
+        dot.setAttribute("aria-selected", active ? "true" : "false");
+      });
+    }
+
+    function stop() {
+      play = false;
+      if (interval) {
+        clearInterval(interval);
+        interval = undefined;
+      }
+    }
+
+    function start() {
+      if (!play) return;
+      if (interval) {
+        clearInterval(interval);
+      }
+      interval = setInterval(() => show(current + 1), 5000);
+    }
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      stop();
+      play = false;
+    }
+
+    nextBtn?.addEventListener("click", () => {
+      show(current + 1);
+      start();
+    });
+    prevBtn?.addEventListener("click", () => {
+      show(current - 1);
+      start();
+    });
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        show(i);
+        start();
+      });
+    });
+
+    viewport.addEventListener("mouseenter", stop);
+    viewport.addEventListener("mouseleave", () => {
+      play = true;
+      if (reduceMotion) return;
+      start();
+    });
+
+    if (!reduceMotion) {
+      start();
+    }
+  })();
+</script>

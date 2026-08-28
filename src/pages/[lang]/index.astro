@@ -9,6 +9,7 @@ import DailyWord from "../../components/home/DailyWord.astro";
 import FeaturedWords from "../../components/home/FeaturedWords.astro";
 import LatestWords from "../../components/home/LatestWords.astro";
 import GuatemalaSlider from "../../components/home/GuatemalaSlider.astro";
+import IndependenceSlider from "../../components/home/IndependenceSlider.astro";
 import ContributeSection from "../../components/home/ContributeSection.astro";
 import BreadcrumbSchema from "../../components/schemas/BreadcrumbSchema.astro";
 import FeaturedWordsSchema from "../../components/schemas/FeaturedWordsSchema.astro";
@@ -93,6 +94,8 @@ if (unsplashKey) {
 >
   <BreadcrumbSchema slot="schema" lang={lang} siteUrl={siteUrl} items={[]} />
   <FeaturedWordsSchema slot="schema" lang={lang} siteUrl={siteUrl} words={top} />
+
+  <IndependenceSlider lang={lang} />
 
   <HeroSection lang={lang} popularWords={popularWords} allWordIds={allWordIds} />
 

@@ -46,6 +46,7 @@
     "@lucide/astro": "1.25.0",
     "@tailwindcss/vite": "4.3.3",
     "astro": "7.1.2",
+    "canvas-confetti": "^1.9.4",
     "resend": "6.17.2",
     "tailwindcss": "4.3.3"
   },
@@ -54,6 +55,7 @@
   },
   "devDependencies": {
     "@astrojs/sitemap": "3.7.3",
+    "@types/canvas-confetti": "^1.9.0",
     "@typescript-eslint/parser": "8.64.0",
     "eslint": "10.7.0",
     "eslint-plugin-astro": "3.0.1",
