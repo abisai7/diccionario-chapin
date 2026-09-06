@@ -1,5 +1,6 @@
 ---
 import { useTranslations } from "../../utils/i18n";
+import { buildUnsplashSrcset, buildUnsplashUrl } from "../../utils/unsplash";
 
 interface Slide {
   url: string;
@@ -44,7 +45,9 @@ if (unsplashKey) {
     slides = results
       .filter((img): img is any => Boolean(img))
       .map((img, i) => ({
-        url: img.urls?.regular || img.urls?.small || "",
+        // Store `urls.raw` to generate WebP srcsets at any width.
+        // Fall back to `regular` (already sized) if raw is unavailable.
+        url: img.urls?.raw || img.urls?.regular || img.urls?.small || "",
         alt: PHOTO_IDS[i]?.alt || img.alt_description || "Guatemala",
         photographer: img.user?.name || "Unknown",
         photographerUrl: img.user?.links?.html || "#",
@@ -79,13 +82,26 @@ if (slides.length === 0) {
           data-slide
           data-active={i === 0 ? "true" : "false"}
         >
-          <img
-            src={slide.url}
-            alt={slide.alt}
-            loading={i === 0 ? "eager" : "lazy"}
-            decoding="async"
-            class="h-full w-full object-cover"
-          />
+          <picture>
+            <source
+              type="image/webp"
+              srcset={buildUnsplashSrcset(slide.url, [640, 1080, 1280], "webp")}
+              sizes="(max-width: 640px) 100vw, (max-width: 1100px) 100vw, 1100px"
+            />
+            <source
+              type="image/jpeg"
+              srcset={buildUnsplashSrcset(slide.url, [640, 1080, 1280], "jpg")}
+              sizes="(max-width: 640px) 100vw, (max-width: 1100px) 100vw, 1100px"
+            />
+            <img
+              src={buildUnsplashUrl(slide.url, 1080, "jpg")}
+              alt={slide.alt}
+              loading={i === 0 ? "eager" : "lazy"}
+              fetchpriority={i === 0 ? "high" : "auto"}
+              decoding={i === 0 ? "sync" : "async"}
+              class="h-full w-full object-cover"
+            />
+          </picture>
           <figcaption class="independence-slider-attribution absolute right-3 bottom-2 rounded bg-black/40 px-2 py-1 text-xs text-white/80 backdrop-blur-sm">
             Photo by{" "}
             <a

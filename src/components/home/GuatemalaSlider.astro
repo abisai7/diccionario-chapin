@@ -1,4 +1,5 @@
 ---
+import { buildUnsplashSrcset, buildUnsplashUrl } from "../../utils/unsplash";
 export interface Image {
   url: string;
   alt: string;
@@ -25,13 +26,27 @@ if (images.length === 0) {
       {
         [...images, ...images].map((img) => (
           <div class="guatemala-slider-slide">
-            <img
-              src={img.url}
-              alt={img.alt}
-              loading="lazy"
-              decoding="async"
-              class="guatemala-slider-img"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcset={buildUnsplashSrcset(img.url, [480, 640, 800], "webp")}
+                sizes="(max-width: 480px) 240px, (max-width: 768px) 280px, 400px"
+              />
+              <source
+                type="image/jpeg"
+                srcset={buildUnsplashSrcset(img.url, [480, 640, 800], "jpg")}
+                sizes="(max-width: 480px) 240px, (max-width: 768px) 280px, 400px"
+              />
+              <img
+                src={buildUnsplashUrl(img.url, 400, "jpg")}
+                alt={img.alt}
+                loading="lazy"
+                decoding="async"
+                class="guatemala-slider-img"
+                width="400"
+                height="280"
+              />
+            </picture>
             <div class="guatemala-slider-attribution">
               Photo by{" "}
               <a
