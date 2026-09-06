@@ -93,6 +93,11 @@ if (slides.length === 0) {
         >
           <picture>
             <source
+              type="image/avif"
+              srcset={buildUnsplashSrcset(slide.url, [640, 960, 1280], "avif", 60)}
+              sizes="(max-width: 640px) 100vw, (max-width: 1100px) 100vw, 1100px"
+            />
+            <source
               type="image/webp"
               srcset={buildUnsplashSrcset(slide.url, [640, 960, 1280], "webp", 65)}
               sizes="(max-width: 640px) 100vw, (max-width: 1100px) 100vw, 1100px"
