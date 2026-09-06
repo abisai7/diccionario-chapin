@@ -81,6 +81,9 @@ if (slides.length === 0) {
           ]}
           data-slide
           data-active={i === 0 ? "true" : "false"}
+          id={`slide-${i}`}
+          role="tabpanel"
+          aria-labelledby={`dot-${i}`}
         >
           <picture>
             <source
@@ -203,6 +206,9 @@ if (slides.length === 0) {
             ]}
             data-dot
             data-active={i === 0 ? "true" : "false"}
+            id={`dot-${i}`}
+            role="tab"
+            aria-controls={`slide-${i}`}
             aria-label={`Imagen ${i + 1}`}
             aria-selected={i === 0 ? "true" : "false"}
           />
