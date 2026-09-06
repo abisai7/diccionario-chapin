@@ -27,6 +27,12 @@ const t = useTranslations(lang);
 // Set og:locale based on language
 const ogLocale = lang === "en" ? "en_US" : "es_GT";
 const alternateOgLocale = lang === "en" ? "es_GT" : "en_US";
+
+// Speculation Rules injected via set:html to avoid ESLint parsing the JSON as JS
+const speculationRulesScript =
+  `<script type="speculationrules">` +
+  `{"prerender":[{"where":{"href_matches":"/*\\/palabras\\/*\\/"},"eagerness":"moderate"}]}` +
+  `<\/script>`;
 ---
 
 <!doctype html>
@@ -144,5 +150,9 @@ const alternateOgLocale = lang === "en" ? "es_GT" : "en_US";
       <slot />
     </main>
     <Footer />
+
+    <!-- Speculation Rules: prerender word pages on hover intent for near-instant navigation -->
+    <!-- Chromium-only; Safari/Firefox ignore this gracefully -->
+    <Fragment set:html={speculationRulesScript} />
   </body>
 </html>

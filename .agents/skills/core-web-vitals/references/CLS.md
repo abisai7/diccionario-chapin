@@ -9,14 +9,14 @@ CLS scores unexpected shift clusters across a page visit. A layout-shift score i
 **Bad:**
 
 ```html
-<img src="photo.jpg" alt="Photo">
+<img src="photo.jpg" alt="Photo" />
 <iframe src="https://video.example/embed/123" title="Demo"></iframe>
 ```
 
 **Good:**
 
 ```html
-<img src="photo.jpg" alt="Photo" width="800" height="600">
+<img src="photo.jpg" alt="Photo" width="800" height="600" />
 
 <div class="video-frame">
   <iframe src="https://video.example/embed/123" title="Demo"></iframe>
@@ -49,7 +49,7 @@ main.prepend(notification);
 **Good:**
 
 ```javascript
-const slot = document.querySelector('[data-notification-slot]');
+const slot = document.querySelector("[data-notification-slot]");
 slot.replaceChildren(notification);
 ```
 
@@ -98,15 +98,15 @@ This observer reports shifts seen during the current page session. It is not the
 new PerformanceObserver((list) => {
   for (const entry of list.getEntries()) {
     if (!entry.hadRecentInput) {
-      console.log('Layout shift', entry.value);
-      entry.sources?.forEach(source => {
-        console.log('Shifted node', source.node);
-        console.log('Previous rect', source.previousRect);
-        console.log('Current rect', source.currentRect);
+      console.log("Layout shift", entry.value);
+      entry.sources?.forEach((source) => {
+        console.log("Shifted node", source.node);
+        console.log("Previous rect", source.previousRect);
+        console.log("Current rect", source.currentRect);
       });
     }
   }
-}).observe({ type: 'layout-shift', buffered: true });
+}).observe({ type: "layout-shift", buffered: true });
 ```
 
 ## Verification checklist
@@ -121,6 +121,6 @@ new PerformanceObserver((list) => {
 
 ## Sources
 
-* [Optimize CLS](https://web.dev/articles/optimize-cls)
-* [Debug layout shifts](https://developer.chrome.com/docs/devtools/performance/insights#cls-culprits)
-* [CSS font metric overrides](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/size-adjust)
+- [Optimize CLS](https://web.dev/articles/optimize-cls)
+- [Debug layout shifts](https://developer.chrome.com/docs/devtools/performance/insights#cls-culprits)
+- [CSS font metric overrides](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/size-adjust)

@@ -101,8 +101,9 @@ if (unsplashKey) {
 }
 
 // URL for the <link rel="preload"> hero image (first slide, WebP, 960px wide)
-const heroPreloadUrl =
-  independenceSlides[0]?.url ? buildUnsplashUrl(independenceSlides[0].url, 960, "webp", 65) : null;
+const heroPreloadUrl = independenceSlides[0]?.url
+  ? buildUnsplashUrl(independenceSlides[0].url, 960, "webp", 65)
+  : null;
 
 // ─── Guatemala Photo Slider ───────────────────────────────────────────────────
 let guatemalaImages: { url: string; alt: string; photographer: string; photographerUrl: string }[] =

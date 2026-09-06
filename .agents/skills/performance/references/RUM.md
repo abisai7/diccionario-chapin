@@ -11,9 +11,9 @@ Prefer the `web-vitals` library over hand-written `PerformanceObserver` code. It
 ## Minimal collection pattern
 
 ```javascript
-import {onCLS, onINP, onLCP} from 'web-vitals';
+import { onCLS, onINP, onLCP } from "web-vitals";
 
-function sendToRum({name, value, rating, id, navigationType}) {
+function sendToRum({ name, value, rating, id, navigationType }) {
   const body = JSON.stringify({
     name,
     value,
@@ -21,11 +21,11 @@ function sendToRum({name, value, rating, id, navigationType}) {
     id,
     navigationType,
     path: location.pathname,
-    release: window.APP_RELEASE
+    release: window.APP_RELEASE,
   });
 
-  if (!navigator.sendBeacon?.('/rum', body)) {
-    fetch('/rum', {method: 'POST', body, keepalive: true});
+  if (!navigator.sendBeacon?.("/rum", body)) {
+    fetch("/rum", { method: "POST", body, keepalive: true });
   }
 }
 
@@ -38,21 +38,21 @@ Adapt the payload to the existing backend. Do not include query strings, user-en
 
 ## Collection rules
 
-* Record a stable release or experiment identifier so regressions can be attributed to a change.
-* Group by route template rather than creating a high-cardinality bucket for every URL.
-* Retain device/form factor, navigation type, and coarse connection context when the privacy model allows it.
-* Sample deliberately and record the sampling rate. Do not compare cohorts collected with different sampling rules as if they were equal.
-* Let the library report final metric values. `reportAllChanges` is useful for local debugging but usually creates noisy production telemetry.
-* Handle consent and regional privacy requirements through the site's existing policy.
+- Record a stable release or experiment identifier so regressions can be attributed to a change.
+- Group by route template rather than creating a high-cardinality bucket for every URL.
+- Retain device/form factor, navigation type, and coarse connection context when the privacy model allows it.
+- Sample deliberately and record the sampling rate. Do not compare cohorts collected with different sampling rules as if they were equal.
+- Let the library report final metric values. `reportAllChanges` is useful for local debugging but usually creates noisy production telemetry.
+- Handle consent and regional privacy requirements through the site's existing policy.
 
 ## Aggregation and reporting
 
 For each route or product journey, report:
 
-* p75 for LCP, INP, and CLS
-* percentage of visits in good, needs-improvement, and poor buckets
-* sample count and time window
-* important segments such as form factor, release, and navigation type
+- p75 for LCP, INP, and CLS
+- percentage of visits in good, needs-improvement, and poor buckets
+- sample count and time window
+- important segments such as form factor, release, and navigation type
 
 Do not use an average as the pass/fail signal. Assess each Core Web Vital at p75; all three p75 values must meet their good thresholds for the route or origin to pass the combined assessment.
 
@@ -60,6 +60,6 @@ CrUX and first-party RUM can disagree because they cover different users, browse
 
 ## Sources
 
-* [web-vitals library](https://github.com/GoogleChrome/web-vitals)
-* [Best practices for measuring Web Vitals in the field](https://web.dev/articles/vitals-field-measurement-best-practices)
-* [Find slow interactions in the field](https://web.dev/articles/find-slow-interactions-in-the-field)
+- [web-vitals library](https://github.com/GoogleChrome/web-vitals)
+- [Best practices for measuring Web Vitals in the field](https://web.dev/articles/vitals-field-measurement-best-practices)
+- [Find slow interactions in the field](https://web.dev/articles/find-slow-interactions-in-the-field)
