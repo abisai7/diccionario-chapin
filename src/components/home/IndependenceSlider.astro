@@ -200,10 +200,7 @@ if (slides.length === 0) {
         slides.map((_, i) => (
           <button
             type="button"
-            class:list={[
-              "independence-dot h-2.5 rounded-full transition-all duration-300",
-              i === 0 ? "w-6 bg-white" : "w-2.5 bg-white/50 hover:bg-white/80",
-            ]}
+            class="independence-dot grid h-12 w-12 place-items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             data-dot
             data-active={i === 0 ? "true" : "false"}
             id={`dot-${i}`}
@@ -242,11 +239,6 @@ if (slides.length === 0) {
       });
       dots.forEach((dot, i) => {
         const active = i === current;
-        dot.classList.toggle("w-6", active);
-        dot.classList.toggle("bg-white", active);
-        dot.classList.toggle("w-2.5", !active);
-        dot.classList.toggle("bg-white/50", !active);
-        dot.classList.toggle("hover:bg-white/80", !active);
         dot.setAttribute("data-active", active ? "true" : "false");
         dot.setAttribute("aria-selected", active ? "true" : "false");
       });
@@ -303,6 +295,31 @@ if (slides.length === 0) {
 </script>
 
 <style>
+  .independence-dot::after {
+    content: "";
+    display: block;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition:
+      width 0.3s,
+      background-color 0.3s;
+  }
+
+  .independence-dot[data-active="true"]::after {
+    width: 1.5rem;
+    background-color: #fff;
+  }
+
+  .independence-dot:hover::after {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .independence-dot[data-active="true"]:hover::after {
+    background-color: #fff;
+  }
+
   @media (max-width: 768px) {
     .independence-slider-content {
       padding: 1.75rem 3.5rem;
