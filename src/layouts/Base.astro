@@ -119,8 +119,8 @@ const alternateOgLocale = lang === "en" ? "es_GT" : "en_US";
     <WebsiteSchema lang={lang} siteUrl={siteUrl} />
     <slot name="schema" />
 
-    <!-- Preload background image with lower priority (not critical for LCP) -->
-    <link rel="preload" href="/images/bg.webp" as="image" fetchpriority="low" />
+    <!-- Per-page preloads: pages inject critical resources (e.g. hero image) here -->
+    <slot name="preload" />
 
     <!-- View Transitions - loaded with fallback to reduce blocking -->
     <ClientRouter fallback="none" />

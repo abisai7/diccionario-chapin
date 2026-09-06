@@ -16,6 +16,7 @@ import FeaturedWordsSchema from "../../components/schemas/FeaturedWordsSchema.as
 import { getCollection, type CollectionEntry } from "astro:content";
 import { useTranslations } from "../../utils/i18n";
 import popularSlugs from "../../data/popular-slugs.json";
+import { buildUnsplashUrl } from "../../utils/unsplash";
 
 export async function getStaticPaths() {
   return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
@@ -61,10 +62,51 @@ const latestWords = [...allWords]
 
 const siteUrl = Astro.site || "https://chapinismos.org";
 
-// Fetch Guatemala photos from Unsplash at build time
+// ─── Independence Slider ─────────────────────────────────────────────────────
+// Fetch slides here so we can (a) pass them to the component to avoid a
+// duplicate build-time request and (b) emit a <link rel="preload"> for the
+// first slide image directly in <head> for an earlier LCP signal.
+
+const INDEPENDENCE_PHOTO_IDS: { id: string; alt: string }[] = [
+  { id: "-hbgU510TzU", alt: "Bandera de Guatemala ondeando bajo un cielo nublado" },
+  { id: "uliZMHrDgzM", alt: "Calle de la ciudad con una torre del reloj al fondo" },
+  { id: "Lej_-3cke2c", alt: "Muelle cerca del agua con una montaña cónica al fondo" },
+];
+
+type SliderSlide = { url: string; alt: string; photographer: string; photographerUrl: string };
+let independenceSlides: SliderSlide[] = [];
+
+const unsplashKey = import.meta.env.UNSPLASH_ACCESS_KEY;
+if (unsplashKey) {
+  try {
+    const results = await Promise.all(
+      INDEPENDENCE_PHOTO_IDS.map(({ id }) =>
+        fetch(`https://api.unsplash.com/photos/${id}?client_id=${unsplashKey}`).then((res) =>
+          res.ok ? res.json() : null
+        )
+      )
+    );
+    independenceSlides = results
+      .filter((img): img is any => Boolean(img))
+      .map((img, i) => ({
+        url: img.urls?.raw || img.urls?.regular || img.urls?.small || "",
+        alt: INDEPENDENCE_PHOTO_IDS[i]?.alt || img.alt_description || "Guatemala",
+        photographer: img.user?.name || "Unknown",
+        photographerUrl: img.user?.links?.html || "#",
+      }))
+      .filter((s) => s.url);
+  } catch {
+    // Graceful fallback: render nothing if API fails
+  }
+}
+
+// URL for the <link rel="preload"> hero image (first slide, WebP, 960px wide)
+const heroPreloadUrl =
+  independenceSlides[0]?.url ? buildUnsplashUrl(independenceSlides[0].url, 960, "webp", 65) : null;
+
+// ─── Guatemala Photo Slider ───────────────────────────────────────────────────
 let guatemalaImages: { url: string; alt: string; photographer: string; photographerUrl: string }[] =
   [];
-const unsplashKey = import.meta.env.UNSPLASH_ACCESS_KEY;
 if (unsplashKey) {
   try {
     const res = await fetch(
@@ -97,7 +139,14 @@ if (unsplashKey) {
   <BreadcrumbSchema slot="schema" lang={lang} siteUrl={siteUrl} items={[]} />
   <FeaturedWordsSchema slot="schema" lang={lang} siteUrl={siteUrl} words={top} />
 
-  <IndependenceSlider lang={lang} />
+  {/* Preload hero slider image so the browser fetches it as early as possible (LCP) */}
+  {
+    heroPreloadUrl && (
+      <link slot="preload" rel="preload" as="image" href={heroPreloadUrl} fetchpriority="high" />
+    )
+  }
+
+  <IndependenceSlider lang={lang} slides={independenceSlides} />
 
   <HeroSection lang={lang} popularWords={popularWords} allWordIds={allWordIds} />
 
