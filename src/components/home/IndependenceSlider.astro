@@ -152,7 +152,7 @@ if (slides.length === 0) {
       class="independence-slider-content absolute inset-0 flex flex-col items-center justify-center gap-3 text-center"
     >
       <p
-        class="rounded-full border border-white/30 bg-black/30 px-4 py-1 text-xs font-medium tracking-widest text-white/90 uppercase backdrop-blur-sm"
+        class="rounded-full border border-white/20 bg-black/20 px-3 py-0.5 text-[10px] font-medium tracking-widest text-white/75 uppercase backdrop-blur-sm"
       >
         {t("home.independence.subtitle")}
       </p>
@@ -163,14 +163,14 @@ if (slides.length === 0) {
 
     <button
       type="button"
-      class="independence-slider-arrow absolute top-1/2 left-3 z-20 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition hover:bg-black/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      class="independence-slider-arrow absolute top-1/2 left-3 z-20 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition hover:bg-black/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       data-prev
       aria-label="Anterior"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
+        width="16"
+        height="16"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -184,14 +184,14 @@ if (slides.length === 0) {
     </button>
     <button
       type="button"
-      class="independence-slider-arrow absolute top-1/2 right-3 z-20 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition hover:bg-black/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      class="independence-slider-arrow absolute top-1/2 right-3 z-20 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition hover:bg-black/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       data-next
       aria-label="Siguiente"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
+        width="16"
+        height="16"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -339,12 +339,16 @@ if (slides.length === 0) {
     }
 
     .independence-slider-content {
-      padding: 1.75rem 3.5rem;
+      padding: 3.25rem 2.5rem;
+    }
+
+    .independence-slider-content h2 {
+      line-height: 1.15;
     }
 
     .independence-slider-arrow {
-      height: 2.25rem;
-      width: 2.25rem;
+      height: 2rem;
+      width: 2rem;
     }
 
     .independence-slider-attribution {
