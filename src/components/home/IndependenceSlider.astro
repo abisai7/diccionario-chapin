@@ -88,16 +88,16 @@ if (slides.length === 0) {
           <picture>
             <source
               type="image/webp"
-              srcset={buildUnsplashSrcset(slide.url, [640, 1080, 1280], "webp")}
+              srcset={buildUnsplashSrcset(slide.url, [640, 960, 1280], "webp", 65)}
               sizes="(max-width: 640px) 100vw, (max-width: 1100px) 100vw, 1100px"
             />
             <source
               type="image/jpeg"
-              srcset={buildUnsplashSrcset(slide.url, [640, 1080, 1280], "jpg")}
+              srcset={buildUnsplashSrcset(slide.url, [640, 960, 1280], "jpg", 65)}
               sizes="(max-width: 640px) 100vw, (max-width: 1100px) 100vw, 1100px"
             />
             <img
-              src={buildUnsplashUrl(slide.url, 1080, "jpg")}
+              src={buildUnsplashUrl(slide.url, 960, "jpg", 65)}
               alt={slide.alt}
               loading={i === 0 ? "eager" : "lazy"}
               fetchpriority={i === 0 ? "high" : "auto"}

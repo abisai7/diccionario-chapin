@@ -29,16 +29,16 @@ if (images.length === 0) {
             <picture>
               <source
                 type="image/webp"
-                srcset={buildUnsplashSrcset(img.url, [480, 640, 800], "webp")}
+                srcset={buildUnsplashSrcset(img.url, [420, 560, 800], "webp", 55)}
                 sizes="(max-width: 480px) 240px, (max-width: 768px) 280px, 400px"
               />
               <source
                 type="image/jpeg"
-                srcset={buildUnsplashSrcset(img.url, [480, 640, 800], "jpg")}
+                srcset={buildUnsplashSrcset(img.url, [420, 560, 800], "jpg", 55)}
                 sizes="(max-width: 480px) 240px, (max-width: 768px) 280px, 400px"
               />
               <img
-                src={buildUnsplashUrl(img.url, 400, "jpg")}
+                src={buildUnsplashUrl(img.url, 420, "jpg", 55)}
                 alt={img.alt}
                 loading="lazy"
                 decoding="async"
