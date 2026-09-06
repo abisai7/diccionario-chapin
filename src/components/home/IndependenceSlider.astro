@@ -67,14 +67,6 @@ if (!slidesProp) {
 if (slides.length === 0) {
   return null;
 }
-
-// The first slide is the LCP candidate: fuller widths + quality.
-// Secondary slides only appear on interaction, so keep them lighter
-// (smaller srcsets, lower quality, fetchpriority="low") to avoid
-// competing with the hero image for bandwidth during load.
-const slideSizes = slides.map((_, i) =>
-  i === 0 ? { widths: [640, 960, 1280], quality: 60 } : { widths: [480, 640, 800], quality: 45 }
-);
 ---
 
 <section
@@ -102,36 +94,21 @@ const slideSizes = slides.map((_, i) =>
           <picture>
             <source
               type="image/avif"
-              srcset={buildUnsplashSrcset(
-                slide.url,
-                slideSizes[i].widths,
-                "avif",
-                slideSizes[i].quality
-              )}
+              srcset={buildUnsplashSrcset(slide.url, [640, 960, 1280], "avif", 60)}
               sizes="(max-width: 640px) 100vw, (max-width: 1100px) 100vw, 1100px"
             />
             <source
               type="image/webp"
-              srcset={buildUnsplashSrcset(
-                slide.url,
-                slideSizes[i].widths,
-                "webp",
-                slideSizes[i].quality
-              )}
+              srcset={buildUnsplashSrcset(slide.url, [640, 960, 1280], "webp", 65)}
               sizes="(max-width: 640px) 100vw, (max-width: 1100px) 100vw, 1100px"
             />
             <source
               type="image/jpeg"
-              srcset={buildUnsplashSrcset(
-                slide.url,
-                slideSizes[i].widths,
-                "jpg",
-                slideSizes[i].quality
-              )}
+              srcset={buildUnsplashSrcset(slide.url, [640, 960, 1280], "jpg", 65)}
               sizes="(max-width: 640px) 100vw, (max-width: 1100px) 100vw, 1100px"
             />
             <img
-              src={buildUnsplashUrl(slide.url, i === 0 ? 960 : 640, "jpg", slideSizes[i].quality)}
+              src={buildUnsplashUrl(slide.url, 960, "jpg", 65)}
               alt={slide.alt}
               loading={i === 0 ? "eager" : "lazy"}
               fetchpriority={i === 0 ? "high" : "low"}
