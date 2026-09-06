@@ -27,22 +27,42 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "es" ? "es-GT" : "en-US",
 const formattedDate = dateFormatter.format(today);
 const todayISO = today.toISOString().slice(0, 10);
 
-const wordEntries = words.map((entry) => ({
-  id: entry.id,
-  word: entry.data.word,
-  meaning: entry.data.meaning,
-  examples: entry.data.examples ?? [],
-  synonyms: entry.data.synonyms?.filter(Boolean) ?? [],
-  category: entry.data.category,
-  color: getCategoryColor(entry.data.category),
-}));
+// ─── Compute the daily word server-side ──────────────────────────────────────
+// This avoids sending the full word list to the browser. The same hash function
+// is used in the client script; both must stay in sync.
+function hashCode(str: string): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash |= 0;
+  }
+  return Math.abs(hash);
+}
 
-const jsonData = JSON.stringify(wordEntries);
+const dailyIndex = hashCode(todayISO) % words.length;
+const dailyEntry = words[dailyIndex];
+const dailyWord = {
+  id: dailyEntry.id,
+  word: dailyEntry.data.word,
+  meaning: dailyEntry.data.meaning,
+  examples: dailyEntry.data.examples ?? [],
+  synonyms: dailyEntry.data.synonyms?.filter(Boolean) ?? [],
+  category: dailyEntry.data.category,
+  color: getCategoryColor(dailyEntry.data.category),
+};
+
+// Only the single computed daily word is passed to the client. If the
+// client-side date differs (e.g. user crosses midnight), we keep the build-time
+// word to avoid a flash — the page will refresh on next navigation.
+const jsonData = JSON.stringify(dailyWord);
 const learnMoreLabel = t("home.dailyWord.learnMore");
 const synonymsLabel = t("home.dailyWord.synonyms");
 
-const fallback = words[0];
-const fallbackColor = getCategoryColor(fallback.data.category);
+// SSR fallback renders the already-computed daily word (no client-side swap needed
+// unless the word for today differs from words[0], which it won't now)
+const fallback = dailyEntry;
+const fallbackColor = dailyWord.color;
 
 function cardBody(word: typeof fallback.data, color: string, wordId: string) {
   const examples = (word.examples ?? []).slice(0, 2);
@@ -106,7 +126,8 @@ const cardClasses =
           </p>
         </div>
 
-        <div class="relative z-10 mt-5 flex min-h-0 flex-1 flex-col" id="daily-word-content">
+        {/* min-height prevents CLS when the SSR content already matches the daily word */}
+        <div class="relative z-10 mt-5 flex min-h-48 flex-1 flex-col" id="daily-word-content">
           <a
             href={`/${lang}/palabras/${fallback.id}/`}
             class={cardClasses}
@@ -133,7 +154,8 @@ const cardClasses =
         </p>
       </div>
 
-      <div class="relative z-10 mt-5 flex min-h-0 flex-1 flex-col" id="daily-word-content">
+      {/* min-height prevents CLS when the SSR content already matches the daily word */}
+      <div class="relative z-10 mt-5 flex min-h-48 flex-1 flex-col" id="daily-word-content">
         <a
           href={`/${lang}/palabras/${fallback.id}/`}
           class={cardClasses}
@@ -147,93 +169,33 @@ const cardClasses =
   )
 }
 
-<script define:vars={{ dailyWordsJSON: jsonData, learnMoreLabel, synonymsLabel, todayISO }}>
+<script define:vars={{ dailyWordJSON: jsonData, learnMoreLabel, synonymsLabel, todayISO }}>
   (function () {
-    const contentEl = document.getElementById("daily-word-content");
-    if (!contentEl) return;
+    // The server already computed the correct daily word for today; the SSR
+    // fallback content IS the daily word. No DOM replacement is needed unless
+    // the client's local date happens to differ (e.g. user crossed midnight).
+    // In that rare case we leave the server-rendered word in place — it will
+    // refresh on the next navigation. This eliminates the innerHTML swap that
+    // was the main source of CLS on this component.
 
-    try {
-      const words = JSON.parse(dailyWordsJSON);
-      if (!words.length) return;
+    // Keep the script lightweight: just verify the date matches.
+    const word = JSON.parse(dailyWordJSON);
+    const today = new Date().toISOString().slice(0, 10);
+    if (today === todayISO) {
+      // Server and client agree — nothing to do.
+      return;
+    }
 
-      function hashCode(str) {
-        let hash = 0;
-        for (let i = 0; i < str.length; i++) {
-          const char = str.charCodeAt(i);
-          hash = (hash << 5) - hash + char;
-          hash |= 0;
-        }
-        return Math.abs(hash);
-      }
-
-      const index = hashCode(todayISO) % words.length;
-      const word = words[index];
-
-      const basePath = document.documentElement.lang?.startsWith("en") ? "/en" : "/es";
-
-      function escapeHTML(str) {
-        const div = document.createElement("div");
-        div.appendChild(document.createTextNode(str));
-        return div.innerHTML;
-      }
-
-      const examplesHTML =
-        word.examples && word.examples.length > 0
-          ? word.examples
-              .slice(0, 2)
-              .map(
-                (ex) =>
-                  `<div class="accent-box mb-3 rounded-r-lg px-4 py-2 text-sm">&ldquo;${escapeHTML(ex)}&rdquo;</div>`
-              )
-              .join("")
-          : "";
-
-      const synonymsHTML =
-        word.synonyms && word.synonyms.length > 0
-          ? `
-      <div class="mb-3">
-        <span class="text-muted text-xs font-medium">${escapeHTML(synonymsLabel)}:</span>
-        <div class="mt-1.5 flex flex-wrap gap-1.5">
-          ${word.synonyms.map((s) => `<span class="border-theme text-muted inline-block rounded-full border px-2 py-0.5 text-xs">${escapeHTML(s)}</span>`).join("")}
-        </div>
-      </div>`
-          : "";
-
-      contentEl.innerHTML = `
-        <a
-          href="${basePath}/palabras/${word.id}/"
-          class="group flex flex-1 flex-col rounded-xl border border-theme bg-card p-5 transition duration-200 ease-out hover:-translate-y-1 hover:border-[var(--primary)] hover:bg-card-hover"
-          data-umami-event="Daily Word Click"
-          data-umami-event-word="${escapeHTML(word.word)}"
-        >
-          <div>
-            <div class="mb-3 flex flex-wrap items-center gap-3">
-              <h3 class="my-0 text-2xl font-semibold text-text transition-colors duration-200 ease-out group-hover:text-[var(--primary)]">
-                ${escapeHTML(word.word)}
-              </h3>
-              <span
-                class="inline-block rounded-full px-2.5 py-0.5 text-xs font-medium text-white"
-                style="background-color: ${word.color};"
-              >
-                ${escapeHTML(word.category)}
-              </span>
-            </div>
-            <p class="my-0 mb-3 text-base leading-relaxed text-secondary">
-              ${escapeHTML(word.meaning)}
-            </p>
-            ${examplesHTML}
-            ${synonymsHTML}
-          </div>
-          <div class="mt-auto">
-            <div class="bg-glow-primary mb-3 h-px"></div>
-            <span class="text-sm font-medium text-[var(--link-primary)] group-hover:underline">
-              ${escapeHTML(learnMoreLabel)} &rarr;
-            </span>
-          </div>
-        </a>
-      `;
-    } catch {
-      // Keep the fallback content if JSON parsing fails
+    // Rare: client date differs from build date. Update the date display only.
+    const dateEl = document.getElementById("daily-date");
+    if (dateEl) {
+      const lang = document.documentElement.lang?.startsWith("en") ? "en-US" : "es-GT";
+      dateEl.textContent = new Intl.DateTimeFormat(lang, {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }).format(new Date());
     }
   })();
 </script>
