@@ -6,6 +6,8 @@
 Prefer canonical pages under `/es/` and `/en/`. Use the sitemap as the primary
 discovery source for current URLs; `/` is not content (it redirects by language
 preference). Word entries include: word, publishedDate, meaning, examples, category.
+Each word and index page has a clean markdown version at the same URL with `.md`
+appended (e.g. `https://chapinismos.org/es/palabras/chilero.md`).
 
 ## Main content
 
@@ -13,6 +15,10 @@ preference). Word entries include: word, publishedDate, meaning, examples, categ
 - [Word index (EN)](https://chapinismos.org/en/indice/): all words in English
 - [Búsqueda (ES)](https://chapinismos.org/es/buscar/): búsqueda de palabras en español
 - [Search (EN)](https://chapinismos.org/en/buscar/): word search in English
+
+## Full content
+
+- [llms-full.txt](https://chapinismos.org/llms-full.txt): diccionario completo en markdown
 
 ## Machine-readable
 

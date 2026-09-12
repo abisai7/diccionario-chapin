@@ -17,6 +17,7 @@ const {
   type = "website",
   lang = "es",
   alternateUrls = {},
+  markdownUrl = "",
 } = Astro.props;
 
 const siteUrl = Astro.site || "https://chapinismos.org";
@@ -77,6 +78,19 @@ const speculationRulesScript =
           rel="alternate"
           hreflang="x-default"
           href={new URL(alternateUrls.xDefault, siteUrl).toString()}
+        />
+      )
+    }
+
+    <!-- llms.txt spec v2: markdown twin of this page + file that describes it -->
+    <link rel="describedby" href={new URL("/llms.txt", siteUrl).toString()} />
+    {
+      markdownUrl && (
+        <link
+          rel="alternate"
+          type="text/markdown"
+          title="Markdown"
+          href={new URL(markdownUrl, siteUrl).toString()}
         />
       )
     }

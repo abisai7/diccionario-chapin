@@ -3,6 +3,7 @@ import { remarkModifiedTime } from "./remark-modified-time.mjs";
 import sitemap from "@astrojs/sitemap";
 import { unified } from "@astrojs/markdown-remark";
 import vercel from "@astrojs/vercel";
+import aiAssets from "./scripts/ai-assets.mjs";
 
 import tailwindcss from "@tailwindcss/vite";
 
@@ -22,6 +23,7 @@ export default defineConfig({
         },
       },
     }),
+    aiAssets(),
   ],
   i18n: {
     defaultLocale: "es",
