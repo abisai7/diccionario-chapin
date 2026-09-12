@@ -1,0 +1,29 @@
+# Diccionario Chapín (chapinismos.org)
+
+> Bilingual (es/en) Guatemalan slang dictionary built with Astro.
+
+## Canonical
+- https://chapinismos.org/
+
+## Preferred language entry points
+- Spanish: https://chapinismos.org/es/
+- English: https://chapinismos.org/en/
+
+## Key machine-readable resources
+- Sitemap index: https://chapinismos.org/sitemap-index.xml
+- Robots: https://chapinismos.org/robots.txt
+
+## Main content areas
+- Word index (ES): https://chapinismos.org/es/indice/
+- Word index (EN): https://chapinismos.org/en/indice/
+- Search (ES): https://chapinismos.org/es/buscar/
+- Search (EN): https://chapinismos.org/en/buscar/
+
+## Content model
+- Core content is curated Markdown entries with paired filenames across ES/EN.
+- Word entries include: word, publishedDate, meaning, examples, category.
+
+## Crawl guidance
+- Prefer canonical pages under `/es/` and `/en/`.
+- Use the sitemap as the primary discovery source for current URLs.
+- Do not assume `/` is content; it redirects by language preference.
