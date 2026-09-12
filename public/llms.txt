@@ -1,29 +1,20 @@
-# Diccionario Chapín (chapinismos.org)
+# Diccionario Chapín
 
-> Bilingual (es/en) Guatemalan slang dictionary built with Astro.
+> Diccionario bilingüe (es/en) de chapinismos guatemaltecos, con definiciones y ejemplos.
+> Bilingual (es/en) Guatemalan slang dictionary with definitions and examples.
 
-## Canonical
-- https://chapinismos.org/
+Prefer canonical pages under `/es/` and `/en/`. Use the sitemap as the primary
+discovery source for current URLs; `/` is not content (it redirects by language
+preference). Word entries include: word, publishedDate, meaning, examples, category.
 
-## Preferred language entry points
-- Spanish: https://chapinismos.org/es/
-- English: https://chapinismos.org/en/
+## Main content
 
-## Key machine-readable resources
-- Sitemap index: https://chapinismos.org/sitemap-index.xml
-- Robots: https://chapinismos.org/robots.txt
+- [Índice de palabras (ES)](https://chapinismos.org/es/indice/): todas las palabras en español
+- [Word index (EN)](https://chapinismos.org/en/indice/): all words in English
+- [Búsqueda (ES)](https://chapinismos.org/es/buscar/): búsqueda de palabras en español
+- [Search (EN)](https://chapinismos.org/en/buscar/): word search in English
 
-## Main content areas
-- Word index (ES): https://chapinismos.org/es/indice/
-- Word index (EN): https://chapinismos.org/en/indice/
-- Search (ES): https://chapinismos.org/es/buscar/
-- Search (EN): https://chapinismos.org/en/buscar/
+## Machine-readable
 
-## Content model
-- Core content is curated Markdown entries with paired filenames across ES/EN.
-- Word entries include: word, publishedDate, meaning, examples, category.
-
-## Crawl guidance
-- Prefer canonical pages under `/es/` and `/en/`.
-- Use the sitemap as the primary discovery source for current URLs.
-- Do not assume `/` is content; it redirects by language preference.
+- [Sitemap index](https://chapinismos.org/sitemap-index.xml): fuente principal de URLs actuales
+- [robots.txt](https://chapinismos.org/robots.txt): directivas de rastreo
