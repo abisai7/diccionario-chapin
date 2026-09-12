@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://chapinismos.org/sitemap-index.xml
+
+# LLM discovery
+LLM: https://chapinismos.org/llms.txt
