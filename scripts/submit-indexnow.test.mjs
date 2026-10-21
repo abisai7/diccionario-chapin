@@ -36,6 +36,31 @@ test("submits unique same-site URLs from the sitemap and accepts HTTP 202", asyn
   });
 });
 
+test("does not fail when IndexNow key verification is still pending", async () => {
+  let submissionCount = 0;
+  const fetchImpl = async (url, options) => {
+    if (options?.method === "POST") {
+      submissionCount += 1;
+      return new Response(
+        JSON.stringify({
+          errorCode: "SiteVerificationNotCompleted",
+          message: "Site Verification is not completed.",
+        }),
+        { status: 403 }
+      );
+    }
+
+    const xml =
+      String(url) === "https://chapinismos.org/sitemap-index.xml"
+        ? "<sitemapindex><sitemap><loc>https://chapinismos.org/sitemap-0.xml</loc></sitemap></sitemapindex>"
+        : "<urlset><url><loc>https://chapinismos.org/es/</loc></url></urlset>";
+    return new Response(xml, { status: 200 });
+  };
+
+  await assert.doesNotReject(() => submitSiteToIndexNow({ key: "test-key-123", fetchImpl }));
+  assert.equal(submissionCount, 1);
+});
+
 test("splits submissions at IndexNow's 10,000 URL limit", async () => {
   const batchSizes = [];
   const urls = Array.from(

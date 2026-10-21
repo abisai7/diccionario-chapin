@@ -237,7 +237,7 @@ Ver [src/content/WORDS_README.md](src/content/WORDS_README.md) para más detalle
 
 ## 🔎 IndexNow
 
-Después de cada despliegue de producción exitoso en Vercel, GitHub Actions envía las URLs del sitemap a IndexNow. La clave de verificación está en `public/indexnow-key.txt`, que se publica como `https://chapinismos.org/indexnow-key.txt`. IndexNow solo confirma la recepción de las URLs; no garantiza que los buscadores las indexen.
+Después de cada despliegue de producción exitoso en Vercel, GitHub Actions envía las URLs del sitemap a IndexNow. La clave de verificación está en `public/indexnow-key.txt`, que se publica como `https://chapinismos.org/indexnow-key.txt`. Si la verificación de la clave aún está pendiente, la tarea no falla ni envía URLs; vuelve a intentarlo en el siguiente despliegue o puedes ejecutarla manualmente desde **Actions → Notify IndexNow → Run workflow**. IndexNow solo confirma la recepción de las URLs; no garantiza que los buscadores las indexen.
 
 La tarea se activa con el evento `deployment_status` de GitHub, por lo que Vercel debe publicar sus despliegues en el repositorio conectado. Para probar el envío sin llamar a IndexNow:
 

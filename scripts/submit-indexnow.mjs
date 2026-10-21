@@ -74,6 +74,13 @@ export async function submitSiteToIndexNow({ siteUrl = SITE_URL, key, fetchImpl 
 
     if (response.status !== 200 && response.status !== 202) {
       const details = await response.text();
+      if (response.status === 403 && details.includes('"SiteVerificationNotCompleted"')) {
+        process.stderr.write(
+          "IndexNow key verification is still pending. No URLs were submitted; rerun this workflow after verification completes.\n"
+        );
+        return;
+      }
+
       throw new Error(`IndexNow rejected a URL batch (HTTP ${response.status}): ${details}`);
     }
   }
