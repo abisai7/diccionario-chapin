@@ -70,19 +70,19 @@ if (slides.length === 0) {
 ---
 
 <section
-  class="independence-slider mx-auto max-w-275 px-6 pt-6"
+  class="celebration-slider mx-auto max-w-275 px-6 pt-6"
   aria-roledescription="carrusel"
-  aria-label={t("home.independence.title")}
+  aria-label={t("home.celebration.title")}
 >
   <div
-    class="independence-slider-viewport relative aspect-[16/9] overflow-hidden rounded-2xl sm:aspect-[16/7]"
+    class="celebration-slider-viewport relative aspect-[16/9] overflow-hidden rounded-2xl sm:aspect-[16/7]"
     data-slider
   >
     {
       slides.map((slide, i) => (
         <figure
           class:list={[
-            "independence-slide absolute inset-0 transition-opacity duration-700",
+            "celebration-slide absolute inset-0 transition-opacity duration-700",
             i === 0 ? "opacity-100" : "opacity-0",
           ]}
           data-slide
@@ -118,7 +118,7 @@ if (slides.length === 0) {
               class="h-full w-full object-cover"
             />
           </picture>
-          <figcaption class="independence-slider-attribution absolute right-3 bottom-2 rounded bg-black/40 px-2 py-1 text-xs text-white/80 backdrop-blur-sm">
+          <figcaption class="celebration-slider-attribution absolute right-3 bottom-2 rounded bg-black/40 px-2 py-1 text-xs text-white/80 backdrop-blur-sm">
             Photo by{" "}
             <a
               href={`${slide.photographerUrl}?utm_source=chapinismos.org&utm_medium=referral`}
@@ -149,21 +149,21 @@ if (slides.length === 0) {
     </div>
 
     <div
-      class="independence-slider-content absolute inset-0 flex flex-col items-center justify-center gap-3 text-center"
+      class="celebration-slider-content absolute inset-0 flex flex-col items-center justify-center gap-3 text-center"
     >
       <p
         class="rounded-full border border-white/20 bg-black/20 px-3 py-0.5 text-[10px] font-medium tracking-widest text-white/75 uppercase backdrop-blur-sm"
       >
-        {t("home.independence.subtitle")}
+        {t("home.celebration.subtitle")}
       </p>
       <h2 class="font-title text-[clamp(1.8rem,5vw,3.5rem)] font-bold text-white drop-shadow-lg">
-        {t("home.independence.title")}
+        {t("home.celebration.title")}
       </h2>
     </div>
 
     <button
       type="button"
-      class="independence-slider-arrow absolute top-1/2 left-3 z-20 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition hover:bg-black/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      class="celebration-slider-arrow absolute top-1/2 left-3 z-20 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition hover:bg-black/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       data-prev
       aria-label="Anterior"
     >
@@ -184,7 +184,7 @@ if (slides.length === 0) {
     </button>
     <button
       type="button"
-      class="independence-slider-arrow absolute top-1/2 right-3 z-20 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition hover:bg-black/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      class="celebration-slider-arrow absolute top-1/2 right-3 z-20 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition hover:bg-black/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       data-next
       aria-label="Siguiente"
     >
@@ -207,13 +207,13 @@ if (slides.length === 0) {
     <div
       class="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2"
       role="tablist"
-      aria-label={t("home.independence.subtitle")}
+      aria-label={t("home.celebration.subtitle")}
     >
       {
         slides.map((_, i) => (
           <button
             type="button"
-            class="independence-dot grid h-12 w-12 place-items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            class="celebration-dot grid h-12 w-12 place-items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             data-dot
             data-active={i === 0 ? "true" : "false"}
             id={`dot-${i}`}
@@ -308,7 +308,7 @@ if (slides.length === 0) {
 </script>
 
 <style>
-  .independence-dot::after {
+  .celebration-dot::after {
     content: "";
     display: block;
     width: 0.625rem;
@@ -320,38 +320,38 @@ if (slides.length === 0) {
       background-color 0.3s;
   }
 
-  .independence-dot[data-active="true"]::after {
+  .celebration-dot[data-active="true"]::after {
     width: 1.5rem;
     background-color: #fff;
   }
 
-  .independence-dot:hover::after {
+  .celebration-dot:hover::after {
     background-color: rgba(255, 255, 255, 0.8);
   }
 
-  .independence-dot[data-active="true"]:hover::after {
+  .celebration-dot[data-active="true"]:hover::after {
     background-color: #fff;
   }
 
   @media (max-width: 768px) {
-    .independence-dot {
+    .celebration-dot {
       display: none;
     }
 
-    .independence-slider-content {
+    .celebration-slider-content {
       padding: 3.25rem 2.5rem;
     }
 
-    .independence-slider-content h2 {
+    .celebration-slider-content h2 {
       line-height: 1.15;
     }
 
-    .independence-slider-arrow {
+    .celebration-slider-arrow {
       height: 2rem;
       width: 2rem;
     }
 
-    .independence-slider-attribution {
+    .celebration-slider-attribution {
       font-size: 0.625rem;
     }
   }

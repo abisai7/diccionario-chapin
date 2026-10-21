@@ -16,8 +16,8 @@ export const translations = {
     "home.dailyWord.synonyms": "Sinónimos",
     "home.featured": "Palabras destacadas",
     "home.latest": "Últimas palabras agregadas",
-    "home.independence.title": "¡Guatemala tu nombre inmortal!",
-    "home.independence.subtitle": "Septiembre, mes de la Independencia",
+    "home.celebration.title": "¡Visita Guatemala!",
+    "home.celebration.subtitle": "Celebra la cultura y belleza de Guatemala",
     "home.guatemalaPhotos.title": "Guatemala en fotos",
     "home.contribute.title": "Contribuye al Diccionario",
     "home.contribute.subtitle":
@@ -226,8 +226,8 @@ export const translations = {
     "home.dailyWord.synonyms": "Synonyms",
     "home.featured": "Featured Words",
     "home.latest": "Latest words added",
-    "home.independence.title": "Guatemala, your immortal name!",
-    "home.independence.subtitle": "September, the month of independence",
+    "home.celebration.title": "Visit Guatemala!",
+    "home.celebration.subtitle": "Celebrate the culture and beauty of Guatemala",
     "home.guatemalaPhotos.title": "Guatemala in photos",
     "home.contribute.title": "Contribute to the Dictionary",
     "home.contribute.subtitle":
