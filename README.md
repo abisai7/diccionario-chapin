@@ -235,6 +235,16 @@ Ver [src/content/WORDS_README.md](src/content/WORDS_README.md) para más detalle
 - ✅ **Lazy Loading** - Carga diferida de contenido
 - ✅ **SEO Friendly** - Meta tags optimizados
 
+## 🔎 IndexNow
+
+Después de cada despliegue de producción exitoso en Vercel, GitHub Actions envía las URLs del sitemap a IndexNow. La clave de verificación está en `public/indexnow-key.txt`, que se publica como `https://chapinismos.org/indexnow-key.txt`. IndexNow solo confirma la recepción de las URLs; no garantiza que los buscadores las indexen.
+
+La tarea se activa con el evento `deployment_status` de GitHub, por lo que Vercel debe publicar sus despliegues en el repositorio conectado. Para probar el envío sin llamar a IndexNow:
+
+```bash
+node --test scripts/submit-indexnow.test.mjs
+```
+
 ## 📚 Documentación Adicional
 
 - [WORDS_README.md](src/content/WORDS_README.md) -Instrucciones para agregar una nueva palabra
